@@ -6,8 +6,20 @@ import {
   signInWithPopup,
   signInWithRedirect,
 } from "firebase/auth";
+import { useState } from "react";
+import { IDrink } from "./DrinkApp/IDrink";
 
-function Authentication() {
+interface IAuthenticationProps {
+  userLoggedIn: boolean;
+  setUserLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  setDrinksState: React.Dispatch<React.SetStateAction<IDrink[]>>;
+}
+
+function Authentication({
+  userLoggedIn,
+  setUserLoggedIn,
+  setDrinksState,
+}: IAuthenticationProps) {
   const provider = new GoogleAuthProvider();
   const auth = getAuth();
 
@@ -17,8 +29,11 @@ function Authentication() {
       // https://firebase.google.com/docs/reference/js/auth.user
       const uid = user.uid;
       console.log(`${uid} is logged in.`);
+      setUserLoggedIn(true);
     } else {
       console.log("No one logged in.");
+      setUserLoggedIn(false);
+      setDrinksState([]);
     }
   });
 
@@ -46,8 +61,11 @@ function Authentication() {
 
   return (
     <div>
-      <button onClick={onClickSignIn}>Sign in</button>
-      <button onClick={onClickSignOut}>Sign out</button>
+      {!userLoggedIn ? (
+        <button onClick={onClickSignIn}>Sign in</button>
+      ) : (
+        <button onClick={onClickSignOut}>Sign out</button>
+      )}
     </div>
   );
 }
