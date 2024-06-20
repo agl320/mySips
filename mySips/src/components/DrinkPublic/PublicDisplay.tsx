@@ -1,18 +1,15 @@
 import React, { useEffect, useState } from "react";
 import DrinkDisplay from "../DrinkApp/DrinkDisplay";
-import { collection, doc, Firestore, onSnapshot } from "firebase/firestore";
-import { IDrink } from "../DrinkApp/IDrink";
+import { collection, Firestore, onSnapshot } from "firebase/firestore";
+import { IDrink } from "../../interfaces/IDrink";
 import { isEqual } from "lodash";
 
 interface IPublicDisplayProps {
     firebaseDB: Firestore;
-    userId: string;
-    setDrinksState: React.Dispatch<React.SetStateAction<IDrink[]>>;
-    drinksState: IDrink[];
 }
 
 function PublicDisplay(props: IPublicDisplayProps) {
-    const { firebaseDB, userId, setDrinksState, drinksState } = props;
+    const { firebaseDB } = props;
     const [publicDrinks, setPublicDrinks] = useState<
         Record<string, { userDrinkData: IDrink[] }>
     >({});
@@ -32,25 +29,13 @@ function PublicDisplay(props: IPublicDisplayProps) {
         }
     );
 
-    // Detects updates if account logged in from multiple places
-    // const unsubscribeUser = onSnapshot(
-    //     doc(firebaseDB, "users", userId),
-    //     (doc) => {
-    //         if (!isEqual(doc.data().userDrinkData, drinksState)) {
-    //             setDrinksState(doc.data().userDrinkData);
-    //         }
-    //     },
-    //     (error) => {
-    //         console.log(error);
-    //     }
-    // );
-
     useEffect(() => {
         console.log({ publicDrinks });
     }, [publicDrinks]);
 
     return (
         <div>
+            <p>Social</p>
             {Object.entries(publicDrinks).map(
                 ([publicUserId, publicDrinkState], index) => {
                     return (
@@ -58,7 +43,6 @@ function PublicDisplay(props: IPublicDisplayProps) {
                             --{publicUserId}--
                             <DrinkDisplay
                                 drinksState={publicDrinkState.userDrinkData}
-                                setDrinksState={setDrinksState}
                             />
                         </React.Fragment>
                     );

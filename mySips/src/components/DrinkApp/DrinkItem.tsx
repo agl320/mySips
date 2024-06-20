@@ -1,5 +1,5 @@
 import React from "react";
-import { IDrink } from "./IDrink";
+import { IDrink } from "../../interfaces/IDrink";
 
 function DrinkItem({ drinkData }: { drinkData: IDrink }) {
     return (

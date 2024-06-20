@@ -1,24 +1,19 @@
 import React from "react";
 import DrinkItem from "./DrinkItem";
-import { IDrink } from "./IDrink";
+import { IMenu } from "../../interfaces/IMenu";
 
 interface IDrinkDisplayProps {
-    drinksState: Array<IDrink>;
+    drinksState: IMenu;
     mode?: "editable" | "limited";
-    setDrinksState: React.Dispatch<React.SetStateAction<IDrink[]>>;
+    deleteDrink?: (uuidToDelete: string) => void;
 }
 
 function DrinkDisplay(props: IDrinkDisplayProps) {
-    const { drinksState, mode = "limited", setDrinksState } = props;
+    const { drinksState, mode = "limited", deleteDrink } = props;
 
-    const deleteDrink = (uuidToDelete: string) => {
-        setDrinksState(
-            drinksState.filter((drinkData) => drinkData.uuid !== uuidToDelete)
-        );
-    };
     return (
         <>
-            {drinksState.map((drinkData, index) => (
+            {Object.entries(drinksState).map(([drinkId, drinkData], index) => (
                 <React.Fragment key={index}>
                     <div
                         style={{
@@ -27,7 +22,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                             width: "500px",
                         }}
                     >
-                        {mode === "editable" ? (
+                        {mode === "editable" && deleteDrink ? (
                             <>
                                 <input type="checkbox"></input>
                                 <DrinkItem drinkData={drinkData} />

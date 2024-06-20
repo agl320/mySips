@@ -1,38 +1,28 @@
-import { useEffect, useState } from "react";
-import { IDrink } from "./IDrink";
+import { IDrink } from "../../interfaces/IDrink";
+import { IMenu } from "../../interfaces/IMenu";
 
 import DrinkDisplay from "./DrinkDisplay";
 import DrinkForm from "./DrinkForm";
-import { doc, Firestore, getDoc } from "firebase/firestore";
-import { isEqual } from "lodash";
 
 interface IDrinkAppProps {
     userId: string;
-    drinksState: Array<IDrink>;
-    setDrinksState: React.Dispatch<React.SetStateAction<IDrink[]>>;
-    firebaseDB: Firestore;
+    drinksState: IMenu;
+    setDrinksState: React.Dispatch<React.SetStateAction<IMenu>>;
+    saveDrinksState: () => Promise<void>;
 }
 
 function DrinkApp(props: IDrinkAppProps) {
-    const { userId, drinksState, setDrinksState, firebaseDB } = props;
+    const { userId, drinksState, setDrinksState, saveDrinksState } = props;
 
-    // Initial data load when new userId is detected
-    const loadData = async () => {
-        if (userId) {
-            const docRef = doc(firebaseDB, "users", userId);
-            const docSnap = await getDoc(docRef);
-            if (
-                docSnap.data()?.userDrinkData &&
-                !isEqual(drinksState, docSnap.data()?.userDrinkData)
-            ) {
-                setDrinksState(docSnap.data()?.userDrinkData ?? []);
-            }
-        }
+    const deleteDrink = (uuidToDelete: string) => {
+        setDrinksState(
+            Object.fromEntries(
+                Object.entries(drinksState).filter(
+                    ([drinkId, drinkData]) => drinkData.uuid !== uuidToDelete
+                )
+            )
+        );
     };
-
-    useEffect(() => {
-        loadData();
-    }, [userId]);
 
     return (
         <>
@@ -40,9 +30,7 @@ function DrinkApp(props: IDrinkAppProps) {
                 <DrinkForm
                     drinksState={drinksState}
                     setDrinksState={setDrinksState}
-                    firebaseDB={firebaseDB}
-                    // firebaseAuth={firebaseAuth}
-                    userId={userId}
+                    saveDrinksState={saveDrinksState}
                 />
             ) : (
                 <></>
@@ -51,7 +39,7 @@ function DrinkApp(props: IDrinkAppProps) {
             <DrinkDisplay
                 drinksState={drinksState}
                 mode="editable"
-                setDrinksState={setDrinksState}
+                deleteDrink={deleteDrink}
             />
         </>
     );

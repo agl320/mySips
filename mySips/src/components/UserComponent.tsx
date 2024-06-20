@@ -5,32 +5,33 @@ import {
     onAuthStateChanged,
     signInWithPopup,
 } from "firebase/auth";
-import { IDrink } from "./DrinkApp/IDrink";
+import { useState } from "react";
 
 interface IAuthenticationProps {
     userId: string;
-    setDrinksState: React.Dispatch<React.SetStateAction<IDrink[]>>;
     firebaseProvider: GoogleAuthProvider;
     firebaseAuth: Auth;
     setUserId: React.Dispatch<React.SetStateAction<string>>;
 }
 
-function Authentication({
+function UserComponent({
     userId,
     setUserId,
     firebaseProvider,
     firebaseAuth,
 }: IAuthenticationProps) {
-    // Observer for auth; will update upon authentication state change
+    const [displayName, setDisplayName] = useState<string>("");
+
     onAuthStateChanged(firebaseAuth, (user) => {
         if (user) {
-            // https://firebase.google.com/docs/reference/js/auth.user
             const uid = user.uid;
-            console.log(`${uid} is logged in.`);
-            setUserId(uid);
+            if (uid !== userId) {
+                setUserId(uid);
+                setDisplayName(user.displayName ?? "");
+            }
         } else {
-            console.log("No one logged in.");
             setUserId("");
+            setDisplayName("");
         }
     });
 
@@ -38,13 +39,11 @@ function Authentication({
         try {
             signInWithPopup(firebaseAuth, firebaseProvider);
             const result = await getRedirectResult(firebaseAuth);
-            //   const credential = GoogleAuthProvider.credentialFromResult(result);
-            //   const token = credential.accessToken;
             if (result) {
                 const user = result.user;
                 console.log({ user });
             } else {
-                console.log("No result from redirect.");
+                console.error("No result from redirect.");
             }
         } catch (error) {
             console.error(error);
@@ -58,6 +57,7 @@ function Authentication({
 
     return (
         <div>
+            <p>Logged in as {displayName}</p>
             {!userId ? (
                 <button onClick={onClickSignIn}>Sign in</button>
             ) : (
@@ -67,4 +67,4 @@ function Authentication({
     );
 }
 
-export default Authentication;
+export default UserComponent;

@@ -1,78 +1,46 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import { IDrink } from "./IDrink";
-
-import { collection, Firestore, setDoc, doc } from "firebase/firestore";
-import { Auth } from "firebase/auth";
+import { IMenu } from "../../interfaces/IMenu";
+import { IDrink } from "../../interfaces/IDrink";
+import DrinkInput from "../DrinkInput";
 
 interface IDrinkFormProps {
-    drinksState: Array<IDrink>;
-    setDrinksState: React.Dispatch<React.SetStateAction<IDrink[]>>;
-    firebaseDB: Firestore;
-    // firebaseAuth: Auth;
-    userId: string;
+    drinksState: IMenu;
+    setDrinksState: React.Dispatch<React.SetStateAction<IMenu>>;
+    saveDrinksState: () => Promise<void>;
 }
 
 function DrinkForm(props: IDrinkFormProps) {
-    const { drinksState, setDrinksState, firebaseDB, userId } = props;
+    const { drinksState, setDrinksState, saveDrinksState } = props;
 
-    const [drinkName, setDrinkName] = useState<string>("");
-    const [drinkAddress, setDrinkAddress] = useState<string>("");
-
-    const saveDrinksState = async () => {
-        try {
-            setDoc(doc(collection(firebaseDB, "users"), userId), {
-                userDrinkData: drinksState,
-            });
-        } catch (e) {
-            console.error("Error adding document: ", e);
-        }
-    };
+    const [drinkInputState, setDrinkInputState] = useState<
+        Omit<IDrink, "uuid">
+    >({ name: "", description: "" });
 
     /** Adding new drink to local drinksState */
-    const addDrink = () => {
-        setDrinksState((prevDrinksState) =>
-            prevDrinksState.concat({
-                uuid: uuidv4(),
+    const addToDrinksState = () => {
+        const newUuid = uuidv4();
+        setDrinksState({
+            ...drinksState,
+            [newUuid]: {
+                uuid: newUuid,
                 name:
-                    drinkName === ""
-                        ? `New drink ${drinksState.length}`
-                        : drinkName,
+                    drinkInputState.name === ""
+                        ? `New drink ${Object.keys(drinksState).length}`
+                        : drinkInputState.name,
                 description: "",
-                address: drinkAddress,
-            } as IDrink)
-        );
+                address: drinkInputState.address,
+            },
+        });
     };
 
     return (
         <>
-            <div>
-                <label>Drink name</label>
-                <input
-                    type="text"
-                    placeholder={`New drink ${drinksState.length}`}
-                    required
-                    value={drinkName}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        setDrinkName(e.target.value);
-                    }}
-                    maxLength={32}
-                ></input>
-            </div>
-            <div>
-                <label>Street address</label>
-                <input
-                    type="text"
-                    placeholder={`Street address`}
-                    required
-                    value={drinkAddress}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        setDrinkAddress(e.target.value);
-                    }}
-                    maxLength={32}
-                ></input>
-            </div>
-            <button onClick={addDrink}>New drink</button>
+            <DrinkInput
+                drinkInputState={drinkInputState}
+                setDrinkInputState={setDrinkInputState}
+            />
+            <button onClick={addToDrinksState}>New drink</button>
             <button onClick={saveDrinksState}>Save</button>
         </>
     );
