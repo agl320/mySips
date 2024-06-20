@@ -1,33 +1,42 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IDrink } from "./IDrink";
 
 import DrinkDisplay from "./DrinkDisplay";
 import DrinkForm from "./DrinkForm";
-import { Firestore } from "firebase/firestore";
-import { Auth } from "firebase/auth";
+import { doc, Firestore, getDoc } from "firebase/firestore";
+import { isEqual } from "lodash";
 
 interface IDrinkAppProps {
-    userLoggedIn: boolean;
+    userId: string;
     drinksState: Array<IDrink>;
     setDrinksState: React.Dispatch<React.SetStateAction<IDrink[]>>;
     firebaseDB: Firestore;
-    // firebaseAuth: Auth;
-    userId: string;
 }
 
 function DrinkApp(props: IDrinkAppProps) {
-    const {
-        userLoggedIn,
-        drinksState,
-        setDrinksState,
-        firebaseDB,
-        // firebaseAuth,
-        userId,
-    } = props;
+    const { userId, drinksState, setDrinksState, firebaseDB } = props;
+
+    // Initial data load when new userId is detected
+    const loadData = async () => {
+        if (userId) {
+            const docRef = doc(firebaseDB, "users", userId);
+            const docSnap = await getDoc(docRef);
+            if (
+                docSnap.data()?.userDrinkData &&
+                !isEqual(drinksState, docSnap.data()?.userDrinkData)
+            ) {
+                setDrinksState(docSnap.data()?.userDrinkData ?? []);
+            }
+        }
+    };
+
+    useEffect(() => {
+        loadData();
+    }, [userId]);
 
     return (
         <>
-            {userLoggedIn ? (
+            {userId ? (
                 <DrinkForm
                     drinksState={drinksState}
                     setDrinksState={setDrinksState}
@@ -39,7 +48,11 @@ function DrinkApp(props: IDrinkAppProps) {
                 <></>
             )}
 
-            <DrinkDisplay drinksState={drinksState} />
+            <DrinkDisplay
+                drinksState={drinksState}
+                mode="editable"
+                setDrinksState={setDrinksState}
+            />
         </>
     );
 }
