@@ -8,6 +8,7 @@ interface IDrink {
 
   /** Drink coordinates/location */
   coordinates?: { lat: string; long: string };
+  address?: string;
   /** Store id */
   storeUuid?: string;
   tags?: Array<string>;

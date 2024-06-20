@@ -1,41 +1,47 @@
 import { useState } from "react";
 import { IDrink } from "./IDrink";
-import { v4 as uuidv4 } from "uuid";
+
 import DrinkDisplay from "./DrinkDisplay";
+import DrinkForm from "./DrinkForm";
+import { Firestore } from "firebase/firestore";
+import { Auth } from "firebase/auth";
 
 interface IDrinkAppProps {
-  userLoggedIn: boolean;
-  drinksState: Array<IDrink>;
-  setDrinksState: React.Dispatch<React.SetStateAction<IDrink[]>>;
+    userLoggedIn: boolean;
+    drinksState: Array<IDrink>;
+    setDrinksState: React.Dispatch<React.SetStateAction<IDrink[]>>;
+    firebaseDB: Firestore;
+    // firebaseAuth: Auth;
+    userId: string;
 }
 
 function DrinkApp(props: IDrinkAppProps) {
-  const { userLoggedIn, drinksState, setDrinksState } = props;
+    const {
+        userLoggedIn,
+        drinksState,
+        setDrinksState,
+        firebaseDB,
+        // firebaseAuth,
+        userId,
+    } = props;
 
-  /** Adding new drink to local drinksState */
-  const addDrink = () => {
-    setDrinksState((prevDrinksState) =>
-      prevDrinksState.concat({
-        uuid: uuidv4(),
-        name: `Drink ${prevDrinksState.length}`,
-        description: "",
-      })
-    );
-  };
-  return (
-    <>
-      {userLoggedIn ? (
+    return (
         <>
-          <button onClick={addDrink}>New drink</button>
-          <button>Save</button>
-        </>
-      ) : (
-        <p>New drink</p>
-      )}
+            {userLoggedIn ? (
+                <DrinkForm
+                    drinksState={drinksState}
+                    setDrinksState={setDrinksState}
+                    firebaseDB={firebaseDB}
+                    // firebaseAuth={firebaseAuth}
+                    userId={userId}
+                />
+            ) : (
+                <></>
+            )}
 
-      <DrinkDisplay drinksState={drinksState} />
-    </>
-  );
+            <DrinkDisplay drinksState={drinksState} />
+        </>
+    );
 }
 
 export default DrinkApp;
