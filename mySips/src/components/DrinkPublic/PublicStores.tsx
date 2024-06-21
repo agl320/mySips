@@ -13,6 +13,7 @@ import DrinkInput from "../DrinkInput";
 import StoreInput from "./StoreInput";
 import { v4 as uuidv4 } from "uuid";
 import StoreDisplay from "./StoreDisplay";
+import DrinkDeleteForm from "./DrinkDeleteForm";
 
 function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
     const [storesState, setStoresState] = useState<Record<string, IStore>>({});
@@ -85,28 +86,6 @@ function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
         });
     };
 
-    const [storeUuidDelete, setStoreUuidDelete] = useState<string>("");
-    const [drinkUuidDelete, setDrinkUuidDelete] = useState<string>("");
-
-    const deleteDrinkFromStore = () => {
-        if (Object.hasOwn(storesState, storeUuidDelete)) {
-            setStoresState({
-                ...storesState,
-                [storeUuidDelete]: {
-                    ...storesState[storeUuidDelete],
-                    storeMenu: Object.fromEntries(
-                        Object.entries(
-                            storesState[storeUuidDelete].storeMenu
-                        ).filter(
-                            ([drinkId, drinkData]) =>
-                                drinkId !== drinkUuidDelete
-                        )
-                    ),
-                },
-            });
-        }
-    };
-
     return (
         <>
             <div>
@@ -125,33 +104,10 @@ function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
                 <br></br>
                 <button onClick={saveDrinkToStore}>Save drink to store</button>
                 <button onClick={() => saveStoresState()}>Save store</button>
-
-                <p>Drink delete</p>
-                <label>Store uuid</label>
-                <select
-                    name="Store uuid"
-                    onChange={(e) => {
-                        setStoreUuidDelete(e.target.value);
-                    }}
-                >
-                    {Object.keys(storesState).map((storeId) => (
-                        <option value={storeId}>{storeId}</option>
-                    ))}
-                </select>
-                {`Selected ${storeUuidDelete}`}
-                <div>
-                    <label>Drink uuid</label>
-                    <input
-                        placeholder="Drink uuid"
-                        value={drinkUuidDelete}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setDrinkUuidDelete(e.target.value);
-                        }}
-                    ></input>
-                </div>
-                <button onClick={() => deleteDrinkFromStore()}>
-                    Delete drink from store
-                </button>
+                <DrinkDeleteForm
+                    storesState={storesState}
+                    setStoresState={setStoresState}
+                />
             </div>
             <div>
                 <p>Stores</p>
