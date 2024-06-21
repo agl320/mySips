@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import DrinkDisplay from "../DrinkApp/DrinkDisplay";
 import { collection, Firestore, onSnapshot } from "firebase/firestore";
-import { IDrink } from "../../interfaces/IDrink";
 import { isEqual } from "lodash";
+import { IMenu } from "../../interfaces/IMenu";
 
 interface IPublicDisplayProps {
     firebaseDB: Firestore;
@@ -11,7 +11,7 @@ interface IPublicDisplayProps {
 function PublicDisplay(props: IPublicDisplayProps) {
     const { firebaseDB } = props;
     const [publicDrinks, setPublicDrinks] = useState<
-        Record<string, { userDrinkData: IDrink[] }>
+        Record<string, { userDrinkData: IMenu }>
     >({});
 
     const unsubscribeAll = onSnapshot(

@@ -4,7 +4,7 @@ import { IMenu } from "./IMenu";
 interface IStore {
     uuid: string;
     storeName: string;
-    storeAddress: string;
+    storeAddress?: string;
     storeMenu: IMenu;
 }
 

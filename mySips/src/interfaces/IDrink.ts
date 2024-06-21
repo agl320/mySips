@@ -1,3 +1,5 @@
+import ITag from "./ITag";
+
 interface IDrink {
   uuid: string;
   /** Drink name */
@@ -11,7 +13,8 @@ interface IDrink {
   address?: string;
   /** Store id */
   storeUuid?: string;
-  tags?: Array<string>;
+  tags?: Record<string,ITag>;
+  menuCategory?: string;
 }
 
 export type { IDrink };

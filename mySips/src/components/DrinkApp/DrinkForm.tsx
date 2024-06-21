@@ -15,7 +15,7 @@ function DrinkForm(props: IDrinkFormProps) {
 
     const [drinkInputState, setDrinkInputState] = useState<
         Omit<IDrink, "uuid">
-    >({ name: "", description: "" });
+    >({ name: "", description: "", address: "" });
 
     /** Adding new drink to local drinksState */
     const addToDrinksState = () => {
