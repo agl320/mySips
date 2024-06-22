@@ -29,10 +29,6 @@ function PublicDisplay(props: IPublicDisplayProps) {
         }
     );
 
-    useEffect(() => {
-        console.log({ publicDrinks });
-    }, [publicDrinks]);
-
     return (
         <div>
             <p>Social</p>
