@@ -19,7 +19,9 @@ function AdminStoreAddForm({ storesState, setStoresState, addNewStore }) {
                 storeInputState={storeInputState}
                 setStoreInputState={setStoreInputState}
             />
-            <button onClick={() => addNewStore()}>Add new store</button>
+            <button onClick={() => addNewStore(storeInputState)}>
+                Add new store
+            </button>
         </div>
     );
 }

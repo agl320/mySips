@@ -66,12 +66,12 @@ function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
         setSelectedStoreUUID("");
     };
 
-    const addStoreToState = () => {
+    const addStoreToState = (storeInputState) => {
         const uuid = uuidv4();
         try {
             setDoc(doc(collection(firebaseDB, "stores"), uuid), {
                 uuid: uuid,
-                storeName: "",
+                storeName: storeInputState.storeName ?? "",
                 storeMenu: {},
             });
             selectedStoreUUID(uuid);

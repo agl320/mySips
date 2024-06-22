@@ -13,31 +13,38 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
 
     return (
         <>
-            {Object.entries(drinksState).map(([drinkId, drinkData], index) => (
-                <React.Fragment key={index}>
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            width: "500px",
-                        }}
-                    >
-                        {mode === "editable" && deleteDrink ? (
-                            <>
-                                <input type="checkbox"></input>
-                                <DrinkItem drinkData={drinkData} />
-                                <button
-                                    onClick={() => deleteDrink(drinkData.uuid)}
-                                >
-                                    Delete
-                                </button>
-                            </>
-                        ) : (
-                            <DrinkItem drinkData={drinkData} />
-                        )}
-                    </div>
-                </React.Fragment>
-            ))}
+            <p>Drinks:</p>
+            <div style={{ paddingLeft: "15px" }}>
+                {Object.entries(drinksState).map(
+                    ([drinkId, drinkData], index) => (
+                        <React.Fragment key={index}>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    width: "500px",
+                                }}
+                            >
+                                {mode === "editable" && deleteDrink ? (
+                                    <>
+                                        <input type="checkbox"></input>
+                                        <DrinkItem drinkData={drinkData} />
+                                        <button
+                                            onClick={() =>
+                                                deleteDrink(drinkData.uuid)
+                                            }
+                                        >
+                                            Delete
+                                        </button>
+                                    </>
+                                ) : (
+                                    <DrinkItem drinkData={drinkData} />
+                                )}
+                            </div>
+                        </React.Fragment>
+                    )
+                )}
+            </div>
         </>
     );
 }

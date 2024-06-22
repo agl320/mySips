@@ -10,39 +10,15 @@ function StoreDisplay({
 }: {
     storesState: Record<string, IStore>;
 }) {
-    // const [publicStores, setPublicStores] = useState<Record<string, IStore>>(
-    //     {}
-    // );
-
-    // const unsubscribeAll = onSnapshot(
-    //     collection(firebaseDB, "stores"),
-    //     (querySnapshot) => {
-    //         if (querySnapshot) {
-    //             const newPublicStores = {};
-    //             querySnapshot.forEach((doc) => {
-    //                 newPublicStores[doc.id] = doc.data();
-    //             });
-    //             if (!isEqual(newPublicStores, publicStores)) {
-    //                 setPublicStores(newPublicStores);
-    //             }
-    //         }
-    //     }
-    // );
-
-    // useEffect(() => {
-    //     console.log({ publicStores });
-    // }, [publicStores]);
-
     return (
         <div>
             {Object.entries(storesState).map(
                 ([storeId, storeContent], index) => {
                     return (
                         <React.Fragment key={index}>
-                            <div>
-                                <p>
-                                    --={storeContent.storeName} : {storeId}=--
-                                </p>
+                            <div style={{ border: "1px solid black" }}>
+                                <p>Store name: {storeContent.storeName}</p>
+                                <p>Store uid: {storeId}</p>
                                 <DrinkDisplay
                                     drinksState={storeContent.storeMenu}
                                     mode="limited"

@@ -16,6 +16,21 @@ function AdminDrinkDeleteForm({
 }) {
     const [selectedDrinkUUID, setSelectedDrinkUUID] = useState<string>("");
 
+    // Init dropdown
+    useEffect(() => {
+        // Reset to first item if object has the current drink id
+        //  and menu is not empty
+        if (
+            Object.keys(storesState[selectedStoreUUID].storeMenu).length !==
+                0 &&
+            selectedDrinkUUID === ""
+        ) {
+            setSelectedDrinkUUID(
+                Object.keys(storesState[selectedStoreUUID].storeMenu)[0]
+            );
+        }
+    }, [selectedDrinkUUID, selectedStoreUUID, storesState]);
+
     useEffect(() => {
         setSelectedDrinkUUID(
             Object.keys(storesState[selectedStoreUUID].storeMenu)[0]
