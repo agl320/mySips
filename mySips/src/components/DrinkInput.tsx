@@ -1,4 +1,6 @@
+import { Label } from "@radix-ui/react-label";
 import { IDrink } from "../interfaces/IDrink";
+import { Input } from "./ui/input";
 
 function DrinkInput({
     drinkInputState,
@@ -12,8 +14,8 @@ function DrinkInput({
     return (
         <div>
             <div>
-                <label>Drink name</label>
-                <input
+                <Label>Drink name</Label>
+                <Input
                     type="text"
                     placeholder={`New drink`}
                     required
@@ -25,11 +27,11 @@ function DrinkInput({
                         });
                     }}
                     maxLength={32}
-                ></input>
+                ></Input>
             </div>
             <div>
-                <label>Street description</label>
-                <input
+                <Label>Street description</Label>
+                <Input
                     type="text"
                     placeholder={`Drink description`}
                     required
@@ -41,11 +43,11 @@ function DrinkInput({
                         });
                     }}
                     maxLength={32}
-                ></input>
+                ></Input>
             </div>
             <div>
-                <label>Street address</label>
-                <input
+                <Label>Street address</Label>
+                <Input
                     type="text"
                     placeholder={`Street address`}
                     required
@@ -57,7 +59,7 @@ function DrinkInput({
                         });
                     }}
                     maxLength={32}
-                ></input>
+                ></Input>
             </div>
         </div>
     );

@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+
 function AdminStoreDeleteForm({
     storesState,
     setStoresState,
@@ -5,9 +7,10 @@ function AdminStoreDeleteForm({
     deleteStore,
 }) {
     return (
-        <div>
-            <p>Store delete</p>
-            <button onClick={() => deleteStore()}>Delete Store</button>
+        <div className="text-right">
+            <Button className="bg-[#dc2626]" onClick={() => deleteStore()}>
+                Delete Store
+            </Button>
         </div>
     );
 }
