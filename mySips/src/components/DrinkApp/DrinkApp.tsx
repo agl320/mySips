@@ -1,18 +1,16 @@
-import { IDrink } from "../../interfaces/IDrink";
 import { IMenu } from "../../interfaces/IMenu";
-
+import { Button } from "../ui/button";
 import DrinkDisplay from "./DrinkDisplay";
-import DrinkForm from "./DrinkForm";
+import DrinkForm from "./UserDrinkAddForm";
 
 interface IDrinkAppProps {
-    userId: string;
     drinksState: IMenu;
     setDrinksState: React.Dispatch<React.SetStateAction<IMenu>>;
     saveDrinksState: () => Promise<void>;
 }
 
 function DrinkApp(props: IDrinkAppProps) {
-    const { userId, drinksState, setDrinksState, saveDrinksState } = props;
+    const { drinksState, setDrinksState, saveDrinksState } = props;
 
     const deleteDrink = (uuidToDelete: string) => {
         setDrinksState(
@@ -26,16 +24,11 @@ function DrinkApp(props: IDrinkAppProps) {
 
     return (
         <>
-            {userId ? (
-                <DrinkForm
-                    drinksState={drinksState}
-                    setDrinksState={setDrinksState}
-                    saveDrinksState={saveDrinksState}
-                />
-            ) : (
-                <></>
-            )}
-
+            <DrinkForm
+                drinksState={drinksState}
+                setDrinksState={setDrinksState}
+            />
+            <Button onClick={saveDrinksState}>Save All</Button>
             <DrinkDisplay
                 drinksState={drinksState}
                 mode="editable"

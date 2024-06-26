@@ -48,11 +48,11 @@ function AdminDrinkDeleteForm({
         }
     }, [selectedDrinkUUID, selectedStoreUUID, storesState]);
 
-    useEffect(() => {
-        setSelectedDrinkUUID(
-            Object.keys(storesState[selectedStoreUUID].storeMenu)[0]
-        );
-    }, [selectedStoreUUID]);
+    // useEffect(() => {
+    //     setSelectedDrinkUUID(
+    //         Object.keys(storesState[selectedStoreUUID].storeMenu)[0]
+    //     );
+    // }, [selectedStoreUUID]);
 
     const deleteDrinkFromStore = () => {
         if (Object.hasOwn(storesState, selectedStoreUUID)) {
@@ -98,7 +98,9 @@ function AdminDrinkDeleteForm({
         return { value: drinkId, label: drinkContent.name };
     });
 
-    console.log(Object.entries(storesState[selectedStoreUUID].storeMenu));
+    useEffect(() => {
+        console.log(dropdownValue);
+    }, [dropdownValue]);
 
     return (
         <div className="flex">
@@ -132,6 +134,8 @@ function AdminDrinkDeleteForm({
                                         value={framework.label}
                                         onSelect={(currentValue) => {
                                             setSelectedDrinkUUID(currentValue);
+                                            console.log(frameworks);
+                                            console.log(currentValue);
                                             setDropdownValue({
                                                 label: currentValue,
                                                 value:

@@ -1,6 +1,7 @@
 import React from "react";
 import DrinkItem from "./DrinkItem";
 import { IMenu } from "../../interfaces/IMenu";
+import { Button } from "../ui/button";
 
 interface IDrinkDisplayProps {
     drinksState: IMenu;
@@ -14,7 +15,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
     return (
         <>
             <p>Drinks:</p>
-            <div style={{ paddingLeft: "15px" }}>
+            <div>
                 {Object.entries(drinksState).map(
                     ([drinkId, drinkData], index) => (
                         <React.Fragment key={index}>
@@ -23,19 +24,20 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                                     display: "flex",
                                     justifyContent: "space-between",
                                     width: "500px",
+                                    padding: "15px",
+                                    border: "1px solid rgba(0, 0, 0, 0.2)",
                                 }}
                             >
                                 {mode === "editable" && deleteDrink ? (
                                     <>
-                                        <input type="checkbox"></input>
                                         <DrinkItem drinkData={drinkData} />
-                                        <button
+                                        <Button
                                             onClick={() =>
                                                 deleteDrink(drinkData.uuid)
                                             }
                                         >
                                             Delete
-                                        </button>
+                                        </Button>
                                     </>
                                 ) : (
                                     <DrinkItem drinkData={drinkData} />

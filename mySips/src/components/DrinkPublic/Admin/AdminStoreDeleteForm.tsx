@@ -7,7 +7,7 @@ function AdminStoreDeleteForm({
     deleteStore,
 }) {
     return (
-        <div className="text-right">
+        <div>
             <Button className="bg-[#dc2626]" onClick={() => deleteStore()}>
                 Delete Store
             </Button>

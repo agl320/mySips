@@ -1,16 +1,15 @@
 import { Label } from "@radix-ui/react-label";
-import { IDrink } from "../interfaces/IDrink";
+import { IDrinkParams } from "../interfaces/Drink";
 import { Input } from "./ui/input";
 
-function DrinkInput({
-    drinkInputState,
-    setDrinkInputState,
-}: {
-    drinkInputState: Omit<IDrink, "uuid">;
+export type IDrinkInputProps = {
+    drinkInputState: Omit<IDrinkParams, "uuid">;
     setDrinkInputState: React.Dispatch<
-        React.SetStateAction<Omit<IDrink, "uuid">>
+        React.SetStateAction<Omit<IDrinkParams, "uuid">>
     >;
-}) {
+};
+
+function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
     return (
         <div>
             <div>

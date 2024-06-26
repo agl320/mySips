@@ -6,6 +6,7 @@ import {
     signInWithPopup,
 } from "firebase/auth";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 interface IAuthenticationProps {
     userId: string;
@@ -59,9 +60,9 @@ function UserComponent({
         <div>
             <p>Logged in as {displayName}</p>
             {!userId ? (
-                <button onClick={onClickSignIn}>Sign in</button>
+                <Button onClick={onClickSignIn}>Sign in</Button>
             ) : (
-                <button onClick={onClickSignOut}>Sign out</button>
+                <Button onClick={onClickSignOut}>Sign out</Button>
             )}
         </div>
     );

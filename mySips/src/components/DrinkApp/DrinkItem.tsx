@@ -1,7 +1,6 @@
-import React from "react";
-import { IDrink } from "../../interfaces/IDrink";
+import { IDrinkParams } from "../../interfaces/Drink";
 
-function DrinkItem({ drinkData }: { drinkData: IDrink }) {
+function DrinkItem({ drinkData }: { drinkData: IDrinkParams }) {
     return (
         <div>
             <p>{drinkData.name}</p>

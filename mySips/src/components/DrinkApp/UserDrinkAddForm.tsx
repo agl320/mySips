@@ -1,20 +1,21 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IMenu } from "../../interfaces/IMenu";
-import { IDrink } from "../../interfaces/IDrink";
+import { IDrinkParams } from "../../interfaces/Drink";
 import DrinkInput from "../DrinkInput";
+import { Button } from "../ui/button";
+import AddDrinkDialog from "../DrinkForms/AddDrinkDialog";
 
 interface IDrinkFormProps {
     drinksState: IMenu;
     setDrinksState: React.Dispatch<React.SetStateAction<IMenu>>;
-    saveDrinksState: () => Promise<void>;
 }
 
 function DrinkForm(props: IDrinkFormProps) {
-    const { drinksState, setDrinksState, saveDrinksState } = props;
+    const { drinksState, setDrinksState } = props;
 
     const [drinkInputState, setDrinkInputState] = useState<
-        Omit<IDrink, "uuid">
+        Omit<IDrinkParams, "uuid">
     >({ name: "", description: "", address: "" });
 
     /** Adding new drink to local drinksState */
@@ -27,7 +28,7 @@ function DrinkForm(props: IDrinkFormProps) {
                 name:
                     drinkInputState.name === ""
                         ? `New drink ${Object.keys(drinksState).length}`
-                        : drinkInputState.name,
+                        : drinkInputState.name.trim(),
                 description: "",
                 address: drinkInputState.address,
             },
@@ -35,14 +36,13 @@ function DrinkForm(props: IDrinkFormProps) {
     };
 
     return (
-        <>
-            <DrinkInput
-                drinkInputState={drinkInputState}
-                setDrinkInputState={setDrinkInputState}
-            />
-            <button onClick={addToDrinksState}>New drink</button>
-            <button onClick={saveDrinksState}>Save</button>
-        </>
+        <AddDrinkDialog
+            drinkInputState={drinkInputState}
+            setDrinkInputState={setDrinkInputState}
+            SaveTrigger={
+                <Button onClick={() => addToDrinksState()}>Add drink</Button>
+            }
+        />
     );
 }
 

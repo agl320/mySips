@@ -18,6 +18,7 @@ import StoreDropdown from "./StoresDropdown";
 import AdminStoreDeleteForm from "./Admin/AdminStoreDeleteForm";
 
 import { v4 as uuidv4 } from "uuid";
+import { Separator } from "../ui/separator";
 
 function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
     const [storesState, setStoresState] = useState<Record<string, IStore>>({});
@@ -70,7 +71,7 @@ function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
         try {
             setDoc(doc(collection(firebaseDB, "stores"), uuid), {
                 uuid: uuid,
-                storeName: storeState.storeName ?? "",
+                storeName: storeState.storeName.trim() ?? "",
                 storeMenu: {},
             });
             // setSelectedStoreUUID(uuid);
@@ -86,21 +87,6 @@ function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
     return (
         <>
             <div>
-                <p>Admin menu</p>
-                <div
-                    style={{
-                        border: "1px solid black",
-                        padding: "5px",
-                        marginBottom: "15px",
-                    }}
-                >
-                    <AdminStoreAddForm
-                        storesState={storesState}
-                        setStoresState={setStoresState}
-                        addNewStore={addStoreToState}
-                    />
-                </div>
-
                 {Object.keys(storesState).length > 0 ? (
                     <div style={{ border: "1px solid black", padding: "5px" }}>
                         <StoreDropdown
@@ -108,13 +94,13 @@ function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
                             selectedStoreUUID={selectedStoreUUID}
                             setSelectedStoreUUID={setSelectedStoreUUID}
                         />
-                        <br></br>
+
                         <AdminDrinkAddForm
                             storesState={storesState}
                             setStoresState={setStoresState}
                             selectedStoreUUID={selectedStoreUUID}
                         />
-                        <br></br>
+
                         {Object.hasOwn(storesState, selectedStoreUUID) &&
                         Object.keys(storesState[selectedStoreUUID].storeMenu)
                             .length > 0 ? (
@@ -127,13 +113,20 @@ function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
                         ) : (
                             <p>No drinks in store</p>
                         )}
-                        <br></br>
-                        <AdminStoreDeleteForm
-                            storesState={storesState}
-                            setStoresState={setStoresState}
-                            selectedStoreUUID={selectedStoreUUID}
-                            deleteStore={deleteStoreFromState}
-                        />
+                        <Separator className="my-4" />
+                        <div className="flex text-right">
+                            <AdminStoreAddForm
+                                storesState={storesState}
+                                setStoresState={setStoresState}
+                                addNewStore={addStoreToState}
+                            />
+                            <AdminStoreDeleteForm
+                                storesState={storesState}
+                                setStoresState={setStoresState}
+                                selectedStoreUUID={selectedStoreUUID}
+                                deleteStore={deleteStoreFromState}
+                            />
+                        </div>
                     </div>
                 ) : (
                     <p>No stores in database</p>

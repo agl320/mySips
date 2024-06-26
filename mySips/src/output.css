@@ -638,6 +638,10 @@ body {
   z-index: 50;
 }
 
+.float-right {
+  float: right;
+}
+
 .-mx-1 {
   margin-left: -0.25rem;
   margin-right: -0.25rem;
@@ -646,6 +650,11 @@ body {
 .my-1 {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
+}
+
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .ml-2 {
@@ -712,6 +721,10 @@ body {
   height: 1px;
 }
 
+.h-\[1px\] {
+  height: 1px;
+}
+
 .max-h-\[300px\] {
   max-height: 300px;
 }
@@ -746,6 +759,10 @@ body {
 
 .w-full {
   width: 100%;
+}
+
+.w-\[1px\] {
+  width: 1px;
 }
 
 .min-w-\[8rem\] {
@@ -794,6 +811,10 @@ body {
 
 .items-center {
   align-items: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {
@@ -1360,6 +1381,10 @@ body {
 @media (min-width: 640px) {
   .sm\:flex-row {
     flex-direction: row;
+  }
+
+  .sm\:justify-start {
+    justify-content: flex-start;
   }
 
   .sm\:justify-end {

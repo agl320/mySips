@@ -14,6 +14,7 @@ import PublicDisplay from "./components/DrinkPublic/PublicDisplay";
 import { isEqual } from "lodash";
 import PublicStores from "./components/DrinkPublic/PublicStores";
 import { IMenu } from "./interfaces/IMenu";
+import { Separator } from "./components/ui/separator";
 
 function App() {
     const firebaseProvider = new GoogleAuthProvider();
@@ -61,6 +62,7 @@ function App() {
     return (
         <>
             <h1>mySips</h1>
+            <Separator className="my-4" />
             <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>
                     <UserComponent
@@ -69,12 +71,16 @@ function App() {
                         firebaseAuth={firebaseAuth}
                         setUserId={setUserId}
                     />
-                    <DrinkApp
-                        drinksState={drinksState}
-                        setDrinksState={setDrinksState}
-                        userId={userId}
-                        saveDrinksState={saveDrinksState}
-                    />
+                    <Separator className="my-4" />
+                    {userId ? (
+                        <DrinkApp
+                            drinksState={drinksState}
+                            setDrinksState={setDrinksState}
+                            saveDrinksState={saveDrinksState}
+                        />
+                    ) : (
+                        <></>
+                    )}
                 </div>
                 <PublicStores firebaseDB={firebaseDB} />
                 {userId ? <PublicDisplay firebaseDB={firebaseDB} /> : <></>}

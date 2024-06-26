@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { IStore } from "../../../interfaces/IStore";
 import DrinkInput from "../../DrinkInput";
-import { IDrink } from "../../../interfaces/IDrink";
+import { IDrinkParams } from "../../../interfaces/Drink";
 import { v4 as uuidv4 } from "uuid";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import AddDrinkDialog from "@/components/DrinkForms/AddDrinkDialog";
 
 function AdminDrinkAddForm({
     storesState,
@@ -18,7 +19,7 @@ function AdminDrinkAddForm({
     selectedStoreUUID: string;
 }) {
     const [drinkInputState, setDrinkInputState] = useState<
-        Omit<IDrink, "uuid">
+        Omit<IDrinkParams, "uuid">
     >({
         name: "",
         description: "",
@@ -58,21 +59,29 @@ function AdminDrinkAddForm({
     };
 
     return (
-        <Dialog>
-            <DialogTrigger>
-                <Button>New Drink</Button>
-            </DialogTrigger>
-            <DialogContent>
-                <div>
-                    <DrinkInput
-                        drinkInputState={drinkInputState}
-                        setDrinkInputState={setDrinkInputState}
-                    />
+        // <Dialog>
+        //     <DialogTrigger>
+        //         <Button>New Drink</Button>
+        //     </DialogTrigger>
+        //     <DialogContent>
+        //         <div>
+        //             <DrinkInput
+        //                 drinkInputState={drinkInputState}
+        //                 setDrinkInputState={setDrinkInputState}
+        //             />
 
-                    <Button onClick={() => addDrinkToStore()}>Add drink</Button>
-                </div>
-            </DialogContent>
-        </Dialog>
+        //             <Button onClick={() => addDrinkToStore()}>Add drink</Button>
+        //         </div>
+        //     </DialogContent>
+        // </Dialog>
+
+        <AddDrinkDialog
+            drinkInputState={drinkInputState}
+            setDrinkInputState={setDrinkInputState}
+            SaveTrigger={
+                <Button onClick={() => addDrinkToStore()}>Add drink</Button>
+            }
+        />
     );
 }
 
