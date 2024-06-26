@@ -1,7 +1,7 @@
-import { Drink } from "./Drink";
+import { Drink } from "../classes/Drink";
 
 interface IMenu {
-    [key: string]: Drink;
+  [key: string]: Drink;
 }
 
-export type {IMenu}
+export type { IMenu };

@@ -1,4 +1,4 @@
-import ITag from "./ITag";
+import ITag from "../interfaces/ITag";
 
 interface IDrinkParams {
   uuid: string;
@@ -13,11 +13,13 @@ interface IDrinkParams {
   address?: string;
   /** Store id */
   storeUuid?: string;
-  tags?: Record<string,ITag>;
+  tags?: Record<string, ITag>;
+
+  /** Drink groups ; to be used for group tabs */
+  groups?: Array<string>;
 }
 
 class Drink implements IDrinkParams {
-
   uuid: string;
   /** Drink name */
   name: string;
@@ -31,10 +33,11 @@ class Drink implements IDrinkParams {
   address?: string;
   /** Store id */
   storeUuid?: string;
-  tags?: Record<string,ITag>;
+  tags?: Record<string, ITag>;
 
-  constructor(params: IDrinkParams) 
-  {
+  groups?: Array<string>;
+
+  constructor(params: IDrinkParams) {
     this.uuid = params.uuid;
     this.name = params.name;
     this.description = params.description;
@@ -42,6 +45,7 @@ class Drink implements IDrinkParams {
     this.coordinates = params?.coordinates;
     this.storeUuid = params?.storeUuid;
     this.tags = params?.tags;
+    this.groups = params?.groups;
   }
 }
 
