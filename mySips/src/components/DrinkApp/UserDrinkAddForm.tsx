@@ -2,16 +2,15 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { IMenu } from "../../interfaces/IMenu";
 import { IDrinkParams } from "../../classes/Drink";
-import DrinkInput from "../DrinkInput";
 import { Button } from "../ui/button";
 import AddDrinkDialog from "../DrinkForms/AddDrinkDialog";
 
-interface IDrinkFormProps {
+interface IUserDrinkAddFormProps {
   drinksState: IMenu;
   setDrinksState: React.Dispatch<React.SetStateAction<IMenu>>;
 }
 
-function DrinkForm(props: IDrinkFormProps) {
+function UserDrinkAddForm(props: IUserDrinkAddFormProps) {
   const { drinksState, setDrinksState } = props;
 
   const [drinkInputState, setDrinkInputState] = useState<
@@ -31,6 +30,7 @@ function DrinkForm(props: IDrinkFormProps) {
             : drinkInputState.name.trim(),
         description: "",
         address: drinkInputState.address,
+        groups: [],
       },
     });
   };
@@ -46,4 +46,4 @@ function DrinkForm(props: IDrinkFormProps) {
   );
 }
 
-export default DrinkForm;
+export default UserDrinkAddForm;

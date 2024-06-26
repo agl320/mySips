@@ -111,7 +111,6 @@ function PublicStores({ firebaseDB }: { firebaseDB: Firestore }) {
                 storesState={storesState}
                 setStoresState={setStoresState}
                 selectedStoreUUID={selectedStoreUUID}
-                setSelectedStoreUUID={setSelectedStoreUUID}
               />
             ) : (
               <p>No drinks in store</p>

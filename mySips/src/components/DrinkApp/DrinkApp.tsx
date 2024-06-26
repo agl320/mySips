@@ -1,7 +1,8 @@
+import { Drink } from "@/classes/Drink";
 import { IMenu } from "../../interfaces/IMenu";
 import { Button } from "../ui/button";
-import DrinkDisplay from "./DrinkDisplay";
-import DrinkForm from "./UserDrinkAddForm";
+import DrinkDisplay, { DisplayMode } from "./DrinkDisplay/DrinkDisplay";
+import UserDrinkAddForm from "./UserDrinkAddForm";
 
 interface IDrinkAppProps {
   drinksState: IMenu;
@@ -13,11 +14,24 @@ interface IDrinkAppProps {
 function DrinkApp(props: IDrinkAppProps) {
   const { drinksState, setDrinksState, saveDrinksState, groupsState } = props;
 
+  /** Adding new drink to local drinksState */
+  const editDrinksState = (newDrinkData: Partial<Drink>) => {
+    if (!newDrinkData.uuid)
+      throw new Error("Trying to edit drink with no uuid!");
+    setDrinksState({
+      ...drinksState,
+      [newDrinkData.uuid]: {
+        ...drinksState[newDrinkData.uuid],
+        ...newDrinkData,
+      },
+    });
+  };
+
   const deleteDrink = (uuidToDelete: string) => {
     setDrinksState(
       Object.fromEntries(
         Object.entries(drinksState).filter(
-          ([drinkId, drinkData]) => drinkData.uuid !== uuidToDelete
+          ([, drinkData]) => drinkData.uuid !== uuidToDelete
         )
       )
     );
@@ -25,20 +39,28 @@ function DrinkApp(props: IDrinkAppProps) {
 
   return (
     <>
-      <DrinkForm drinksState={drinksState} setDrinksState={setDrinksState} />
+      <UserDrinkAddForm
+        drinksState={drinksState}
+        setDrinksState={setDrinksState}
+      />
       <Button onClick={saveDrinksState}>Save All</Button>
       <DrinkDisplay
         drinksState={drinksState}
         groupsState={groupsState}
-        mode="editable"
-        deleteDrink={deleteDrink}
+        mode={DisplayMode.Editable}
+        setDrinksState={setDrinksState}
+        deleteCallback={deleteDrink}
+        editCallback={editDrinksState}
       />
-      <DrinkDisplay
-        drinksState={drinksState}
-        mode="editable"
-        deleteDrink={deleteDrink}
-        group="fruit"
-      />
+      {groupsState.map((groupKey) => {
+        return (
+          <DrinkDisplay
+            key={`drinkDisplay-${groupKey}`}
+            drinksState={drinksState}
+            group={groupKey}
+          />
+        );
+      })}
     </>
   );
 }

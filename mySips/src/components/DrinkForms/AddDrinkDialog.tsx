@@ -12,7 +12,7 @@ import {
 import React, { ReactNode } from "react";
 import { DialogDescription } from "@radix-ui/react-dialog";
 
-interface IDrinkFormProps {
+interface IAddDrinkDialogProps {
   drinkInputState: Omit<IDrinkParams, "uuid">;
   setDrinkInputState: React.Dispatch<
     React.SetStateAction<Omit<IDrinkParams, "uuid">>
@@ -20,10 +20,10 @@ interface IDrinkFormProps {
   SaveTrigger: ReactNode;
 }
 
-function DrinkForm(props: IDrinkFormProps) {
+function AddDrinkDialog(props: IAddDrinkDialogProps) {
   return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button>New Drink</Button>
       </DialogTrigger>
       <DialogContent>
@@ -46,4 +46,4 @@ function DrinkForm(props: IDrinkFormProps) {
   );
 }
 
-export default DrinkForm;
+export default AddDrinkDialog;

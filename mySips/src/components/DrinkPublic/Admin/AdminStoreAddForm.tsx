@@ -7,31 +7,31 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
 function AdminStoreAddForm({ storesState, setStoresState, addNewStore }) {
-    const [storeInputState, setStoreInputState] = useState<IStore>({
-        uuid: "",
-        storeName: "",
-        storeAddress: "",
-        storeMenu: {},
-    });
+  const [storeInputState, setStoreInputState] = useState<IStore>({
+    uuid: "",
+    storeName: "",
+    storeAddress: "",
+    storeMenu: {},
+  });
 
-    return (
-        <Dialog>
-            <DialogTrigger>
-                <Button>New Store</Button>
-            </DialogTrigger>
-            <DialogContent>
-                <div>
-                    <StoreInput
-                        storeInputState={storeInputState}
-                        setStoreInputState={setStoreInputState}
-                    />
-                    <Button onClick={() => addNewStore(storeInputState)}>
-                        Add Store
-                    </Button>
-                </div>
-            </DialogContent>
-        </Dialog>
-    );
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button>New Store</Button>
+      </DialogTrigger>
+      <DialogContent>
+        <div>
+          <StoreInput
+            storeInputState={storeInputState}
+            setStoreInputState={setStoreInputState}
+          />
+          <Button onClick={() => addNewStore(storeInputState)}>
+            Add Store
+          </Button>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
 }
 
 export default AdminStoreAddForm;
