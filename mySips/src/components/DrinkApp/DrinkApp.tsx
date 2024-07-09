@@ -3,8 +3,7 @@ import { IMenu } from "../../interfaces/IMenu";
 import { Button } from "../ui/button";
 import DrinkDisplay, { DisplayMode } from "./DrinkDisplay/DrinkDisplay";
 import UserDrinkAddForm from "./UserDrinkAddForm";
-import { Group } from "@/classes/Category";
-import { IGroupParams } from "@/classes/Group";
+import { Group, IGroupParams } from "@/classes/Group";
 import GroupDisplay from "../Groups/GroupDisplay";
 
 interface IDrinkAppProps {

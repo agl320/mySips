@@ -17,7 +17,6 @@ import { IMenu } from "./interfaces/IMenu";
 import { Separator } from "./components/ui/separator";
 import _ from "lodash";
 import IUser from "./interfaces/IUser";
-import { Drink } from "./classes/Drink";
 import { Group } from "./classes/Group";
 
 function App() {
@@ -35,10 +34,6 @@ function App() {
     /** Array of groups */
     // groupsState is {groupName, groupDrink: Array<drinkUuids>}
     const [groupsState, setGroupsState] = useState<Record<string, Group>>({});
-
-    useEffect(() => {
-        console.log({ drinksState, serverDrinksSate });
-    }, [drinksState, serverDrinksSate]);
 
     /** Initial user data import from database */
     const loadData = async () => {
