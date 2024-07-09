@@ -70,6 +70,7 @@ export const doSignInWithGoogle = async (): Promise<UserRequestReturnType> => {
             };
         })
         .catch((err) => {
+            console.log(err)
             return {
                 status: false,
                 user: null,
@@ -79,7 +80,8 @@ export const doSignInWithGoogle = async (): Promise<UserRequestReturnType> => {
 };
 
 export const doSignOut = async () => {
-    return firebaseAuth.signOut();
+    firebaseAuth.signOut()
+    // return ;
 };
 
 export const doPasswordReset = async (email: string) => {

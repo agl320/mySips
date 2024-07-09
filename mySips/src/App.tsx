@@ -83,7 +83,6 @@ function App() {
     // };
 
     return (
-        <>
             <AuthProvider children={<DefaultView />} />
             {/* <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <div>
@@ -114,7 +113,6 @@ function App() {
                 {userId ? <PublicStores firebaseDB={firebaseDB} /> : <></>}
                 {userId ? <PublicDisplay firebaseDB={firebaseDB} /> : <></>}
             </div> */}
-        </>
     );
 }
 

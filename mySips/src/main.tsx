@@ -9,6 +9,7 @@ import LandingPageView from "./views/LandingPageView.tsx";
 import UserView from "./views/UserView.tsx";
 import LoginView from "./views/LoginView.tsx";
 import RegisterView from "./views/RegisterView.tsx";
+import AuthProvider from "./components/contexts/authContext/index.tsx";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -29,5 +30,5 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <RouterProvider router={router} />
+    <AuthProvider children={<RouterProvider router={router} />} />
 );
