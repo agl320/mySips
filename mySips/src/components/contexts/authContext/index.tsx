@@ -1,18 +1,21 @@
-import { firebaseAuth, firebaseDB } from "@/firebase/FirebaseSetup";
-import IUser from "@/interfaces/IUser";
+import { firebaseAuth } from "@/firebase/FirebaseSetup";
 import { onAuthStateChanged, User } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
 import _ from "lodash";
 import { createContext, useEffect, useState } from "react";
 
-export const AuthContext = createContext({
+interface IAuthContext {
+    currentUser: User | null;
+    userLoggedIn: boolean;
+    loading: boolean;
+}
+
+export const AuthContext = createContext<IAuthContext>({
     currentUser: null,
     userLoggedIn: false,
     loading: true,
 });
 
 function AuthProvider({ children }: { children: JSX.Element }) {
-    console.log("Render");
     const [currentUser, setCurrentUser] = useState<null | User>(null);
     const [userLoggedIn, setUserLoggedIn] = useState(false);
     // const [drinksState, setDrinksState] = useState({});
@@ -60,7 +63,6 @@ function AuthProvider({ children }: { children: JSX.Element }) {
         currentUser,
         userLoggedIn,
         loading,
-        // drinksState,
     };
 
     return (
