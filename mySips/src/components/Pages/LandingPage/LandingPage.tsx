@@ -5,7 +5,7 @@ const MarginStyles = {
     marginLeft: "15vw",
 } as React.CSSProperties;
 
-function LandingPageView() {
+function LandingPage() {
     return (
         <div style={MarginStyles}>
             <LandingNav />
@@ -13,4 +13,4 @@ function LandingPageView() {
     );
 }
 
-export default LandingPageView;
+export default LandingPage;

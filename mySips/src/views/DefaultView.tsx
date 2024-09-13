@@ -1,8 +1,7 @@
-import LandingPageView from "./LandingPageView";
+import LandingPageView from "../components/Pages/LandingPage/LandingPage";
 import { useAuth } from "@/components/contexts/authContext/loader";
 
 function DefaultView() {
-    const { userLoggedIn } = useAuth();
     return <LandingPageView></LandingPageView>;
 }
 

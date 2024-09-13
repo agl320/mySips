@@ -3,16 +3,22 @@ import LandingNav from "@/components/Landing/LandingNav";
 import RegisterForm from "@/components/Register/RegisterForm";
 import { Button } from "@/components/ui/button";
 import { doSignInWithGoogle } from "@/firebase/Auth";
+import { getAuth } from "firebase/auth";
 import { Link, Navigate } from "react-router-dom";
+import { AuthProvider, useFirebaseApp } from "reactfire";
 
 const MarginStyles = {
     marginRight: "15vw",
     marginLeft: "15vw",
 } as React.CSSProperties;
-function RegisterView() {
-    const { userLoggedIn } = useAuth();
+function RegisterPageContent() {
+    const { status, data: signInCheckResult } = useSigninCheck();
 
-    if (userLoggedIn) {
+    if (status === "loading") {
+        return <span>loading...</span>;
+    }
+
+    if (signInCheckResult.signedIn === true) {
         return <Navigate to="/app" />;
     }
 
@@ -35,4 +41,4 @@ function RegisterView() {
     );
 }
 
-export default RegisterView;
+export default RegisterPageContent;

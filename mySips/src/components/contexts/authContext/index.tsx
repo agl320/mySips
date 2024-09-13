@@ -1,8 +1,13 @@
 import { firebaseAuth } from "@/firebase/FirebaseSetup";
-import { onAuthStateChanged, User } from "firebase/auth";
+import { getAuth, onAuthStateChanged, User } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 import _ from "lodash";
 import { createContext, useEffect, useState } from "react";
-
+import {
+    DatabaseProvider,
+    FirebaseAppProvider,
+    useFirebaseApp,
+} from "reactfire";
 interface IAuthContext {
     currentUser: User | null;
     userLoggedIn: boolean;
@@ -70,6 +75,20 @@ function AuthProvider({ children }: { children: JSX.Element }) {
             {!loading && children}
         </AuthContext.Provider>
     );
+
+    // const app = useFirebaseApp(); // a parent component contains a `FirebaseAppProvider`
+
+    // // initialize Database and Auth with the normal Firebase SDK functions
+    // const database = getDatabase(app);
+    // const auth = getAuth(app);
+
+    // return (
+    //     <AuthProvider sdk={auth}>
+    //         <DatabaseProvider sdk={database}>
+    //             {!loading && children}
+    //         </DatabaseProvider>
+    //     </AuthProvider>
+    // );
 }
 
 export default AuthProvider;

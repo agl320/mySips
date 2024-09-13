@@ -5,30 +5,34 @@ import App from "./App.tsx";
 import "./output.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import LandingPageView from "./views/LandingPageView.tsx";
-import UserView from "./views/UserView.tsx";
-import LoginView from "./views/LoginView.tsx";
-import RegisterView from "./views/RegisterView.tsx";
 import AuthProvider from "./components/contexts/authContext/index.tsx";
+import LoginPage from "./components/Pages/LoginPage/LoginPage.tsx";
+import firebaseConfig from "../../firebaseConfig";
+import { FirebaseAppProvider } from "reactfire";
+import LandingPage from "./components/Pages/LandingPage/LandingPage.tsx";
+import RegisterPage from "./components/Pages/RegisterPage/RegisterPage.tsx";
+import UserPage from "./components/Pages/UserPage/UserPage.tsx";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <LandingPageView />,
+        element: <LandingPage />,
     },
     {
         path: "/login",
-        element: <LoginView />,
+        element: <LoginPage />,
     },
     {
         path: "/register",
-        element: <RegisterView />,
+        element: <RegisterPage />,
     },
     {
         path: "/app",
-        element: <UserView />,
+        element: <UserPage />,
     },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-    <AuthProvider children={<RouterProvider router={router} />} />
+    <FirebaseAppProvider firebaseConfig={firebaseConfig}>
+        <AuthProvider children={<RouterProvider router={router} />} />
+    </FirebaseAppProvider>
 );
