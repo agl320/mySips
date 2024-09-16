@@ -1,24 +1,19 @@
 import { Separator } from "@/components/ui/separator";
+import OverviewPage from "../../OverviewPage/OverviewPage";
+import { PageTypes } from "../../UserPageContent";
 
-function UserApplication() {
-    return (
-        <div className="flex w-full">
-            <Separator orientation="vertical" className="bg-black" />
-            <div className="w-full">
-                <div className="h-24">
-                    <p>Search</p>
-                </div>
-                <Separator className="bg-black" />
-                <div className="h-48 ">
-                    <p>Stats</p>
-                </div>
-                <Separator className="bg-black " />
-                <div>
-                    <p>mySips</p>
-                </div>
-            </div>
-        </div>
-    );
+interface IUserApplication {
+    selectedPage: PageTypes;
+}
+
+function UserApplication(props: IUserApplication) {
+    const { selectedPage } = props;
+
+    if (selectedPage === PageTypes.OVERVIEW) {
+        return <OverviewPage />;
+    }
+
+    return <></>;
 }
 
 export default UserApplication;

@@ -1,5 +1,6 @@
 import {
     AuthProvider,
+    DatabaseProvider,
     FirebaseAppProvider,
     useFirebaseApp,
     useSigninCheck,
@@ -7,13 +8,18 @@ import {
 } from "reactfire";
 import { getAuth } from "firebase/auth";
 import UserPageContent from "./UserPageContent";
+import { getDatabase } from "firebase/database";
 function UserPage() {
     const app = useFirebaseApp();
+
+    const database = getDatabase(app);
     const auth = getAuth(app);
 
     return (
         <AuthProvider sdk={auth}>
-            <UserPageContent />
+            <DatabaseProvider sdk={database}>
+                <UserPageContent />
+            </DatabaseProvider>
         </AuthProvider>
     );
 }

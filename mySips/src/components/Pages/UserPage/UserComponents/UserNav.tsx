@@ -2,8 +2,19 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { doSignOut } from "@/firebase/Auth";
 import { NavLink } from "react-router-dom";
+import { PageTypes } from "../UserPageContent";
 
-function UserNav() {
+interface IUserNav {
+    setSelectedPage: React.Dispatch<React.SetStateAction<PageTypes>>;
+}
+
+function UserNav(props: IUserNav) {
+    const { setSelectedPage } = props;
+
+    const switchToPage = (newSelectedPage: PageTypes) => {
+        setSelectedPage(newSelectedPage);
+    };
+
     const handleSignOut = async () => {
         await doSignOut();
     };
@@ -17,15 +28,24 @@ function UserNav() {
             </div>
 
             <div className="flex flex-col space-y-2 font-medium">
-                <NavLink className="" to={""}>
+                <a
+                    className="block cursor-pointer"
+                    onClick={() => switchToPage(PageTypes.OVERVIEW)}
+                >
                     Overview
-                </NavLink>
-                <NavLink className="" to={""}>
+                </a>
+                <a
+                    className="block cursor-pointer"
+                    onClick={() => switchToPage(PageTypes.SOCIAL)}
+                >
                     Social
-                </NavLink>
-                <NavLink className="" to={""}>
+                </a>
+                <a
+                    className="block cursor-pointer"
+                    onClick={() => switchToPage(PageTypes.ANALYTICS)}
+                >
                     Analytics
-                </NavLink>
+                </a>
                 <NavLink className="" to={""}>
                     mySips
                 </NavLink>
