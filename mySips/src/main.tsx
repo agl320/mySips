@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 // import "./index.css";
 import "./output.css";
+import "./index.css";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./components/contexts/authContext/index.tsx";

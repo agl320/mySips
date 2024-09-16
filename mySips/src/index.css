@@ -1,6 +1,8 @@
+@import url('./assets/css/general-sans.css');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 
-@import url('./src/fonts/general-sans.css');
+

@@ -14,7 +14,7 @@ function UserPageContent() {
         return <Navigate to="/" />;
     }
     return (
-        <div className="flex  min-h-screen">
+        <div className="flex min-h-screen min-w-screen">
             <UserNav />
             <UserApplication />
         </div>
