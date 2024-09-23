@@ -1,6 +1,8 @@
 import { Separator } from "@/components/ui/separator";
 import OverviewPage from "../../OverviewPage/OverviewPage";
-import { PageTypes } from "../../UserPageContent";
+import AdminPage from "../../AdminPage/AdminPage";
+import { PageTypes } from "@/enums/PageTypes";
+import { getFirestore } from "firebase/firestore";
 
 interface IUserApplication {
     selectedPage: PageTypes;
@@ -11,6 +13,10 @@ function UserApplication(props: IUserApplication) {
 
     if (selectedPage === PageTypes.OVERVIEW) {
         return <OverviewPage />;
+    }
+
+    if (selectedPage === PageTypes.ADMIN) {
+        return <AdminPage />;
     }
 
     return <></>;

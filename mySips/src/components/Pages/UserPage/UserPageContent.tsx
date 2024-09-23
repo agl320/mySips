@@ -3,17 +3,8 @@ import { useSigninCheck } from "reactfire";
 import UserNav from "./UserComponents/UserNav";
 import UserApplication from "./UserComponents/UserApplication/UserApplication";
 import { useState } from "react";
-
-export enum PageTypes {
-    OVERVIEW = "OVERVIEW",
-    SOCIAL = "SOCIAL",
-    ANALYTICS = "ANALYTICS",
-    MYSIPS = "MYSIPS",
-    ADMIN = "ADMIN",
-    UPGRADE = "UPGRADE",
-    BUG = "BUG",
-    SETTINGS = "SETTINGS",
-}
+import { PageTypes } from "@/enums/PageTypes";
+import { getFirestore } from "firebase/firestore";
 
 function UserPageContent() {
     const { status, data: signInCheckResult } = useSigninCheck();

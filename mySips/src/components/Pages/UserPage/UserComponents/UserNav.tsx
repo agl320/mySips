@@ -1,18 +1,55 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { PageTypes } from "@/enums/PageTypes";
 import { doSignOut } from "@/firebase/Auth";
 import { NavLink } from "react-router-dom";
-import { PageTypes } from "../UserPageContent";
 
 interface IUserNav {
     setSelectedPage: React.Dispatch<React.SetStateAction<PageTypes>>;
 }
+
+const userOptionsGroup = [
+    { displayValue: "Overview", pageType: PageTypes.OVERVIEW },
+    { displayValue: "Social", pageType: PageTypes.SOCIAL },
+    { displayValue: "Analytics", pageType: PageTypes.ANALYTICS },
+    { displayValue: "mySips", pageType: PageTypes.MYSIPS },
+];
+
+const otherOptionsGroup = [
+    { displayValue: "Admin", pageType: PageTypes.ADMIN },
+    { displayValue: "Upgrade", pageType: PageTypes.UPGRADE },
+];
+
+const settingsOptionsGroup = [
+    { displayValue: "Report a Bug", pageType: PageTypes.BUG },
+    { displayValue: "Settings", pageType: PageTypes.SETTINGS },
+];
 
 function UserNav(props: IUserNav) {
     const { setSelectedPage } = props;
 
     const switchToPage = (newSelectedPage: PageTypes) => {
         setSelectedPage(newSelectedPage);
+    };
+
+    const displayGroup = (
+        optionsGroup: Array<{ displayValue: string; pageType: PageTypes }>
+    ) => {
+        return optionsGroup.map(
+            (optionGroup: { displayValue: string; pageType: PageTypes }) => {
+                return (
+                    <a
+                        key={`{option-group-${optionGroup.pageType.toLowerCase()}}`}
+                        className="block cursor-pointer"
+                        onClick={() =>
+                            switchToPage(PageTypes[optionGroup.pageType])
+                        }
+                    >
+                        {optionGroup.displayValue}
+                    </a>
+                );
+            }
+        );
     };
 
     const handleSignOut = async () => {
@@ -28,47 +65,15 @@ function UserNav(props: IUserNav) {
             </div>
 
             <div className="flex flex-col space-y-2 font-medium">
-                <a
-                    className="block cursor-pointer"
-                    onClick={() => switchToPage(PageTypes.OVERVIEW)}
-                >
-                    Overview
-                </a>
-                <a
-                    className="block cursor-pointer"
-                    onClick={() => switchToPage(PageTypes.SOCIAL)}
-                >
-                    Social
-                </a>
-                <a
-                    className="block cursor-pointer"
-                    onClick={() => switchToPage(PageTypes.ANALYTICS)}
-                >
-                    Analytics
-                </a>
-                <NavLink className="" to={""}>
-                    mySips
-                </NavLink>
+                {displayGroup(userOptionsGroup)}
             </div>
             <Separator className="bg-black" />
             <div className="flex flex-col space-y-2 font-medium">
-                <NavLink className="" to={""}>
-                    Admin
-                </NavLink>
-
-                <NavLink className="" to={""}>
-                    Upgrade
-                </NavLink>
+                {displayGroup(otherOptionsGroup)}
             </div>
             <Separator className="bg-black" />
             <div className="flex flex-col space-y-2 font-medium">
-                <NavLink className="" to={""}>
-                    Report a bug
-                </NavLink>
-
-                <NavLink className="" to={""}>
-                    Settings
-                </NavLink>
+                {displayGroup(settingsOptionsGroup)}
 
                 <a onClick={handleSignOut} className="block cursor-pointer">
                     Sign Out
