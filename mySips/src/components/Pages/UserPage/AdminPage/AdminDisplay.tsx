@@ -1,6 +1,8 @@
+import DrinkDisplay from "@/components/DrinkDisplay/DrinkDisplay";
 import { getAuth } from "firebase/auth";
 import { getDatabase, orderByChild } from "firebase/database";
 import { collection, getFirestore, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
 import {
     AuthProvider,
     DatabaseProvider,
@@ -15,6 +17,7 @@ interface IAdminDisplayProps {
 }
 
 function AdminDisplay(props: IAdminDisplayProps) {
+    const [loadedUsers, setLoadedUsers] = useState<any>();
     const { userUUID } = props;
 
     const app = useFirebaseApp();
@@ -34,9 +37,22 @@ function AdminDisplay(props: IAdminDisplayProps) {
         idField: "uuid",
     });
 
-    if (status) console.log({ users });
+    // if (status) console.log({ users });
 
-    return <p>hi</p>;
+    useEffect(() => {
+        setLoadedUsers(users);
+        console.log(`New users:`);
+        console.log({ users });
+    }, [users]);
+
+    return (
+        <div>
+            <h1>{loadedUsers?.length ?? 0}</h1>
+            {loadedUsers?.map((user) => {
+                return <DrinkDisplay userDrinkData={user.userDrinkData} />;
+            })}
+        </div>
+    );
 }
 
 export default AdminDisplay;

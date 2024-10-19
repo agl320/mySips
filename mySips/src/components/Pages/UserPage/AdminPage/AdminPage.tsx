@@ -21,7 +21,7 @@ function AdminPage() {
 
     return (
         <div>
-            <p>{user?.uid}</p>
+            <p>Logged in user: {user?.uid}</p>
             <AdminDisplay userUUID={user?.uid ?? ""} />
         </div>
     );
