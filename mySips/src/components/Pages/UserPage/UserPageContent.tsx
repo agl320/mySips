@@ -8,12 +8,13 @@ import { getFirestore } from "firebase/firestore";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import UserSideBar from "./UserComponents/UserNav/UserSideBar";
 
-function UserPageContent() {
+function UserPageContent(props: { selectedPage: PageTypes }) {
+    const { selectedPage } = props;
     const { status, data: signInCheckResult } = useSigninCheck();
 
-    const [selectedPage, setSelectedPage] = useState<PageTypes>(
-        PageTypes.OVERVIEW
-    );
+    // const [selectedPage, setSelectedPage] = useState<PageTypes>(
+    //     PageTypes.OVERVIEW
+    // );
 
     // if loading, display some loading component
     if (status === "loading") {
