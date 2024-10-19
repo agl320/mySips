@@ -1,10 +1,12 @@
 import { Link, Navigate } from "react-router-dom";
 import { useSigninCheck } from "reactfire";
-import UserNav from "./UserComponents/UserNav";
+import UserNav from "./UserComponents/UserNav/UserNav";
 import UserApplication from "./UserComponents/UserApplication/UserApplication";
 import { useState } from "react";
 import { PageTypes } from "@/enums/PageTypes";
 import { getFirestore } from "firebase/firestore";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import UserSideBar from "./UserComponents/UserNav/UserSideBar";
 
 function UserPageContent() {
     const { status, data: signInCheckResult } = useSigninCheck();
@@ -25,10 +27,17 @@ function UserPageContent() {
 
     return (
         <div className="flex min-h-screen min-w-screen">
-            <UserNav setSelectedPage={setSelectedPage} />
-            <div className="flex w-full">
-                <UserApplication selectedPage={selectedPage} />
-            </div>
+            {/* <UserNav setSelectedPage={setSelectedPage} /> */}
+
+            <SidebarProvider>
+                <UserSideBar />
+                <main>
+                    <SidebarTrigger />
+                </main>
+                <div className="flex w-full">
+                    <UserApplication selectedPage={selectedPage} />
+                </div>
+            </SidebarProvider>
         </div>
     );
 }

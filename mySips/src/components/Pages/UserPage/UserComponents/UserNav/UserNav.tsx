@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { PageTypes } from "@/enums/PageTypes";
 import { doSignOut } from "@/firebase/Auth";
 import { NavLink } from "react-router-dom";
+import UserSideBar from "./UserSideBar";
 
 interface IUserNav {
     setSelectedPage: React.Dispatch<React.SetStateAction<PageTypes>>;
@@ -57,29 +59,36 @@ function UserNav(props: IUserNav) {
     };
 
     return (
-        <div className="px-12 mt-8 w-56 flex flex-col justify-between h-[30rem] text-left ">
-            <div className="flex flex-col font-medium text-3xl mb-8">
-                <NavLink className="" to={"/"}>
-                    mySips
-                </NavLink>
-            </div>
+        // <div className="px-12 mt-8 w-56 flex flex-col justify-between h-[30rem] text-left ">
+        //     <div className="flex flex-col font-medium text-3xl mb-8">
+        //         <NavLink className="" to={"/"}>
+        //             mySips
+        //         </NavLink>
+        //     </div>
 
-            <div className="flex flex-col space-y-2 font-medium">
-                {displayGroup(userOptionsGroup)}
-            </div>
-            <Separator className="bg-black" />
-            <div className="flex flex-col space-y-2 font-medium">
-                {displayGroup(otherOptionsGroup)}
-            </div>
-            <Separator className="bg-black" />
-            <div className="flex flex-col space-y-2 font-medium">
-                {displayGroup(settingsOptionsGroup)}
+        //     <div className="flex flex-col space-y-2 font-medium">
+        //         {displayGroup(userOptionsGroup)}
+        //     </div>
+        //     <Separator className="bg-black" />
+        //     <div className="flex flex-col space-y-2 font-medium">
+        //         {displayGroup(otherOptionsGroup)}
+        //     </div>
+        //     <Separator className="bg-black" />
+        //     <div className="flex flex-col space-y-2 font-medium">
+        //         {displayGroup(settingsOptionsGroup)}
 
-                <a onClick={handleSignOut} className="block cursor-pointer">
-                    Sign Out
-                </a>
-            </div>
-        </div>
+        //         <a onClick={handleSignOut} className="block cursor-pointer">
+        //             Sign Out
+        //         </a>
+        //     </div>
+        // </div>
+        <SidebarProvider>
+            <UserSideBar />
+            <main>
+                <SidebarTrigger />
+            </main>
+            <div className="border-2 border-black w-full h-full"></div>
+        </SidebarProvider>
     );
 }
 
