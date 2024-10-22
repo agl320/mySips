@@ -4,6 +4,7 @@ import AdminDisplay from "./AdminDisplay";
 
 function AdminPage() {
     const { status: statusUser, data: user } = useUser();
+
     // const firestore = useFirestore();
 
     if (statusUser === "loading") {

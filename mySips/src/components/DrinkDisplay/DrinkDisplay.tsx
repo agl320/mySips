@@ -1,18 +1,24 @@
 import { IMenu } from "@/interfaces/IMenu";
+import { useFirestore } from "reactfire";
 
 interface IDrinkDisplayProps {
     userDrinkData: IMenu;
+    isAdmin?: boolean;
 }
 function DrinkDisplay(props: IDrinkDisplayProps) {
-    const { userDrinkData } = props;
+    const { userDrinkData, isAdmin } = props;
     console.log(userDrinkData);
+
     return (
         <div>
             <p>Drink Data</p>
             <div className="flex flex-wrap">
                 {Object.values(userDrinkData).map((drinkData) => {
                     return (
-                        <div className="w-[200px] h-[300px] border border-black flex flex-col justify-between">
+                        <div
+                            key={`drinkCard-${drinkData.uuid}`}
+                            className="w-[200px] h-[300px] border border-black flex flex-col justify-between"
+                        >
                             <div className="h-[20%]">
                                 <p>{drinkData.name}</p>
                                 <p>{drinkData.address}</p>

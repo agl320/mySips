@@ -14,6 +14,7 @@ import LandingPage from "./components/Pages/LandingPage/LandingPage.tsx";
 import RegisterPage from "./components/Pages/RegisterPage/RegisterPage.tsx";
 import UserPage from "./components/Pages/UserPage/UserPage.tsx";
 import { PageTypes } from "./enums/PageTypes.tsx";
+import LogoutPage from "./components/Pages/LogoutPage/LogoutPage.tsx";
 const router = createBrowserRouter([
     {
         path: "/",
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
     {
         path: "/app/admin",
         element: <UserPage selectedPage={PageTypes.ADMIN} />,
+    },
+    {
+        path: "/logout",
+        element: <LogoutPage />,
     },
 ]);
 

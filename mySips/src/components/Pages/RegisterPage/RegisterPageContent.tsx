@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { doSignInWithGoogle } from "@/firebase/Auth";
 import { getAuth } from "firebase/auth";
 import { Link, Navigate } from "react-router-dom";
-import { AuthProvider, useFirebaseApp } from "reactfire";
+import { AuthProvider, useFirebaseApp, useSigninCheck } from "reactfire";
 
 const MarginStyles = {
     marginRight: "15vw",
