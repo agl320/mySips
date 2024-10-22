@@ -1,36 +1,19 @@
 import { Drink } from "@/classes/Drink";
 import DrinkDisplay from "@/components/DrinkDisplay/DrinkDisplay";
 import { Separator } from "@/components/ui/separator";
-import { addDoc, collection, doc } from "firebase/firestore";
-import { useFirestore, useUser } from "reactfire";
+import { IMenu } from "@/interfaces/IMenu";
+import { addDoc, collection, doc, getDocs, query } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 import { v4 as uuidv4 } from "uuid";
 
 function OverviewPage() {
     const { status: statusUser, data: user } = useUser();
-    const firestore = useFirestore();
+    // const firestore = useFirestore();
 
     if (statusUser === "loading") {
         return <span>Loading...</span>;
     }
-
-    // doc reference
-    const userDocRef = doc(firestore, "users", user?.uid);
-
-    // collection reference
-    const userDrinkDataCollectionRef = collection(userDocRef, "userDrinkData");
-
-    // adds empty drink
-    const addDrink = async () => {
-        const uuid = uuidv4();
-        await addDoc(
-            userDrinkDataCollectionRef,
-            new Drink({
-                name: "Test Drink",
-                uuid,
-                description: "",
-            }).toFirestore()
-        );
-    };
 
     return (
         <div className="w-full">
@@ -45,13 +28,13 @@ function OverviewPage() {
             <div>
                 <p>mySips</p>
             </div>
-            {/* <DrinkDisplay userDrinkData={} /> */}
-            <button
+            <DrinkDisplay userId={user?.uid} />
+            {/* <button
                 className="bg-black text-white p-4 rounded-lg"
-                onClick={addDrink}
+                onClick={addDrinkData}
             >
                 Add drink
-            </button>
+            </button> */}
         </div>
     );
 }

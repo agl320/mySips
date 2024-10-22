@@ -1,13 +1,81 @@
+import { Drink } from "@/classes/Drink";
 import { IMenu } from "@/interfaces/IMenu";
+import {
+    addDoc,
+    collection,
+    deleteDoc,
+    doc,
+    getDoc,
+    onSnapshot,
+    setDoc,
+} from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { useFirestore } from "reactfire";
 
+import { v4 as uuidv4 } from "uuid";
+import DeleteDrinkDialog from "./DeleteDrinkDialog/DeleteDrinkDialog";
+
 interface IDrinkDisplayProps {
-    userDrinkData: IMenu;
+    userId: string;
     isAdmin?: boolean;
+    isEditable?: boolean;
 }
 function DrinkDisplay(props: IDrinkDisplayProps) {
-    const { userDrinkData, isAdmin } = props;
-    console.log(userDrinkData);
+    const { userId, isAdmin, isEditable } = props;
+    const [userDrinkData, setUserDrinkData] = useState<IMenu>({});
+
+    const firestore = useFirestore();
+
+    // doc reference
+    const userDocRef = doc(firestore, "users", userId);
+
+    // collection reference
+    const userDrinkDataCollectionRef = collection(userDocRef, "userDrinkData");
+
+    useEffect(() => {
+        const unsubscribe = onSnapshot(
+            userDrinkDataCollectionRef,
+            (querySnapshot) => {
+                const fetchedDrinks = querySnapshot.docs.map((doc) =>
+                    Drink.fromFirestore(doc.data())
+                );
+
+                const formattedDrinkData = fetchedDrinks.reduce(
+                    (acc, drinkData) => {
+                        if (!drinkData.uuid) return acc;
+                        acc[drinkData.uuid] = drinkData;
+                        return acc;
+                    },
+                    {} as IMenu
+                );
+
+                setUserDrinkData(formattedDrinkData);
+            },
+            (error) => {
+                console.error("Error fetching user drinks:", error.message);
+            }
+        );
+
+        return () => unsubscribe();
+    }, [firestore, userId]);
+
+    // adds empty drink
+    const addNewDrink = async () => {
+        const uuid = uuidv4();
+        const drinkDocRef = doc(userDocRef, "userDrinkData", uuid);
+        await setDoc(
+            drinkDocRef,
+            new Drink({
+                name: "Test Drink",
+                uuid,
+                description: "",
+            }).toFirestore()
+        );
+    };
+
+    const deleteSelectedDrink = async (uuid: string) => {
+        await deleteDoc(doc(userDocRef, "userDrinkData", uuid));
+    };
 
     return (
         <div>
@@ -28,9 +96,22 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                             <div className="h-[20%]">
                                 <p>{drinkData.uuid}</p>
                             </div>
+
+                            <DeleteDrinkDialog
+                                SaveTrigger={
+                                    <button
+                                        onClick={() =>
+                                            deleteSelectedDrink(drinkData.uuid)
+                                        }
+                                    >
+                                        Delete
+                                    </button>
+                                }
+                            />
                         </div>
                     );
                 })}
+                <button onClick={addNewDrink}>Add drink</button>
             </div>
         </div>
     );
