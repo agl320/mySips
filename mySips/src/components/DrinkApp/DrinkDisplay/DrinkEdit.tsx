@@ -14,12 +14,15 @@ import {
 import { useState } from "react";
 
 interface IDrinkEditProps {
-    groupsState: Record<string, Group>;
+    // groupsState: Record<string, Group>;
     drinkData: Drink;
-    editCallback: (newDrinkData: Pick<Drink, "uuid"> & Partial<Drink>) => void;
+    editCallback: (
+        uuid: string,
+        updatedDrinkProperties: Drink
+    ) => Promise<void>;
 }
 
-function DrinkEdit({ groupsState, drinkData, editCallback }: IDrinkEditProps) {
+function DrinkEdit({ drinkData, editCallback }: IDrinkEditProps) {
     const [drinkInputState, setDrinkInputState] = useState<
         Pick<Drink, "uuid"> & Partial<Drink>
     >(drinkData);
@@ -38,7 +41,7 @@ function DrinkEdit({ groupsState, drinkData, editCallback }: IDrinkEditProps) {
                             drinkInputState={drinkInputState}
                             setDrinkInputState={setDrinkInputState}
                         />
-                        {Object.values(groupsState)?.map((groupItem) => {
+                        {/* {Object.values(groupsState)?.map((groupItem) => {
                             return (
                                 <div key={groupItem.groupName}>
                                     <label>{groupItem.groupName}</label>
@@ -69,12 +72,17 @@ function DrinkEdit({ groupsState, drinkData, editCallback }: IDrinkEditProps) {
                                     ></input>
                                 </div>
                             );
-                        })}
+                        })} */}
                     </div>
                     <DialogFooter className="sm:justify-end">
                         <DialogClose asChild>
                             <Button
-                                onClick={() => editCallback(drinkInputState)}
+                                onClick={() =>
+                                    editCallback(
+                                        drinkData.uuid,
+                                        drinkInputState
+                                    )
+                                }
                             >
                                 Save
                             </Button>

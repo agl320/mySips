@@ -1,5 +1,9 @@
 import ITag from "../interfaces/ITag";
 
+interface DrinkRecord {
+    /** Purchase day and time if applicable */
+    purchaseDate: string;
+}
 interface IDrinkParams {
     uuid: string;
     /** Drink name */
@@ -17,6 +21,13 @@ interface IDrinkParams {
 
     /** Drink groups ; to be used for group tabs */
     groups?: Array<string>;
+
+    sugarLevel?: string;
+    iceLevel?: string;
+
+    DrinkRecordHistory?: Array<DrinkRecord>;
+
+    dateCreated?: string;
 }
 
 class Drink implements IDrinkParams {
@@ -37,6 +48,11 @@ class Drink implements IDrinkParams {
 
     groups?: Array<string>;
 
+    sugarLevel?: string;
+    iceLevel?: string;
+
+    dateCreated?: string;
+
     constructor(params: IDrinkParams) {
         this.uuid = params.uuid;
         this.name = params.name;
@@ -46,6 +62,9 @@ class Drink implements IDrinkParams {
         this.storeUuid = params?.storeUuid;
         this.tags = params?.tags;
         this.groups = params?.groups;
+        this.sugarLevel = params?.sugarLevel;
+        this.iceLevel = params?.iceLevel;
+        this.dateCreated = params?.dateCreated;
     }
 
     toFirestore(): Record<string, any> {
@@ -59,10 +78,11 @@ class Drink implements IDrinkParams {
             storeUuid: this.storeUuid ?? null,
             tags: this.tags ?? {},
             groups: this.groups ?? [],
+            dateCreated: this.dateCreated ?? null,
         };
     }
 
-    static fromFirestore(data: Record<string, any>): Drink {
+    static fromFirestore(data: IDrinkParams): Drink {
         return new Drink({
             uuid: data.uuid,
             name: data.name,
@@ -73,6 +93,7 @@ class Drink implements IDrinkParams {
             storeUuid: data.storeUuid,
             tags: data.tags,
             groups: data.groups,
+            dateCreated: data.dateCreated,
         });
     }
 }

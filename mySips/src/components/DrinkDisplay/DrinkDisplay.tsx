@@ -8,12 +8,14 @@ import {
     getDoc,
     onSnapshot,
     setDoc,
+    updateDoc,
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { useFirestore } from "reactfire";
 
 import { v4 as uuidv4 } from "uuid";
 import DeleteDrinkDialog from "./DeleteDrinkDialog/DeleteDrinkDialog";
+import DrinkEdit from "../DrinkApp/DrinkDisplay/DrinkEdit";
 
 interface IDrinkDisplayProps {
     userId: string;
@@ -66,11 +68,23 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
         await setDoc(
             drinkDocRef,
             new Drink({
-                name: "Test Drink",
+                name: "New Drink",
                 uuid,
                 description: "",
             }).toFirestore()
         );
+    };
+
+    // updates existing drink
+    const updateSelectedDrink = async (
+        uuid: string,
+        updatedDrinkProperties: Drink
+    ) => {
+        // Creates new Drink object then invokes toFirestore()
+        //  perhaps create custom helper so we don't need to create new Drink each edit
+        const newDrinkObj = new Drink(updatedDrinkProperties);
+        const drinkDocRef = doc(userDocRef, "userDrinkData", uuid);
+        await updateDoc(drinkDocRef, newDrinkObj.toFirestore());
     };
 
     const deleteSelectedDrink = async (uuid: string) => {
@@ -96,7 +110,10 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                             <div className="h-[20%]">
                                 <p>{drinkData.uuid}</p>
                             </div>
-
+                            <DrinkEdit
+                                drinkData={drinkData}
+                                editCallback={updateSelectedDrink}
+                            />
                             <DeleteDrinkDialog
                                 SaveTrigger={
                                     <button
