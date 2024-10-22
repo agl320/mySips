@@ -16,6 +16,8 @@ import { useFirestore } from "reactfire";
 import { v4 as uuidv4 } from "uuid";
 import DeleteDrinkDialog from "./DeleteDrinkDialog/DeleteDrinkDialog";
 import DrinkEdit from "../DrinkApp/DrinkDisplay/DrinkEdit";
+import EditDrinkDialog from "./EditDrinkDialog/EditDrinkDialog";
+import AddDrinkDialog from "../DrinkForms/AddDrinkDialog";
 
 interface IDrinkDisplayProps {
     userId: string;
@@ -62,17 +64,25 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
     }, [firestore, userId]);
 
     // adds empty drink
-    const addNewDrink = async () => {
-        const uuid = uuidv4();
-        const drinkDocRef = doc(userDocRef, "userDrinkData", uuid);
-        await setDoc(
-            drinkDocRef,
-            new Drink({
-                name: "New Drink",
-                uuid,
-                description: "",
-            }).toFirestore()
+    const addNewDrink = async (newDrinkProperties: any) => {
+        // const uuid = uuidv4();
+        const drinkDocRef = doc(
+            userDocRef,
+            "userDrinkData",
+            newDrinkProperties.uuid
         );
+        const newDrinkObj = new Drink(newDrinkProperties);
+        await setDoc(drinkDocRef, newDrinkObj.toFirestore());
+    };
+
+    const createEmptyDrink = (): Drink => {
+        const newDrinkObj = new Drink({
+            name: "New Drink",
+            uuid: uuidv4(),
+            description: "",
+        });
+
+        return newDrinkObj;
     };
 
     // updates existing drink
@@ -110,25 +120,22 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                             <div className="h-[20%]">
                                 <p>{drinkData.uuid}</p>
                             </div>
-                            <DrinkEdit
+                            <EditDrinkDialog
                                 drinkData={drinkData}
                                 editCallback={updateSelectedDrink}
                             />
                             <DeleteDrinkDialog
-                                SaveTrigger={
-                                    <button
-                                        onClick={() =>
-                                            deleteSelectedDrink(drinkData.uuid)
-                                        }
-                                    >
-                                        Delete
-                                    </button>
-                                }
+                                drinkData={drinkData}
+                                deleteDrinkCallback={deleteSelectedDrink}
                             />
                         </div>
                     );
                 })}
-                <button onClick={addNewDrink}>Add drink</button>
+                <AddDrinkDialog
+                    baseDrinkData={createEmptyDrink()}
+                    addDrinkCallback={addNewDrink}
+                />
+                {/* <button onClick={addNewDrink}>Add drink</button> */}
             </div>
         </div>
     );
