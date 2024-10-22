@@ -13,11 +13,14 @@ import {
 import { useEffect, useState } from "react";
 import { useFirestore } from "reactfire";
 
+import moment from "moment";
+
 import { v4 as uuidv4 } from "uuid";
 import DeleteDrinkDialog from "./DeleteDrinkDialog/DeleteDrinkDialog";
 import DrinkEdit from "../DrinkApp/DrinkDisplay/DrinkEdit";
 import EditDrinkDialog from "./EditDrinkDialog/EditDrinkDialog";
 import AddDrinkDialog from "../DrinkForms/AddDrinkDialog";
+import { Button } from "../ui/button";
 
 interface IDrinkDisplayProps {
     userId: string;
@@ -93,12 +96,22 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
         // Creates new Drink object then invokes toFirestore()
         //  perhaps create custom helper so we don't need to create new Drink each edit
         const newDrinkObj = new Drink(updatedDrinkProperties);
+
+        console.log({ newDrinkObj });
+
         const drinkDocRef = doc(userDocRef, "userDrinkData", uuid);
         await updateDoc(drinkDocRef, newDrinkObj.toFirestore());
     };
 
     const deleteSelectedDrink = async (uuid: string) => {
         await deleteDoc(doc(userDocRef, "userDrinkData", uuid));
+    };
+
+    // Wrapper around updateSelectedDrink that adds a timestamp
+    const incrementDrinkRecord = (drinkData: Drink) => {
+        const timeStamp = moment().toISOString();
+        drinkData.addDrinkRecord(timeStamp, 1);
+        updateSelectedDrink(drinkData.uuid, drinkData);
     };
 
     return (
@@ -120,6 +133,11 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                             <div className="h-[20%]">
                                 <p>{drinkData.uuid}</p>
                             </div>
+                            <Button
+                                onClick={() => incrementDrinkRecord(drinkData)}
+                            >
+                                +
+                            </Button>
                             <EditDrinkDialog
                                 drinkData={drinkData}
                                 editCallback={updateSelectedDrink}

@@ -2,7 +2,8 @@ import ITag from "../interfaces/ITag";
 
 interface DrinkRecord {
     /** Purchase day and time if applicable */
-    purchaseDate: string;
+    timeStamp: string;
+    quantity: number;
 }
 interface IDrinkParams {
     uuid: string;
@@ -53,6 +54,8 @@ class Drink implements IDrinkParams {
 
     dateCreated?: string;
 
+    DrinkRecordHistory: Array<DrinkRecord>;
+
     constructor(params: IDrinkParams) {
         this.uuid = params.uuid;
         this.name = params.name;
@@ -65,6 +68,7 @@ class Drink implements IDrinkParams {
         this.sugarLevel = params?.sugarLevel;
         this.iceLevel = params?.iceLevel;
         this.dateCreated = params?.dateCreated;
+        this.DrinkRecordHistory = params?.DrinkRecordHistory ?? [];
     }
 
     toFirestore(): Record<string, any> {
@@ -79,6 +83,7 @@ class Drink implements IDrinkParams {
             tags: this.tags ?? {},
             groups: this.groups ?? [],
             dateCreated: this.dateCreated ?? null,
+            DrinkRecordHistory: this.DrinkRecordHistory,
         };
     }
 
@@ -94,7 +99,12 @@ class Drink implements IDrinkParams {
             tags: data.tags,
             groups: data.groups,
             dateCreated: data.dateCreated,
+            DrinkRecordHistory: data.DrinkRecordHistory,
         });
+    }
+
+    addDrinkRecord(timeStamp: any, quantity: number) {
+        this.DrinkRecordHistory.push({ timeStamp, quantity });
     }
 }
 
