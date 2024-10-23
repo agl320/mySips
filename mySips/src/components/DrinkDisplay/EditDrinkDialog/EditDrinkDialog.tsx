@@ -34,7 +34,9 @@ function EditDrinkDialog({
         <>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button>Edit</Button>
+                    <Button onClick={() => setDrinkInputState(drinkData)}>
+                        Edit
+                    </Button>
                 </DialogTrigger>
                 <DialogContent>
                     <DialogTitle>Edit Drink</DialogTitle>
