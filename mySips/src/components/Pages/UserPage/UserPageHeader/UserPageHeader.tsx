@@ -7,7 +7,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
-function PageHeader({
+function UserPageHeader({
     pageTitle,
     linkTrail,
 }: {
@@ -16,8 +16,8 @@ function PageHeader({
 }) {
     return (
         <div>
-            <div>
-                <p>{pageTitle}</p>
+            <div className="pb-4">
+                <h1 className="text-3xl">{pageTitle}</h1>
             </div>
             <div>
                 <Breadcrumb>
@@ -47,4 +47,4 @@ function PageHeader({
     );
 }
 
-export default PageHeader;
+export default UserPageHeader;

@@ -32,10 +32,12 @@ function UserPageContent(props: { selectedPage: PageTypes }) {
 
             <SidebarProvider>
                 <UserSideBar />
-                <main className="bg-gradient-to-r from-secondary-light to-[#f6e1fe]">
+                <main className="">
                     <SidebarTrigger />
-                    <UserApplication selectedPage={selectedPage} />
                 </main>
+                <div className="bg-gradient-to-r from-secondary-light to-[#f6e1fe] w-screen">
+                    <UserApplication selectedPage={selectedPage} />
+                </div>
             </SidebarProvider>
         </div>
     );

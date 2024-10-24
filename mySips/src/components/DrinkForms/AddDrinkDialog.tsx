@@ -11,6 +11,7 @@ import {
 } from "../ui/dialog";
 import React, { ReactNode, useState } from "react";
 import { DialogDescription } from "@radix-ui/react-dialog";
+import { CirclePlus } from "lucide-react";
 
 interface IAddDrinkDialogProps {
     // drinkInputState: Omit<IDrinkParams, "uuid">;
@@ -34,9 +35,14 @@ function AddDrinkDialog({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button onClick={() => setDrinkInputState(baseDrinkData)}>
-                    New Drink
-                </Button>
+                <div className="w-[200px] h-[300px] bg-white bg-opacity-25 duration-200 hover:bg-opacity-50 flex flex-col justify-around rounded-xl">
+                    <Button
+                        onClick={() => setDrinkInputState(baseDrinkData)}
+                        className="w-full h-full"
+                    >
+                        <CirclePlus />
+                    </Button>
+                </div>
             </DialogTrigger>
             <DialogContent>
                 <DialogTitle>Add New Drink</DialogTitle>

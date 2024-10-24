@@ -8,7 +8,7 @@ import {
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { useUser } from "reactfire";
-import PageHeader from "../PageHeader/PageHeader";
+import UserPageHeader from "../UserPageHeader/UserPageHeader";
 
 function MySipsPage() {
     const { status: statusUser, data: user } = useUser();
@@ -19,11 +19,25 @@ function MySipsPage() {
     }
     return (
         <div className="w-full p-8">
-            <PageHeader
-                pageTitle="mySips"
-                linkTrail={[{ value: "Home" }, { value: "mySips" }]}
-            />
-            <DrinkDisplay userId={user?.uid} isEditable />
+            <div className="bg-white p-4 rounded-xl flex gap-8">
+                <UserPageHeader
+                    pageTitle="mySips"
+                    linkTrail={[{ value: "Home" }, { value: "mySips" }]}
+                />
+                <div>
+                    <h1 className="pb-4">Drinks</h1>
+                    <p className="text-3xl">53</p>
+                </div>
+                <div>
+                    <h1 className="pb-4">Groups</h1>
+                    <p className="text-3xl">3</p>
+                </div>
+            </div>
+
+            <div className="pt-8">
+                <DrinkDisplay userId={user?.uid} isEditable />
+            </div>
+
             {/* <button
         className="bg-black text-white p-4 rounded-lg"
         onClick={addDrinkData}
