@@ -17,10 +17,6 @@ function OverviewPage() {
 
     return (
         <div className="w-full">
-            <div className="h-24">
-                <p>Search</p>
-            </div>
-            <Separator className="bg-black" />
             <div className="h-48 ">
                 <p>Stats</p>
             </div>

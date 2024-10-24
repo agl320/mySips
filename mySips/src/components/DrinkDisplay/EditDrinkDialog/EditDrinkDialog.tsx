@@ -11,6 +11,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { Pen } from "lucide-react";
 import { useState } from "react";
 
 interface IDrinkEditProps {
@@ -35,7 +36,7 @@ function EditDrinkDialog({
             <Dialog>
                 <DialogTrigger asChild>
                     <Button onClick={() => setDrinkInputState(drinkData)}>
-                        Edit
+                        <Pen className="h-4 w-4" />
                     </Button>
                 </DialogTrigger>
                 <DialogContent>

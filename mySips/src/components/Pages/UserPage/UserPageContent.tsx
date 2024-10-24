@@ -27,17 +27,15 @@ function UserPageContent(props: { selectedPage: PageTypes }) {
     }
 
     return (
-        <div className="flex min-h-screen min-w-screen">
+        <div className="flex min-h-screen min-w-screen ">
             {/* <UserNav setSelectedPage={setSelectedPage} /> */}
 
             <SidebarProvider>
                 <UserSideBar />
-                <main>
+                <main className="bg-gradient-to-r from-secondary-light to-[#f6e1fe]">
                     <SidebarTrigger />
-                </main>
-                <div className="flex w-full">
                     <UserApplication selectedPage={selectedPage} />
-                </div>
+                </main>
             </SidebarProvider>
         </div>
     );

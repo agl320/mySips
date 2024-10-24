@@ -28,7 +28,7 @@ interface IDrinkDisplayProps {
     isEditable?: boolean;
 }
 function DrinkDisplay(props: IDrinkDisplayProps) {
-    const { userId, isAdmin, isEditable } = props;
+    const { userId, isAdmin, isEditable = false } = props;
     const [userDrinkData, setUserDrinkData] = useState<IMenu>({});
 
     const firestore = useFirestore();
@@ -116,43 +116,58 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
 
     return (
         <div>
-            <p>Drink Data</p>
-            <div className="flex flex-wrap">
+            <div className="flex flex-wrap gap-4">
                 {Object.values(userDrinkData).map((drinkData) => {
                     return (
                         <div
                             key={`drinkCard-${drinkData.uuid}`}
-                            className="w-[200px] h-[300px] border border-black flex flex-col justify-between"
+                            className="w-[200px] h-[300px] bg-white flex flex-col justify-between rounded-xl p-4"
                         >
                             <div className="h-[20%]">
                                 <p>{drinkData.name}</p>
                                 <p>{drinkData.address}</p>
                             </div>
-                            <div className="h-[60%]">body</div>
+                            <div className="h-[60%]">
+                                {drinkData.description}
+                            </div>
 
-                            <div className="h-[20%]">
+                            {isEditable ? (
+                                <div className="flex justify-end">
+                                    {/* <Button
+                                        onClick={() =>
+                                            incrementDrinkRecord(drinkData)
+                                        }
+                                    >
+                                        +
+                                    </Button> */}
+                                    <EditDrinkDialog
+                                        drinkData={drinkData}
+                                        editCallback={updateSelectedDrink}
+                                    />
+                                    <DeleteDrinkDialog
+                                        drinkData={drinkData}
+                                        deleteDrinkCallback={
+                                            deleteSelectedDrink
+                                        }
+                                    />
+                                </div>
+                            ) : (
+                                <></>
+                            )}
+                            <div className="text-xs opacity-75">
                                 <p>{drinkData.uuid}</p>
                             </div>
-                            <Button
-                                onClick={() => incrementDrinkRecord(drinkData)}
-                            >
-                                +
-                            </Button>
-                            <EditDrinkDialog
-                                drinkData={drinkData}
-                                editCallback={updateSelectedDrink}
-                            />
-                            <DeleteDrinkDialog
-                                drinkData={drinkData}
-                                deleteDrinkCallback={deleteSelectedDrink}
-                            />
                         </div>
                     );
                 })}
-                <AddDrinkDialog
-                    baseDrinkData={createEmptyDrink()}
-                    addDrinkCallback={addNewDrink}
-                />
+                {isEditable ? (
+                    <AddDrinkDialog
+                        baseDrinkData={createEmptyDrink()}
+                        addDrinkCallback={addNewDrink}
+                    />
+                ) : (
+                    <></>
+                )}
                 {/* <button onClick={addNewDrink}>Add drink</button> */}
             </div>
         </div>

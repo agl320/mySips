@@ -10,6 +10,7 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import { Drink } from "@/classes/Drink";
+import { Trash2 } from "lucide-react";
 
 interface IDeleteDrinkDialogProps {
     // SaveTrigger: ReactNode;
@@ -24,7 +25,10 @@ function DeleteDrinkDialog({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button>Delete Drink</Button>
+                <Button>
+                    {" "}
+                    <Trash2 className="h-4 w-4" />
+                </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogTitle>Confirm Delete Drink</DialogTitle>
@@ -39,7 +43,7 @@ function DeleteDrinkDialog({
                         <Button
                             onClick={() => deleteDrinkCallback(drinkData.uuid)}
                         >
-                            Delete
+                            Delete Drink
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>

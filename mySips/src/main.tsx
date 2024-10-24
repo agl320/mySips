@@ -10,7 +10,7 @@ import AuthProvider from "./components/contexts/authContext/index.tsx";
 import LoginPage from "./components/Pages/LoginPage/LoginPage.tsx";
 import firebaseConfig from "../../firebaseConfig";
 import { FirebaseAppProvider } from "reactfire";
-import LandingPage from "./components/Pages/LandingPage/LandingPage.tsx";
+import LandingPage from "./components/Pages/UserPage/LandingPage/LandingPage.tsx";
 import RegisterPage from "./components/Pages/RegisterPage/RegisterPage.tsx";
 import UserPage from "./components/Pages/UserPage/UserPage.tsx";
 import { PageTypes } from "./enums/PageTypes.tsx";
@@ -35,6 +35,10 @@ const router = createBrowserRouter([
     {
         path: "/app/admin",
         element: <UserPage selectedPage={PageTypes.ADMIN} />,
+    },
+    {
+        path: "/app/mysips",
+        element: <UserPage selectedPage={PageTypes.MYSIPS} />,
     },
     {
         path: "/logout",

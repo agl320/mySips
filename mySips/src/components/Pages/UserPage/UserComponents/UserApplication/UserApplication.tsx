@@ -3,6 +3,7 @@ import OverviewPage from "../../OverviewPage/OverviewPage";
 import AdminPage from "../../AdminPage/AdminPage";
 import { PageTypes } from "@/enums/PageTypes";
 import { getFirestore } from "firebase/firestore";
+import MySipsPage from "../../MySipsPage/MySipsPage";
 
 interface IUserApplication {
     selectedPage: PageTypes;
@@ -17,6 +18,10 @@ function UserApplication(props: IUserApplication) {
 
     if (selectedPage === PageTypes.ADMIN) {
         return <AdminPage />;
+    }
+
+    if (selectedPage === PageTypes.MYSIPS) {
+        return <MySipsPage />;
     }
 
     return <></>;
