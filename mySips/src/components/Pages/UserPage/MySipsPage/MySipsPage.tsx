@@ -19,18 +19,20 @@ function MySipsPage() {
     }
     return (
         <div className="w-full p-8">
-            <div className="bg-white p-4 rounded-xl flex gap-8">
+            <div className="bg-white p-4 rounded-xl flex gap-12">
                 <UserPageHeader
                     pageTitle="mySips"
                     linkTrail={[{ value: "Home" }, { value: "mySips" }]}
                 />
-                <div>
-                    <h1 className="pb-4">Drinks</h1>
-                    <p className="text-3xl">53</p>
-                </div>
-                <div>
-                    <h1 className="pb-4">Groups</h1>
-                    <p className="text-3xl">3</p>
+                <div className="flex gap-4">
+                    <div>
+                        <h1 className="pb-4">Drinks</h1>
+                        <p className="text-3xl">53</p>
+                    </div>
+                    <div>
+                        <h1 className="pb-4">Groups</h1>
+                        <p className="text-3xl">3</p>
+                    </div>
                 </div>
             </div>
 

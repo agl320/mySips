@@ -9,6 +9,12 @@ module.exports = {
             },
             colors: {
                 ["secondary-light"]: "#e1e1fe",
+                ["pastel-orange"]: "#ff844b",
+                ["pastel-pink"]: "#ff5466",
+                ["white-blue"]: "#eef5ff",
+            },
+            backgroundImage: {
+                "test-bg": "url('/backgrounds/temp_bg.png')",
             },
             // colors: {
             // 	sidebar: {
