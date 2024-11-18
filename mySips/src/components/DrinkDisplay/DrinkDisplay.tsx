@@ -121,7 +121,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                     return (
                         <div
                             key={`drinkCard-${drinkData.uuid}`}
-                            className="w-[200px] h-[300px] bg-white flex flex-col justify-between rounded-xl p-4"
+                            className="w-[200px] h-[300px] flex flex-col justify-between rounded-sm p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange"
                         >
                             <div className="h-[20%]">
                                 <p>{drinkData.name}</p>
@@ -154,7 +154,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                             ) : (
                                 <></>
                             )}
-                            <div className="text-xs opacity-75">
+                            <div className="bg-white text-xs bg-opacity-25 p-2">
                                 <p>{drinkData.uuid}</p>
                             </div>
                         </div>

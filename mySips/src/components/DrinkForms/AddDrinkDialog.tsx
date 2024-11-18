@@ -6,6 +6,7 @@ import {
     DialogClose,
     DialogContent,
     DialogFooter,
+    DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from "../ui/dialog";
@@ -35,35 +36,43 @@ function AddDrinkDialog({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <div className="w-[200px] h-[300px] bg-white bg-opacity-25 duration-200 hover:bg-opacity-50 flex flex-col justify-around rounded-xl">
+                <div className="w-[200px] h-[300px] bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40 duration-200 hover:bg-opacity-50 flex flex-col justify-around rounded-sm">
                     <Button
                         onClick={() => setDrinkInputState(baseDrinkData)}
-                        className="w-full h-full"
+                        className="w-full h-full "
                     >
                         <CirclePlus />
                     </Button>
                 </div>
             </DialogTrigger>
+
             <DialogContent>
-                <DialogTitle>Add New Drink</DialogTitle>
+                <DialogHeader>
+                    <DialogTitle>Add New Drink</DialogTitle>
+                </DialogHeader>
                 <DialogDescription>Description</DialogDescription>
+                <br />
                 <div>
                     <DrinkInput
                         drinkInputState={drinkInputState}
                         setDrinkInputState={setDrinkInputState}
                     />
                 </div>
+                <br />
                 <DialogFooter className="sm:justify-end">
                     {/* <DialogClose asChild>{props.SaveTrigger}</DialogClose> */}
                     <DialogClose asChild>
                         <Button
+                            className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white"
                             onClick={() => addDrinkCallback(drinkInputState)}
                         >
                             Add
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button>Cancel</Button>
+                        <Button className="bg-pastel-orange text-md rounded-sm px-4 text-pastel-orange bg-opacity-30">
+                            Cancel
+                        </Button>
                     </DialogClose>
                 </DialogFooter>
             </DialogContent>

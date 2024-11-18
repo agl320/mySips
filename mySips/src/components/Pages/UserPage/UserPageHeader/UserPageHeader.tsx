@@ -15,9 +15,9 @@ function UserPageHeader({
     linkTrail: Array<{ href?: string; value: string }>;
 }) {
     return (
-        <div>
+        <div className="opacity-80">
             <div className="pb-4">
-                <h1 className="text-3xl">{pageTitle}</h1>
+                <h1 className="text-3xl font-semibold">{pageTitle}</h1>
             </div>
             <div>
                 <Breadcrumb>
