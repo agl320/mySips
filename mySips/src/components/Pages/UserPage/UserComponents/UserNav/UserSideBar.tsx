@@ -40,6 +40,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
+import { PageTypes } from "@/enums/PageTypes";
 
 const user = {
     name: "xegativ",
@@ -58,13 +59,13 @@ const groupArr = [
             },
             {
                 title: "mySips",
-                url: "/app/mysips",
+                url: "/mysips",
                 icon: CupSoda,
             },
 
             {
                 title: "myGroups",
-                url: "/app/mysips",
+                url: "/mysips",
                 icon: PackageOpen,
             },
             {
@@ -99,7 +100,7 @@ const groupArr = [
         items: [
             {
                 title: "Admin",
-                url: "/app/admin",
+                url: "/admin",
                 icon: Lock,
             },
 
@@ -122,25 +123,44 @@ const groupArr = [
     },
 ];
 
-export function UserSideBar() {
+export function UserSideBar(props: { selectedPage: PageTypes }) {
+    const { selectedPage } = props;
     return (
-        <Sidebar>
-            <SidebarHeader>
-                <Link to="/">mySips</Link>
+        <Sidebar className="p-4">
+            <SidebarHeader className="mb-8">
+                <h1 className="text-3xl font-semibold">
+                    <Link to="/">mySips</Link>
+                </h1>
             </SidebarHeader>
             <SidebarContent>
                 {groupArr.map((group) => (
                     <SidebarGroup>
-                        <SidebarGroupLabel>{group.title}</SidebarGroupLabel>
+                        <SidebarGroupLabel>
+                            <h2>{group.title}</h2>
+                        </SidebarGroupLabel>
                         <SidebarGroupContent>
                             <SidebarMenu>
                                 {group.items.map((item) => (
                                     <SidebarMenuItem key={item.title}>
                                         <SidebarMenuButton asChild>
-                                            <a href={item.url}>
-                                                <item.icon />
-                                                <span>{item.title}</span>
-                                            </a>
+                                            {selectedPage.toLowerCase() ===
+                                            item.title.toLowerCase() ? (
+                                                <a
+                                                    href={item.url}
+                                                    className="rounded-sm bg-pastel-pink text-black"
+                                                >
+                                                    <item.icon />
+                                                    <span>{item.title}</span>
+                                                </a>
+                                            ) : (
+                                                <a
+                                                    href={item.url}
+                                                    className="rounded-sm hover:text-white duration-200 text-[#cccccc]"
+                                                >
+                                                    <item.icon />
+                                                    <span>{item.title}</span>
+                                                </a>
+                                            )}
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
                                 ))}
@@ -179,7 +199,7 @@ export function UserSideBar() {
                                 </SidebarMenuButton>
                             </DropdownMenuTrigger>
                             <DropdownMenuContent
-                                className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg"
+                                className="w-[--radix-dropdown-menu-trigger-width] min-w-56 rounded-lg bg-gradient-to-r from-pastel-pink to-pastel-orange border-none"
                                 side="bottom"
                                 align="end"
                                 sideOffset={4}

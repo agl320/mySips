@@ -47,10 +47,14 @@ function AddDrinkDialog({
             </DialogTrigger>
 
             <DialogContent>
-                <DialogHeader>
-                    <DialogTitle>Add New Drink</DialogTitle>
+                <DialogHeader className="pb-2">
+                    <DialogTitle className="text-2xl opacity-80">
+                        Add New Drink
+                    </DialogTitle>
                 </DialogHeader>
-                <DialogDescription>Description</DialogDescription>
+                <DialogDescription>
+                    <p className="opacity-80">Description</p>
+                </DialogDescription>
                 <br />
                 <div>
                     <DrinkInput
@@ -66,7 +70,7 @@ function AddDrinkDialog({
                             className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white"
                             onClick={() => addDrinkCallback(drinkInputState)}
                         >
-                            Add
+                            Add Drink
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>

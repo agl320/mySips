@@ -35,7 +35,10 @@ function EditDrinkDialog({
         <>
             <Dialog>
                 <DialogTrigger asChild>
-                    <Button onClick={() => setDrinkInputState(drinkData)}>
+                    <Button
+                        onClick={() => setDrinkInputState(drinkData)}
+                        className="h-4 w-4"
+                    >
                         <Pen className="h-4 w-4" />
                     </Button>
                 </DialogTrigger>

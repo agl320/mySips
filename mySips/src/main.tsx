@@ -33,11 +33,11 @@ const router = createBrowserRouter([
         element: <UserPage selectedPage={PageTypes.OVERVIEW} />,
     },
     {
-        path: "/app/admin",
+        path: "/admin",
         element: <UserPage selectedPage={PageTypes.ADMIN} />,
     },
     {
-        path: "/app/mysips",
+        path: "/mysips",
         element: <UserPage selectedPage={PageTypes.MYSIPS} />,
     },
     {

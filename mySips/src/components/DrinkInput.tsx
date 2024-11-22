@@ -1,6 +1,7 @@
 import { Label } from "@radix-ui/react-label";
 import { Drink } from "../classes/Drink";
 import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 
 export type IDrinkInputProps = {
     drinkInputState: Pick<Drink, "uuid"> & Partial<Drink>;
@@ -12,8 +13,8 @@ export type IDrinkInputProps = {
 function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
     return (
         <div>
-            <div>
-                <Label>Drink name</Label>
+            <div className="space-y-2 mb-4">
+                <Label className="opacity-80">Drink name</Label>
                 <Input
                     type="text"
                     placeholder={`New drink`}
@@ -28,24 +29,22 @@ function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
                     maxLength={32}
                 ></Input>
             </div>
-            <div>
-                <Label>Street description</Label>
-                <Input
-                    type="text"
+            <div className="space-y-2 mb-4">
+                <Label className="opacity-80">Street description</Label>
+                <Textarea
                     placeholder={`Drink description`}
-                    required
                     value={drinkInputState.description}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    onChangeCapture={(e) => {
                         setDrinkInputState({
                             ...drinkInputState,
                             description: e.target.value,
                         });
                     }}
-                    maxLength={32}
-                ></Input>
+                    maxLength={300}
+                ></Textarea>
             </div>
-            <div>
-                <Label>Street address</Label>
+            <div className="space-y-2">
+                <Label className="opacity-80">Street address</Label>
                 <Input
                     type="text"
                     placeholder={`Street address`}

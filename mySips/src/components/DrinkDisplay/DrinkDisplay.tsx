@@ -123,13 +123,15 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                             key={`drinkCard-${drinkData.uuid}`}
                             className="w-[200px] h-[300px] flex flex-col justify-between rounded-sm p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange"
                         >
-                            <div className="h-[20%]">
-                                <p>{drinkData.name}</p>
+                            <div className="h-full ">
+                                <h1 className="text-4xl font-semibold overflow-hidden">
+                                    {drinkData.name}
+                                </h1>
                                 <p>{drinkData.address}</p>
                             </div>
-                            <div className="h-[60%]">
-                                {drinkData.description}
-                            </div>
+                            {/* <div className="overflow-hidden whitespace-pre">
+                                <p>{drinkData.description}</p>
+                            </div> */}
 
                             {isEditable ? (
                                 <div className="flex justify-end">
@@ -144,6 +146,14 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                                         drinkData={drinkData}
                                         editCallback={updateSelectedDrink}
                                     />
+                                    <EditDrinkDialog
+                                        drinkData={drinkData}
+                                        editCallback={updateSelectedDrink}
+                                    />
+                                    <EditDrinkDialog
+                                        drinkData={drinkData}
+                                        editCallback={updateSelectedDrink}
+                                    />
                                     <DeleteDrinkDialog
                                         drinkData={drinkData}
                                         deleteDrinkCallback={
@@ -154,9 +164,9 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                             ) : (
                                 <></>
                             )}
-                            <div className="bg-white text-xs bg-opacity-25 p-2">
+                            {/* <div className="bg-white text-xs bg-opacity-25 p-2">
                                 <p>{drinkData.uuid}</p>
-                            </div>
+                            </div> */}
                         </div>
                     );
                 })}

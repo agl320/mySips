@@ -25,9 +25,8 @@ function DeleteDrinkDialog({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <Button>
-                    {" "}
-                    <Trash2 className="h-4 w-4" />
+                <Button className="w-4 h-4">
+                    <Trash2 />
                 </Button>
             </DialogTrigger>
             <DialogContent>

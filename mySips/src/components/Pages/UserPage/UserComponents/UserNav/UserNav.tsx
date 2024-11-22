@@ -59,7 +59,7 @@ function UserNav(props: IUserNav) {
     };
 
     return (
-        <div className="px-12 mt-8 w-56 flex flex-col justify-between h-[30rem] text-left ">
+        <div className="px-12 mt-8 w-56 flex flex-col justify-between h-[30rem] text-left">
             <div className="flex flex-col font-medium text-3xl mb-8">
                 <NavLink className="" to={"/"}>
                     mySips
