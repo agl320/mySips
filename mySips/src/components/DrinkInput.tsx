@@ -30,7 +30,7 @@ function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
                 ></Input>
             </div>
             <div className="space-y-2 mb-4">
-                <Label className="opacity-80">Street description</Label>
+                <Label className="opacity-80">Drink description</Label>
                 <Textarea
                     placeholder={`Drink description`}
                     value={drinkInputState.description}

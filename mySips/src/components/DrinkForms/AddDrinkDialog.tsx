@@ -52,8 +52,8 @@ function AddDrinkDialog({
                         Add New Drink
                     </DialogTitle>
                 </DialogHeader>
-                <DialogDescription>
-                    <p className="opacity-80">Description</p>
+                <DialogDescription className="opacity-80">
+                    Description
                 </DialogDescription>
                 <br />
                 <div>

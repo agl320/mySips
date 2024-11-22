@@ -30,23 +30,28 @@ function DeleteDrinkDialog({
                 </Button>
             </DialogTrigger>
             <DialogContent>
-                <DialogTitle>Confirm Delete Drink</DialogTitle>
-                <DialogDescription>
+                <DialogTitle className="pb-2 text-2xl">
+                    Confirm Delete Drink
+                </DialogTitle>
+                <DialogDescription className="opacity-80">
                     Are you sure you want to remove {`${drinkData.name}`} from
                     mySips?
                 </DialogDescription>
-                <div></div>
+                <br />
                 <DialogFooter className="sm:justify-end">
                     {/* <DialogClose asChild>{SaveTrigger}</DialogClose> */}
                     <DialogClose asChild>
                         <Button
+                            className="bg-pastel-orange text-md rounded-sm px-4 text-pastel-orange bg-opacity-30"
                             onClick={() => deleteDrinkCallback(drinkData.uuid)}
                         >
                             Delete Drink
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button>Cancel</Button>
+                        <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white">
+                            Cancel
+                        </Button>
                     </DialogClose>
                 </DialogFooter>
             </DialogContent>

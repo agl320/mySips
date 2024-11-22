@@ -145,21 +145,21 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                         <SidebarMenuButton asChild>
                                             {selectedPage.toLowerCase() ===
                                             item.title.toLowerCase() ? (
-                                                <a
-                                                    href={item.url}
+                                                <Link
+                                                    to={item.url}
                                                     className="rounded-sm bg-pastel-pink text-black"
                                                 >
                                                     <item.icon />
                                                     <span>{item.title}</span>
-                                                </a>
+                                                </Link>
                                             ) : (
-                                                <a
-                                                    href={item.url}
+                                                <Link
+                                                    to={item.url}
                                                     className="rounded-sm hover:text-white duration-200 text-[#cccccc]"
                                                 >
                                                     <item.icon />
                                                     <span>{item.title}</span>
-                                                </a>
+                                                </Link>
                                             )}
                                         </SidebarMenuButton>
                                     </SidebarMenuItem>
