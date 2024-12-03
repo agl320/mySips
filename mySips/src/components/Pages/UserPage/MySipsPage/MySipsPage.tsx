@@ -10,6 +10,7 @@ import {
 import { useUser } from "reactfire";
 import UserPageHeader from "../UserPageHeader/UserPageHeader";
 import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
+import UserBlock from "../UserComponents/Blocks/UserBlock";
 
 function MySipsPage() {
     const { status: statusUser, data: user } = useUser();
@@ -20,7 +21,7 @@ function MySipsPage() {
     }
     return (
         <div className="w-full h-full p-8 text-white bg-gradient-to-r from-black via-[#001237] via-[#002226] to-[#003760]">
-            <div className="p-4 rounded-sm flex gap-12 bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40">
+            <UserBlock className="flex">
                 <UserPageHeader
                     pageTitle="mySips"
                     linkTrail={[{ value: "Home" }, { value: "mySips" }]}
@@ -29,7 +30,7 @@ function MySipsPage() {
                     userId={user?.uid ?? ""}
                     statistics={{ drinkCount: true }}
                 />
-            </div>
+            </UserBlock>
 
             <div className="pt-8">
                 <DrinkDisplay userId={user?.uid ?? ""} isEditable />

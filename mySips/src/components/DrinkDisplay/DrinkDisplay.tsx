@@ -21,6 +21,7 @@ import DrinkEdit from "../DrinkApp/DrinkDisplay/DrinkEdit";
 import EditDrinkDialog from "./EditDrinkDialog/EditDrinkDialog";
 import AddDrinkDialog from "../DrinkForms/AddDrinkDialog";
 import { Button } from "../ui/button";
+import { Info, Share } from "lucide-react";
 
 interface IDrinkDisplayProps {
     userId: string;
@@ -146,14 +147,12 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                                         drinkData={drinkData}
                                         editCallback={updateSelectedDrink}
                                     />
-                                    <EditDrinkDialog
-                                        drinkData={drinkData}
-                                        editCallback={updateSelectedDrink}
-                                    />
-                                    <EditDrinkDialog
-                                        drinkData={drinkData}
-                                        editCallback={updateSelectedDrink}
-                                    />
+                                    <Button className="h-4 w-4">
+                                        <Info className="h-4 w-4" />
+                                    </Button>
+                                    <Button className="h-4 w-4">
+                                        <Share className="h-4 w-4" />
+                                    </Button>
                                     <DeleteDrinkDialog
                                         drinkData={drinkData}
                                         deleteDrinkCallback={
