@@ -11,14 +11,14 @@ import { useUser } from "reactfire";
 import UserPageHeader from "../UserPageHeader/UserPageHeader";
 import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
 import UserBlock from "../UserComponents/Blocks/UserBlock";
+import { User } from "firebase/auth";
 
-function MySipsPage() {
-    const { status: statusUser, data: user } = useUser();
-    // const firestore = useFirestore();
+interface IUserProps {
+    user: User | null;
+}
 
-    if (statusUser === "loading") {
-        return <span>Loading...</span>;
-    }
+function MySipsPage(props: IUserProps) {
+    const { user } = props;
     return (
         <div className="w-full h-full p-8 text-white bg-gradient-to-r from-black via-[#001237] via-[#002226] to-[#003760]">
             <UserBlock className="flex">

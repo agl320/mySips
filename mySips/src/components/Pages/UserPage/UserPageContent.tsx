@@ -12,10 +12,6 @@ function UserPageContent(props: { selectedPage: PageTypes }) {
     const { selectedPage } = props;
     const { status, data: signInCheckResult } = useSigninCheck();
 
-    // const [selectedPage, setSelectedPage] = useState<PageTypes>(
-    //     PageTypes.OVERVIEW
-    // );
-
     // if loading, display some loading component
     if (status === "loading") {
         return <span>loading...</span>;

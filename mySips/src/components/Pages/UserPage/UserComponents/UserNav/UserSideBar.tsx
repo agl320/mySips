@@ -15,6 +15,7 @@ import {
     CupSoda,
     ShoppingBasket,
     PackageOpen,
+    UsersRound,
 } from "lucide-react";
 
 import {
@@ -87,6 +88,11 @@ const groupArr = [
                 title: "Search",
                 url: "#",
                 icon: Search,
+            },
+            {
+                title: "Friends",
+                url: "#",
+                icon: UsersRound,
             },
             {
                 title: "Menus",

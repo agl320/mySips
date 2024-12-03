@@ -8,15 +8,14 @@ import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
 import { v4 as uuidv4 } from "uuid";
 import UserBlock from "../UserComponents/Blocks/UserBlock";
 import UserPageHeader from "../UserPageHeader/UserPageHeader";
+import { User } from "firebase/auth";
 
-function OverviewPage() {
-    const { status: statusUser, data: user } = useUser();
-    // const firestore = useFirestore();
+interface IUserProps {
+    user: User | null;
+}
 
-    if (statusUser === "loading") {
-        return <span>Loading...</span>;
-    }
-
+function OverviewPage(props: IUserProps) {
+    const { user } = props;
     return (
         <div className="w-full h-full p-8 text-white bg-gradient-to-r from-black via-[#372c00] via-[#261600] to-[#47002b]">
             <UserBlock>

@@ -4,16 +4,23 @@ import AdminPage from "../../AdminPage/AdminPage";
 import { PageTypes } from "@/enums/PageTypes";
 import { getFirestore } from "firebase/firestore";
 import MySipsPage from "../../MySipsPage/MySipsPage";
+import { useUser } from "reactfire";
 
 interface IUserApplication {
     selectedPage: PageTypes;
 }
 
 function UserApplication(props: IUserApplication) {
+    const { status: statusUser, data: user } = useUser();
+
+    if (statusUser === "loading") {
+        return <span>Loading...</span>;
+    }
+
     const { selectedPage } = props;
 
     if (selectedPage === PageTypes.OVERVIEW) {
-        return <OverviewPage />;
+        return <OverviewPage user={user} />;
     }
 
     if (selectedPage === PageTypes.ADMIN) {
@@ -21,7 +28,7 @@ function UserApplication(props: IUserApplication) {
     }
 
     if (selectedPage === PageTypes.MYSIPS) {
-        return <MySipsPage />;
+        return <MySipsPage user={user} />;
     }
 
     return <></>;
