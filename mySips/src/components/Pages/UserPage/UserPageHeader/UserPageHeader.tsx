@@ -25,7 +25,7 @@ function UserPageHeader({
                         {linkTrail.map((linkItem, index) => {
                             return (
                                 <>
-                                    <BreadcrumbItem>
+                                    <BreadcrumbItem key={`BC-${index}`}>
                                         <BreadcrumbLink
                                             href={linkItem.href ?? "#"}
                                         >

@@ -5,6 +5,7 @@ import { PageTypes } from "@/enums/PageTypes";
 import { getFirestore } from "firebase/firestore";
 import MySipsPage from "../../MySipsPage/MySipsPage";
 import { useUser } from "reactfire";
+import FriendsPage from "../../FriendsPage/FriendsPage";
 
 interface IUserApplication {
     selectedPage: PageTypes;
@@ -29,6 +30,10 @@ function UserApplication(props: IUserApplication) {
 
     if (selectedPage === PageTypes.MYSIPS) {
         return <MySipsPage user={user} />;
+    }
+
+    if (selectedPage === PageTypes.FRIENDS) {
+        return <FriendsPage user={user} />;
     }
 
     return <></>;

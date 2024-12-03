@@ -7,4 +7,5 @@ export enum PageTypes {
     UPGRADE = "UPGRADE",
     BUG = "BUG",
     SETTINGS = "SETTINGS",
+    FRIENDS = "FRIENDS",
 }

@@ -60,6 +60,7 @@ function LoginPageContent() {
 
             await checkAndCreateCollection(userDocRef, "userDrinkData");
             await checkAndCreateCollection(userDocRef, "userGroups");
+            await checkAndCreateCollection(userDocRef, "userConnections");
         } catch (error) {
             console.error("Error creating user profile:", error.message);
         }

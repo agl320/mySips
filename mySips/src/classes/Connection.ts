@@ -4,45 +4,57 @@ export enum ConnectionStatus {
     Friend = "FRIEND",
 }
 
-interface IConnectionParams {
-    uuid: string;
-
+export interface IConnectionParams {
     userAuuid: string;
     userBuuid: string;
 
     status: ConnectionStatus;
+
+    pairUuid: string;
 }
 
-class Connection implements IConnectionParams {
-    uuid: string;
-
-    userAuuid: string;
-    userBuuid: string;
+class Connection {
+    private userAuuid: string;
+    private userBuuid: string;
 
     status: ConnectionStatus;
 
+    private pairUuid: string;
+
     constructor(params: IConnectionParams) {
-        this.uuid = params.uuid;
         this.userAuuid = params.userAuuid;
         this.userBuuid = params.userBuuid;
         this.status = params.status;
+        this.pairUuid = params.pairUuid;
     }
 
     toFirestore(): Record<string, any> {
         return {
-            uuid: this.uuid,
             userAuuid: this.userAuuid,
             userBuuid: this.userBuuid,
             status: this.status,
+            pairUuid: this.pairUuid,
         };
+    }
+
+    setStatus(status: ConnectionStatus) {
+        this.status = status;
+    }
+
+    getPairUuid(): string {
+        return this.pairUuid;
+    }
+
+    getUserUuids(): string[] {
+        return [this.userAuuid, this.userBuuid];
     }
 
     static fromFirestore(data: IConnectionParams): Connection {
         return new Connection({
-            uuid: data.uuid,
             userAuuid: data.userAuuid,
             userBuuid: data.userBuuid,
             status: data.status,
+            pairUuid: data.pairUuid,
         });
     }
 }

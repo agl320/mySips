@@ -60,13 +60,13 @@ const groupArr = [
             },
             {
                 title: "mySips",
-                url: "/mysips",
+                url: "/app/mysips",
                 icon: CupSoda,
             },
 
             {
                 title: "myGroups",
-                url: "/mysips",
+                url: "/app/mysips",
                 icon: PackageOpen,
             },
             {
@@ -91,7 +91,7 @@ const groupArr = [
             },
             {
                 title: "Friends",
-                url: "#",
+                url: "/app/friends",
                 icon: UsersRound,
             },
             {
@@ -106,7 +106,7 @@ const groupArr = [
         items: [
             {
                 title: "Admin",
-                url: "/admin",
+                url: "/app/admin",
                 icon: Lock,
             },
 
