@@ -15,7 +15,7 @@ import { Trash2 } from "lucide-react";
 interface IDeleteDrinkDialogProps {
     // SaveTrigger: ReactNode;
     drinkData: Drink;
-    deleteDrinkCallback: (uuid: string) => Promise<void>;
+    deleteDrinkCallback: (uid: string) => Promise<void>;
 }
 
 function DeleteDrinkDialog({
@@ -43,7 +43,7 @@ function DeleteDrinkDialog({
                     <DialogClose asChild>
                         <Button
                             className="bg-pastel-orange text-md rounded-sm px-4 text-pastel-orange bg-opacity-30"
-                            onClick={() => deleteDrinkCallback(drinkData.uuid)}
+                            onClick={() => deleteDrinkCallback(drinkData.uid)}
                         >
                             Delete Drink
                         </Button>

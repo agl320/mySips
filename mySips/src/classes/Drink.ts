@@ -6,7 +6,7 @@ interface DrinkRecord {
     quantity: number;
 }
 interface IDrinkParams {
-    uuid: string;
+    uid: string;
     /** Drink name */
     name: string;
     /** Drink description */
@@ -17,7 +17,7 @@ interface IDrinkParams {
     coordinates?: { lat: string; long: string };
     address?: string;
     /** Store id */
-    storeUuid?: string;
+    storeUid?: string;
     tags?: Record<string, ITag>;
 
     /** Drink groups ; to be used for group tabs */
@@ -32,7 +32,7 @@ interface IDrinkParams {
 }
 
 class Drink implements IDrinkParams {
-    uuid: string;
+    uid: string;
     /** Drink name */
     name: string;
     /** Drink description */
@@ -44,7 +44,7 @@ class Drink implements IDrinkParams {
     coordinates?: { lat: string; long: string };
     address?: string;
     /** Store id */
-    storeUuid?: string;
+    storeUid?: string;
     tags?: Record<string, ITag>;
 
     groups?: Array<string>;
@@ -57,12 +57,12 @@ class Drink implements IDrinkParams {
     DrinkRecordHistory: Array<DrinkRecord>;
 
     constructor(params: IDrinkParams) {
-        this.uuid = params.uuid;
+        this.uid = params.uid;
         this.name = params.name;
         this.description = params.description;
         this.rating = params?.rating;
         this.coordinates = params?.coordinates;
-        this.storeUuid = params?.storeUuid;
+        this.storeUid = params?.storeUid;
         this.tags = params?.tags;
         this.groups = params?.groups;
         this.sugarLevel = params?.sugarLevel;
@@ -73,13 +73,13 @@ class Drink implements IDrinkParams {
 
     toFirestore(): Record<string, any> {
         return {
-            uuid: this.uuid,
+            uid: this.uid,
             name: this.name,
             description: this.description,
             rating: this.rating ?? null,
             coordinates: this.coordinates ?? null,
             address: this.address ?? null,
-            storeUuid: this.storeUuid ?? null,
+            storeUid: this.storeUid ?? null,
             tags: this.tags ?? {},
             groups: this.groups ?? [],
             dateCreated: this.dateCreated ?? null,
@@ -89,13 +89,13 @@ class Drink implements IDrinkParams {
 
     static fromFirestore(data: IDrinkParams): Drink {
         return new Drink({
-            uuid: data.uuid,
+            uid: data.uid,
             name: data.name,
             description: data.description,
             rating: data.rating,
             coordinates: data.coordinates,
             address: data.address,
-            storeUuid: data.storeUuid,
+            storeUid: data.storeUid,
             tags: data.tags,
             groups: data.groups,
             dateCreated: data.dateCreated,

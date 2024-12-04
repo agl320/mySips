@@ -15,7 +15,7 @@ import { useFirestore } from "reactfire";
 
 import moment from "moment";
 
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uidv4 } from "uuid";
 import DeleteDrinkDialog from "./DeleteDrinkDialog/DeleteDrinkDialog";
 import DrinkEdit from "../DrinkApp/DrinkDisplay/DrinkEdit";
 import EditDrinkDialog from "./EditDrinkDialog/EditDrinkDialog";
@@ -50,8 +50,8 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
 
                 const formattedDrinkData = fetchedDrinks.reduce(
                     (acc, drinkData) => {
-                        if (!drinkData.uuid) return acc;
-                        acc[drinkData.uuid] = drinkData;
+                        if (!drinkData.uid) return acc;
+                        acc[drinkData.uid] = drinkData;
                         return acc;
                     },
                     {} as IMenu
@@ -69,11 +69,11 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
 
     // adds empty drink
     const addNewDrink = async (newDrinkProperties: any) => {
-        // const uuid = uuidv4();
+        // const uid = uidv4();
         const drinkDocRef = doc(
             userDocRef,
             "userDrinkData",
-            newDrinkProperties.uuid
+            newDrinkProperties.uid
         );
         const newDrinkObj = new Drink(newDrinkProperties);
         await setDoc(drinkDocRef, newDrinkObj.toFirestore());
@@ -82,7 +82,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
     const createEmptyDrink = (): Drink => {
         const newDrinkObj = new Drink({
             name: "New Drink",
-            uuid: uuidv4(),
+            uid: uidv4(),
             description: "",
         });
 
@@ -91,7 +91,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
 
     // updates existing drink
     const updateSelectedDrink = async (
-        uuid: string,
+        uid: string,
         updatedDrinkProperties: Drink
     ) => {
         // Creates new Drink object then invokes toFirestore()
@@ -100,19 +100,19 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
 
         console.log({ newDrinkObj });
 
-        const drinkDocRef = doc(userDocRef, "userDrinkData", uuid);
+        const drinkDocRef = doc(userDocRef, "userDrinkData", uid);
         await updateDoc(drinkDocRef, newDrinkObj.toFirestore());
     };
 
-    const deleteSelectedDrink = async (uuid: string) => {
-        await deleteDoc(doc(userDocRef, "userDrinkData", uuid));
+    const deleteSelectedDrink = async (uid: string) => {
+        await deleteDoc(doc(userDocRef, "userDrinkData", uid));
     };
 
     // Wrapper around updateSelectedDrink that adds a timestamp
     const incrementDrinkRecord = (drinkData: Drink) => {
         const timeStamp = moment().toISOString();
         drinkData.addDrinkRecord(timeStamp, 1);
-        updateSelectedDrink(drinkData.uuid, drinkData);
+        updateSelectedDrink(drinkData.uid, drinkData);
     };
 
     return (
@@ -121,7 +121,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                 {Object.values(userDrinkData).map((drinkData) => {
                     return (
                         <div
-                            key={`drinkCard-${drinkData.uuid}`}
+                            key={`drinkCard-${drinkData.uid}`}
                             className="w-[200px] h-[300px] flex flex-col justify-between rounded-sm p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange"
                         >
                             <div className="h-full ">
@@ -164,7 +164,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                                 <></>
                             )}
                             {/* <div className="bg-white text-xs bg-opacity-25 p-2">
-                                <p>{drinkData.uuid}</p>
+                                <p>{drinkData.uid}</p>
                             </div> */}
                         </div>
                     );

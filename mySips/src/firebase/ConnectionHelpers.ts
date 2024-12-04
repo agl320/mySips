@@ -1,7 +1,9 @@
 import {
     collection,
     doc,
+    getDoc,
     getDocs,
+    onSnapshot,
     query,
     runTransaction,
     where,
@@ -14,49 +16,49 @@ import { ConnectionStatus } from "@/classes/Connection";
  *
  * @param connectionStatus
  *  PENDING, BLOCKED, or FRIEND
- * @param userAuuid
- *  User A uuid
- * @param userBuuid
- *  User B uuid
+ * @param userAuid
+ *  User A uid
+ * @param userBuid
+ *  User B uid
  */
 export const userSetConnection = async (
     connectionStatus: ConnectionStatus,
-    userAuuid: string,
-    userBuuid: string
+    userAuid: string,
+    userBuid: string
 ) => {
-    if (doesUserExist(userAuuid) && doesUserExist(userBuuid)) {
-        const pairUuid = [userAuuid, userBuuid].sort().join("_");
+    if (doesUserExist(userAuid) && doesUserExist(userBuid)) {
+        const pairUid = [userAuid, userBuid].sort().join("_");
 
         const userAConnectionRef = doc(
             firebaseDB,
             "users",
-            userAuuid,
+            userAuid,
             "userConnections",
-            pairUuid
+            pairUid
         );
         const userBConnectionRef = doc(
             firebaseDB,
             "users",
-            userBuuid,
+            userBuid,
             "userConnections",
-            pairUuid
+            pairUid
         );
 
         try {
             await runTransaction(firebaseDB, async (transaction) => {
                 // Add connection to userA's subcollection
                 transaction.set(userAConnectionRef, {
-                    userAuuid,
-                    userBuuid,
-                    pairUuid,
+                    userAuid,
+                    userBuid,
+                    pairUid,
                     status: connectionStatus,
                 });
 
                 // Add connection to userB's subcollection
                 transaction.set(userBConnectionRef, {
-                    userAuuid,
-                    userBuuid,
-                    pairUuid,
+                    userAuid,
+                    userBuid,
+                    pairUid,
                     status: connectionStatus,
                 });
             });
@@ -69,21 +71,23 @@ export const userSetConnection = async (
 };
 
 /**
- * One user search for existing connection; checks
+ * User search for existing connection; checks
  *  existence of User B relative to User A
  *
- * @param userAuuid
- * @param userBuuid
+ * @param userAuid
+ * @param userBuid
  * @returns
  */
-export const doesConnectionExist = async (
-    userAuuid: string,
-    userBuuid: string
+
+export const doesConnectionExist = (
+    userAuid: string,
+    userBuid: string,
+    callback
 ) => {
-    const pairUuid = [userAuuid, userBuuid].sort().join("_");
+    const pairUid = [userAuid, userBuid].sort().join("_");
 
     // doc reference
-    const userADocRef = doc(firebaseDB, "users", userAuuid);
+    const userADocRef = doc(firebaseDB, "users", userAuid);
 
     // collection reference
     const userConnectionsCollectionRef = collection(
@@ -93,17 +97,27 @@ export const doesConnectionExist = async (
 
     const equalityQuery = query(
         userConnectionsCollectionRef,
-        where("pairUuid", "==", pairUuid)
+        where("pairUid", "==", pairUid)
     );
 
-    const querySnapshot = await getDocs(equalityQuery);
+    // Set up a real-time listener
+    const unsubscribe = onSnapshot(equalityQuery, (querySnapshot) => {
+        if (!querySnapshot.empty) {
+            const connection = querySnapshot.docs[0].data();
+            callback({ connectionExists: true, connection });
+        } else {
+            callback({ connectionExists: false, connection: null });
+        }
+    });
 
-    return {
-        connectionExists: !querySnapshot.empty,
-        connection: querySnapshot,
-    };
+    return unsubscribe;
 };
 
-const doesUserExist = (userUuid: string) => {
+const doesUserExist = (uid: string) => {
     return true;
 };
+
+export const userRemoveConnection = async (
+    userAUid: string,
+    userBUid: string
+) => {};

@@ -5,35 +5,35 @@ export enum ConnectionStatus {
 }
 
 export interface IConnectionParams {
-    userAuuid: string;
-    userBuuid: string;
+    userAuid: string;
+    userBuid: string;
 
     status: ConnectionStatus;
 
-    pairUuid: string;
+    pairUid: string;
 }
 
 class Connection {
-    private userAuuid: string;
-    private userBuuid: string;
+    private userAuid: string;
+    private userBuid: string;
 
     status: ConnectionStatus;
 
-    private pairUuid: string;
+    private pairUid: string;
 
     constructor(params: IConnectionParams) {
-        this.userAuuid = params.userAuuid;
-        this.userBuuid = params.userBuuid;
+        this.userAuid = params.userAuid;
+        this.userBuid = params.userBuid;
         this.status = params.status;
-        this.pairUuid = params.pairUuid;
+        this.pairUid = params.pairUid;
     }
 
     toFirestore(): Record<string, any> {
         return {
-            userAuuid: this.userAuuid,
-            userBuuid: this.userBuuid,
+            userAuid: this.userAuid,
+            userBuid: this.userBuid,
             status: this.status,
-            pairUuid: this.pairUuid,
+            pairUid: this.pairUid,
         };
     }
 
@@ -41,20 +41,20 @@ class Connection {
         this.status = status;
     }
 
-    getPairUuid(): string {
-        return this.pairUuid;
+    getPairUid(): string {
+        return this.pairUid;
     }
 
-    getUserUuids(): string[] {
-        return [this.userAuuid, this.userBuuid];
+    getUserUids(): string[] {
+        return [this.userAuid, this.userBuid];
     }
 
     static fromFirestore(data: IConnectionParams): Connection {
         return new Connection({
-            userAuuid: data.userAuuid,
-            userBuuid: data.userBuuid,
+            userAuid: data.userAuid,
+            userBuid: data.userBuid,
             status: data.status,
-            pairUuid: data.pairUuid,
+            pairUid: data.pairUid,
         });
     }
 }

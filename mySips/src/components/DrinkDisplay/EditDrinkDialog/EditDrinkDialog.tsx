@@ -17,10 +17,7 @@ import { useState } from "react";
 interface IDrinkEditProps {
     // groupsState: Record<string, Group>;
     drinkData: Drink;
-    editCallback: (
-        uuid: string,
-        updatedDrinkProperties: Drink
-    ) => Promise<void>;
+    editCallback: (uid: string, updatedDrinkProperties: Drink) => Promise<void>;
 }
 
 function EditDrinkDialog({
@@ -28,7 +25,7 @@ function EditDrinkDialog({
     editCallback: editDrinkCallback,
 }: IDrinkEditProps) {
     const [drinkInputState, setDrinkInputState] = useState<
-        Pick<Drink, "uuid"> & Partial<Drink>
+        Pick<Drink, "uid"> & Partial<Drink>
     >(drinkData);
 
     return (
@@ -63,23 +60,23 @@ function EditDrinkDialog({
                                     <input
                                         type="checkbox"
                                         checked={drinkInputState.groups?.includes(
-                                            groupItem.uuid
+                                            groupItem.uid
                                         )}
                                         onChange={() =>
                                             setDrinkInputState({
                                                 ...drinkInputState,
                                                 groups: drinkInputState.groups?.includes(
-                                                    groupItem.uuid
+                                                    groupItem.uid
                                                 )
                                                     ? drinkInputState.groups.filter(
                                                           (currGroup) =>
                                                               currGroup !==
-                                                              groupItem.uuid
+                                                              groupItem.uid
                                                       )
                                                     : [
                                                           ...(drinkInputState.groups ??
                                                               []),
-                                                          groupItem.uuid,
+                                                          groupItem.uid,
                                                       ],
                                             })
                                         }
@@ -95,7 +92,7 @@ function EditDrinkDialog({
                                 className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white"
                                 onClick={() =>
                                     editDrinkCallback(
-                                        drinkData.uuid,
+                                        drinkData.uid,
                                         drinkInputState
                                     )
                                 }

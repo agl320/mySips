@@ -46,7 +46,7 @@ function AdminDisplay(props: IAdminDisplayProps) {
     const { status: statusUser, data: user } = useUser();
 
     const { status, data: users } = useFirestoreCollectionData(usersQuery, {
-        idField: "uuid",
+        idField: "uid",
     });
 
     useEffect(() => {
@@ -100,7 +100,7 @@ function AdminDisplay(props: IAdminDisplayProps) {
             {loadedUsers?.map((user) => {
                 return (
                     <DrinkDisplay
-                        key={`DrinkDisplay-${user.uuid}`}
+                        key={`DrinkDisplay-${user.uid}`}
                         userDrinkData={user.userDrinkData}
                     />
                 );

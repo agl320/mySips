@@ -4,9 +4,9 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
 export type IDrinkInputProps = {
-    drinkInputState: Pick<Drink, "uuid"> & Partial<Drink>;
+    drinkInputState: Pick<Drink, "uid"> & Partial<Drink>;
     setDrinkInputState: React.Dispatch<
-        React.SetStateAction<Pick<Drink, "uuid"> & Partial<Drink>>
+        React.SetStateAction<Pick<Drink, "uid"> & Partial<Drink>>
     >;
 };
 

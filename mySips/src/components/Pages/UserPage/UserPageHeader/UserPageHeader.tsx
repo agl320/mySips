@@ -33,7 +33,9 @@ function UserPageHeader({
                                         </BreadcrumbLink>
                                     </BreadcrumbItem>
                                     {index < linkTrail.length - 1 ? (
-                                        <BreadcrumbSeparator />
+                                        <BreadcrumbSeparator
+                                            key={`BC-sep-${index}`}
+                                        />
                                     ) : (
                                         <></>
                                     )}

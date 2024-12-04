@@ -15,13 +15,13 @@ import { DialogDescription } from "@radix-ui/react-dialog";
 import { CirclePlus } from "lucide-react";
 
 interface IAddDrinkDialogProps {
-    // drinkInputState: Omit<IDrinkParams, "uuid">;
+    // drinkInputState: Omit<IDrinkParams, "uid">;
     // setDrinkInputState: React.Dispatch<
-    //   React.SetStateAction<Omit<IDrinkParams, "uuid">>
+    //   React.SetStateAction<Omit<IDrinkParams, "uid">>
     // >;
     // SaveTrigger: ReactNode;
 
-    // Generate uuid in other object, then pass the empty here
+    // Generate uid in other object, then pass the empty here
     baseDrinkData: Drink;
     addDrinkCallback: (newDrinkProperties: any) => Promise<void>;
 }

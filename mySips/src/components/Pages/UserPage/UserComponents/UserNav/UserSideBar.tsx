@@ -139,8 +139,8 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                 </h1>
             </SidebarHeader>
             <SidebarContent>
-                {groupArr.map((group) => (
-                    <SidebarGroup>
+                {groupArr.map((group, index) => (
+                    <SidebarGroup key={`side-bar-group-${index}`}>
                         <SidebarGroupLabel>
                             <h2>{group.title}</h2>
                         </SidebarGroupLabel>

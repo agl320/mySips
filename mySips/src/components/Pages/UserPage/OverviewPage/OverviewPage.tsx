@@ -1,11 +1,5 @@
-import { Drink } from "@/classes/Drink";
 import DrinkDisplay from "@/components/DrinkDisplay/DrinkDisplay";
 import { Separator } from "@/components/ui/separator";
-import { IMenu } from "@/interfaces/IMenu";
-import { addDoc, collection, doc, getDocs, query } from "firebase/firestore";
-import { useEffect, useState } from "react";
-import { useFirestore, useFirestoreCollectionData, useUser } from "reactfire";
-import { v4 as uuidv4 } from "uuid";
 import UserBlock from "../UserComponents/Blocks/UserBlock";
 import UserPageHeader from "../UserPageHeader/UserPageHeader";
 import { User } from "firebase/auth";

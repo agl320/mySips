@@ -10,7 +10,7 @@ import { Group } from "@/classes/Category";
 //   drinksState: IMenu;
 //   setDrinksState?: React.Dispatch<React.SetStateAction<IMenu>>;
 //   mode?: "editable" | "limited";
-//   deleteDrink?: (uuidToDelete: string) => void;
+//   deleteDrink?: (uidToDelete: string) => void;
 //   group?: string;
 //   groupsState?: Array<string>;
 //   editCallback?: (newDrinkData: Drink) => void;
@@ -38,9 +38,9 @@ interface IDrinkDisplayEditabeProps {
     group?: Group;
     setDrinksState: React.Dispatch<React.SetStateAction<IMenu>>;
     setGroupsState: React.Dispatch<React.SetStateAction<Record<string, Group>>>;
-    deleteCallback: (uuidToDelete: string) => void;
+    deleteCallback: (uidToDelete: string) => void;
     groupsState: Record<string, Group>;
-    editCallback: (newDrinkData: Pick<Drink, "uuid"> & Partial<Drink>) => void;
+    editCallback: (newDrinkData: Pick<Drink, "uid"> & Partial<Drink>) => void;
 }
 
 type IDrinkDisplayProps = IDrinkDisplayEditabeProps | IDrinkDisplayLimitedProps;
@@ -61,7 +61,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
             <p>{`Drinks (${group?.groupName || "All"}):`}</p>
             <div key={`drinkDisplay-${group}`}>
                 {Object.entries(drinksState).map(([drinkId, drinkData]) => {
-                    if (!group || drinkData.groups?.includes(group?.uuid)) {
+                    if (!group || drinkData.groups?.includes(group?.uid)) {
                         return (
                             <React.Fragment key={drinkId}>
                                 <div
@@ -86,7 +86,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                                                 <Button
                                                     onClick={() =>
                                                         deleteCallback(
-                                                            drinkData.uuid
+                                                            drinkData.uid
                                                         )
                                                     }
                                                 >

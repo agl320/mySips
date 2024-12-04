@@ -16,15 +16,12 @@ import { useState } from "react";
 interface IDrinkEditProps {
     // groupsState: Record<string, Group>;
     drinkData: Drink;
-    editCallback: (
-        uuid: string,
-        updatedDrinkProperties: Drink
-    ) => Promise<void>;
+    editCallback: (uid: string, updatedDrinkProperties: Drink) => Promise<void>;
 }
 
 function DrinkEdit({ drinkData, editCallback }: IDrinkEditProps) {
     const [drinkInputState, setDrinkInputState] = useState<
-        Pick<Drink, "uuid"> & Partial<Drink>
+        Pick<Drink, "uid"> & Partial<Drink>
     >(drinkData);
 
     return (
@@ -49,23 +46,23 @@ function DrinkEdit({ drinkData, editCallback }: IDrinkEditProps) {
                                     <input
                                         type="checkbox"
                                         checked={drinkInputState.groups?.includes(
-                                            groupItem.uuid
+                                            groupItem.uid
                                         )}
                                         onChange={() =>
                                             setDrinkInputState({
                                                 ...drinkInputState,
                                                 groups: drinkInputState.groups?.includes(
-                                                    groupItem.uuid
+                                                    groupItem.uid
                                                 )
                                                     ? drinkInputState.groups.filter(
                                                           (currGroup) =>
                                                               currGroup !==
-                                                              groupItem.uuid
+                                                              groupItem.uid
                                                       )
                                                     : [
                                                           ...(drinkInputState.groups ??
                                                               []),
-                                                          groupItem.uuid,
+                                                          groupItem.uid,
                                                       ],
                                             })
                                         }
@@ -78,10 +75,7 @@ function DrinkEdit({ drinkData, editCallback }: IDrinkEditProps) {
                         <DialogClose asChild>
                             <Button
                                 onClick={() =>
-                                    editCallback(
-                                        drinkData.uuid,
-                                        drinkInputState
-                                    )
+                                    editCallback(drinkData.uid, drinkInputState)
                                 }
                             >
                                 Save

@@ -25,14 +25,14 @@ function DrinkApp(props: IDrinkAppProps) {
 
     /** Adding new drink to local drinksState */
     const editDrinksState = (
-        newDrinkData: Pick<Drink, "uuid"> & Partial<Drink>
+        newDrinkData: Pick<Drink, "uid"> & Partial<Drink>
     ) => {
-        if (!newDrinkData.uuid)
-            throw new Error("Trying to edit drink with no uuid!");
+        if (!newDrinkData.uid)
+            throw new Error("Trying to edit drink with no uid!");
         setDrinksState({
             ...drinksState,
-            [newDrinkData.uuid]: {
-                ...drinksState[newDrinkData.uuid],
+            [newDrinkData.uid]: {
+                ...drinksState[newDrinkData.uid],
                 ...newDrinkData,
             },
         });
@@ -40,16 +40,14 @@ function DrinkApp(props: IDrinkAppProps) {
         const newGroupsState = structuredClone(groupsState);
 
         // Adding if new group added
-        newDrinkData.groups?.forEach((groupUuid) => {
-            // assume groupsState has group uuid as group uuid should be removed else where otherwise
-            if (
-                !groupsState[groupUuid].groupDrinks.includes(newDrinkData.uuid)
-            ) {
-                newGroupsState[groupUuid] = {
-                    ...groupsState[groupUuid],
+        newDrinkData.groups?.forEach((groupUid) => {
+            // assume groupsState has group uid as group uid should be removed else where otherwise
+            if (!groupsState[groupUid].groupDrinks.includes(newDrinkData.uid)) {
+                newGroupsState[groupUid] = {
+                    ...groupsState[groupUid],
                     groupDrinks: [
-                        ...groupsState[groupUuid].groupDrinks,
-                        newDrinkData.uuid,
+                        ...groupsState[groupUid].groupDrinks,
+                        newDrinkData.uid,
                     ],
                 };
             }
@@ -58,11 +56,11 @@ function DrinkApp(props: IDrinkAppProps) {
         // Removing if group removed
         Object.values(groupsState).forEach((groupData: IGroupParams) => {
             if (
-                groupData.groupDrinks.includes(newDrinkData.uuid) &&
-                !newDrinkData.groups?.includes(groupData.uuid)
+                groupData.groupDrinks.includes(newDrinkData.uid) &&
+                !newDrinkData.groups?.includes(groupData.uid)
             ) {
                 groupData.groupDrinks.filter(
-                    (groupUuid) => groupUuid === newDrinkData.uuid
+                    (groupUid) => groupUid === newDrinkData.uid
                 );
             }
         });
@@ -70,11 +68,11 @@ function DrinkApp(props: IDrinkAppProps) {
         setGroupsState(newGroupsState);
     };
 
-    const deleteDrink = (uuidToDelete: string) => {
+    const deleteDrink = (uidToDelete: string) => {
         setDrinksState(
             Object.fromEntries(
                 Object.entries(drinksState).filter(
-                    ([, drinkData]) => drinkData.uuid !== uuidToDelete
+                    ([, drinkData]) => drinkData.uid !== uidToDelete
                 )
             )
         );

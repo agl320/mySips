@@ -33,8 +33,8 @@ function UserStatistics(props: IUserStatisticsProps) {
 
                 const formattedDrinkData = fetchedDrinks.reduce(
                     (acc, drinkData) => {
-                        if (!drinkData.uuid) return acc;
-                        acc[drinkData.uuid] = drinkData;
+                        if (!drinkData.uid) return acc;
+                        acc[drinkData.uid] = drinkData;
                         return acc;
                     },
                     {} as IMenu
