@@ -184,7 +184,7 @@ const FriendsPage = ({ user }) => {
                         return (
                             <div
                                 key={`user-${index}`}
-                                className="h-[300px] p-2 rounded-sm bg-white space-y-4 flex flex-col justify-between"
+                                className="h-[300px] min-w-[200px] p-2 rounded-sm bg-white space-y-4 flex flex-col justify-between"
                             >
                                 <div>
                                     <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50"></div>
