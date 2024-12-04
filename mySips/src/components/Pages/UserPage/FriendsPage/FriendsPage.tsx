@@ -11,7 +11,15 @@ import { useFirestore } from "reactfire";
 import _ from "lodash";
 import UserPageHeader from "../UserPageHeader/UserPageHeader";
 import { Button } from "@/components/ui/button";
-import { User, UserRoundSearch } from "lucide-react";
+import {
+    Check,
+    Grab,
+    User,
+    UserRoundMinus,
+    UserRoundSearch,
+    X,
+} from "lucide-react";
+import ConfirmDialog from "@/components/DrinkDisplay/ConfirmDialog/ConfirmDialog";
 
 const FriendsPage = ({ user }) => {
     const [userConnections, setUserConnections] = useState<any>({});
@@ -80,22 +88,69 @@ const FriendsPage = ({ user }) => {
 
     const getButtonComponent = (userData: any) => {
         if (userData.connection?.status === ConnectionStatus.Pending) {
+            if (userData.connection?.requesterUid === user?.uid) {
+                return (
+                    <Button
+                        onClick={() =>
+                            userRemoveConnection(user.uid, userData.uid)
+                        }
+                        className="bg-pastel-orange bg-opacity-30 rounded-sm ml-2 h-full w-full text-base text-pastel-orange"
+                    >
+                        Pending...
+                    </Button>
+                );
+            }
             return (
-                <Button
-                    onClick={() => userRemoveConnection(user.uid, userData.uid)}
-                    className="bg-pastel-orange bg-opacity-30 rounded-sm mr-2 h-full w-full text-base text-pastel-orange"
-                >
-                    Pending...
-                </Button>
+                <>
+                    <Button
+                        onClick={() =>
+                            userSetConnection(
+                                ConnectionStatus.Friend,
+                                user.uid,
+                                userData.uid
+                            )
+                        }
+                        className="bg-pastel-green  rounded-sm ml-2 h-full w-full text-base text-white"
+                    >
+                        <Check
+                            // stroke="#ff844b"
+                            strokeWidth={3}
+                        />
+                    </Button>
+
+                    <Button
+                        onClick={() =>
+                            userRemoveConnection(user.uid, userData.uid)
+                        }
+                        className="bg-pastel-pink rounded-sm ml-2 h-full w-full text-base text-white"
+                    >
+                        <X
+                            // stroke="#ff844b"
+                            strokeWidth={3}
+                        />
+                    </Button>
+                </>
             );
         } else if (userData.connection?.status === ConnectionStatus.Friend) {
             return (
-                <Button
-                    onClick={() => userRemoveConnection(user.uid, userData.uid)}
-                    className="bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-sm mr-2 h-full w-full text-base"
-                >
-                    Remove Friend
-                </Button>
+                <ConfirmDialog
+                    callback={() =>
+                        userRemoveConnection(user.uid, userData.uid)
+                    }
+                    title="Confirm Remove Friend"
+                    description={`Are you sure you want to remove ${userData.name} from
+                            your friends list?`}
+                    confirm="Remove Friend"
+                    cancel="Cancel"
+                    customTrigger={
+                        <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-sm ml-2 h-full text-base aspect-square">
+                            <UserRoundMinus
+                                // stroke="#ff844b"
+                                strokeWidth={3}
+                            />
+                        </Button>
+                    }
+                />
             );
         }
         return (
@@ -107,7 +162,7 @@ const FriendsPage = ({ user }) => {
                         userData.uid
                     )
                 }
-                className="bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-sm mr-2 h-full w-full text-base"
+                className="bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-sm ml-2 h-full w-full text-base"
             >
                 Send Request
             </Button>
@@ -139,13 +194,22 @@ const FriendsPage = ({ user }) => {
                                     </h2>
                                 </div>
                                 <div className="flex">
-                                    {getButtonComponent(userData)}
-                                    <Button className="h-full  aspect-square bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-30 rounded-sm">
+                                    <Button
+                                        className={`h-full bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-30 rounded-sm 
+                                            ${
+                                                userData.connection?.status ===
+                                                ConnectionStatus.Friend
+                                                    ? "w-full"
+                                                    : "aspect-square"
+                                            }
+                                                `}
+                                    >
                                         <UserRoundSearch
                                             // stroke="#ff844b"
                                             strokeWidth={3}
                                         />
                                     </Button>
+                                    {getButtonComponent(userData)}
                                 </div>
                             </div>
                         );

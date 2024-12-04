@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { cloneElement, ReactNode } from "react";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { Button } from "@/components/ui/button";
 import {
@@ -13,44 +13,51 @@ import { Drink } from "@/classes/Drink";
 import { Trash2 } from "lucide-react";
 
 interface IDeleteDrinkDialogProps {
-    // SaveTrigger: ReactNode;
-    drinkData: Drink;
-    deleteDrinkCallback: (uid: string) => Promise<void>;
+    callback: () => Promise<void>;
+    title: string;
+    description: string;
+    confirm: string;
+    cancel: string;
+    customTrigger?: React.ReactNode;
 }
 
-function DeleteDrinkDialog({
-    drinkData,
-    deleteDrinkCallback,
+function ConfirmDialog({
+    callback,
+    title,
+    description,
+    confirm = "Yes",
+    cancel = "No",
+    customTrigger,
 }: IDeleteDrinkDialogProps) {
+    const triggerComponent = customTrigger ? (
+        cloneElement(customTrigger as React.ReactElement)
+    ) : (
+        <Button className="w-4 h-4">
+            <Trash2 />
+        </Button>
+    );
+
     return (
         <Dialog>
-            <DialogTrigger asChild>
-                <Button className="w-4 h-4">
-                    <Trash2 />
-                </Button>
-            </DialogTrigger>
+            <DialogTrigger asChild>{triggerComponent}</DialogTrigger>
             <DialogContent>
-                <DialogTitle className="pb-2 text-2xl">
-                    Confirm Delete Drink
-                </DialogTitle>
+                <DialogTitle className="pb-2 text-2xl">{title}</DialogTitle>
                 <DialogDescription className="opacity-80">
-                    Are you sure you want to remove {`${drinkData.name}`} from
-                    mySips?
+                    {description}
                 </DialogDescription>
                 <br />
                 <DialogFooter className="sm:justify-end">
-                    {/* <DialogClose asChild>{SaveTrigger}</DialogClose> */}
                     <DialogClose asChild>
                         <Button
                             className="bg-pastel-orange text-md rounded-sm px-4 text-pastel-orange bg-opacity-30"
-                            onClick={() => deleteDrinkCallback(drinkData.uid)}
+                            onClick={callback}
                         >
-                            Delete Drink
+                            {confirm}
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>
                         <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white">
-                            Cancel
+                            {cancel}
                         </Button>
                     </DialogClose>
                 </DialogFooter>
@@ -59,4 +66,4 @@ function DeleteDrinkDialog({
     );
 }
 
-export default DeleteDrinkDialog;
+export default ConfirmDialog;

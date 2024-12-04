@@ -16,12 +16,12 @@ import { useFirestore } from "reactfire";
 import moment from "moment";
 
 import { v4 as uidv4 } from "uuid";
-import DeleteDrinkDialog from "./DeleteDrinkDialog/DeleteDrinkDialog";
 import DrinkEdit from "../DrinkApp/DrinkDisplay/DrinkEdit";
 import EditDrinkDialog from "./EditDrinkDialog/EditDrinkDialog";
 import AddDrinkDialog from "../DrinkForms/AddDrinkDialog";
 import { Button } from "../ui/button";
 import { Info, Share } from "lucide-react";
+import ConfirmDialog from "./ConfirmDialog/ConfirmDialog";
 
 interface IDrinkDisplayProps {
     userId: string;
@@ -153,11 +153,15 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                                     <Button className="h-4 w-4">
                                         <Share className="h-4 w-4" />
                                     </Button>
-                                    <DeleteDrinkDialog
-                                        drinkData={drinkData}
-                                        deleteDrinkCallback={
-                                            deleteSelectedDrink
+                                    <ConfirmDialog
+                                        callback={() =>
+                                            deleteSelectedDrink(drinkData.uid)
                                         }
+                                        title="Confirm Delete Drink"
+                                        description={`Are you sure you want to remove ${drinkData.name} from
+                    mySips?`}
+                                        confirm="Delete Drink"
+                                        cancel="Cancel"
                                     />
                                 </div>
                             ) : (

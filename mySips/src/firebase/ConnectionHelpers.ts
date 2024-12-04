@@ -12,7 +12,7 @@ import { firebaseDB } from "./FirebaseSetup";
 import { ConnectionStatus } from "@/classes/Connection";
 
 /**
- * Sets connection for user B, relative to user A
+ * Sets connection A-B for both users, such that A is initator/requester
  *
  * @param connectionStatus
  *  PENDING, BLOCKED, or FRIEND
@@ -52,6 +52,7 @@ export const userSetConnection = async (
                     userBUid,
                     pairUid,
                     status: connectionStatus,
+                    requesterUid: userAUid,
                 });
 
                 // Add connection to userB's subcollection
@@ -60,6 +61,7 @@ export const userSetConnection = async (
                     userBUid,
                     pairUid,
                     status: connectionStatus,
+                    requesterUid: userAUid,
                 });
             });
 
