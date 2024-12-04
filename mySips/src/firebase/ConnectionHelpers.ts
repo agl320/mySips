@@ -23,23 +23,23 @@ import { ConnectionStatus } from "@/classes/Connection";
  */
 export const userSetConnection = async (
     connectionStatus: ConnectionStatus,
-    userAuid: string,
-    userBuid: string
+    userAUid: string,
+    userBUid: string
 ) => {
-    if (doesUserExist(userAuid) && doesUserExist(userBuid)) {
-        const pairUid = [userAuid, userBuid].sort().join("_");
+    if (doesUserExist(userAUid) && doesUserExist(userBUid)) {
+        const pairUid = [userAUid, userBUid].sort().join("_");
 
         const userAConnectionRef = doc(
             firebaseDB,
             "users",
-            userAuid,
+            userAUid,
             "userConnections",
             pairUid
         );
         const userBConnectionRef = doc(
             firebaseDB,
             "users",
-            userBuid,
+            userBUid,
             "userConnections",
             pairUid
         );
@@ -48,16 +48,16 @@ export const userSetConnection = async (
             await runTransaction(firebaseDB, async (transaction) => {
                 // Add connection to userA's subcollection
                 transaction.set(userAConnectionRef, {
-                    userAuid,
-                    userBuid,
+                    userAUid,
+                    userBUid,
                     pairUid,
                     status: connectionStatus,
                 });
 
                 // Add connection to userB's subcollection
                 transaction.set(userBConnectionRef, {
-                    userAuid,
-                    userBuid,
+                    userAUid,
+                    userBUid,
                     pairUid,
                     status: connectionStatus,
                 });
@@ -120,4 +120,35 @@ const doesUserExist = (uid: string) => {
 export const userRemoveConnection = async (
     userAUid: string,
     userBUid: string
-) => {};
+) => {
+    const pairUid = [userAUid, userBUid].sort().join("_");
+
+    const userAConnectionRef = doc(
+        firebaseDB,
+        "users",
+        userAUid,
+        "userConnections",
+        pairUid
+    );
+    const userBConnectionRef = doc(
+        firebaseDB,
+        "users",
+        userBUid,
+        "userConnections",
+        pairUid
+    );
+
+    try {
+        await runTransaction(firebaseDB, async (transaction) => {
+            // Add connection to userA's subcollection
+            transaction.delete(userAConnectionRef);
+
+            // Add connection to userB's subcollection
+            transaction.delete(userBConnectionRef);
+        });
+
+        console.log("Connection created successfully!");
+    } catch (error) {
+        console.error("Error creating connection:", error.message);
+    }
+};

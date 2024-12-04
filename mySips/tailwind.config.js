@@ -12,6 +12,9 @@ module.exports = {
                 ["pastel-orange"]: "#ff844b",
                 ["pastel-pink"]: "#ff5466",
                 ["white-blue"]: "#eef5ff",
+                ["pastel-blue"]: "#528bff",
+                ["pastel-purple"]: "#d152ff",
+                ["pastel-green"]: "#54ff54",
             },
             backgroundImage: {
                 "test-bg": "url('/backgrounds/temp_bg.png')",
