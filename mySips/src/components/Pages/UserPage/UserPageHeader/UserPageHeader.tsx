@@ -15,13 +15,13 @@ function UserPageHeader({
     linkTrail: Array<{ href?: string; value: string }>;
 }) {
     return (
-        <div className="opacity-80">
+        <div className="">
             <div className="pb-4">
                 <h1 className="text-3xl font-semibold">{pageTitle}</h1>
             </div>
             <div>
                 <Breadcrumb>
-                    <BreadcrumbList>
+                    <BreadcrumbList className="text-base">
                         {linkTrail.map((linkItem, index) => {
                             return (
                                 <>

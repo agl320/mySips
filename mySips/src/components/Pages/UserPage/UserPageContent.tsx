@@ -23,7 +23,7 @@ function UserPageContent(props: { selectedPage: PageTypes }) {
     }
 
     return (
-        <div className="flex min-h-screen min-w-screen bg-black text-white">
+        <div className="flex min-h-screen min-w-screen bg-background-dark text-white">
             {/* <UserNav setSelectedPage={setSelectedPage} /> */}
 
             <SidebarProvider>

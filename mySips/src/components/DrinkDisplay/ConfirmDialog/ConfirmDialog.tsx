@@ -49,14 +49,14 @@ function ConfirmDialog({
                 <DialogFooter className="sm:justify-end">
                     <DialogClose asChild>
                         <Button
-                            className="bg-pastel-orange text-md rounded-sm px-4 text-pastel-orange bg-opacity-30"
+                            className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30"
                             onClick={callback}
                         >
                             {confirm}
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white">
+                        <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white">
                             {cancel}
                         </Button>
                     </DialogClose>

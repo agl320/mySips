@@ -15,7 +15,7 @@ function LandingPage() {
                         mySips is your way to store all your favorite drinks in
                         one place! Making going out effortless.
                     </p>
-                    <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-8 text-white">
+                    <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-8 text-white">
                         Get started, it's free
                     </Button>
                     <p className="text-white-blue text-sm opacity-60">

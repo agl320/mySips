@@ -6,36 +6,41 @@ import { Button } from "../ui/button";
 function LandingNav() {
     const { userLoggedIn } = useContext(AuthContext);
     return (
-        <div className="flex justify-between text-white max-w-6xl mx-auto py-8">
-            <Link to="/" className="text-4xl font-medium">
-                my<span className="text-pastel-orange font-semibold">Sips</span>
-            </Link>
-            <div className=" gap-x-12 w-full flex-grow flex items-center w-auto text-center">
-                <ul className="flex-1 justify-end items-center text-center flex">
-                    <li className="mr-12">
-                        <Link to="/app">Features</Link>
-                    </li>
-                    <li className="mr-12">
-                        <Link to="/app">Pricing</Link>
-                    </li>
-                    <li className="mr-12">
-                        <Link to="/app">About Us</Link>
-                    </li>
+        <div className="flex justify-center w-full">
+            <div className="flex justify-between text-white max-w-6xl w-full py-8">
+                <Link to="/" className="text-4xl font-medium">
+                    my
+                    <span className="text-pastel-orange font-semibold">
+                        Sips
+                    </span>
+                </Link>
+                <div className=" gap-x-12 w-full flex-grow flex items-center w-auto text-center">
+                    <ul className="flex-1 justify-end items-center text-center flex">
+                        <li className="mr-12">
+                            <Link to="/app">Features</Link>
+                        </li>
+                        <li className="mr-12">
+                            <Link to="/app">Pricing</Link>
+                        </li>
+                        <li className="mr-12">
+                            <Link to="/app">About Us</Link>
+                        </li>
 
-                    {userLoggedIn ? (
-                        <li>
-                            <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white">
-                                <Link to="/app">mySips App</Link>
-                            </Button>
-                        </li>
-                    ) : (
-                        <li>
-                            <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white">
-                                <Link to="/login">Log In</Link>
-                            </Button>
-                        </li>
-                    )}
-                </ul>
+                        {userLoggedIn ? (
+                            <li>
+                                <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white">
+                                    <Link to="/app">mySips App</Link>
+                                </Button>
+                            </li>
+                        ) : (
+                            <li>
+                                <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white">
+                                    <Link to="/login">Log In</Link>
+                                </Button>
+                            </li>
+                        )}
+                    </ul>
+                </div>
             </div>
         </div>
     );

@@ -36,7 +36,7 @@ function AddDrinkDialog({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <div className="w-[200px] h-[300px] bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40 duration-200 hover:bg-opacity-50 flex flex-col justify-around rounded-sm">
+                <div className="w-[200px] h-[300px] bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40 duration-200 hover:bg-opacity-50 flex flex-col justify-around rounded-md">
                     <Button
                         onClick={() => setDrinkInputState(baseDrinkData)}
                         className="w-full h-full "
@@ -67,14 +67,14 @@ function AddDrinkDialog({
                     {/* <DialogClose asChild>{props.SaveTrigger}</DialogClose> */}
                     <DialogClose asChild>
                         <Button
-                            className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white"
+                            className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
                             onClick={() => addDrinkCallback(drinkInputState)}
                         >
                             Add Drink
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button className="bg-pastel-orange text-md rounded-sm px-4 text-pastel-orange bg-opacity-30">
+                        <Button className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30">
                             Cancel
                         </Button>
                     </DialogClose>

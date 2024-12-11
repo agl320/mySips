@@ -94,7 +94,7 @@ const FriendsPage = ({ user }) => {
                         onClick={() =>
                             userRemoveConnection(user.uid, userData.uid)
                         }
-                        className="bg-pastel-orange bg-opacity-30 rounded-sm ml-2 h-full w-full text-base text-pastel-orange"
+                        className="bg-pastel-orange bg-opacity-30 rounded-md ml-2 h-full w-full text-base text-pastel-orange"
                     >
                         Pending...
                     </Button>
@@ -110,7 +110,7 @@ const FriendsPage = ({ user }) => {
                                 userData.uid
                             )
                         }
-                        className="bg-pastel-green  rounded-sm ml-2 h-full w-full text-base text-white"
+                        className="bg-pastel-green  rounded-md ml-2 h-full w-full text-base text-white"
                     >
                         <Check
                             // stroke="#ff844b"
@@ -122,7 +122,7 @@ const FriendsPage = ({ user }) => {
                         onClick={() =>
                             userRemoveConnection(user.uid, userData.uid)
                         }
-                        className="bg-pastel-pink rounded-sm ml-2 h-full w-full text-base text-white"
+                        className="bg-pastel-pink rounded-md ml-2 h-full w-full text-base text-white"
                     >
                         <X
                             // stroke="#ff844b"
@@ -143,7 +143,7 @@ const FriendsPage = ({ user }) => {
                     confirm="Remove Friend"
                     cancel="Cancel"
                     customTrigger={
-                        <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-sm ml-2 h-full text-base aspect-square">
+                        <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md ml-2 h-full text-base aspect-square">
                             <UserRoundMinus
                                 // stroke="#ff844b"
                                 strokeWidth={3}
@@ -162,7 +162,7 @@ const FriendsPage = ({ user }) => {
                         userData.uid
                     )
                 }
-                className="bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-sm ml-2 h-full w-full text-base"
+                className="bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md ml-2 h-full w-full text-base"
             >
                 Send Request
             </Button>
@@ -184,18 +184,18 @@ const FriendsPage = ({ user }) => {
                         return (
                             <div
                                 key={`user-${index}`}
-                                className="h-[300px] min-w-[200px] p-2 rounded-sm bg-white space-y-4 flex flex-col justify-between"
+                                className="h-[300px] min-w-[200px] p-2 rounded-md bg-white space-y-4 flex flex-col justify-between"
                             >
                                 <div>
-                                    <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50"></div>
-                                    <div className="mt-[-60px] rounded-sm w-[100px] aspect-square bg-pastel-orange mx-auto border-4 border-white mb-2"></div>
+                                    <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50 rounded-md"></div>
+                                    <div className="mt-[-60px]  w-[100px] aspect-square bg-pastel-orange mx-auto border-4 border-white mb-2 rounded-full"></div>
                                     <h2 className="text-4xl font-semibold text-black text-center">
                                         {userData.name}
                                     </h2>
                                 </div>
                                 <div className="flex">
                                     <Button
-                                        className={`h-full bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-30 rounded-sm 
+                                        className={`h-full bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-30 rounded-md 
                                             ${
                                                 userData.connection?.status ===
                                                 ConnectionStatus.Friend

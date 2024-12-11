@@ -121,8 +121,8 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                 {Object.values(userDrinkData).map((drinkData) => {
                     return (
                         <div
-                            key={`drinkCard-${drinkData.uid}`}
-                            className="w-[200px] h-[300px] flex flex-col justify-between rounded-sm p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange"
+                            key={`drink-card-${drinkData.uid}`}
+                            className="w-[200px] h-[300px] flex flex-col justify-between rounded-md p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange"
                         >
                             <div className="h-full ">
                                 <h1 className="text-4xl font-semibold overflow-hidden">

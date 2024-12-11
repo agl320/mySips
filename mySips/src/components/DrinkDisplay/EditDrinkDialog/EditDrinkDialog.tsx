@@ -89,7 +89,7 @@ function EditDrinkDialog({
                     <DialogFooter className="sm:justify-end">
                         <DialogClose asChild>
                             <Button
-                                className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-sm px-4 text-white"
+                                className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
                                 onClick={() =>
                                     editDrinkCallback(
                                         drinkData.uid,
@@ -101,7 +101,7 @@ function EditDrinkDialog({
                             </Button>
                         </DialogClose>
                         <DialogClose asChild>
-                            <Button className="bg-pastel-orange text-md rounded-sm px-4 text-pastel-orange bg-opacity-30">
+                            <Button className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30">
                                 Cancel
                             </Button>
                         </DialogClose>

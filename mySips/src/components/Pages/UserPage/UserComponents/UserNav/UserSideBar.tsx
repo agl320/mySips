@@ -153,7 +153,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                             item.title.toLowerCase() ? (
                                                 <Link
                                                     to={item.url}
-                                                    className="rounded-sm bg-pastel-pink text-black"
+                                                    className="rounded-md bg-pastel-pink text-black"
                                                 >
                                                     <item.icon />
                                                     <span>{item.title}</span>
@@ -161,7 +161,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                             ) : (
                                                 <Link
                                                     to={item.url}
-                                                    className="rounded-sm hover:text-white duration-200 text-[#cccccc]"
+                                                    className="rounded-md hover:text-white duration-200 text-[#cccccc]"
                                                 >
                                                     <item.icon />
                                                     <span>{item.title}</span>

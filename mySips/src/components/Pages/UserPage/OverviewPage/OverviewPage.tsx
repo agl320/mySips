@@ -11,7 +11,7 @@ interface IUserProps {
 function OverviewPage(props: IUserProps) {
     const { user } = props;
     return (
-        <div className="w-full h-full p-8 text-white bg-gradient-to-r from-black via-[#372c00] via-[#261600] to-[#47002b]">
+        <div className="w-full h-full p-8 text-white bg-background-dark ">
             <UserBlock>
                 <UserPageHeader
                     pageTitle="Overview"
@@ -21,16 +21,14 @@ function OverviewPage(props: IUserProps) {
 
             <UserBlock className="mt-8">
                 <div className="h-48 ">
-                    <h1 className="text-3xl font-semibold opacity-80">
-                        Analytics
-                    </h1>
+                    <h1 className="text-3xl font-semibold">Analytics</h1>
                 </div>
                 <Separator className="bg-white opacity-25 " />
             </UserBlock>
 
             <UserBlock className="mt-8 space-y-8">
-                <h1 className="text-3xl font-semibold opacity-80">Drinks</h1>
-                <DrinkDisplay userId={user?.uid} />
+                <h1 className="text-3xl font-semibold">Drinks</h1>
+                <DrinkDisplay userId={user?.uid ?? ""} />
             </UserBlock>
             {/* <button
                 className="bg-black text-white p-4 rounded-lg"

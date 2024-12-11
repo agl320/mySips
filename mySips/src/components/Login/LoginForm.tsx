@@ -34,7 +34,7 @@ function LoginForm() {
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmitHandler)}
-                className="space-y-8"
+                className="space-y-8 mx-auto"
             >
                 <FormField
                     control={form.control}
@@ -66,7 +66,12 @@ function LoginForm() {
                     )}
                 />
 
-                <Button type="submit">Submit</Button>
+                <Button
+                    type="submit"
+                    className="bg-gradient-to-r from-pastel-pink to-pastel-orange w-full"
+                >
+                    Log In
+                </Button>
             </form>
         </Form>
     );
