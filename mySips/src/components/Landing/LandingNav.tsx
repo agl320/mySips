@@ -6,7 +6,7 @@ import { Button } from "../ui/button";
 function LandingNav() {
     const { userLoggedIn } = useContext(AuthContext);
     return (
-        <div className="flex justify-center w-full bg-background-block ">
+        <div className="flex justify-center w-full bg-background-block px-16">
             <div className="flex justify-between text-white max-w-6xl w-full py-8 ">
                 <Link to="/" className="text-5xl font-regular font-wide ">
                     ./my

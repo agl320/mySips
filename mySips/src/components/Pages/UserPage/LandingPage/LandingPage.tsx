@@ -3,12 +3,15 @@ import { Button } from "@/components/ui/button";
 
 function LandingPage() {
     return (
-        <section className="bg-background-dark bg-cover ">
+        <section className="bg-background-dark bg-cover">
             <LandingNav />
-            <section className="flex flex-col mt-20 h-screen w-full">
-                <div className="mx-auto text-center max-w-4xl space-y-8">
+            <section className="flex flex-col mt-20 min-h-screen w-full px-16">
+                <div className="mx-auto text-center max-w-4xl space-y-8 w-full">
                     <h1 className="text-6xl font-semibold text-white-blue">
-                        Where Every Sip Tells a Story, Your Personal Drink
+                        Where Every Sip Tells a Story, Your{" "}
+                        <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
+                            Personal Drink
+                        </span>{" "}
                         Journal.
                     </h1>
                     <p className="text-white-blue text-xl opacity-80 ">
@@ -26,6 +29,64 @@ function LandingPage() {
                     </div>
                 </div>
             </section>
+            <section className="flex flex-col mt-20 h-full w-full px-16">
+                <div className="mx-auto text-left max-w-4xl space-y-8 w-full">
+                    <h1 className="text-6xl font-semibold text-white-blue">
+                        How to use mySips
+                    </h1>
+                    <p className="text-white-blue text-xl opacity-80 ">
+                        mySips is your way to store all your favorite drinks in
+                        one place! Making going out effortless.
+                    </p>
+                    <div>
+                        <div className="flex justify-center">
+                            <div className="w-1/2  h-[500px] mt-8 rounded-md mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
+                                <h2 className="text-6xl font-semibold text-white-blue p-4">
+                                    Add Drinks
+                                </h2>
+                                <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
+                                    <p className="text-white/50 text-[300px] font-bold rotate-12">
+                                        1
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="w-1/2 h-[500px] mt-8 rounded-md mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
+                                <h2 className="text-6xl font-semibold text-white-blue p-4">
+                                    Track Stats
+                                </h2>
+                                <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
+                                    <p className="text-white/50 text-[300px] font-bold -rotate-6">
+                                        2
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="flex justify-center">
+                            <div className="w-1/2 h-[500px] mt-8 rounded-md mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex ">
+                                <h2 className="text-6xl font-semibold text-white-blue p-4">
+                                    Make Boards
+                                </h2>
+                                <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
+                                    <p className="text-white/50 text-[300px] font-bold rotate-12">
+                                        3
+                                    </p>
+                                </div>
+                            </div>
+                            <div className="w-1/2 h-[500px] mt-8 rounded-md mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex overflow-hidden">
+                                <h2 className="text-6xl font-semibold text-white-blue p-4">
+                                    Share to Friends
+                                </h2>
+                                <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
+                                    <p className="text-white/50 text-[300px] font-bold -rotate-12">
+                                        4
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer className="min-h-[200px] bg-background-block"></footer>
         </section>
     );
 }
