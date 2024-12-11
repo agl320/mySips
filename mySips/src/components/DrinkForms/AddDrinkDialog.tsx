@@ -36,7 +36,7 @@ function AddDrinkDialog({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <div className="w-[200px] h-[300px] bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40 duration-200 hover:bg-opacity-50 flex flex-col justify-around rounded-md">
+                <div className="w-[200px] h-[300px] bg-background-block bg-clip-padding backdrop-filter backdrop-blur-md duration-200 hover:bg-background-light flex flex-col justify-around rounded-md">
                     <Button
                         onClick={() => setDrinkInputState(baseDrinkData)}
                         className="w-full h-full "

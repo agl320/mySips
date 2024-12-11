@@ -43,7 +43,11 @@ function LoginForm() {
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="Email" {...field} />
+                                <Input
+                                    placeholder="Email"
+                                    {...field}
+                                    className="text-black"
+                                />
                             </FormControl>
                         </FormItem>
                     )}
@@ -60,6 +64,7 @@ function LoginForm() {
                                     placeholder="Password"
                                     type="password"
                                     {...field}
+                                    className="text-black"
                                 />
                             </FormControl>
                         </FormItem>

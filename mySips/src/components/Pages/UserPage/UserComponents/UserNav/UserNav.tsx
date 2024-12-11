@@ -61,9 +61,11 @@ function UserNav(props: IUserNav) {
     return (
         <div className="px-12 mt-8 w-56 flex flex-col justify-between h-[30rem] text-left">
             <div className="flex flex-col font-medium text-3xl mb-8">
-                <NavLink className="" to={"/"}>
-                    mySips
-                </NavLink>
+                <h1 className="">
+                    <NavLink className="" to={"/"}>
+                        MySipsPage
+                    </NavLink>
+                </h1>
             </div>
 
             <div className="flex flex-col space-y-2 font-medium">

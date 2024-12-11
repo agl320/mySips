@@ -53,13 +53,13 @@ function UserStatistics(props: IUserStatisticsProps) {
     return (
         <div className="flex gap-4">
             <div>
-                <h1 className="pb-4 opacity-80 text-sm">Drinks</h1>
+                <h1 className="pb-4 opacity-50   text-base">Drinks</h1>
                 <p className="text-3xl  font-semibold">
                     {Object.values(userDrinkData).length}
                 </p>
             </div>
             <div>
-                <h1 className="pb-4 opacity-80 text-sm">Groups</h1>
+                <h1 className="pb-4 opacity-50 text-base">Groups</h1>
                 <p className="text-3xl  font-semibold">3</p>
             </div>
         </div>

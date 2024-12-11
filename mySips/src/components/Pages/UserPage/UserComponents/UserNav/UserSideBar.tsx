@@ -134,7 +134,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
     return (
         <Sidebar className="p-4">
             <SidebarHeader className="mb-8">
-                <h1 className="text-3xl font-semibold">
+                <h1 className="text-5xl font-wide">
                     <Link to="/">mySips</Link>
                 </h1>
             </SidebarHeader>

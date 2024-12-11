@@ -170,7 +170,7 @@ const FriendsPage = ({ user }) => {
     };
 
     return (
-        <div className="w-full h-full p-8 text-white bg-gradient-to-r from-black via-[#001237] via-[#002226] to-[#003760]">
+        <div className="w-full h-full p-8 text-white bg-background-dark">
             <UserBlock>
                 <UserPageHeader
                     pageTitle="Friends"

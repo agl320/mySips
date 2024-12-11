@@ -6,11 +6,11 @@ import { Button } from "../ui/button";
 function LandingNav() {
     const { userLoggedIn } = useContext(AuthContext);
     return (
-        <div className="flex justify-center w-full">
-            <div className="flex justify-between text-white max-w-6xl w-full py-8">
-                <Link to="/" className="text-4xl font-medium">
-                    my
-                    <span className="text-pastel-orange font-semibold">
+        <div className="flex justify-center w-full bg-background-block ">
+            <div className="flex justify-between text-white max-w-6xl w-full py-8 ">
+                <Link to="/" className="text-5xl font-regular font-wide ">
+                    ./my
+                    <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                         Sips
                     </span>
                 </Link>

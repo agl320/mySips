@@ -6,10 +6,12 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ["General Sans", "sans-serif"],
+                wide: ["Moliga DEMO", "sans-serif"],
             },
             colors: {
                 "background-dark": "#121312",
                 ["background-block"]: "#1c1c1c",
+                "background-light": "#262626",
                 ["secondary-light"]: "#e1e1fe",
                 ["pastel-orange"]: "#ff844b",
                 ["pastel-pink"]: "#ff5466",
