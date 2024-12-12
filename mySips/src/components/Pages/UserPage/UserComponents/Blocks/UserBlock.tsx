@@ -5,7 +5,7 @@ function UserBlock(props: {
 }) {
     return (
         <div
-            className={`p-4 rounded-md gap-12 bg-background-block bg-clip-padding backdrop-filter backdrop-blur-md  ${props.className}`}
+            className={`p-8 rounded-md gap-12 bg-background-block bg-clip-padding backdrop-filter backdrop-blur-md  ${props.className}`}
         >
             {props.children}
         </div>

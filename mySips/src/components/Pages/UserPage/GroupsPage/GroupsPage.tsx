@@ -10,6 +10,7 @@ import UserBlock from "../UserComponents/Blocks/UserBlock";
 import UserPageHeader from "../UserPageHeader/UserPageHeader";
 import { Button } from "@/components/ui/button";
 import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
+import GroupDisplay from "./GroupsDisplay";
 
 function GroupsPage({ user }) {
     return (
@@ -20,34 +21,10 @@ function GroupsPage({ user }) {
                     linkTrail={[{ value: "Home" }, { value: "myGroups" }]}
                 />
             </UserBlock>
-            <UserBlock className="mt-8">
-                <Button className="bg-pastel-pink w-12 h-12">
-                    <Plus className="" />
-                </Button>
-                <div className="mt-8">
-                    <div className="w-80 bg-pastel-pink rounded-md p-4 flex justify-between">
-                        <div>
-                            <h1 className="text-4xl font-semibold mb-8">
-                                Cafe
-                            </h1>
-                            <UserStatistics
-                                userId={user?.uid}
-                                statistics={{
-                                    drinkCount: false,
-                                }}
-                            />
-                        </div>
-                        <div className="mt-auto">
-                            <Button className="bg-white aspect-square h-12 w-12">
-                                <Pencil
-                                    className="stroke-pastel-pink aspect-square"
-                                    strokeWidth="3"
-                                />
-                            </Button>
-                        </div>
-                    </div>
-                </div>
-            </UserBlock>
+
+            <div className="mt-8">
+                <GroupDisplay user={user} />
+            </div>
         </div>
     );
 }

@@ -27,6 +27,7 @@ interface IDrinkDisplayProps {
     userId: string;
     isAdmin?: boolean;
     isEditable?: boolean;
+    className?: string;
 }
 function DrinkDisplay(props: IDrinkDisplayProps) {
     const { userId, isAdmin, isEditable = false } = props;
@@ -116,7 +117,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
     };
 
     return (
-        <div>
+        <div className={props.className}>
             <div className="flex flex-wrap gap-4">
                 {Object.values(userDrinkData).map((drinkData) => {
                     return (

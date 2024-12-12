@@ -21,11 +21,8 @@ function OverviewPage(props: IUserProps) {
                 </UserBlock>
                 <UserBlock className="bg-gradient-to-r from-pastel-pink to-pastel-orange w-full">
                     <div className="h-48">
-                        <h1 className="text-6xl font-regular font-wide">
-                            Welcome
-                        </h1>
-                        <h1 className="text-6xl font-regular font-wide">
-                            Back to mySips
+                        <h1 className="text-4xl font-semibold">
+                            Welcome back, {user?.displayName}
                         </h1>
                     </div>
                 </UserBlock>

@@ -12,6 +12,7 @@ import UserPageHeader from "../UserPageHeader/UserPageHeader";
 import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
 import UserBlock from "../UserComponents/Blocks/UserBlock";
 import { User } from "firebase/auth";
+import { Button } from "@/components/ui/button";
 
 interface IUserProps {
     user: User | null;
@@ -33,7 +34,20 @@ function MySipsPage(props: IUserProps) {
             </UserBlock>
 
             <div className="pt-8">
-                <DrinkDisplay userId={user?.uid ?? ""} isEditable />
+                <div className="flex">
+                    <Button className="bg-pastel-pink h-12 text-base">
+                        Sort by
+                    </Button>
+                    <Button className="bg-pastel-pink h-12 text-base ml-4">
+                        Filter by
+                    </Button>
+                </div>
+
+                <DrinkDisplay
+                    userId={user?.uid ?? ""}
+                    isEditable
+                    className="mt-8"
+                />
             </div>
 
             {/* <button
