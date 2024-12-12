@@ -12,19 +12,24 @@ function OverviewPage(props: IUserProps) {
     const { user } = props;
     return (
         <div className="w-full h-full p-8 text-white bg-background-dark ">
-            <UserBlock>
-                <UserPageHeader
-                    pageTitle="Overview"
-                    linkTrail={[{ value: "Home" }, { value: "Overview" }]}
-                />
-            </UserBlock>
-
-            <UserBlock className="mt-8">
-                <div className="h-48 ">
-                    <h1 className="text-3xl font-semibold">Analytics</h1>
-                </div>
-                <Separator className="bg-white opacity-25 " />
-            </UserBlock>
+            <div className="flex">
+                <UserBlock className="mr-8 w-80">
+                    <UserPageHeader
+                        pageTitle="Overview"
+                        linkTrail={[{ value: "Home" }, { value: "Overview" }]}
+                    />
+                </UserBlock>
+                <UserBlock className="bg-gradient-to-r from-pastel-pink to-pastel-orange w-full">
+                    <div className="h-48">
+                        <h1 className="text-6xl font-regular font-wide">
+                            Welcome
+                        </h1>
+                        <h1 className="text-6xl font-regular font-wide">
+                            Back to mySips
+                        </h1>
+                    </div>
+                </UserBlock>
+            </div>
 
             <UserBlock className="mt-8 space-y-8">
                 <h1 className="text-3xl font-semibold">Drinks</h1>

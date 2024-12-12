@@ -66,7 +66,7 @@ const groupArr = [
 
             {
                 title: "myGroups",
-                url: "/app/mysips",
+                url: "/app/groups",
                 icon: PackageOpen,
             },
             {
@@ -161,7 +161,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                             ) : (
                                                 <Link
                                                     to={item.url}
-                                                    className="rounded-md hover:text-white duration-200 text-[#cccccc]"
+                                                    className="rounded-md hover:text-white duration-200 text-[#cccccc] hover:bg-background-block"
                                                 >
                                                     <item.icon />
                                                     <span>{item.title}</span>

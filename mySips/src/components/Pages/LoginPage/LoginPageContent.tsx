@@ -89,14 +89,14 @@ function LoginPageContent() {
                 <div className="lg:flex h-full justify-center">
                     <LoginPageContentLeftCard />
                     <div className="lg:w-1/2 m-8 lg:ml-4 bg-background-block text-white rounded-md flex flex-col justify-center p-8 py-16">
-                        <div className="max-w-4xl mx-auto">
+                        <div className="max-w-sm mx-auto">
                             <div className="text-center space-y-4 mb-8">
                                 <h2 className="text-2xl font-semibold">
-                                    Get started
+                                    Welcome back
                                 </h2>
                                 <p className="">
-                                    Create your account and begin collecting
-                                    drinks
+                                    Get back to collecting drinks from your
+                                    favourite menus
                                 </p>
                             </div>
                             <LoginForm />

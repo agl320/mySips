@@ -6,6 +6,7 @@ import { getFirestore } from "firebase/firestore";
 import MySipsPage from "../../MySipsPage/MySipsPage";
 import { useUser } from "reactfire";
 import FriendsPage from "../../FriendsPage/FriendsPage";
+import GroupsPage from "../../GroupsPage/GroupsPage";
 
 interface IUserApplication {
     selectedPage: PageTypes;
@@ -34,6 +35,10 @@ function UserApplication(props: IUserApplication) {
 
     if (selectedPage === PageTypes.FRIENDS) {
         return <FriendsPage user={user} />;
+    }
+
+    if (selectedPage == PageTypes.MYGROUPS) {
+        return <GroupsPage user={user} />;
     }
 
     return <></>;

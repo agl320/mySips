@@ -1,5 +1,13 @@
 import LandingNav from "@/components/Landing/LandingNav";
 import { Button } from "@/components/ui/button";
+import {
+    ArrowDown,
+    ChevronDown,
+    ChevronsDown,
+    CircleArrowDown,
+    CircleChevronDown,
+} from "lucide-react";
+import { Separator } from "@/components/ui/separator";
 
 function LandingPage() {
     return (
@@ -14,7 +22,7 @@ function LandingPage() {
                         </span>{" "}
                         Journal.
                     </h1>
-                    <p className="text-white-blue text-xl opacity-80 ">
+                    <p className="text-white-blue text-xl opacity-80">
                         mySips is your way to store all your favorite drinks in
                         one place! Making going out effortless.
                     </p>
@@ -29,19 +37,23 @@ function LandingPage() {
                     </div>
                 </div>
             </section>
+            <div className="mt-24 mb-24">
+                <Separator className="absolute relative bg-white opacity-15 max-w-6xl mx-auto" />
+                <CircleChevronDown className="absolute relative -top-4 w-8 h-8 mx-auto stroke-pastel-pink bg-background-dark" />
+            </div>
             <section className="flex flex-col mt-20 h-full w-full px-16">
-                <div className="mx-auto text-left max-w-4xl space-y-8 w-full">
-                    <h1 className="text-6xl font-semibold text-white-blue">
+                <div className="mx-auto  max-w-4xl space-y-8 w-full">
+                    <h1 className="text-center text-6xl font-semibold text-white-blue">
                         How to use mySips
                     </h1>
-                    <p className="text-white-blue text-xl opacity-80 ">
+                    <p className="text-center text-white-blue text-xl opacity-80 ">
                         mySips is your way to store all your favorite drinks in
                         one place! Making going out effortless.
                     </p>
                     <div>
-                        <div className="flex justify-center">
-                            <div className="w-1/2  h-[500px] mt-8 rounded-md mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
-                                <h2 className="text-6xl font-semibold text-white-blue p-4">
+                        <div className="lg:flex justify-center">
+                            <div className="w-full lg:w-1/2  h-[500px] mt-8 rounded-md lg:mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
+                                <h2 className="w-full text-6xl font-semibold text-white-blue p-4">
                                     Add Drinks
                                 </h2>
                                 <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
@@ -50,8 +62,8 @@ function LandingPage() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="w-1/2 h-[500px] mt-8 rounded-md mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
-                                <h2 className="text-6xl font-semibold text-white-blue p-4">
+                            <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:ml-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
+                                <h2 className="w-full text-6xl font-semibold text-white-blue p-4">
                                     Track Stats
                                 </h2>
                                 <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
@@ -61,9 +73,9 @@ function LandingPage() {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex justify-center">
-                            <div className="w-1/2 h-[500px] mt-8 rounded-md mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex ">
-                                <h2 className="text-6xl font-semibold text-white-blue p-4">
+                        <div className="lg:flex justify-center">
+                            <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex ">
+                                <h2 className="w-full text-6xl font-semibold text-white-blue p-4">
                                     Make Boards
                                 </h2>
                                 <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
@@ -72,8 +84,8 @@ function LandingPage() {
                                     </p>
                                 </div>
                             </div>
-                            <div className="w-1/2 h-[500px] mt-8 rounded-md mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex overflow-hidden">
-                                <h2 className="text-6xl font-semibold text-white-blue p-4">
+                            <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:ml-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex overflow-hidden">
+                                <h2 className="w-full text-6xl font-semibold text-white-blue p-4">
                                     Share to Friends
                                 </h2>
                                 <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">

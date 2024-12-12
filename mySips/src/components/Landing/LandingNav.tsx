@@ -6,8 +6,8 @@ import { Button } from "../ui/button";
 function LandingNav() {
     const { userLoggedIn } = useContext(AuthContext);
     return (
-        <div className="flex justify-center w-full bg-background-block px-16">
-            <div className="flex justify-between text-white max-w-6xl w-full py-8 ">
+        <header className="flex justify-center w-full bg-background-block px-16 border-b border-white/15">
+            <div className="flex justify-between text-white max-w-6xl w-full py-8">
                 <Link to="/" className="text-5xl font-regular font-wide ">
                     ./my
                     <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
@@ -42,7 +42,7 @@ function LandingNav() {
                     </ul>
                 </div>
             </div>
-        </div>
+        </header>
     );
 }
 

@@ -44,6 +44,10 @@ const router = createBrowserRouter([
         element: <UserPage selectedPage={PageTypes.FRIENDS} />,
     },
     {
+        path: "/app/groups",
+        element: <UserPage selectedPage={PageTypes.MYGROUPS} />,
+    },
+    {
         path: "/logout",
         element: <LogoutPage />,
     },
