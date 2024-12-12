@@ -15,12 +15,11 @@ function LandingPage() {
             <LandingNav />
             <section className="flex flex-col mt-20 min-h-screen w-full px-16">
                 <div className="mx-auto text-center max-w-4xl space-y-8 w-full">
-                    <h1 className="text-6xl font-semibold text-white-blue">
-                        Where Every Sip Tells a Story, Your{" "}
+                    <h1 className="text-6xl font-semibold text-white-blue leading-tight">
+                        Where every sip tells a story, your{" "}
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
-                            Personal Drink
-                        </span>{" "}
-                        Journal.
+                            personal drink journal
+                        </span>
                     </h1>
                     <p className="text-white-blue text-xl opacity-80">
                         mySips is your way to store all your favorite drinks in
@@ -41,14 +40,19 @@ function LandingPage() {
                 <Separator className="absolute relative bg-white opacity-15 max-w-6xl mx-auto" />
                 <CircleChevronDown className="absolute relative -top-4 w-8 h-8 mx-auto stroke-pastel-pink bg-background-dark" />
             </div>
-            <section className="flex flex-col mt-20 h-full w-full px-16">
+            <section className="flex flex-col h-full w-full px-16">
                 <div className="mx-auto  max-w-4xl space-y-8 w-full">
-                    <h1 className="text-center text-6xl font-semibold text-white-blue">
-                        How to use mySips
+                    <h1 className="text-center text-6xl font-semibold text-white-blue leading-tight">
+                        How to use mySips<br></br>
+                        <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
+                            for consumers.
+                        </span>
                     </h1>
+
                     <p className="text-center text-white-blue text-xl opacity-80 ">
-                        mySips is your way to store all your favorite drinks in
-                        one place! Making going out effortless.
+                        mySips offers an easy and intuitive way to manage your
+                        drinks. There are generally four steps involved in how
+                        you can use this platform.
                     </p>
                     <div>
                         <div className="lg:flex justify-center">
@@ -96,6 +100,20 @@ function LandingPage() {
                             </div>
                         </div>
                     </div>
+                </div>
+            </section>
+            <div className="mt-24 mb-24">
+                <Separator className="absolute relative bg-white opacity-15 max-w-6xl mx-auto" />
+                <CircleChevronDown className="absolute relative -top-4 w-8 h-8 mx-auto stroke-pastel-pink bg-background-dark" />
+            </div>
+            <section className="flex flex-col h-full w-full px-16">
+                <div className="mx-auto  max-w-4xl space-y-8 w-full">
+                    <h1 className="text-center text-6xl font-semibold text-white-blue leading-tight">
+                        Utilizing drink data<br></br>
+                        <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
+                            for producers.
+                        </span>
+                    </h1>
                 </div>
             </section>
             <footer className="min-h-[200px] bg-background-block"></footer>
