@@ -72,11 +72,17 @@ function GroupDisplay({ user }) {
                                     Invite collaborators
                                 </Button>
                             </PopoverTrigger>
-                            <PopoverContent className="bg-white border-0">
-                                <Label>Share GroupName</Label>
-                                <Input></Input>
-                                <p>People with access</p>
-                                <p>General access</p>
+                            <PopoverContent className="bg-white border-0 space-y-8">
+                                <div className="space-y-4">
+                                    <Label className="text-base">
+                                        Share GroupName
+                                    </Label>
+                                    <Input placeholder="Username"></Input>
+                                </div>
+                                <h4 className="text-base">
+                                    People with access
+                                </h4>
+                                <h4 className="text-base">General access</h4>
                             </PopoverContent>
                         </Popover>
                         <Button className="bg-pastel-pink h-12 text-base">

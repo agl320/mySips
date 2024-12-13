@@ -15,7 +15,7 @@ function LandingPage() {
             <LandingNav />
             <section className="flex flex-col mt-20 min-h-screen w-full px-16">
                 <div className="mx-auto text-center max-w-4xl space-y-8 w-full">
-                    <h1 className="text-6xl font-semibold text-white-blue leading-tight">
+                    <h1 className="text-6xl font-semibold text-white-blue ">
                         Where every sip tells a story, your{" "}
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             personal drink journal
@@ -32,17 +32,17 @@ function LandingPage() {
                         No in-app purchases
                     </p>
                     <div className="flex justify-center">
-                        <div className="w-full bg-white bg-opacity-80 h-[500px] w-full mt-8 rounded-md"></div>
+                        <div className="w-full bg-white bg-opacity-80 h-[600px] w-full mt-8 rounded-md"></div>
                     </div>
                 </div>
             </section>
             <div className="mt-24 mb-24">
-                <Separator className="absolute relative bg-white opacity-15 max-w-6xl mx-auto" />
+                <Separator className="absolute relative bg-white opacity-15 max-w-4xl mx-auto" />
                 <CircleChevronDown className="absolute relative -top-4 w-8 h-8 mx-auto stroke-pastel-pink bg-background-dark" />
             </div>
             <section className="flex flex-col h-full w-full px-16">
                 <div className="mx-auto  max-w-4xl space-y-8 w-full">
-                    <h1 className="text-center text-6xl font-semibold text-white-blue leading-tight">
+                    <h1 className="text-center text-6xl font-semibold text-white-blue">
                         How to use mySips<br></br>
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             for consumers.
@@ -103,12 +103,12 @@ function LandingPage() {
                 </div>
             </section>
             <div className="mt-24 mb-24">
-                <Separator className="absolute relative bg-white opacity-15 max-w-6xl mx-auto" />
+                <Separator className="absolute relative bg-white opacity-15 max-w-4xl mx-auto" />
                 <CircleChevronDown className="absolute relative -top-4 w-8 h-8 mx-auto stroke-pastel-pink bg-background-dark" />
             </div>
             <section className="flex flex-col h-full w-full px-16">
                 <div className="mx-auto  max-w-4xl space-y-8 w-full">
-                    <h1 className="text-center text-6xl font-semibold text-white-blue leading-tight">
+                    <h1 className="text-center text-6xl font-semibold text-white-blue leading-none">
                         Utilizing drink data<br></br>
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             for producers.

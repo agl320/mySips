@@ -84,7 +84,10 @@ export const userSetConnection = async (
 export const doesConnectionExist = (
     userAuid: string,
     userBuid: string,
-    callback
+    callback: (connectionData: {
+        connectionExists: true;
+        connection: ConnectionStatus;
+    }) => void
 ) => {
     const pairUid = [userAuid, userBuid].sort().join("_");
 

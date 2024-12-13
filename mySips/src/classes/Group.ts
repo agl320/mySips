@@ -5,7 +5,8 @@ import { IMenu } from "../interfaces/IMenu";
 interface IGroupParams {
     uid: string;
     groupName: string;
-    groupDrinks: Array<string>;
+    groupDrinks?: Array<string>;
+    userUids?: Array<string>;
 }
 
 class Group implements IGroupParams {
@@ -15,10 +16,31 @@ class Group implements IGroupParams {
 
     groupDrinks: Array<string>;
 
+    userUids: Array<string>;
+
     constructor(params: IGroupParams) {
         this.uid = uidv4();
         this.groupName = params.groupName;
-        this.groupDrinks = params.groupDrinks;
+        this.groupDrinks = params.groupDrinks ?? [];
+        this.userUids = params.userUids ?? [];
+    }
+
+    toFirestore(): Record<string, any> {
+        return {
+            uid: this.uid,
+            groupName: this.groupName,
+            groupDrinks: this.groupDrinks,
+            userUids: this.userUids,
+        };
+    }
+
+    static fromFirestore(data: IGroupParams): Group {
+        return new Group({
+            uid: data.uid,
+            groupName: data.groupName,
+            groupDrinks: data.groupDrinks,
+            userUids: data.userUids,
+        });
     }
 }
 

@@ -55,12 +55,14 @@ const FriendsPage = ({ user }) => {
                                     ...connectionData,
                                     ...userData,
                                 };
-                                setUserConnections((prevUserConnections) => {
-                                    return {
-                                        ...prevUserConnections,
-                                        [pairUid]: userConnectionItem,
-                                    };
-                                });
+                                setUserConnections(
+                                    (prevUserConnections: any) => {
+                                        return {
+                                            ...prevUserConnections,
+                                            [pairUid]: userConnectionItem,
+                                        };
+                                    }
+                                );
                             }
                         );
                     }
