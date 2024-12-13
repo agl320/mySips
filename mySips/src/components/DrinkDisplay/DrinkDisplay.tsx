@@ -20,8 +20,9 @@ import DrinkEdit from "../DrinkApp/DrinkDisplay/DrinkEdit";
 import EditDrinkDialog from "./EditDrinkDialog/EditDrinkDialog";
 import AddDrinkDialog from "../DrinkForms/AddDrinkDialog";
 import { Button } from "../ui/button";
-import { Info, Share } from "lucide-react";
+import { Info, Share, Star } from "lucide-react";
 import ConfirmDialog from "./ConfirmDialog/ConfirmDialog";
+import { Separator } from "../ui/separator";
 
 interface IDrinkDisplayProps {
     userId: string;
@@ -121,56 +122,90 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
             <div className="flex flex-wrap gap-4">
                 {Object.values(userDrinkData).map((drinkData) => {
                     return (
-                        <div
-                            key={`drink-card-${drinkData.uid}`}
-                            className="w-[200px] h-[300px] flex flex-col justify-between rounded-md p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange"
-                        >
-                            <div className="h-full ">
-                                <h1 className="text-4xl font-semibold overflow-hidden">
-                                    {drinkData.name}
-                                </h1>
-                                <p>{drinkData.address}</p>
-                            </div>
-                            {/* <div className="overflow-hidden whitespace-pre">
+                        <div className="flex bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md">
+                            <div
+                                key={`drink-card-${drinkData.uid}`}
+                                className="w-[170px] h-[300px] flex flex-col justify-between  p-4 "
+                            >
+                                {/* <div className="relative absolute top-0">
+                                <h2 className="text-[300px] font-semibold -rotate-12 opacity-25 overflow-hidden">
+                                    5
+                                </h2>
+                            </div> */}
+
+                                <div className="h-full flex flex-col justify-between">
+                                    <h1 className="text-4xl font-semibold overflow-hidden">
+                                        {drinkData.name}
+                                    </h1>
+                                    <div className="text-left opacity-75">
+                                        <p className="italic">501 North Rd E</p>
+                                        <p className="font-medium">
+                                            CoCo Bubble tea
+                                        </p>
+                                    </div>
+                                </div>
+                                {/* <div className="overflow-hidden whitespace-pre">
                                 <p>{drinkData.description}</p>
                             </div> */}
 
-                            {isEditable ? (
-                                <div className="flex justify-end">
-                                    {/* <Button
+                                {isEditable ? (
+                                    <div className="mt-4">
+                                        <Separator className="w-full bg-white mb-4 bg-opacity-50" />
+                                        <div className="flex justify-begin ">
+                                            {/* <Button
                                         onClick={() =>
                                             incrementDrinkRecord(drinkData)
                                         }
                                     >
                                         +
                                     </Button> */}
-                                    <EditDrinkDialog
-                                        drinkData={drinkData}
-                                        editCallback={updateSelectedDrink}
-                                    />
-                                    <Button className="h-4 w-4">
-                                        <Info className="h-4 w-4" />
-                                    </Button>
-                                    <Button className="h-4 w-4">
-                                        <Share className="h-4 w-4" />
-                                    </Button>
-                                    <ConfirmDialog
-                                        callback={() =>
-                                            deleteSelectedDrink(drinkData.uid)
-                                        }
-                                        title="Confirm Delete Drink"
-                                        description={`Are you sure you want to remove ${drinkData.name} from
+                                            <EditDrinkDialog
+                                                drinkData={drinkData}
+                                                editCallback={
+                                                    updateSelectedDrink
+                                                }
+                                            />
+                                            <Button className="h-4 w-4">
+                                                <Info className="h-4 w-4" />
+                                            </Button>
+                                            <Button className="h-4 w-4">
+                                                <Share className="h-4 w-4" />
+                                            </Button>
+                                            <ConfirmDialog
+                                                callback={() =>
+                                                    deleteSelectedDrink(
+                                                        drinkData.uid
+                                                    )
+                                                }
+                                                title="Confirm Delete Drink"
+                                                description={`Are you sure you want to remove ${drinkData.name} from
                     mySips?`}
-                                        confirm="Delete Drink"
-                                        cancel="Cancel"
-                                    />
-                                </div>
-                            ) : (
-                                <></>
-                            )}
-                            {/* <div className="bg-white text-xs bg-opacity-25 p-2">
+                                                confirm="Delete Drink"
+                                                cancel="Cancel"
+                                            />
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <></>
+                                )}
+                                {/* <div className="bg-white text-xs bg-opacity-25 p-2">
                                 <p>{drinkData.uid}</p>
                             </div> */}
+                            </div>
+                            <div className="bg-white bg-opacity-25 w-[60px] h-full rounded-md flex items-center justify-center overflow-hidden">
+                                {drinkData?.rating === 10 ? (
+                                    <div className="relative">
+                                        <Star
+                                            className="stroke-white opacity-50 -rotate-12 w-[100px] h-[100px]"
+                                            fill="white"
+                                        ></Star>
+                                    </div>
+                                ) : (
+                                    <p className="text-white/50 text-[200px] font-bold -rotate-12">
+                                        7
+                                    </p>
+                                )}
+                            </div>
                         </div>
                     );
                 })}
