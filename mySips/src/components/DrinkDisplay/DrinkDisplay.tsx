@@ -134,11 +134,11 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                             </div> */}
 
                                 <div className="h-full flex flex-col justify-between">
-                                    <h1 className="text-4xl font-semibold overflow-hidden">
+                                    <h1 className="text-4xl font-semibold overflow-hidden line-clamp-4">
                                         {drinkData.name}
                                     </h1>
                                     <div className="text-left opacity-75">
-                                        <p className="italic">501 North Rd E</p>
+                                        <p className="">501 North Rd E</p>
                                         <p className="font-medium">
                                             CoCo Bubble tea
                                         </p>
