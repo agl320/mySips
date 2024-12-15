@@ -7,12 +7,15 @@ import {
     BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { useUser } from "reactfire";
+import { useFirestore, useUser } from "reactfire";
 import UserPageHeader from "../UserPageHeader/UserPageHeader";
 import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
 import UserBlock from "../UserComponents/Blocks/UserBlock";
 import { User } from "firebase/auth";
 import { Button } from "@/components/ui/button";
+import { Firestore } from "firebase/firestore";
+import { useUserDrinkData } from "@/components/Hooks/useUserDinkData";
+import { useUserGroups } from "@/components/Hooks/useUserGroup";
 
 interface IUserProps {
     user: User | null;
@@ -20,6 +23,11 @@ interface IUserProps {
 
 function MySipsPage(props: IUserProps) {
     const { user } = props;
+
+    const firestore = useFirestore();
+
+    const userDrinkData = useUserDrinkData(firestore, user?.uid ?? "");
+    const userGroups = useUserGroups(firestore, user?.uid ?? "");
 
     return (
         <div className="w-full h-full p-8 text-white bg-primary">
@@ -31,7 +39,12 @@ function MySipsPage(props: IUserProps) {
                 <UserStatistics
                     userId={user?.uid ?? ""}
                     name="Drinks"
-                    value="useUserDrinkData()"
+                    value={String(Object.keys(userDrinkData).length)}
+                />
+                <UserStatistics
+                    userId={user?.uid ?? ""}
+                    name="Groups"
+                    value={String(Object.keys(userGroups).length)}
                 />
             </UserBlock>
 
