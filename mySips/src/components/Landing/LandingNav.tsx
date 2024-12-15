@@ -8,7 +8,10 @@ function LandingNav() {
     return (
         <header className="flex justify-center w-full bg-background-block px-16 border-b border-white/15">
             <div className="flex justify-between text-white max-w-6xl w-full py-8">
-                <Link to="/" className="text-5xl font-regular font-wide ">
+                <Link
+                    to="/"
+                    className="text-5xl font-regular font-wide whitespace-nowrap"
+                >
                     ./my
                     <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                         Sips
