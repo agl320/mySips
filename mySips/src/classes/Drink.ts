@@ -15,9 +15,8 @@ interface IDrinkParams {
 
     /** Drink coordinates/location */
     coordinates?: { lat: string; long: string };
-    address?: string;
     /** Store id */
-    storeUid?: string;
+    store?: { storeUid?: string; storeName?: string; storeAddress?: string };
     tags?: Record<string, ITag>;
 
     /** Drink groups ; to be used for group tabs */
@@ -42,9 +41,10 @@ class Drink implements IDrinkParams {
 
     /** Drink coordinates/location */
     coordinates?: { lat: string; long: string };
-    address?: string;
+
     /** Store id */
-    storeUid?: string;
+    store: { storeUid?: string; storeName?: string; storeAddress?: string };
+
     tags?: Record<string, ITag>;
 
     groups?: Array<string>;
@@ -62,7 +62,11 @@ class Drink implements IDrinkParams {
         this.description = params.description;
         this.rating = params?.rating;
         this.coordinates = params?.coordinates;
-        this.storeUid = params?.storeUid;
+        this.store = {
+            storeUid: params?.store?.storeUid,
+            storeName: params?.store?.storeName,
+            storeAddress: params?.store?.storeAddress,
+        };
         this.tags = params?.tags;
         this.groups = params?.groups;
         this.sugarLevel = params?.sugarLevel;
@@ -78,8 +82,11 @@ class Drink implements IDrinkParams {
             description: this.description,
             rating: this.rating ?? null,
             coordinates: this.coordinates ?? null,
-            address: this.address ?? null,
-            storeUid: this.storeUid ?? null,
+            store: {
+                storeUid: this.store.storeUid ?? null,
+                storeName: this.store.storeName ?? null,
+                storeAddress: this.store.storeAddress ?? null,
+            },
             tags: this.tags ?? {},
             groups: this.groups ?? [],
             dateCreated: this.dateCreated ?? null,
@@ -94,8 +101,11 @@ class Drink implements IDrinkParams {
             description: data.description,
             rating: data.rating,
             coordinates: data.coordinates,
-            address: data.address,
-            storeUid: data.storeUid,
+            store: {
+                storeUid: data.store?.storeUid,
+                storeName: data.store?.storeName,
+                storeAddress: data.store?.storeAddress,
+            },
             tags: data.tags,
             groups: data.groups,
             dateCreated: data.dateCreated,

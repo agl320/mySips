@@ -9,7 +9,6 @@ import {
 import UserBlock from "../UserComponents/Blocks/UserBlock";
 import UserPageHeader from "../UserPageHeader/UserPageHeader";
 import { Button } from "@/components/ui/button";
-import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
 import GroupDisplay from "./GroupDisplay";
 
 function GroupsPage({ user }) {

@@ -45,22 +45,47 @@ function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
                     maxLength={300}
                 ></Textarea>
             </div>
-            <div className="space-y-2">
-                <Label className="opacity-80">Street address</Label>
-                <Input
-                    type="text"
-                    placeholder={`Street address`}
-                    required
-                    value={drinkInputState.address}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        setDrinkInputState({
-                            ...drinkInputState,
-                            address: e.target.value,
-                        });
-                    }}
-                    maxLength={32}
-                ></Input>
+            <div className="flex">
+                <div className="mr-4 w-full space-y-2">
+                    <Label className="opacity-80">Store name</Label>
+                    <Input
+                        type="text"
+                        placeholder={`Store name`}
+                        required
+                        value={drinkInputState.store?.storeName}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setDrinkInputState({
+                                ...drinkInputState,
+                                store: {
+                                    ...drinkInputState.store,
+                                    storeName: e.target.value,
+                                },
+                            });
+                        }}
+                        maxLength={32}
+                    ></Input>
+                </div>
+                <div className="w-full space-y-2">
+                    <Label className="opacity-80">Street address</Label>
+                    <Input
+                        type="text"
+                        placeholder={`Street address`}
+                        required
+                        value={drinkInputState.store?.storeAddress}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                            setDrinkInputState({
+                                ...drinkInputState,
+                                store: {
+                                    ...drinkInputState.store,
+                                    storeAddress: e.target.value,
+                                },
+                            });
+                        }}
+                        maxLength={32}
+                    ></Input>
+                </div>
             </div>
+
             <div className="space-y-2 mt-4">
                 <NumberField
                     initialValue={drinkInputState.rating ?? 5}

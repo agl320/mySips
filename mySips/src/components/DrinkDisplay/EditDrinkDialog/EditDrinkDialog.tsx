@@ -11,16 +11,23 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { User } from "firebase/auth";
 import { Pen } from "lucide-react";
 import { useState } from "react";
 
 interface IDrinkEditProps {
     // groupsState: Record<string, Group>;
+    user: User;
     drinkData: Drink;
-    editCallback: (uid: string, updatedDrinkProperties: Drink) => Promise<void>;
+    editCallback: (
+        userUid: string,
+        drinkUid: string,
+        updatedDrinkProperties: Drink
+    ) => Promise<void>;
 }
 
 function EditDrinkDialog({
+    user,
     drinkData,
     editCallback: editDrinkCallback,
 }: IDrinkEditProps) {
@@ -92,6 +99,7 @@ function EditDrinkDialog({
                                 className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
                                 onClick={() =>
                                     editDrinkCallback(
+                                        user?.uid,
                                         drinkData.uid,
                                         drinkInputState
                                     )

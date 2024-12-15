@@ -30,7 +30,7 @@ function OverviewPage(props: IUserProps) {
 
             <UserBlock className="mt-8 space-y-8">
                 <h1 className="text-3xl font-semibold">Drinks</h1>
-                <DrinkDisplay userId={user?.uid ?? ""} />
+                <DrinkDisplay user={user} userId={user?.uid ?? ""} />
             </UserBlock>
             {/* <button
                 className="bg-black text-white p-4 rounded-lg"

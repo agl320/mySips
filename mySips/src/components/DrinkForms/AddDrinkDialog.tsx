@@ -13,6 +13,7 @@ import {
 import React, { ReactNode, useState } from "react";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import { CirclePlus } from "lucide-react";
+import { User } from "firebase/auth";
 
 interface IAddDrinkDialogProps {
     // drinkInputState: Omit<IDrinkParams, "uid">;
@@ -21,12 +22,17 @@ interface IAddDrinkDialogProps {
     // >;
     // SaveTrigger: ReactNode;
 
+    user: User;
     // Generate uid in other object, then pass the empty here
     baseDrinkData: Drink;
-    addDrinkCallback: (newDrinkProperties: any) => Promise<void>;
+    addDrinkCallback: (
+        userUid: string,
+        newDrinkProperties: any
+    ) => Promise<void>;
 }
 
 function AddDrinkDialog({
+    user,
     baseDrinkData,
     addDrinkCallback,
 }: IAddDrinkDialogProps) {
@@ -69,7 +75,9 @@ function AddDrinkDialog({
                     <DialogClose asChild>
                         <Button
                             className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
-                            onClick={() => addDrinkCallback(drinkInputState)}
+                            onClick={() =>
+                                addDrinkCallback(user?.uid, drinkInputState)
+                            }
                         >
                             Add Drink
                         </Button>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { doc, collection, onSnapshot } from "firebase/firestore";
 import { Group } from "@/classes/Group";
 
-export interface KeyGroup {
+export interface IKeyGroup {
     [key: string]: Group;
 }
 
@@ -14,7 +14,7 @@ export interface KeyGroup {
  * @returns
  */
 export const useUserGroups = (firestore: any, userUid: string | null) => {
-    const [userGroupData, setUserGroupData] = useState<KeyGroup>({});
+    const [userGroupData, setUserGroupData] = useState<IKeyGroup>({});
 
     useEffect(() => {
         if (!userUid) return;
@@ -35,7 +35,7 @@ export const useUserGroups = (firestore: any, userUid: string | null) => {
                         acc[groupData.uid] = groupData;
                         return acc;
                     },
-                    {} as KeyGroup
+                    {} as IKeyGroup
                 );
 
                 setUserGroupData(formattedGroupData);

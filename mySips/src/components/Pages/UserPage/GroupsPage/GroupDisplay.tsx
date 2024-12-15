@@ -56,13 +56,14 @@ function GroupDisplay({ user }) {
                                         </h1>
                                         <UserStatistics
                                             userId={user?.uid}
-                                            statistics={{
-                                                drinkCount: false,
-                                            }}
+                                            name="Drinks"
+                                            value={String(
+                                                group.groupDrinks.length
+                                            )}
                                         />
-                                        <div className="absolute right-4 -bottom-4 rounded-full w-12 h-12 bg-pastel-blue"></div>
-                                        <div className="absolute right-10 -bottom-4 rounded-full w-12 h-12 bg-pastel-green"></div>
-                                        <div className="absolute right-16 -bottom-4 rounded-full w-12 h-12 bg-pastel-yellow"></div>
+                                        <div className="absolute right-4 bottom-4 rounded-full w-12 h-12 bg-pastel-blue"></div>
+                                        <div className="absolute right-10 bottom-4 rounded-full w-12 h-12 bg-pastel-green"></div>
+                                        <div className="absolute right-16 bottom-4 rounded-full w-12 h-12 bg-pastel-yellow"></div>
                                     </div>
                                     {/* <div className="mt-auto">
                     <Button className="bg-white aspect-square h-12 w-12">

@@ -100,6 +100,7 @@ function AdminDisplay(props: IAdminDisplayProps) {
             {loadedUsers?.map((user) => {
                 return (
                     <DrinkDisplay
+                        user={user}
                         key={`DrinkDisplay-${user.uid}`}
                         userDrinkData={user.userDrinkData}
                     />

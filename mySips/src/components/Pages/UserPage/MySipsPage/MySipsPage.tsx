@@ -20,6 +20,7 @@ interface IUserProps {
 
 function MySipsPage(props: IUserProps) {
     const { user } = props;
+
     return (
         <div className="w-full h-full p-8 text-white bg-primary">
             <UserBlock className="flex">
@@ -29,7 +30,8 @@ function MySipsPage(props: IUserProps) {
                 />
                 <UserStatistics
                     userId={user?.uid ?? ""}
-                    statistics={{ drinkCount: true }}
+                    name="Drinks"
+                    value="useUserDrinkData()"
                 />
             </UserBlock>
 
@@ -44,6 +46,7 @@ function MySipsPage(props: IUserProps) {
                 </div>
 
                 <DrinkDisplay
+                    user={user}
                     userId={user?.uid ?? ""}
                     isEditable
                     className="mt-8"
