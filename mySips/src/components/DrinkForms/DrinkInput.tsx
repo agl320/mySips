@@ -1,7 +1,9 @@
 import { Label } from "@radix-ui/react-label";
-import { Drink } from "../classes/Drink";
-import { Input } from "./ui/input";
-import { Textarea } from "./ui/textarea";
+import { Drink } from "../../classes/Drink";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
+import NumberField from "./NumberField";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 export type IDrinkInputProps = {
     drinkInputState: Pick<Drink, "uid"> & Partial<Drink>;
@@ -58,6 +60,19 @@ function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
                     }}
                     maxLength={32}
                 ></Input>
+            </div>
+            <div className="space-y-2 mt-4">
+                <NumberField
+                    initialValue={drinkInputState.rating ?? 5}
+                    onChange={(
+                        e: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | undefined
+                    ) => {
+                        setDrinkInputState({
+                            ...drinkInputState,
+                            rating: e,
+                        });
+                    }}
+                />
             </div>
         </div>
     );

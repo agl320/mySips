@@ -122,7 +122,13 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
             <div className="flex flex-wrap gap-4">
                 {Object.values(userDrinkData).map((drinkData) => {
                     return (
-                        <div className="flex bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md">
+                        <div
+                            className={`flex ${
+                                drinkData?.rating === 10
+                                    ? "bg-gradient-to-r from-pastel-orange to-orange"
+                                    : "bg-gradient-to-r from-pastel-pink to-pastel-orange"
+                            } rounded-md`}
+                        >
                             <div
                                 key={`drink-card-${drinkData.uid}`}
                                 className="w-[170px] h-[300px] flex flex-col justify-between  p-4 "
@@ -202,7 +208,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                                     </div>
                                 ) : (
                                     <p className="text-white/50 text-[200px] font-bold -rotate-12">
-                                        7
+                                        {drinkData?.rating ?? 5}
                                     </p>
                                 )}
                             </div>

@@ -1,6 +1,6 @@
 import { Group } from "@/classes/Category";
 import { Drink } from "@/classes/Drink";
-import DrinkInput from "@/components/DrinkInput";
+import DrinkInput from "@/components/DrinkForms/DrinkInput";
 import { Button } from "@/components/ui/button";
 import {
     Dialog,

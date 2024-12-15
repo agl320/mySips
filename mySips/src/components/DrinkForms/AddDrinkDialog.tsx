@@ -1,5 +1,5 @@
 import { Drink, IDrinkParams } from "@/classes/Drink";
-import DrinkInput, { IDrinkInputProps } from "../DrinkInput";
+import DrinkInput, { IDrinkInputProps } from "./DrinkInput";
 import { Button, ButtonProps } from "../ui/button";
 import {
     Dialog,
@@ -36,7 +36,7 @@ function AddDrinkDialog({
     return (
         <Dialog>
             <DialogTrigger asChild>
-                <div className="w-[200px] h-[300px] bg-background-block bg-clip-padding backdrop-filter backdrop-blur-md hover:bg-background-light flex flex-col justify-around rounded-md">
+                <div className="w-[230px] h-[300px] bg-background-block bg-clip-padding backdrop-filter backdrop-blur-md hover:bg-background-light flex flex-col justify-around rounded-md">
                     <Button
                         onClick={() => setDrinkInputState(baseDrinkData)}
                         className="w-full h-full "
@@ -63,6 +63,7 @@ function AddDrinkDialog({
                     />
                 </div>
                 <br />
+
                 <DialogFooter className="sm:justify-end">
                     {/* <DialogClose asChild>{props.SaveTrigger}</DialogClose> */}
                     <DialogClose asChild>

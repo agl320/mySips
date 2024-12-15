@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { IStore } from "../../../interfaces/IStore";
-import DrinkInput from "../../DrinkInput";
+import DrinkInput from "../../DrinkForms/DrinkInput";
 import { IDrinkParams } from "../../../classes/Drink";
 import { v4 as uidv4 } from "uuid";
 import { Button } from "@/components/ui/button";
