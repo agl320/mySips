@@ -19,7 +19,7 @@ class Group implements IGroupParams {
     userUids: Array<string>;
 
     constructor(params: IGroupParams) {
-        this.uid = uidv4();
+        this.uid = params.uid;
         this.groupName = params.groupName;
         this.groupDrinks = params.groupDrinks ?? [];
         this.userUids = params.userUids ?? [];

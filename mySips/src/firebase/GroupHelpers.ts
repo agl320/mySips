@@ -20,9 +20,11 @@ export const createGroup = async (
 };
 
 export const createEmptyGroup = (): Group => {
+    const uid = uidv4();
+
     const newGroupObj = new Group({
         groupName: "New Group",
-        uid: uidv4(),
+        uid,
     });
 
     return newGroupObj;

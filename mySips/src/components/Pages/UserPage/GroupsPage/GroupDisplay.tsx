@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
 import { ChevronLeft, Pen, Pencil, Plus, Settings, Trash } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
     Popover,
     PopoverContent,
@@ -11,6 +11,14 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import DrinkDisplay from "@/components/DrinkDisplay/DrinkDisplay";
+import { collection, doc, onSnapshot, setDoc } from "firebase/firestore";
+import { useFirestore } from "reactfire";
+
+import { v4 as uidv4 } from "uuid";
+import { Group } from "@/classes/Group";
+import AddGroupDialog from "@/components/GroupForms/AddGroupDialog";
+import { createEmptyGroup, createGroup } from "@/firebase/GroupHelpers";
+import { useUserGroups } from "@/components/Hooks/useUserGroup";
 
 function GroupDisplay({ user }) {
     const [focusedGroup, setFocusedGroup] = useState<string>("");
@@ -19,29 +27,44 @@ function GroupDisplay({ user }) {
         setFocusedGroup(groupUid);
     };
 
+    const firestore = useFirestore();
+
+    const userGroups = useUserGroups(firestore, user?.uid);
+
+    console.log({ userGroups });
     return (
         <div>
             {focusedGroup === "" ? (
                 <div>
-                    <Button className="bg-pastel-pink w-12 h-12">
-                        <Plus className="" />
-                    </Button>
-                    <div
-                        className="w-80 bg-pastel-pink rounded-md p-4 flex justify-between hover:cursor-pointer mt-8"
-                        onClick={() => focusGroupHandler("test")}
-                    >
-                        <div>
-                            <h1 className="text-4xl font-semibold mb-8">
-                                Cafe
-                            </h1>
-                            <UserStatistics
-                                userId={user?.uid}
-                                statistics={{
-                                    drinkCount: false,
-                                }}
-                            />
-                        </div>
-                        {/* <div className="mt-auto">
+                    <AddGroupDialog
+                        baseGroupData={createEmptyGroup()}
+                        addGroupCallback={createGroup}
+                        user={user}
+                    />
+
+                    <div className="flex gap-x-4">
+                        {Object.values(userGroups)
+                            .filter((group) => group?.uid)
+                            .map((group) => (
+                                <div
+                                    className="relative w-80 bg-pastel-pink rounded-md p-4 flex justify-between hover:cursor-pointer mt-8"
+                                    onClick={() => focusGroupHandler("test")}
+                                >
+                                    <div className="">
+                                        <h1 className="text-4xl font-semibold mb-8">
+                                            {group.groupName}
+                                        </h1>
+                                        <UserStatistics
+                                            userId={user?.uid}
+                                            statistics={{
+                                                drinkCount: false,
+                                            }}
+                                        />
+                                        <div className="absolute right-4 -bottom-4 rounded-full w-12 h-12 bg-pastel-blue"></div>
+                                        <div className="absolute right-10 -bottom-4 rounded-full w-12 h-12 bg-pastel-green"></div>
+                                        <div className="absolute right-16 -bottom-4 rounded-full w-12 h-12 bg-pastel-yellow"></div>
+                                    </div>
+                                    {/* <div className="mt-auto">
                     <Button className="bg-white aspect-square h-12 w-12">
                         <Pencil
                             className="stroke-pastel-pink aspect-square"
@@ -49,6 +72,8 @@ function GroupDisplay({ user }) {
                         />
                     </Button>
                 </div> */}
+                                </div>
+                            ))}
                     </div>
                 </div>
             ) : (
