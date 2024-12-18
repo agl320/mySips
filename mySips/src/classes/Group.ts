@@ -5,7 +5,7 @@ import { IMenu } from "../interfaces/IMenu";
 interface IGroupParams {
     uid: string;
     groupName: string;
-    groupDrinks?: Array<string>;
+    // groupDrinks?: Array<string>;
     userUids?: Array<string>;
 }
 
@@ -14,14 +14,14 @@ class Group implements IGroupParams {
 
     groupName: string;
 
-    groupDrinks: Array<string>;
+    // groupDrinks: Array<string>;
 
     userUids: Array<string>;
 
     constructor(params: IGroupParams) {
         this.uid = params.uid;
         this.groupName = params.groupName;
-        this.groupDrinks = params.groupDrinks ?? [];
+        // this.groupDrinks = params.groupDrinks ?? [];
         this.userUids = params.userUids ?? [];
     }
 
@@ -29,7 +29,7 @@ class Group implements IGroupParams {
         return {
             uid: this.uid,
             groupName: this.groupName,
-            groupDrinks: this.groupDrinks,
+            // groupDrinks: this.groupDrinks,
             userUids: this.userUids,
         };
     }
@@ -38,7 +38,7 @@ class Group implements IGroupParams {
         return new Group({
             uid: data.uid,
             groupName: data.groupName,
-            groupDrinks: data.groupDrinks,
+            // groupDrinks: data.groupDrinks,
             userUids: data.userUids,
         });
     }

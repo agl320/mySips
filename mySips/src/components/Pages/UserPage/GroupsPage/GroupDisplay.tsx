@@ -17,8 +17,24 @@ import { useFirestore } from "reactfire";
 import { v4 as uidv4 } from "uuid";
 import { Group } from "@/classes/Group";
 import AddGroupDialog from "@/components/GroupForms/AddGroupDialog";
-import { createEmptyGroup, createGroup } from "@/firebase/GroupHelpers";
+import {
+    addDrinkToGroup,
+    createEmptyGroup,
+    createGroup,
+} from "@/firebase/GroupHelpers";
 import { useUserGroups } from "@/components/Hooks/useUserGroup";
+import { useUserDrinkData } from "../../../Hooks/useUserDrinkData";
+import {
+    Command,
+    CommandEmpty,
+    CommandGroup,
+    CommandInput,
+    CommandItem,
+    CommandList,
+    CommandSeparator,
+} from "@/components/ui/command";
+import { Drink } from "@/classes/Drink";
+import GroupDrinkDisplay from "./GroupDrinkDisplay";
 
 function GroupDisplay({ user }) {
     const [focusedGroup, setFocusedGroup] = useState<string>("");
@@ -31,7 +47,10 @@ function GroupDisplay({ user }) {
 
     const userGroups = useUserGroups(firestore, user?.uid);
 
-    console.log({ userGroups });
+    // TEMP
+    // should filter by group
+    const userDrinkData = useUserDrinkData(firestore, user?.uid);
+
     return (
         <div>
             {focusedGroup === "" ? (
@@ -48,31 +67,25 @@ function GroupDisplay({ user }) {
                             .map((group) => (
                                 <div
                                     className="relative w-80 bg-pastel-pink rounded-md p-4 flex justify-between hover:cursor-pointer mt-8"
-                                    onClick={() => focusGroupHandler("test")}
+                                    onClick={() =>
+                                        focusGroupHandler(group?.uid)
+                                    }
                                 >
                                     <div className="">
                                         <h1 className="text-4xl font-semibold mb-8">
                                             {group.groupName}
                                         </h1>
-                                        <UserStatistics
+                                        {/* <UserStatistics
                                             userId={user?.uid}
                                             name="Drinks"
                                             value={String(
                                                 group.groupDrinks.length
                                             )}
-                                        />
+                                        /> */}
                                         <div className="absolute right-4 bottom-4 rounded-full w-12 h-12 bg-pastel-blue"></div>
                                         <div className="absolute right-10 bottom-4 rounded-full w-12 h-12 bg-pastel-green"></div>
                                         <div className="absolute right-16 bottom-4 rounded-full w-12 h-12 bg-pastel-yellow"></div>
                                     </div>
-                                    {/* <div className="mt-auto">
-                    <Button className="bg-white aspect-square h-12 w-12">
-                        <Pencil
-                            className="stroke-pastel-pink aspect-square"
-                            strokeWidth="3"
-                        />
-                    </Button>
-                </div> */}
                                 </div>
                             ))}
                     </div>
@@ -82,13 +95,13 @@ function GroupDisplay({ user }) {
                     <div className="flex gap-x-4 w-full">
                         <Button
                             className="bg-pastel-pink w-12 h-12"
-                            onClick={() => setFocusedGroup("")}
+                            onClick={() => focusGroupHandler("")}
                         >
                             <ChevronLeft className="" />
                         </Button>
                         <Button
                             className="bg-pastel-pink w-12 h-12"
-                            onClick={() => setFocusedGroup("")}
+                            onClick={() => focusGroupHandler("")}
                         >
                             <Settings className="" />
                         </Button>
@@ -111,11 +124,57 @@ function GroupDisplay({ user }) {
                                 <h4 className="text-base">General access</h4>
                             </PopoverContent>
                         </Popover>
-                        <Button className="bg-pastel-pink h-12 text-base">
-                            Add drink
-                        </Button>
+
+                        <Popover>
+                            <PopoverTrigger>
+                                <Button className="bg-pastel-pink h-12 text-base">
+                                    Add drink
+                                </Button>
+                            </PopoverTrigger>
+                            <PopoverContent className="bg-white border-0 space-y-8">
+                                <div className="space-y-4">
+                                    <Label className="text-base">
+                                        Drink Name
+                                    </Label>
+                                    <Command>
+                                        <CommandInput placeholder="Type a drink to search..." />
+                                        <CommandList>
+                                            <CommandEmpty>
+                                                No drinks found.
+                                            </CommandEmpty>
+                                            <CommandGroup heading="Suggestions">
+                                                {Object.values(
+                                                    userDrinkData
+                                                ).map((drinkData) => (
+                                                    <CommandItem
+                                                        className="flex justify-between hover:bg-pastel-pink/15 rounded-sm cursor-pointer"
+                                                        onClickCapture={() =>
+                                                            addDrinkToGroup(
+                                                                user?.uid,
+                                                                focusedGroup,
+                                                                drinkData.uid
+                                                            )
+                                                        }
+                                                    >
+                                                        <p>{drinkData.name}</p>
+                                                        <p>
+                                                            {drinkData.rating}
+                                                        </p>
+                                                    </CommandItem>
+                                                ))}
+                                            </CommandGroup>
+                                        </CommandList>
+                                    </Command>
+                                </div>
+                            </PopoverContent>
+                        </Popover>
                     </div>
-                    <DrinkDisplay userId={user?.uid} className="mt-8" />
+                    {/* <DrinkDisplay
+                        user={user}
+                        userId={user?.uid}
+                        className="mt-8"
+                    /> */}
+                    <GroupDrinkDisplay user={user} groupUid={focusedGroup} />
                 </div>
             )}
         </div>

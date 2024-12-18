@@ -16,7 +16,7 @@ function NumberField(props: {
     }, [currentValue]);
 
     return (
-        <div className="bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-75 rounded-md flex justify-between p-2 max-w-[200px]">
+        <div className="bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-75 rounded-md flex justify-between p-2">
             <div className="flex flex-col justify-center">
                 <Button
                     onClick={() =>

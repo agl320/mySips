@@ -50,7 +50,7 @@ function AddGroupDialog({
             <DialogContent>
                 <DialogHeader className="pb-2">
                     <DialogTitle className="text-2xl opacity-80">
-                        Add New Groupa
+                        Add New Group
                     </DialogTitle>
                 </DialogHeader>
                 <DialogDescription className="opacity-80">

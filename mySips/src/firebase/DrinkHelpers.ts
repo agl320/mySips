@@ -1,7 +1,17 @@
 import { Drink } from "@/classes/Drink";
-import { deleteDoc, doc, setDoc, updateDoc } from "firebase/firestore";
+import {
+    addDoc,
+    collection,
+    deleteDoc,
+    doc,
+    getDoc,
+    getDocs,
+    setDoc,
+    updateDoc,
+} from "firebase/firestore";
 import { v4 as uidv4 } from "uuid";
 import { firebaseDB } from "./FirebaseSetup";
+import { removeDrinkFromGroup } from "./GroupHelpers";
 
 /**
  * Sets connection A-B for both users, such that A is initator/requester
@@ -22,8 +32,13 @@ export const createDrink = async (userUid: string, newDrinkProperties: any) => {
         newDrinkProperties.uid
     );
 
+    // create drink
     const newDrinkObj = new Drink(newDrinkProperties);
     await setDoc(drinkDocRef, newDrinkObj.toFirestore());
+
+    // create group
+    const groupDrinksCollectionRef = collection(drinkDocRef, "groups");
+    await addDoc(groupDrinksCollectionRef, { placeholder: true });
 };
 
 export const createEmptyDrink = (): Drink => {
@@ -58,6 +73,59 @@ export const updateDrink = async (
 };
 
 export const deleteDrink = async (userUid: string, drinkUid: string) => {
-    const userDocRef = doc(firebaseDB, "users", userUid);
-    await deleteDoc(doc(userDocRef, "userDrinkData", drinkUid));
+    try {
+        // del from user
+        const userDocRef = doc(firebaseDB, "users", userUid);
+        await deleteDoc(doc(userDocRef, "userDrinkData", drinkUid));
+
+        // get all groups drink is in
+        const allGroupUids = await getAllGroupUids(userUid, drinkUid);
+
+        // del all from each group
+        for (const groupItem of allGroupUids) {
+            await removeDrinkFromGroup(userUid, groupItem.groupUid, drinkUid);
+        }
+
+        console.log("Drink deleted successfully!");
+    } catch (error) {
+        console.error("Error deleting drink:", error);
+        throw error; // Optionally re-throw the error if you want to handle it elsewhere
+    }
+};
+
+export const getDrink = async (userUid: string, drinkUid: string) => {
+    const drinkDocRef = doc(
+        firebaseDB,
+        "users",
+        userUid,
+        "userDrinkData",
+        drinkUid
+    );
+    const drinkData = await getDoc(drinkDocRef);
+    return drinkData;
+};
+
+export const getAllGroupUids = async (userUid: string, drinkUid: string) => {
+    const drinkDocRef = doc(
+        firebaseDB,
+        "users",
+        userUid,
+        "userDrinkData",
+        drinkUid
+    );
+    const groupDrinksCollectionRef = collection(drinkDocRef, "groups");
+
+    try {
+        const querySnapshot = await getDocs(groupDrinksCollectionRef);
+
+        const groupData = querySnapshot.docs.map((doc) => ({
+            groupUid: doc.id,
+            ...doc.data(),
+        }));
+
+        return groupData;
+    } catch (error) {
+        console.error("Error fetching group UIDs:", error);
+        throw error;
+    }
 };

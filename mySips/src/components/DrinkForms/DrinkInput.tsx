@@ -64,6 +64,30 @@ function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
                         }}
                         maxLength={32}
                     ></Input>
+                    <div className="mt-4 w-full">
+                        <NumberField
+                            initialValue={drinkInputState.rating ?? 5}
+                            onChange={(
+                                e:
+                                    | 1
+                                    | 2
+                                    | 3
+                                    | 4
+                                    | 5
+                                    | 6
+                                    | 7
+                                    | 8
+                                    | 9
+                                    | 10
+                                    | undefined
+                            ) => {
+                                setDrinkInputState({
+                                    ...drinkInputState,
+                                    rating: e,
+                                });
+                            }}
+                        />
+                    </div>
                 </div>
                 <div className="w-full space-y-2">
                     <Label className="opacity-80">Street address</Label>
@@ -84,20 +108,6 @@ function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
                         maxLength={32}
                     ></Input>
                 </div>
-            </div>
-
-            <div className="space-y-2 mt-4">
-                <NumberField
-                    initialValue={drinkInputState.rating ?? 5}
-                    onChange={(
-                        e: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | undefined
-                    ) => {
-                        setDrinkInputState({
-                            ...drinkInputState,
-                            rating: e,
-                        });
-                    }}
-                />
             </div>
         </div>
     );

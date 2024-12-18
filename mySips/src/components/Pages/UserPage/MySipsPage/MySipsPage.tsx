@@ -14,7 +14,7 @@ import UserBlock from "../UserComponents/Blocks/UserBlock";
 import { User } from "firebase/auth";
 import { Button } from "@/components/ui/button";
 import { Firestore } from "firebase/firestore";
-import { useUserDrinkData } from "@/components/Hooks/useUserDinkData";
+import { useUserDrinkData } from "@/components/Hooks/useUserDrinkData";
 import { useUserGroups } from "@/components/Hooks/useUserGroup";
 
 interface IUserProps {

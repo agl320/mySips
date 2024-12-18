@@ -20,7 +20,7 @@ interface IDrinkParams {
     tags?: Record<string, ITag>;
 
     /** Drink groups ; to be used for group tabs */
-    groups?: Array<string>;
+    // groups?: Record<string, { groupUid: string; userUid: string }>;
 
     sugarLevel?: string;
     iceLevel?: string;
@@ -47,7 +47,7 @@ class Drink implements IDrinkParams {
 
     tags?: Record<string, ITag>;
 
-    groups?: Array<string>;
+    // groups?: Record<string, { groupUid: string; userUid: string }>;
 
     sugarLevel?: string;
     iceLevel?: string;
@@ -68,7 +68,7 @@ class Drink implements IDrinkParams {
             storeAddress: params?.store?.storeAddress,
         };
         this.tags = params?.tags;
-        this.groups = params?.groups;
+        // this.groups = params?.groups;
         this.sugarLevel = params?.sugarLevel;
         this.iceLevel = params?.iceLevel;
         this.dateCreated = params?.dateCreated;
@@ -88,7 +88,7 @@ class Drink implements IDrinkParams {
                 storeAddress: this.store.storeAddress ?? null,
             },
             tags: this.tags ?? {},
-            groups: this.groups ?? [],
+            // groups: this.groups ?? [],
             dateCreated: this.dateCreated ?? null,
             DrinkRecordHistory: this.DrinkRecordHistory,
         };
@@ -107,7 +107,7 @@ class Drink implements IDrinkParams {
                 storeAddress: data.store?.storeAddress,
             },
             tags: data.tags,
-            groups: data.groups,
+            // groups: data.groups,
             dateCreated: data.dateCreated,
             DrinkRecordHistory: data.DrinkRecordHistory,
         });

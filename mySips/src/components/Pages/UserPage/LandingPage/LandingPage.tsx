@@ -13,7 +13,7 @@ function LandingPage() {
     return (
         <section className="bg-background-dark bg-cover">
             <LandingNav />
-            <section className="flex flex-col mt-20 min-h-screen w-full px-16">
+            <section className="flex flex-col mt-24 min-h-screen w-full px-16">
                 <div className="mx-auto text-center max-w-4xl space-y-8 w-full">
                     <h1 className="text-6xl font-semibold text-white-blue ">
                         Where every sip tells a story, your{" "}
