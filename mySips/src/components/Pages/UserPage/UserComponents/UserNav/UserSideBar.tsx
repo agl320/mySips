@@ -71,7 +71,7 @@ const groupArr = [
             },
             {
                 title: "Inbox",
-                url: "#",
+                url: "/app/inbox",
                 icon: Inbox,
             },
             {

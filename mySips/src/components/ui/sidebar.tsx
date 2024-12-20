@@ -188,7 +188,7 @@ const Sidebar = React.forwardRef<
             return (
                 <div
                     className={cn(
-                        "flex h-full w-[--sidebar-width] flex-col bg-sidebar text-sidebar-foreground",
+                        "flex h-full w-[--sidebar-width] flex-col bg-background-dark text-sidebar-foreground",
                         className
                     )}
                     ref={ref}
@@ -209,7 +209,7 @@ const Sidebar = React.forwardRef<
                     <SheetContent
                         data-sidebar="sidebar"
                         data-mobile="true"
-                        className="w-[--sidebar-width] bg-sidebar p-0 text-sidebar-foreground [&>button]:hidden"
+                        className="w-[--sidebar-width] bg-background-dark  p-0 text-white [&>button]:hidden"
                         style={
                             {
                                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -401,7 +401,7 @@ const SidebarSeparator = React.forwardRef<
         <Separator
             ref={ref}
             data-sidebar="separator"
-            className={cn("mx-2 w-auto bg-sidebar-border", className)}
+            className={cn("mx-2 w-auto bg-sidebar-border ", className)}
             {...props}
         />
     );
@@ -535,7 +535,7 @@ const sidebarMenuButtonVariants = cva(
                 default:
                     "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                 outline:
-                    "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-[0_0_0_1px_hsl(var(--sidebar-accent))]",
+                    "bg-background shadow-[#333333] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:[#333333]",
             },
             size: {
                 default: "h-8 text-sm",
@@ -713,7 +713,7 @@ const SidebarMenuSub = React.forwardRef<
         ref={ref}
         data-sidebar="menu-sub"
         className={cn(
-            "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-sidebar-border px-2.5 py-0.5",
+            "mx-3.5 flex min-w-0 translate-x-px flex-col gap-1 border-l border-pastel-pink px-2.5 py-0.5",
             "group-data-[collapsible=icon]:hidden",
             className
         )}

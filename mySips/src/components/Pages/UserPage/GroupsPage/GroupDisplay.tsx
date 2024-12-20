@@ -55,13 +55,15 @@ import {
 import AddCollaboratorPopup from "./Popover/AddCollaboratorPopup";
 import AddDrinkPopup from "./Popover/AddDrinkPopup";
 
-function GroupDisplay({ user }) {
+function GroupDisplay({ user, setLinkTrail }) {
     const [focusedGroup, setFocusedGroup] = useState<{
         groupUid: string;
         ownerUid: string;
+        groupName: string;
     }>({
         groupUid: "",
         ownerUid: "",
+        groupName: "",
     });
 
     const focusGroupHandler = (groupUid: string) => {
@@ -69,12 +71,16 @@ function GroupDisplay({ user }) {
             setFocusedGroup({
                 groupUid: "",
                 ownerUid: "",
+                groupName: "",
             });
+            setLinkTrail(null);
         } else {
             setFocusedGroup({
                 groupUid: allGroupDocData[groupUid].groupUid,
                 ownerUid: allGroupDocData[groupUid].ownerUid,
+                groupName: allGroupDocData[groupUid].groupName,
             });
+            setLinkTrail({ value: allGroupDocData[groupUid].groupName });
         }
     };
 
@@ -95,6 +101,7 @@ function GroupDisplay({ user }) {
 
     const deleteGroupHandler = (groupUid: string) => {
         focusGroupHandler("");
+        setLinkTrail(null);
         deleteGroup(groupUid);
     };
 
@@ -114,7 +121,7 @@ function GroupDisplay({ user }) {
                             .map((group, index) => (
                                 <div
                                     key={`gd-ug-${index}`}
-                                    className="relative w-80 bg-pastel-pink rounded-md p-4 flex justify-between hover:cursor-pointer mt-8"
+                                    className="relative w-80 bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md p-4 flex justify-between hover:cursor-pointer mt-8"
                                     onClick={() =>
                                         focusGroupHandler(group?.uid)
                                     }
@@ -130,9 +137,9 @@ function GroupDisplay({ user }) {
                                                 group.accessUids.length
                                             )}
                                         />
-                                        <div className="absolute right-4 bottom-4 rounded-full w-12 h-12 bg-pastel-blue"></div>
+                                        {/* <div className="absolute right-4 bottom-4 rounded-full w-12 h-12 bg-pastel-blue"></div>
                                         <div className="absolute right-10 bottom-4 rounded-full w-12 h-12 bg-pastel-green"></div>
-                                        <div className="absolute right-16 bottom-4 rounded-full w-12 h-12 bg-pastel-yellow"></div>
+                                        <div className="absolute right-16 bottom-4 rounded-full w-12 h-12 bg-pastel-yellow"></div> */}
                                     </div>
                                 </div>
                             ))}

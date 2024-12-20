@@ -7,6 +7,7 @@ import MySipsPage from "../../MySipsPage/MySipsPage";
 import { useUser } from "reactfire";
 import FriendsPage from "../../FriendsPage/FriendsPage";
 import GroupsPage from "../../GroupsPage/GroupsPage";
+import InboxPage from "../../InboxPage/InboxPage";
 
 interface IUserApplication {
     selectedPage: PageTypes;
@@ -39,6 +40,10 @@ function UserApplication(props: IUserApplication) {
 
     if (selectedPage == PageTypes.MYGROUPS) {
         return <GroupsPage user={user} />;
+    }
+
+    if (selectedPage == PageTypes.INBOX) {
+        return <InboxPage user={user} />;
     }
 
     return <></>;

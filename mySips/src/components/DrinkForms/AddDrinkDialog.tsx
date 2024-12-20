@@ -83,7 +83,7 @@ function AddDrinkDialog({
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30">
+                        <Button className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30  mb-2 sm:mt-0">
                             Cancel
                         </Button>
                     </DialogClose>
