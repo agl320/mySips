@@ -20,10 +20,7 @@ import { createEmptyGroup } from "@/firebase/GroupHelpers";
 
 interface IAddDrinkDialogProps {
     baseGroupData: Group;
-    addGroupCallback: (
-        userUid: string,
-        newGroupProperties: IGroupParams
-    ) => Promise<void>;
+    addGroupCallback: (newGroupProperties: IGroupParams) => Promise<void>;
     user: User;
 }
 
@@ -70,9 +67,7 @@ function AddGroupDialog({
                     <DialogClose asChild>
                         <Button
                             className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
-                            onClick={() =>
-                                addGroupCallback(user?.uid, groupInputState)
-                            }
+                            onClick={() => addGroupCallback(groupInputState)}
                         >
                             Create Group
                         </Button>

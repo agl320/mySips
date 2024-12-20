@@ -7,14 +7,18 @@ export interface IKeyGroup {
 }
 
 /**
- * Custom group onSnapShot hook for user groups
+ * Custom group onSnapShot hook for group data
  *
  * @param firestore
  * @param userUid
  * @returns
  */
-export const useUserGroups = (firestore: any, userUid: string | null) => {
-    const [userGroupData, setUserGroupData] = useState<IKeyGroup>({});
+export const useTargetGroup = (
+    firestore: any,
+    userUid: string,
+    groupUid: string
+) => {
+    const [groupData, setGroupData] = useState<IKeyGroup>({});
 
     useEffect(() => {
         if (!userUid) return;
@@ -30,15 +34,19 @@ export const useUserGroups = (firestore: any, userUid: string | null) => {
                 );
 
                 const formattedGroupData = fetchedGroups.reduce(
-                    (acc, groupData) => {
-                        if (!groupData.uid || groupData.placeholder) return acc;
-                        acc[groupData.uid] = groupData;
+                    (acc, fetchedGroupData) => {
+                        if (
+                            !fetchedGroupData.uid ||
+                            fetchedGroupData.placeholder
+                        )
+                            return acc;
+                        acc[fetchedGroupData.uid] = fetchedGroupData;
                         return acc;
                     },
                     {} as IKeyGroup
                 );
 
-                setUserGroupData(formattedGroupData);
+                setGroupData(formattedGroupData);
             },
             (error) => {
                 console.error("Error fetching user groups:", error.message);
@@ -48,5 +56,5 @@ export const useUserGroups = (firestore: any, userUid: string | null) => {
         return () => unsubscribe();
     }, [firestore, userUid]);
 
-    return userGroupData;
+    return groupData;
 };

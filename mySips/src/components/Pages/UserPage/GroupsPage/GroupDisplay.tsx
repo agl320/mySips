@@ -19,8 +19,14 @@ import { Group } from "@/classes/Group";
 import AddGroupDialog from "@/components/GroupForms/AddGroupDialog";
 import {
     addDrinkToGroup,
+    allowGroupAccess,
     createEmptyGroup,
     createGroup,
+    deleteGroup,
+    getAllGroupDocData,
+    isDrinkInGroup,
+    removeGroupDrinkPair,
+    updateGroup,
 } from "@/firebase/GroupHelpers";
 import { useUserGroups } from "@/components/Hooks/useUserGroup";
 import { useUserDrinkData } from "../../../Hooks/useUserDrinkData";
@@ -35,37 +41,79 @@ import {
 } from "@/components/ui/command";
 import { Drink } from "@/classes/Drink";
 import GroupDrinkDisplay from "./GroupDrinkDisplay";
+import EditGroupDialog from "@/components/GroupForms/EditGroupDialog";
+import CustomCommandItem from "./CustomCommandItem";
+import { useUserConnections } from "@/components/Hooks/useUserConnections";
+import { useAllGroupDocs } from "@/components/Hooks/useAllGroupDocs";
+import { ConnectionStatus } from "@/classes/Connection";
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@/components/ui/tooltip";
+import AddCollaboratorPopup from "./Popover/AddCollaboratorPopup";
+import AddDrinkPopup from "./Popover/AddDrinkPopup";
 
 function GroupDisplay({ user }) {
-    const [focusedGroup, setFocusedGroup] = useState<string>("");
+    const [focusedGroup, setFocusedGroup] = useState<{
+        groupUid: string;
+        ownerUid: string;
+    }>({
+        groupUid: "",
+        ownerUid: "",
+    });
 
     const focusGroupHandler = (groupUid: string) => {
-        setFocusedGroup(groupUid);
+        if (groupUid === "") {
+            setFocusedGroup({
+                groupUid: "",
+                ownerUid: "",
+            });
+        } else {
+            setFocusedGroup({
+                groupUid: allGroupDocData[groupUid].groupUid,
+                ownerUid: allGroupDocData[groupUid].ownerUid,
+            });
+        }
     };
 
     const firestore = useFirestore();
 
     const userGroups = useUserGroups(firestore, user?.uid);
+    const allGroupDocData = useAllGroupDocs(firestore, userGroups);
 
     // TEMP
     // should filter by group
     const userDrinkData = useUserDrinkData(firestore, user?.uid);
 
+    const userConnections = useUserConnections(
+        firestore,
+        user?.uid,
+        ConnectionStatus.Friend
+    );
+
+    const deleteGroupHandler = (groupUid: string) => {
+        focusGroupHandler("");
+        deleteGroup(groupUid);
+    };
+
     return (
         <div>
-            {focusedGroup === "" ? (
+            {focusedGroup?.groupUid === "" ? (
                 <div>
                     <AddGroupDialog
-                        baseGroupData={createEmptyGroup()}
+                        baseGroupData={createEmptyGroup(user?.uid)}
                         addGroupCallback={createGroup}
                         user={user}
                     />
 
                     <div className="flex gap-x-4">
-                        {Object.values(userGroups)
+                        {Object.values(allGroupDocData)
                             .filter((group) => group?.uid)
-                            .map((group) => (
+                            .map((group, index) => (
                                 <div
+                                    key={`gd-ug-${index}`}
                                     className="relative w-80 bg-pastel-pink rounded-md p-4 flex justify-between hover:cursor-pointer mt-8"
                                     onClick={() =>
                                         focusGroupHandler(group?.uid)
@@ -75,13 +123,13 @@ function GroupDisplay({ user }) {
                                         <h1 className="text-4xl font-semibold mb-8">
                                             {group.groupName}
                                         </h1>
-                                        {/* <UserStatistics
+                                        <UserStatistics
                                             userId={user?.uid}
-                                            name="Drinks"
+                                            name="Users"
                                             value={String(
-                                                group.groupDrinks.length
+                                                group.accessUids.length
                                             )}
-                                        /> */}
+                                        />
                                         <div className="absolute right-4 bottom-4 rounded-full w-12 h-12 bg-pastel-blue"></div>
                                         <div className="absolute right-10 bottom-4 rounded-full w-12 h-12 bg-pastel-green"></div>
                                         <div className="absolute right-16 bottom-4 rounded-full w-12 h-12 bg-pastel-yellow"></div>
@@ -99,82 +147,68 @@ function GroupDisplay({ user }) {
                         >
                             <ChevronLeft className="" />
                         </Button>
-                        <Button
-                            className="bg-pastel-pink w-12 h-12"
-                            onClick={() => focusGroupHandler("")}
-                        >
-                            <Settings className="" />
-                        </Button>
-                        <Popover>
-                            <PopoverTrigger>
-                                <Button className="bg-pastel-pink h-12 text-base">
-                                    Invite collaborators
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="bg-white border-0 space-y-8">
-                                <div className="space-y-4">
-                                    <Label className="text-base">
-                                        Share GroupName
-                                    </Label>
-                                    <Input placeholder="Username"></Input>
-                                </div>
-                                <h4 className="text-base">
-                                    People with access
-                                </h4>
-                                <h4 className="text-base">General access</h4>
-                            </PopoverContent>
-                        </Popover>
 
-                        <Popover>
-                            <PopoverTrigger>
-                                <Button className="bg-pastel-pink h-12 text-base">
-                                    Add drink
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="bg-white border-0 space-y-8">
-                                <div className="space-y-4">
-                                    <Label className="text-base">
-                                        Drink Name
-                                    </Label>
-                                    <Command>
-                                        <CommandInput placeholder="Type a drink to search..." />
-                                        <CommandList>
-                                            <CommandEmpty>
-                                                No drinks found.
-                                            </CommandEmpty>
-                                            <CommandGroup heading="Suggestions">
-                                                {Object.values(
-                                                    userDrinkData
-                                                ).map((drinkData) => (
-                                                    <CommandItem
-                                                        className="flex justify-between hover:bg-pastel-pink/15 rounded-sm cursor-pointer"
-                                                        onClickCapture={() =>
-                                                            addDrinkToGroup(
-                                                                user?.uid,
-                                                                focusedGroup,
-                                                                drinkData.uid
-                                                            )
-                                                        }
-                                                    >
-                                                        <p>{drinkData.name}</p>
-                                                        <p>
-                                                            {drinkData.rating}
-                                                        </p>
-                                                    </CommandItem>
-                                                ))}
-                                            </CommandGroup>
-                                        </CommandList>
-                                    </Command>
-                                </div>
-                            </PopoverContent>
-                        </Popover>
+                        {focusedGroup.ownerUid === user.uid ? (
+                            <>
+                                <EditGroupDialog
+                                    user={user}
+                                    groupData={
+                                        allGroupDocData[
+                                            focusedGroup?.groupUid ?? ""
+                                        ]
+                                    }
+                                    editCallback={updateGroup}
+                                    deleteCallback={deleteGroupHandler}
+                                />
+                                <AddCollaboratorPopup
+                                    user={user}
+                                    userConnections={userConnections}
+                                    groupUid={focusedGroup.groupUid}
+                                />
+                            </>
+                        ) : (
+                            <>
+                                <TooltipProvider>
+                                    <Tooltip>
+                                        <TooltipTrigger>
+                                            <Button className="bg-pastel-pink w-12 h-12 opacity-50 cursor-no-drop">
+                                                <Settings className="" />
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent className="bg-pastel-blue border-none">
+                                            <p>
+                                                Only owner can access settings
+                                            </p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
+                                <TooltipProvider>
+                                    <Tooltip>
+                                        <TooltipTrigger>
+                                            <Button className="bg-pastel-pink h-12 text-base px-4 rounded-md opacity-50 cursor-no-dropq">
+                                                Add collaborators
+                                            </Button>
+                                        </TooltipTrigger>
+                                        <TooltipContent className="bg-pastel-blue border-none">
+                                            <p>Only owner can invite users</p>
+                                        </TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
+                            </>
+                        )}
+
+                        <AddDrinkPopup
+                            user={user}
+                            userDrinkData={userDrinkData}
+                            groupUid={focusedGroup.groupUid}
+                        />
                     </div>
-                    {/* <DrinkDisplay
+
+                    <GroupDrinkDisplay
                         user={user}
-                        userId={user?.uid}
-                        className="mt-8"
-                    /> */}
-                    <GroupDrinkDisplay user={user} groupUid={focusedGroup} />
+                        groupUid={focusedGroup?.groupUid}
+                        userGroups={userGroups}
+                    />
                 </div>
             )}
         </div>

@@ -5,8 +5,8 @@ import { IMenu } from "../interfaces/IMenu";
 interface IGroupParams {
     uid: string;
     groupName: string;
-    // groupDrinks?: Array<string>;
-    userUids?: Array<string>;
+    accessUids?: Array<string>;
+    ownerUid: string;
 }
 
 class Group implements IGroupParams {
@@ -14,23 +14,23 @@ class Group implements IGroupParams {
 
     groupName: string;
 
-    // groupDrinks: Array<string>;
+    accessUids: Array<string>;
 
-    userUids: Array<string>;
+    ownerUid: string;
 
     constructor(params: IGroupParams) {
         this.uid = params.uid;
         this.groupName = params.groupName;
-        // this.groupDrinks = params.groupDrinks ?? [];
-        this.userUids = params.userUids ?? [];
+        this.accessUids = params.accessUids ?? [];
+        this.ownerUid = params.ownerUid;
     }
 
     toFirestore(): Record<string, any> {
         return {
             uid: this.uid,
             groupName: this.groupName,
-            // groupDrinks: this.groupDrinks,
-            userUids: this.userUids,
+            accessUids: this.accessUids,
+            ownerUid: this.ownerUid,
         };
     }
 
@@ -38,8 +38,8 @@ class Group implements IGroupParams {
         return new Group({
             uid: data.uid,
             groupName: data.groupName,
-            // groupDrinks: data.groupDrinks,
-            userUids: data.userUids,
+            accessUids: data.accessUids,
+            ownerUid: data.ownerUid,
         });
     }
 }

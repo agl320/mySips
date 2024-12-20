@@ -3,9 +3,9 @@ import {
     BreadcrumbItem,
     BreadcrumbLink,
     BreadcrumbList,
-    BreadcrumbPage,
     BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import React from "react";
 
 function UserPageHeader({
     pageTitle,
@@ -22,26 +22,18 @@ function UserPageHeader({
             <div>
                 <Breadcrumb>
                     <BreadcrumbList className="text-base">
-                        {linkTrail.map((linkItem, index) => {
-                            return (
-                                <>
-                                    <BreadcrumbItem key={`BC-${index}`}>
-                                        <BreadcrumbLink
-                                            href={linkItem.href ?? "#"}
-                                        >
-                                            {linkItem.value}
-                                        </BreadcrumbLink>
-                                    </BreadcrumbItem>
-                                    {index < linkTrail.length - 1 ? (
-                                        <BreadcrumbSeparator
-                                            key={`BC-sep-${index}`}
-                                        />
-                                    ) : (
-                                        <></>
-                                    )}
-                                </>
-                            );
-                        })}
+                        {linkTrail.map((linkItem, index) => (
+                            <React.Fragment key={`BC-${index}`}>
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink href={linkItem.href ?? "#"}>
+                                        {linkItem.value}
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                                {index < linkTrail.length - 1 && (
+                                    <BreadcrumbSeparator />
+                                )}
+                            </React.Fragment>
+                        ))}
                     </BreadcrumbList>
                 </Breadcrumb>
             </div>

@@ -16,8 +16,8 @@ interface IDeleteDrinkDialogProps {
     callback: () => Promise<void>;
     title: string;
     description: string;
-    confirm: string;
-    cancel: string;
+    confirm?: string;
+    cancel?: string;
     customTrigger?: React.ReactNode;
 }
 

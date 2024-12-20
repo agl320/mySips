@@ -57,6 +57,8 @@ export const updateDrink = async (
     drinkUid: string,
     updatedDrinkProperties: Drink
 ) => {
+    console.log("SAVING");
+    console.log({ userUid, drinkUid, updatedDrinkProperties });
     // Creates new Drink object then invokes toFirestore()
     //  perhaps create custom helper so we don't need to create new Drink each edit
     const newDrinkObj = new Drink(updatedDrinkProperties);

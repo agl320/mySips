@@ -17,7 +17,7 @@ import { useState } from "react";
 
 interface IDrinkEditProps {
     // groupsState: Record<string, Group>;
-    user: User;
+    userUid: string;
     drinkData: Drink;
     editCallback: (
         userUid: string,
@@ -27,7 +27,7 @@ interface IDrinkEditProps {
 }
 
 function EditDrinkDialog({
-    user,
+    userUid,
     drinkData,
     editCallback: editDrinkCallback,
 }: IDrinkEditProps) {
@@ -99,7 +99,7 @@ function EditDrinkDialog({
                                 className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
                                 onClick={() =>
                                     editDrinkCallback(
-                                        user?.uid,
+                                        userUid,
                                         drinkData.uid,
                                         drinkInputState
                                     )

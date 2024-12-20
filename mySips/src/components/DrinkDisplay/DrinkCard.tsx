@@ -5,8 +5,8 @@ import { Button } from "../ui/button";
 import { Info, Share, Star } from "lucide-react";
 import ConfirmDialog from "./ConfirmDialog/ConfirmDialog";
 
-function DrinkCard(props: { user; drinkData; isEditable }) {
-    const { user, drinkData, isEditable } = props;
+function DrinkCard(props: { userUid: string; drinkData; isEditable }) {
+    const { userUid, drinkData, isEditable } = props;
 
     return (
         <div
@@ -36,7 +36,7 @@ function DrinkCard(props: { user; drinkData; isEditable }) {
                         <Separator className="w-full bg-white mb-4 bg-opacity-50" />
                         <div className="flex justify-begin ">
                             <EditDrinkDialog
-                                user={user}
+                                userUid={userUid}
                                 drinkData={drinkData}
                                 editCallback={updateDrink}
                             />
@@ -48,7 +48,7 @@ function DrinkCard(props: { user; drinkData; isEditable }) {
                             </Button>
                             <ConfirmDialog
                                 callback={() =>
-                                    deleteDrink(user?.uid, drinkData.uid)
+                                    deleteDrink(userUid, drinkData.uid)
                                 }
                                 title="Confirm Delete Drink"
                                 description={`Are you sure you want to remove ${drinkData.name} from

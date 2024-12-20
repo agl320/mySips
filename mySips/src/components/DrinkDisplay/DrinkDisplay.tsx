@@ -60,7 +60,7 @@ function DrinkDisplay(props: IDrinkDisplayProps) {
                 {Object.values(userDrinkData).map((drinkData) => {
                     return (
                         <DrinkCard
-                            user={user}
+                            userUid={user?.uid}
                             drinkData={drinkData}
                             isEditable={isEditable}
                         />

@@ -157,3 +157,10 @@ export const userRemoveConnection = async (
         console.error("Error creating connection:", error.message);
     }
 };
+
+export const getUserData = async (userUid: string) => {
+    const userDoc = doc(firebaseDB, "users", userUid);
+
+    const userData = await getDoc(userDoc);
+    return userData.data();
+};

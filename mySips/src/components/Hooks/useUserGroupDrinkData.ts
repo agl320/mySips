@@ -11,7 +11,7 @@ import { Drink } from "@/classes/Drink";
  * @param userUid
  * @returns
  */
-export const useUseGroupDrinkData = (
+export const useUserGroupDrinkData = (
     firestore: any,
     userUid: string,
     groupUid: string
@@ -21,11 +21,9 @@ export const useUseGroupDrinkData = (
     useEffect(() => {
         if (!userUid) return;
 
-        const userDocRef = doc(firestore, "users", userUid);
+        const userDocRef = doc(firestore, "groups", groupUid);
         const userDrinkGroupsCollectionRef = collection(
             userDocRef,
-            "userGroups",
-            groupUid,
             "groupDrinks"
         );
 
