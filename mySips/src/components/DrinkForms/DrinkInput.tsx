@@ -10,9 +10,45 @@ export type IDrinkInputProps = {
     setDrinkInputState: React.Dispatch<
         React.SetStateAction<Pick<Drink, "uid"> & Partial<Drink>>
     >;
+    formType?: "activity" | "information";
 };
 
-function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
+function DrinkInput({
+    drinkInputState,
+    setDrinkInputState,
+    formType,
+}: IDrinkInputProps) {
+    if (formType && formType === "activity") {
+        return (
+            <>
+                <Label>Rating</Label>
+                <div className="mt-4 w-full">
+                    <NumberField
+                        initialValue={drinkInputState.rating ?? 5}
+                        onChange={(
+                            e:
+                                | 1
+                                | 2
+                                | 3
+                                | 4
+                                | 5
+                                | 6
+                                | 7
+                                | 8
+                                | 9
+                                | 10
+                                | undefined
+                        ) => {
+                            setDrinkInputState({
+                                ...drinkInputState,
+                                rating: e,
+                            });
+                        }}
+                    />
+                </div>
+            </>
+        );
+    }
     return (
         <div>
             <div className="space-y-2 mb-4">
@@ -64,30 +100,6 @@ function DrinkInput({ drinkInputState, setDrinkInputState }: IDrinkInputProps) {
                         }}
                         maxLength={32}
                     ></Input>
-                    <div className="mt-4 w-full">
-                        <NumberField
-                            initialValue={drinkInputState.rating ?? 5}
-                            onChange={(
-                                e:
-                                    | 1
-                                    | 2
-                                    | 3
-                                    | 4
-                                    | 5
-                                    | 6
-                                    | 7
-                                    | 8
-                                    | 9
-                                    | 10
-                                    | undefined
-                            ) => {
-                                setDrinkInputState({
-                                    ...drinkInputState,
-                                    rating: e,
-                                });
-                            }}
-                        />
-                    </div>
                 </div>
                 <div className="w-full space-y-2">
                     <Label className="opacity-80">Street address</Label>

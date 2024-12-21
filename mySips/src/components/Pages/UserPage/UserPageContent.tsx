@@ -1,41 +1,35 @@
-import { Link, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import { useSigninCheck } from "reactfire";
-import UserNav from "./UserComponents/UserNav/UserNav";
 import UserApplication from "./UserComponents/UserApplication/UserApplication";
-import { useState } from "react";
 import { PageTypes } from "@/enums/PageTypes";
-import { getFirestore } from "firebase/firestore";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import UserSideBar from "./UserComponents/UserNav/UserSideBar";
+import { Separator } from "@/components/ui/separator";
 
 function UserPageContent(props: { selectedPage: PageTypes }) {
     const { selectedPage } = props;
     const { status, data: signInCheckResult } = useSigninCheck();
 
-    // if loading, display some loading component
+    // Show loading indicator while authentication state is being checked
     if (status === "loading") {
         return <span>loading...</span>;
     }
 
-    // If not signed in, return to home page
-    if (signInCheckResult.signedIn === false) {
+    // Redirect to home page if the user is not signed in
+    if (!signInCheckResult.signedIn) {
         return <Navigate to="/" />;
     }
 
     return (
-        <div className="flex min-h-screen min-w-screen bg-background-dark text-white">
-            {/* <UserNav setSelectedPage={setSelectedPage} /> */}
-
-            <SidebarProvider>
-                <UserSideBar selectedPage={selectedPage} />
-                <main className="">
-                    <SidebarTrigger />
-                </main>
-                <div className="w-screen">
-                    <UserApplication selectedPage={selectedPage} />
-                </div>
-            </SidebarProvider>
-        </div>
+        <SidebarProvider className="flex text-white">
+            <UserSideBar selectedPage={selectedPage} />
+            <main>
+                <SidebarTrigger className="rounded-md fixed" />
+            </main>
+            <div className="w-screen">
+                <UserApplication selectedPage={selectedPage} />
+            </div>
+        </SidebarProvider>
     );
 }
 

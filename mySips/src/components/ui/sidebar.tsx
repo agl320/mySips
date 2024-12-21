@@ -188,7 +188,7 @@ const Sidebar = React.forwardRef<
             return (
                 <div
                     className={cn(
-                        "flex h-full w-[--sidebar-width] flex-col bg-background-dark text-sidebar-foreground",
+                        "flex h-full w-[--sidebar-width] flex-col  text-sidebar-foreground",
                         className
                     )}
                     ref={ref}
@@ -209,7 +209,7 @@ const Sidebar = React.forwardRef<
                     <SheetContent
                         data-sidebar="sidebar"
                         data-mobile="true"
-                        className="w-[--sidebar-width] bg-background-dark  p-0 text-white [&>button]:hidden"
+                        className="w-[--sidebar-width]   p-0 text-white [&>button]:hidden"
                         style={
                             {
                                 "--sidebar-width": SIDEBAR_WIDTH_MOBILE,
@@ -237,7 +237,7 @@ const Sidebar = React.forwardRef<
                 {/* This is what handles the sidebar gap on desktop */}
                 <div
                     className={cn(
-                        "duration-200 relative h-svh w-[--sidebar-width] bg-transparent transition-[width] ease-linear",
+                        "duration-200 relative h-svh w-[--sidebar-width]  transition-[width] ease-linear",
                         "group-data-[collapsible=offcanvas]:w-0",
                         "group-data-[side=right]:rotate-180",
                         variant === "floating" || variant === "inset"
@@ -291,7 +291,7 @@ const SidebarTrigger = React.forwardRef<
             }}
             {...props}
         >
-            <PanelLeft />
+            <PanelLeft className="opacity-25" />
             <span className="sr-only">Toggle Sidebar</span>
         </Button>
     );
@@ -335,7 +335,7 @@ const SidebarInset = React.forwardRef<
         <main
             ref={ref}
             className={cn(
-                "relative flex min-h-svh flex-1 flex-col bg-background",
+                "relative flex min-h-svh flex-1 flex-col bg-white",
                 "peer-data-[variant=inset]:min-h-[calc(100svh-theme(spacing.4))] md:peer-data-[variant=inset]:m-2 md:peer-data-[state=collapsed]:peer-data-[variant=inset]:ml-2 md:peer-data-[variant=inset]:ml-0 md:peer-data-[variant=inset]:rounded-xl md:peer-data-[variant=inset]:shadow",
                 className
             )}
@@ -354,7 +354,7 @@ const SidebarInput = React.forwardRef<
             ref={ref}
             data-sidebar="input"
             className={cn(
-                "h-8 w-full bg-background shadow-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
+                "h-8 w-full  shadow-none focus-visible:ring-2 focus-visible:ring-sidebar-ring",
                 className
             )}
             {...props}
@@ -535,7 +535,7 @@ const sidebarMenuButtonVariants = cva(
                 default:
                     "hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                 outline:
-                    "bg-background shadow-[#333333] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:[#333333]",
+                    "bg-white/5 shadow-[#333333] hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:[#333333]",
             },
             size: {
                 default: "h-8 text-sm",

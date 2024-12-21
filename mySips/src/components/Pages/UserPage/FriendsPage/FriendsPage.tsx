@@ -180,7 +180,7 @@ const FriendsPage = ({ user }) => {
                 />
             </UserBlock>
 
-            <div className="flex gap-x-4 mt-8">
+            <UserBlock className="flex gap-x-4 mt-4">
                 {Object.values(userConnections).map((userData: any, index) => {
                     if (user?.uid !== userData.uid) {
                         return (
@@ -217,7 +217,7 @@ const FriendsPage = ({ user }) => {
                         );
                     }
                 })}
-            </div>
+            </UserBlock>
         </div>
     );
 };

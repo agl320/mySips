@@ -11,6 +11,7 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { User } from "firebase/auth";
 import { Pen } from "lucide-react";
 import { useState } from "react";
@@ -53,67 +54,62 @@ function EditDrinkDialog({
                     <DialogDescription className="opacity-80 pb-2 text-base">
                         Description
                     </DialogDescription>
-                    <br />
-                    <div>
-                        <DrinkInput
-                            drinkInputState={drinkInputState}
-                            setDrinkInputState={setDrinkInputState}
-                        />
-                        {/* {Object.values(groupsState)?.map((groupItem) => {
-                            return (
-                                <div key={groupItem.groupName}>
-                                    <label>{groupItem.groupName}</label>
-
-                                    <input
-                                        type="checkbox"
-                                        checked={drinkInputState.groups?.includes(
-                                            groupItem.uid
-                                        )}
-                                        onChange={() =>
-                                            setDrinkInputState({
-                                                ...drinkInputState,
-                                                groups: drinkInputState.groups?.includes(
-                                                    groupItem.uid
-                                                )
-                                                    ? drinkInputState.groups.filter(
-                                                          (currGroup) =>
-                                                              currGroup !==
-                                                              groupItem.uid
-                                                      )
-                                                    : [
-                                                          ...(drinkInputState.groups ??
-                                                              []),
-                                                          groupItem.uid,
-                                                      ],
-                                            })
-                                        }
-                                    ></input>
-                                </div>
-                            );
-                        })} */}
-                    </div>
-                    <br></br>
-                    <DialogFooter className="sm:justify-end">
-                        <DialogClose asChild>
-                            <Button
-                                className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
-                                onClick={() =>
-                                    editDrinkCallback(
-                                        userUid,
-                                        drinkData.uid,
-                                        drinkInputState
-                                    )
-                                }
+                    <Tabs defaultValue="activity" className="w-full h-full">
+                        <TabsList className="w-full">
+                            <TabsTrigger
+                                value="activity"
+                                className="w-full rounded-md mr-2"
                             >
-                                Save Changes
-                            </Button>
-                        </DialogClose>
-                        <DialogClose asChild>
-                            <Button className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30 mb-2 sm:mt-0">
-                                Cancel
-                            </Button>
-                        </DialogClose>
-                    </DialogFooter>
+                                Activity
+                            </TabsTrigger>
+                            <TabsTrigger
+                                value="information"
+                                className="w-full rounded-md"
+                            >
+                                Information
+                            </TabsTrigger>
+                        </TabsList>
+                        <TabsContent value="activity">
+                            <div>
+                                <DrinkInput
+                                    drinkInputState={drinkInputState}
+                                    setDrinkInputState={setDrinkInputState}
+                                    formType="activity"
+                                />
+                            </div>
+                            <br></br>
+                        </TabsContent>
+                        <TabsContent value="information">
+                            <div>
+                                <DrinkInput
+                                    drinkInputState={drinkInputState}
+                                    setDrinkInputState={setDrinkInputState}
+                                />
+                            </div>
+                            <br></br>
+                        </TabsContent>
+                        <DialogFooter className="sm:justify-end">
+                            <DialogClose asChild>
+                                <Button
+                                    className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
+                                    onClick={() =>
+                                        editDrinkCallback(
+                                            userUid,
+                                            drinkData.uid,
+                                            drinkInputState
+                                        )
+                                    }
+                                >
+                                    Save Changes
+                                </Button>
+                            </DialogClose>
+                            <DialogClose asChild>
+                                <Button className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30 mb-2 sm:mt-0">
+                                    Cancel
+                                </Button>
+                            </DialogClose>
+                        </DialogFooter>
+                    </Tabs>
                 </DialogContent>
             </Dialog>
         </>

@@ -1,8 +1,6 @@
-import { Separator } from "@/components/ui/separator";
 import OverviewPage from "../../OverviewPage/OverviewPage";
 import AdminPage from "../../AdminPage/AdminPage";
 import { PageTypes } from "@/enums/PageTypes";
-import { getFirestore } from "firebase/firestore";
 import MySipsPage from "../../MySipsPage/MySipsPage";
 import { useUser } from "reactfire";
 import FriendsPage from "../../FriendsPage/FriendsPage";
@@ -13,40 +11,26 @@ interface IUserApplication {
     selectedPage: PageTypes;
 }
 
-function UserApplication(props: IUserApplication) {
-    const { status: statusUser, data: user } = useUser();
+function UserApplication({ selectedPage }: IUserApplication) {
+    const { status, data: user } = useUser();
 
-    if (statusUser === "loading") {
+    // Show loading indicator if user data is being fetched
+    if (status === "loading") {
         return <span>Loading...</span>;
     }
 
-    const { selectedPage } = props;
+    // Map selectedPage to corresponding component
+    const pageComponents = {
+        [PageTypes.OVERVIEW]: <OverviewPage user={user} />,
+        [PageTypes.ADMIN]: <AdminPage />,
+        [PageTypes.MYSIPS]: <MySipsPage user={user} />,
+        [PageTypes.FRIENDS]: <FriendsPage user={user} />,
+        [PageTypes.MYGROUPS]: <GroupsPage user={user} />,
+        [PageTypes.INBOX]: <InboxPage user={user} />,
+    };
 
-    if (selectedPage === PageTypes.OVERVIEW) {
-        return <OverviewPage user={user} />;
-    }
-
-    if (selectedPage === PageTypes.ADMIN) {
-        return <AdminPage />;
-    }
-
-    if (selectedPage === PageTypes.MYSIPS) {
-        return <MySipsPage user={user} />;
-    }
-
-    if (selectedPage === PageTypes.FRIENDS) {
-        return <FriendsPage user={user} />;
-    }
-
-    if (selectedPage == PageTypes.MYGROUPS) {
-        return <GroupsPage user={user} />;
-    }
-
-    if (selectedPage == PageTypes.INBOX) {
-        return <InboxPage user={user} />;
-    }
-
-    return <></>;
+    // Render the corresponding page or a fallback if not matched
+    return pageComponents[selectedPage] || <></>;
 }
 
 export default UserApplication;

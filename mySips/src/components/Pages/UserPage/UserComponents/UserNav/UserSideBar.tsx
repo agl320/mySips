@@ -69,11 +69,11 @@ const groupArr = [
                 url: "/app/groups",
                 icon: PackageOpen,
             },
-            {
-                title: "Inbox",
-                url: "/app/inbox",
-                icon: Inbox,
-            },
+            // {
+            //     title: "Inbox",
+            //     url: "/app/inbox",
+            //     icon: Inbox,
+            // },
             {
                 title: "Calendar",
                 url: "#",
@@ -84,11 +84,11 @@ const groupArr = [
     {
         title: "Social",
         items: [
-            {
-                title: "Search",
-                url: "#",
-                icon: Search,
-            },
+            // {
+            //     title: "Search",
+            //     url: "#",
+            //     icon: Search,
+            // },
             {
                 title: "Friends",
                 url: "/app/friends",
@@ -161,7 +161,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                             ) : (
                                                 <Link
                                                     to={item.url}
-                                                    className="rounded-md hover:text-white duration-200 text-[#cccccc] hover:bg-background-block"
+                                                    className="rounded-md hover:text-white duration-200 text-[#cccccc] hover:bg-white/5"
                                                 >
                                                     <item.icon />
                                                     <span>{item.title}</span>

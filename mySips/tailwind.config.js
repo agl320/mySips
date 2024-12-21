@@ -22,9 +22,6 @@ module.exports = {
                 ["pastel-yellow"]: "#f2ef3f",
                 orange: "#e0ad14",
             },
-            backgroundImage: {
-                "test-bg": "url('/backgrounds/temp_bg.png')",
-            },
         },
     },
     plugins: [require("tailwindcss-animate")],

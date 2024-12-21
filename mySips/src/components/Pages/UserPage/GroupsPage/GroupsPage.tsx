@@ -34,10 +34,9 @@ function GroupsPage({ user }) {
                     ]}
                 />
             </UserBlock>
-
-            <div className="mt-8">
+            <UserBlock className="mt-4">
                 <GroupDisplay user={user} setLinkTrail={setLinkTrail} />
-            </div>
+            </UserBlock>
         </div>
     );
 }

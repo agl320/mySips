@@ -130,16 +130,6 @@ function GroupDisplay({ user, setLinkTrail }) {
                                         <h1 className="text-4xl font-semibold mb-8">
                                             {group.groupName}
                                         </h1>
-                                        <UserStatistics
-                                            userId={user?.uid}
-                                            name="Users"
-                                            value={String(
-                                                group.accessUids.length
-                                            )}
-                                        />
-                                        {/* <div className="absolute right-4 bottom-4 rounded-full w-12 h-12 bg-pastel-blue"></div>
-                                        <div className="absolute right-10 bottom-4 rounded-full w-12 h-12 bg-pastel-green"></div>
-                                        <div className="absolute right-16 bottom-4 rounded-full w-12 h-12 bg-pastel-yellow"></div> */}
                                     </div>
                                 </div>
                             ))}
