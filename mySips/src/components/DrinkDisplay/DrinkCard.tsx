@@ -54,7 +54,7 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
                         : "bg-gradient-to-r from-pastel-pink to-pastel-orange"
                 } rounded-md`}
             >
-                <div className="w-[460px] h-[300px] flex flex-col justify-between p-4">
+                <div className="w-[470px] h-[300px] flex flex-col justify-between p-4">
                     <div className="flex h-full">
                         <div className="w-full h-full">
                             <h1>{drinkData.name}</h1>
