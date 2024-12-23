@@ -1,2 +1,2 @@
 # mySipsV2
-Store drinks, upload via receipt image, and share with friends.
+Store drinks, easy upload via receipt image, and share with friends.
