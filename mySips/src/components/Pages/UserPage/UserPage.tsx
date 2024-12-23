@@ -10,6 +10,9 @@ import { getFirestore } from "firebase/firestore";
 import UserPageContent from "./UserPageContent";
 import { PageTypes } from "@/enums/PageTypes";
 
+import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+
 function UserPage(props: { selectedPage: PageTypes }) {
     const { selectedPage } = props;
 
@@ -24,7 +27,9 @@ function UserPage(props: { selectedPage: PageTypes }) {
         <AuthProvider sdk={auth}>
             <DatabaseProvider sdk={database}>
                 <FirestoreProvider sdk={firestore}>
-                    <UserPageContent selectedPage={selectedPage} />
+                    <LocalizationProvider dateAdapter={AdapterMoment}>
+                        <UserPageContent selectedPage={selectedPage} />
+                    </LocalizationProvider>
                 </FirestoreProvider>
             </DatabaseProvider>
         </AuthProvider>

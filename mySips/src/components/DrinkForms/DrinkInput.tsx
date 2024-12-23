@@ -4,6 +4,7 @@ import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import NumberField from "./NumberField";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
+import { DateCalendar, DatePicker, TimePicker } from "@mui/x-date-pickers";
 
 export type IDrinkInputProps = {
     drinkInputState: Pick<Drink, "uid"> & Partial<Drink>;
@@ -20,9 +21,8 @@ function DrinkInput({
 }: IDrinkInputProps) {
     if (formType && formType === "activity") {
         return (
-            <>
-                <Label>Rating</Label>
-                <div className="mt-4 w-full">
+            <div className="">
+                <div className="mt-4 w-full mr-4">
                     <NumberField
                         initialValue={drinkInputState.rating ?? 5}
                         onChange={(
@@ -46,7 +46,11 @@ function DrinkInput({
                         }}
                     />
                 </div>
-            </>
+
+                <div className="flex w-full">
+                    <DateCalendar />
+                </div>
+            </div>
         );
     }
     return (

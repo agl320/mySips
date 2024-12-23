@@ -54,11 +54,14 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
                         : "bg-gradient-to-r from-pastel-pink to-pastel-orange"
                 } rounded-md`}
             >
-                <div className="w-[470px] h-[300px] flex flex-col justify-between p-4">
+                <div className="w-[476px] h-[300px] flex flex-col justify-between p-4">
                     <div className="flex h-full">
                         <div className="w-full h-full">
-                            <h1>{drinkData.name}</h1>
-                            <p>{drinkData.rating}</p>
+                            <h1 className="font-semibold">{drinkData.name}</h1>
+                            <p>
+                                <span className="opacity-50">Rating:</span>{" "}
+                                {drinkData.rating ?? 5}
+                            </p>
                             <p>{drinkData.description}</p>
                         </div>
                         <div className="bg-white/50 h-full w-full rounded-md"></div>
