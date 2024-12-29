@@ -3,8 +3,9 @@ import { Drink } from "../../classes/Drink";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import NumberField from "./NumberField";
-import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
-import { DateCalendar, DatePicker, TimePicker } from "@mui/x-date-pickers";
+import { DateCalendar } from "@mui/x-date-pickers";
+import moment, { Moment } from "moment"; // Import moment
+import { useState } from "react";
 
 export type IDrinkInputProps = {
     drinkInputState: Pick<Drink, "uid"> & Partial<Drink>;
@@ -19,9 +20,12 @@ function DrinkInput({
     setDrinkInputState,
     formType,
 }: IDrinkInputProps) {
+    // State to store the selected date as a Moment object
+    const [selectedDate, setSelectedDate] = useState<Moment | null>(null);
+
     if (formType && formType === "activity") {
         return (
-            <div className="">
+            <div>
                 <div className="mt-4 w-full mr-4">
                     <NumberField
                         initialValue={drinkInputState.rating ?? 5}
@@ -47,12 +51,34 @@ function DrinkInput({
                     />
                 </div>
 
-                <div className="flex w-full">
-                    <DateCalendar />
+                <div className="flex w-full mt-4">
+                    <DateCalendar
+                        sx={{
+                            fontFamily: "General Sans, sans-serif",
+                        }}
+                        className="w-3/5"
+                        defaultValue={moment()} // Convert Moment to native Date
+                        onChange={(newDate) => {
+                            setSelectedDate(newDate ? moment(newDate) : null); // Store as Moment object
+                        }}
+                    />
+                    <div className="w-[20px] bg-pastel-pink">
+                        <div className="w-full h-full bg-white rounded-xl rounded-l-none"></div>
+                    </div>
+                    <div className="p-4 w-2/5 bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md rounded-l-none">
+                        <p className="text-xl font-medium text-white">
+                            I drank {drinkInputState.name} on{" "}
+                            {selectedDate
+                                ? selectedDate.format("MMMM Do YYYY") // Format using Moment.js
+                                : "a date"}
+                            .
+                        </p>
+                    </div>
                 </div>
             </div>
         );
     }
+
     return (
         <div>
             <div className="space-y-2 mb-4">
@@ -69,7 +95,7 @@ function DrinkInput({
                         });
                     }}
                     maxLength={32}
-                ></Input>
+                />
             </div>
             <div className="space-y-2 mb-4">
                 <Label className="opacity-80">Drink description</Label>
@@ -83,7 +109,7 @@ function DrinkInput({
                         });
                     }}
                     maxLength={300}
-                ></Textarea>
+                />
             </div>
             <div className="flex">
                 <div className="mr-4 w-full space-y-2">
@@ -103,7 +129,7 @@ function DrinkInput({
                             });
                         }}
                         maxLength={32}
-                    ></Input>
+                    />
                 </div>
                 <div className="w-full space-y-2">
                     <Label className="opacity-80">Street address</Label>
@@ -122,7 +148,7 @@ function DrinkInput({
                             });
                         }}
                         maxLength={32}
-                    ></Input>
+                    />
                 </div>
             </div>
         </div>

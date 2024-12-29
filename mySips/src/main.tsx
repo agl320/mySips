@@ -14,7 +14,15 @@ import UserPage from "./components/Pages/UserPage/UserPage.tsx";
 import LogoutPage from "./components/Pages/LogoutPage/LogoutPage.tsx";
 import { PageTypes } from "./enums/PageTypes.tsx";
 import ErrorPage from "./components/Pages/ErrorPage/ErrorPage.tsx";
+import { createTheme, ThemeProvider } from "@mui/material";
 
+const theme = createTheme({
+    palette: {
+        primary: {
+            main: "#ff5466", // Custom primary color
+        },
+    },
+});
 const router = createBrowserRouter([
     { errorElement: <ErrorPage /> },
     { path: "/", element: <LandingPage /> },
@@ -47,7 +55,9 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <FirebaseAppProvider firebaseConfig={firebaseConfig}>
         <AuthProvider>
-            <RouterProvider router={router} />
+            <ThemeProvider theme={theme}>
+                <RouterProvider router={router} />
+            </ThemeProvider>
         </AuthProvider>
     </FirebaseAppProvider>
 );
