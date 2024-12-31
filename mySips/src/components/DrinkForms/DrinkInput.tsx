@@ -7,7 +7,7 @@ import moment, { Moment } from "moment";
 import { useEffect, useState } from "react";
 import { Toggle } from "../ui/toggle";
 import { Check } from "lucide-react";
-import { styled } from "@mui/material";
+import { Slider, styled } from "@mui/material";
 import clsx from "clsx";
 import { Drink } from "@/classes/Drink";
 
@@ -111,14 +111,33 @@ function DrinkInput({
 
                     <div className="w-2/5 p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md">
                         <p className="text-xl font-medium text-white">
-                            I drank {drinkInputState.name} on{" "}
+                            You drank {drinkInputState.name} on{" "}
                             {selectedDate?.format("MMMM Do YYYY") || "a date"}.
                         </p>
                         <Toggle
                             defaultPressed={
-                                !!drinkInputState.drinkRecordHistory?.[
+                                drinkInputState.drinkRecordHistory &&
+                                selectedDate &&
+                                Object.hasOwn(
+                                    drinkInputState.drinkRecordHistory,
                                     selectedDate?.format("MM-DD-YYYY")
-                                ]
+                                )
+                                    ? !!drinkInputState.drinkRecordHistory?.[
+                                          selectedDate?.format("MM-DD-YYYY")
+                                      ]
+                                    : false
+                            }
+                            pressed={
+                                drinkInputState.drinkRecordHistory &&
+                                selectedDate &&
+                                Object.hasOwn(
+                                    drinkInputState.drinkRecordHistory,
+                                    selectedDate?.format("MM-DD-YYYY")
+                                )
+                                    ? !!drinkInputState.drinkRecordHistory?.[
+                                          selectedDate?.format("MM-DD-YYYY")
+                                      ]
+                                    : false
                             }
                             onClick={toggleDrinkRecord}
                             className="mt-2 bg-white/25 text-pastel-pink rounded-md w-full flex items-center justify-center focus:outline-none data-[state=on]:bg-white data-[state=on]:text-pastel-orange"
@@ -133,66 +152,92 @@ function DrinkInput({
 
     return (
         <div>
-            <Label>Drink name</Label>
-            <Input
-                type="text"
-                placeholder="New drink"
-                value={drinkInputState.name}
-                onChange={(e) =>
-                    setDrinkInputState({
-                        ...drinkInputState,
-                        name: e.target.value,
-                    })
-                }
-                maxLength={32}
-            />
+            <div className="mt-4">
+                <Label>Drink name</Label>
+                <Input
+                    type="text"
+                    placeholder="New drink"
+                    value={drinkInputState.name}
+                    onChange={(e) =>
+                        setDrinkInputState({
+                            ...drinkInputState,
+                            name: e.target.value,
+                        })
+                    }
+                    maxLength={32}
+                />
+            </div>
 
-            <Label>Drink description</Label>
-            <Textarea
-                placeholder="Drink description"
-                value={drinkInputState.description}
-                onChange={(e) =>
-                    setDrinkInputState({
-                        ...drinkInputState,
-                        description: e.target.value,
-                    })
-                }
-                maxLength={300}
-            />
-
-            <Label>Store name</Label>
-            <Input
-                type="text"
-                placeholder="Store name"
-                value={drinkInputState.store?.storeName || ""}
-                onChange={(e) =>
-                    setDrinkInputState({
-                        ...drinkInputState,
-                        store: {
-                            ...drinkInputState.store,
-                            storeName: e.target.value,
-                        },
-                    })
-                }
-                maxLength={32}
-            />
-
-            <Label>Street address</Label>
-            <Input
-                type="text"
-                placeholder="Street address"
-                value={drinkInputState.store?.storeAddress || ""}
-                onChange={(e) =>
-                    setDrinkInputState({
-                        ...drinkInputState,
-                        store: {
-                            ...drinkInputState.store,
-                            storeAddress: e.target.value,
-                        },
-                    })
-                }
-                maxLength={32}
-            />
+            <div className="flex mt-4">
+                <div className="w-3/5 ">
+                    <Label>Drink description</Label>
+                    <Textarea
+                        placeholder="Drink description"
+                        value={drinkInputState.description}
+                        onChange={(e) =>
+                            setDrinkInputState({
+                                ...drinkInputState,
+                                description: e.target.value,
+                            })
+                        }
+                        maxLength={300}
+                    />
+                </div>
+                <div className="w-2/5 ml-6">
+                    <Label>Ice level</Label>
+                    <Slider
+                        defaultValue={[50]}
+                        max={4}
+                        step={1}
+                        shiftStep={1}
+                        marks
+                    />
+                    <Label>Sugar level</Label>
+                    <Slider
+                        defaultValue={[50]}
+                        max={4}
+                        step={1}
+                        shiftStep={1}
+                        marks
+                    />
+                </div>
+            </div>
+            <div>
+                <Label>Store name</Label>
+                <Input
+                    type="text"
+                    placeholder="Store name"
+                    value={drinkInputState.store?.storeName || ""}
+                    onChange={(e) =>
+                        setDrinkInputState({
+                            ...drinkInputState,
+                            store: {
+                                ...drinkInputState.store,
+                                storeName: e.target.value,
+                            },
+                        })
+                    }
+                    maxLength={32}
+                />
+            </div>
+            <div className="mt-4">
+                <Label>Street address</Label>
+                <Input
+                    type="text"
+                    placeholder="Street address"
+                    value={drinkInputState.store?.storeAddress || ""}
+                    onChange={(e) =>
+                        setDrinkInputState({
+                            ...drinkInputState,
+                            store: {
+                                ...drinkInputState.store,
+                                storeAddress: e.target.value,
+                            },
+                        })
+                    }
+                    maxLength={32}
+                />
+            </div>
         </div>
     );
 }
