@@ -7,8 +7,9 @@ function NumberField(props: {
     max?: number;
     min?: number;
     onChange?: any;
+    label?: string;
 }) {
-    const { initialValue, min = 0, max = 10, onChange } = props;
+    const { initialValue, min = 0, max = 10, onChange, label } = props;
     const [currentValue, setCurrentValue] = useState<number>(initialValue);
 
     useEffect(() => {
@@ -17,7 +18,10 @@ function NumberField(props: {
 
     return (
         <div className="bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-75 rounded-md flex justify-between p-2">
-            <div className="flex flex-col justify-center">
+            <h3 className="absolute text-6xl font-semibold text-white overflow-none -rotate-6 opacity-40">
+                {label ? label : ""}
+            </h3>
+            <div className="flex flex-col justify-center ml-60">
                 <Button
                     onClick={() =>
                         setCurrentValue((prevValue) => {
@@ -26,13 +30,13 @@ function NumberField(props: {
                     }
                 >
                     <Minus
-                        className="stroke-white flex flex-col flex-1 opacity-75"
+                        className="stroke-white flex flex-col flex-1"
                         strokeWidth={4}
                     />
                 </Button>
             </div>
 
-            <p className="text-5xl font-semibold text-white opacity-75 w-[80px] text-center">
+            <p className="text-5xl font-semibold text-white  w-[80px] text-center">
                 {currentValue}
             </p>
             <div className="flex flex-col justify-center">
@@ -44,7 +48,7 @@ function NumberField(props: {
                     }
                 >
                     <Plus
-                        className="stroke-white flex flex-col flex-1 opacity-75"
+                        className="stroke-white flex flex-col flex-1 "
                         strokeWidth={4}
                     />
                 </Button>

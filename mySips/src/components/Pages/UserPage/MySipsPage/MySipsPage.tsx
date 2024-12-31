@@ -33,7 +33,7 @@ function MySipsPage(props: IUserProps) {
 
     return (
         <div className="w-full h-full p-8 text-white bg-gradient-to-r from-background-dark to-[#1c1a10] via-[#1c1015]">
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 max-h-72">
                 <UserBlock>
                     <UserPageHeader
                         pageTitle="mySips"
@@ -65,6 +65,9 @@ function MySipsPage(props: IUserProps) {
                         name="Money Spent"
                         value="$5,604.65"
                     />
+                </UserBlock>
+                <UserBlock className="w-full">
+                    <p>Test</p>
                 </UserBlock>
             </div>
 

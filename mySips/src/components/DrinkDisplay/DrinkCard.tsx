@@ -42,6 +42,9 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
                     cancel="Cancel"
                 />
             </div>
+            <p className="text-xs line-clamp-1 no-wrap mt-2 opacity-[0.5]">
+                {drinkData.uid}
+            </p>
         </div>
     );
 

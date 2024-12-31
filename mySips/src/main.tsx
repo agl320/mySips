@@ -21,8 +21,31 @@ const theme = createTheme({
         primary: {
             main: "#ff5466", // Custom primary color
         },
+        secondary: {
+            main: "#ff844b",
+        },
+    },
+    components: {
+        MuiPickersDay: {
+            styleOverrides: {
+                root: {
+                    borderRadius: "0.375rem", // Rounded corners for the day
+                },
+                "&.Mui-selected": {
+                    backgroundColor: "#ff5466", // Customize selected background color
+                    borderRadius: "0.375rem", // Ensure the selected day is also rounded
+                },
+                "&.Mui-selected:hover": {
+                    backgroundColor: "#e74a57", // Adjust hover color for selected day
+                },
+                "&.Mui-selected:focus": {
+                    backgroundColor: "#ff5466", // Prevent focus effect from altering the color
+                },
+            },
+        },
     },
 });
+
 const router = createBrowserRouter([
     { errorElement: <ErrorPage /> },
     { path: "/", element: <LandingPage /> },

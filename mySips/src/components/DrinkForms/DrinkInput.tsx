@@ -1,11 +1,15 @@
 import { Label } from "@radix-ui/react-label";
-import { Drink } from "../../classes/Drink";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import NumberField from "./NumberField";
-import { DateCalendar } from "@mui/x-date-pickers";
-import moment, { Moment } from "moment"; // Import moment
-import { useState } from "react";
+import { DateCalendar, PickersDay } from "@mui/x-date-pickers";
+import moment, { Moment } from "moment";
+import { useEffect, useState } from "react";
+import { Toggle } from "../ui/toggle";
+import { Check } from "lucide-react";
+import { styled } from "@mui/material";
+import clsx from "clsx";
+import { Drink } from "@/classes/Drink";
 
 export type IDrinkInputProps = {
     drinkInputState: Pick<Drink, "uid"> & Partial<Drink>;
@@ -15,64 +19,112 @@ export type IDrinkInputProps = {
     formType?: "activity" | "information";
 };
 
+const NewDay = styled(PickersDay)(({ theme }) => ({
+    "&.Mui-selected": {
+        backgroundColor: theme.palette.secondary.main,
+        color: theme.palette.primary.contrastText,
+    },
+    "&.selected-day": {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+    },
+}));
+
 function DrinkInput({
     drinkInputState,
     setDrinkInputState,
     formType,
 }: IDrinkInputProps) {
-    // State to store the selected date as a Moment object
-    const [selectedDate, setSelectedDate] = useState<Moment | null>(null);
+    const [selectedDate, setSelectedDate] = useState<Moment | null>(moment());
 
-    if (formType && formType === "activity") {
+    useEffect(() => {
+        const highlightedDays = Object.keys(
+            drinkInputState.drinkRecordHistory ?? []
+        );
+        setDrinkInputState((prevState) => ({ ...prevState, highlightedDays }));
+    }, [drinkInputState.drinkRecordHistory, setDrinkInputState]);
+
+    const toggleDrinkRecord = () => {
+        if (!selectedDate) return;
+        const dateKey = selectedDate.format("MM-DD-YYYY");
+        const updatedHistory = { ...drinkInputState.drinkRecordHistory };
+
+        if (updatedHistory[dateKey]) {
+            delete updatedHistory[dateKey];
+        } else {
+            updatedHistory[dateKey] = { date: dateKey };
+        }
+
+        setDrinkInputState({
+            ...drinkInputState,
+            drinkRecordHistory: updatedHistory,
+        });
+    };
+
+    const renderNewDay = (props) => {
+        const {
+            highlightedDays = [],
+            day,
+            outsideCurrentMonth,
+            ...other
+        } = props;
+        const dateKey = day.format("MM-DD-YYYY");
+        const isHighlighted = highlightedDays.includes(dateKey);
+        const isSelected = dateKey === selectedDate?.format("MM-DD-YYYY");
+
+        return (
+            <NewDay
+                {...other}
+                day={day}
+                selected={isHighlighted || isSelected}
+                className={clsx({ "selected-day": isSelected })}
+                outsideCurrentMonth={outsideCurrentMonth}
+            />
+        );
+    };
+
+    if (formType === "activity") {
         return (
             <div>
-                <div className="mt-4 w-full mr-4">
-                    <NumberField
-                        initialValue={drinkInputState.rating ?? 5}
-                        onChange={(
-                            e:
-                                | 1
-                                | 2
-                                | 3
-                                | 4
-                                | 5
-                                | 6
-                                | 7
-                                | 8
-                                | 9
-                                | 10
-                                | undefined
-                        ) => {
-                            setDrinkInputState({
-                                ...drinkInputState,
-                                rating: e,
-                            });
-                        }}
-                    />
-                </div>
+                <NumberField
+                    label="Rating:"
+                    initialValue={drinkInputState.rating ?? 5}
+                    onChange={(rating) =>
+                        setDrinkInputState({ ...drinkInputState, rating })
+                    }
+                />
 
-                <div className="flex w-full mt-4">
+                <div className="flex mt-4">
                     <DateCalendar
-                        sx={{
-                            fontFamily: "General Sans, sans-serif",
-                        }}
-                        className="w-3/5"
-                        defaultValue={moment()} // Convert Moment to native Date
-                        onChange={(newDate) => {
-                            setSelectedDate(newDate ? moment(newDate) : null); // Store as Moment object
+                        value={selectedDate}
+                        onChange={(newDate) =>
+                            setSelectedDate(newDate ? moment(newDate) : null)
+                        }
+                        slots={{ day: renderNewDay }}
+                        slotProps={{
+                            day: {
+                                highlightedDays:
+                                    drinkInputState.highlightedDays,
+                            },
                         }}
                     />
-                    <div className="w-[20px] bg-pastel-pink">
-                        <div className="w-full h-full bg-white rounded-xl rounded-l-none"></div>
-                    </div>
-                    <div className="p-4 w-2/5 bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md rounded-l-none">
+
+                    <div className="w-2/5 p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md">
                         <p className="text-xl font-medium text-white">
                             I drank {drinkInputState.name} on{" "}
-                            {selectedDate
-                                ? selectedDate.format("MMMM Do YYYY") // Format using Moment.js
-                                : "a date"}
-                            .
+                            {selectedDate?.format("MMMM Do YYYY") || "a date"}.
                         </p>
+                        <Toggle
+                            defaultPressed={
+                                !!drinkInputState.drinkRecordHistory?.[
+                                    selectedDate?.format("MM-DD-YYYY")
+                                ]
+                            }
+                            onClick={toggleDrinkRecord}
+                            className="mt-2 bg-white/25 text-pastel-pink rounded-md w-full flex items-center justify-center focus:outline-none data-[state=on]:bg-white data-[state=on]:text-pastel-orange"
+                        >
+                            <Check strokeWidth={4} />
+                        </Toggle>
                     </div>
                 </div>
             </div>
@@ -81,76 +133,66 @@ function DrinkInput({
 
     return (
         <div>
-            <div className="space-y-2 mb-4">
-                <Label className="opacity-80">Drink name</Label>
-                <Input
-                    type="text"
-                    placeholder={`New drink`}
-                    required
-                    value={drinkInputState.name}
-                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                        setDrinkInputState({
-                            ...drinkInputState,
-                            name: e.target.value,
-                        });
-                    }}
-                    maxLength={32}
-                />
-            </div>
-            <div className="space-y-2 mb-4">
-                <Label className="opacity-80">Drink description</Label>
-                <Textarea
-                    placeholder={`Drink description`}
-                    value={drinkInputState.description}
-                    onChangeCapture={(e) => {
-                        setDrinkInputState({
-                            ...drinkInputState,
-                            description: e.target.value,
-                        });
-                    }}
-                    maxLength={300}
-                />
-            </div>
-            <div className="flex">
-                <div className="mr-4 w-full space-y-2">
-                    <Label className="opacity-80">Store name</Label>
-                    <Input
-                        type="text"
-                        placeholder={`Store name`}
-                        required
-                        value={drinkInputState.store?.storeName}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setDrinkInputState({
-                                ...drinkInputState,
-                                store: {
-                                    ...drinkInputState.store,
-                                    storeName: e.target.value,
-                                },
-                            });
-                        }}
-                        maxLength={32}
-                    />
-                </div>
-                <div className="w-full space-y-2">
-                    <Label className="opacity-80">Street address</Label>
-                    <Input
-                        type="text"
-                        placeholder={`Street address`}
-                        required
-                        value={drinkInputState.store?.storeAddress}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                            setDrinkInputState({
-                                ...drinkInputState,
-                                store: {
-                                    ...drinkInputState.store,
-                                    storeAddress: e.target.value,
-                                },
-                            });
-                        }}
-                        maxLength={32}
-                    />
-                </div>
-            </div>
+            <Label>Drink name</Label>
+            <Input
+                type="text"
+                placeholder="New drink"
+                value={drinkInputState.name}
+                onChange={(e) =>
+                    setDrinkInputState({
+                        ...drinkInputState,
+                        name: e.target.value,
+                    })
+                }
+                maxLength={32}
+            />
+
+            <Label>Drink description</Label>
+            <Textarea
+                placeholder="Drink description"
+                value={drinkInputState.description}
+                onChange={(e) =>
+                    setDrinkInputState({
+                        ...drinkInputState,
+                        description: e.target.value,
+                    })
+                }
+                maxLength={300}
+            />
+
+            <Label>Store name</Label>
+            <Input
+                type="text"
+                placeholder="Store name"
+                value={drinkInputState.store?.storeName || ""}
+                onChange={(e) =>
+                    setDrinkInputState({
+                        ...drinkInputState,
+                        store: {
+                            ...drinkInputState.store,
+                            storeName: e.target.value,
+                        },
+                    })
+                }
+                maxLength={32}
+            />
+
+            <Label>Street address</Label>
+            <Input
+                type="text"
+                placeholder="Street address"
+                value={drinkInputState.store?.storeAddress || ""}
+                onChange={(e) =>
+                    setDrinkInputState({
+                        ...drinkInputState,
+                        store: {
+                            ...drinkInputState.store,
+                            storeAddress: e.target.value,
+                        },
+                    })
+                }
+                maxLength={32}
+            />
         </div>
     );
 }
