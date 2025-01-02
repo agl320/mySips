@@ -65,7 +65,18 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
                                 <span className="opacity-50">Rating:</span>{" "}
                                 {drinkData.rating ?? 5}
                             </p>
-                            <p>{drinkData.description}</p>
+                            <p>
+                                {" "}
+                                <span className="opacity-50">Price:</span> $
+                                {drinkData.drinkPrice}
+                            </p>
+                            <p>
+                                {" "}
+                                <span className="opacity-50">
+                                    Description:
+                                </span>{" "}
+                                {drinkData.description}
+                            </p>
                         </div>
                         <div className="bg-white/50 h-full w-full rounded-md"></div>
                     </div>

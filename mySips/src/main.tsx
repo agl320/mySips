@@ -25,6 +25,9 @@ const theme = createTheme({
             main: "#ff844b",
         },
     },
+    typography: {
+        fontFamily: "General Sans, sans-serif", // Set default font
+    },
     components: {
         MuiPickersDay: {
             styleOverrides: {

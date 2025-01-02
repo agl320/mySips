@@ -10,6 +10,7 @@ import { Check } from "lucide-react";
 import { Slider, styled } from "@mui/material";
 import clsx from "clsx";
 import { Drink } from "@/classes/Drink";
+import DrinkPriceInput from "./DrinkPriceInput";
 
 export type IDrinkInputProps = {
     drinkInputState: Pick<Drink, "uid"> & Partial<Drink>;
@@ -29,6 +30,29 @@ const NewDay = styled(PickersDay)(({ theme }) => ({
         color: theme.palette.primary.contrastText,
     },
 }));
+
+const marks = [
+    {
+        value: 0,
+        label: "0%",
+    },
+    {
+        value: 25,
+        label: "25%",
+    },
+    {
+        value: 50,
+        label: "50%",
+    },
+    {
+        value: 75,
+        label: "75%",
+    },
+    {
+        value: 100,
+        label: "100%",
+    },
+];
 
 function DrinkInput({
     drinkInputState,
@@ -109,7 +133,7 @@ function DrinkInput({
                         }}
                     />
 
-                    <div className="w-2/5 p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md">
+                    <div className="w-2/5 p-4 bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md rounded-l-none">
                         <p className="text-xl font-medium text-white">
                             You drank {drinkInputState.name} on{" "}
                             {selectedDate?.format("MMMM Do YYYY") || "a date"}.
@@ -152,24 +176,33 @@ function DrinkInput({
 
     return (
         <div>
-            <div className="mt-4">
-                <Label>Drink name</Label>
-                <Input
-                    type="text"
-                    placeholder="New drink"
-                    value={drinkInputState.name}
-                    onChange={(e) =>
-                        setDrinkInputState({
-                            ...drinkInputState,
-                            name: e.target.value,
-                        })
-                    }
-                    maxLength={32}
-                />
+            <div className="mt-4 flex">
+                <div className="w-2/3 mr-4">
+                    <Label>Drink name</Label>
+                    <Input
+                        type="text"
+                        placeholder="New drink"
+                        value={drinkInputState.name}
+                        onChange={(e) =>
+                            setDrinkInputState({
+                                ...drinkInputState,
+                                name: e.target.value,
+                            })
+                        }
+                        maxLength={32}
+                    />
+                </div>
+                <div className="w-1/3">
+                    <Label>Drink price</Label>
+                    <DrinkPriceInput
+                        drinkInputState={drinkInputState}
+                        setDrinkInputState={setDrinkInputState}
+                    />
+                </div>
             </div>
 
             <div className="flex mt-4">
-                <div className="w-3/5 ">
+                <div className="w-1/2 flex flex-col">
                     <Label>Drink description</Label>
                     <Textarea
                         placeholder="Drink description"
@@ -181,28 +214,63 @@ function DrinkInput({
                             })
                         }
                         maxLength={300}
+                        className="resize-none h-full"
                     />
                 </div>
-                <div className="w-2/5 ml-6">
+                <div className="w-1/2 ml-6 pr-4 pl-2">
                     <Label>Ice level</Label>
                     <Slider
-                        defaultValue={[50]}
-                        max={4}
-                        step={1}
-                        shiftStep={1}
-                        marks
+                        value={[drinkInputState.iceLevel]}
+                        max={100}
+                        step={25}
+                        shiftStep={25}
+                        marks={marks}
+                        onChange={(
+                            event: Event,
+                            newValue: number | number[]
+                        ) => {
+                            // Ensure `newValue` is treated as an array if necessary
+                            const value = Array.isArray(newValue)
+                                ? newValue[0]
+                                : newValue;
+
+                            if ([0, 25, 50, 75, 100].includes(value)) {
+                                console.log(value);
+                                setDrinkInputState({
+                                    ...drinkInputState,
+                                    iceLevel: value, // Assign the single value
+                                });
+                            }
+                        }}
                     />
                     <Label>Sugar level</Label>
                     <Slider
-                        defaultValue={[50]}
-                        max={4}
-                        step={1}
-                        shiftStep={1}
-                        marks
+                        value={[drinkInputState.sugarLevel]}
+                        max={100}
+                        step={25}
+                        shiftStep={25}
+                        marks={marks}
+                        onChange={(
+                            event: Event,
+                            newValue: number | number[]
+                        ) => {
+                            // Ensure `newValue` is treated as an array if necessary
+                            const value = Array.isArray(newValue)
+                                ? newValue[0]
+                                : newValue;
+
+                            if ([0, 25, 50, 75, 100].includes(value)) {
+                                console.log(value);
+                                setDrinkInputState({
+                                    ...drinkInputState,
+                                    sugarLevel: value, // Assign the single value
+                                });
+                            }
+                        }}
                     />
                 </div>
             </div>
-            <div>
+            <div className="mt-4">
                 <Label>Store name</Label>
                 <Input
                     type="text"

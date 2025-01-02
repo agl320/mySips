@@ -18,6 +18,7 @@ import { useUserDrinkData } from "@/components/Hooks/useUserDrinkData";
 import { useUserGroups } from "@/components/Hooks/useUserGroup";
 import { Separator } from "@/components/ui/separator";
 import { ArrowDownWideNarrow, ListFilter } from "lucide-react";
+import UserGraph from "../UserComponents/UserStatistics/UserGraph";
 
 interface IUserProps {
     user: User | null;
@@ -67,7 +68,7 @@ function MySipsPage(props: IUserProps) {
                     />
                 </UserBlock>
                 <UserBlock className="w-full">
-                    <p>Test</p>
+                    <UserGraph />
                 </UserBlock>
             </div>
 
