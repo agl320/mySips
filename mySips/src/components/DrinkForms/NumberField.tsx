@@ -18,7 +18,7 @@ function NumberField(props: {
 
     return (
         <div className="bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-75 rounded-md flex justify-between p-2">
-            <h3 className="absolute text-6xl font-semibold text-white overflow-none -rotate-6 opacity-40">
+            <h3 className="absolute text-6xl font-semibold text-white overflow-none -rotate-6 ">
                 {label ? label : ""}
             </h3>
             <div className="flex flex-col justify-center ml-60">
@@ -31,7 +31,7 @@ function NumberField(props: {
                 >
                     <Minus
                         className="stroke-white flex flex-col flex-1"
-                        strokeWidth={4}
+                        strokeWidth={5}
                     />
                 </Button>
             </div>
@@ -49,7 +49,7 @@ function NumberField(props: {
                 >
                     <Plus
                         className="stroke-white flex flex-col flex-1 "
-                        strokeWidth={4}
+                        strokeWidth={5}
                     />
                 </Button>
             </div>

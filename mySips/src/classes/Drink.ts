@@ -21,12 +21,14 @@ interface IDrinkParams {
     /** Drink groups ; to be used for group tabs */
     // groups?: Record<string, { groupUid: string; userUid: string }>;
 
-    sugarLevel?: string;
-    iceLevel?: string;
+    sugarLevel?: 0 | 25 | 50 | 75 | 100;
+    iceLevel?: 0 | 25 | 50 | 75 | 100;
 
     drinkRecordHistory?: Record<string, DrinkRecord>;
 
     dateCreated?: string;
+
+    drinkPrice?: string;
 }
 
 class Drink implements IDrinkParams {
@@ -48,12 +50,14 @@ class Drink implements IDrinkParams {
 
     // groups?: Record<string, { groupUid: string; userUid: string }>;
 
-    sugarLevel?: string;
-    iceLevel?: string;
+    sugarLevel: 0 | 25 | 50 | 75 | 100;
+    iceLevel: 0 | 25 | 50 | 75 | 100;
 
     dateCreated?: string;
 
     drinkRecordHistory: Record<string, DrinkRecord>;
+
+    drinkPrice: string;
 
     constructor(params: IDrinkParams) {
         this.uid = params.uid;
@@ -68,10 +72,12 @@ class Drink implements IDrinkParams {
         };
         this.tags = params?.tags;
         // this.groups = params?.groups;
-        this.sugarLevel = params?.sugarLevel;
-        this.iceLevel = params?.iceLevel;
+        this.sugarLevel = params?.sugarLevel ?? 50;
+        this.iceLevel = params?.iceLevel ?? 50;
         this.dateCreated = params?.dateCreated;
         this.drinkRecordHistory = params?.drinkRecordHistory ?? {};
+
+        this.drinkPrice = params?.drinkPrice ?? "0.00";
     }
 
     toFirestore(): Record<string, any> {
@@ -90,6 +96,9 @@ class Drink implements IDrinkParams {
             // groups: this.groups ?? [],
             dateCreated: this.dateCreated ?? null,
             drinkRecordHistory: this.drinkRecordHistory,
+            sugarLevel: this.sugarLevel ?? 50,
+            iceLevel: this.iceLevel ?? 50,
+            drinkPrice: this.drinkPrice,
         };
     }
 
@@ -109,6 +118,9 @@ class Drink implements IDrinkParams {
             // groups: data.groups,
             dateCreated: data.dateCreated,
             drinkRecordHistory: data.drinkRecordHistory,
+            sugarLevel: data.sugarLevel,
+            iceLevel: data.iceLevel,
+            drinkPrice: data.drinkPrice,
         });
     }
 }
