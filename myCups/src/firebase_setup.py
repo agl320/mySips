@@ -9,7 +9,8 @@ import logging
 
 logging.basicConfig(level=logging.INFO)
 
-load_dotenv()
+dotenv_path = os.path.join(os.path.dirname(__file__), './priv/.env')
+load_dotenv(dotenv_path)
 
 if not os.getenv('GOOGLE_APPLICATION_CREDENTIALS'):
     raise ValueError("Env var GOOGLE_APPLICATION_CREDENTIALS is unknown")
