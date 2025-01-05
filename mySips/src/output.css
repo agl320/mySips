@@ -36,6 +36,10 @@
 7. Disable tap highlights on iOS
 */
 
+/* canvas {
+    background-color: transparent !important;
+} */
+
 html,
 :host {
     line-height: 1.5;

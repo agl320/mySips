@@ -3,7 +3,7 @@ import { User } from "firebase/auth";
 import DrinkCard from "./DrinkCard";
 import AddDrinkDialog from "../DrinkForms/AddDrinkDialog";
 import { createDrink, createEmptyDrink } from "@/firebase/DrinkHelpers";
-import { useUserDrinkData } from "../Hooks/useUserDrinkData";
+import { useUserDrinkData } from "../../hooks/useUserDrinkData";
 
 interface IDrinkDisplayProps {
     user: User;
@@ -29,9 +29,9 @@ function DrinkDisplay({
     return (
         <div className={className}>
             <div className="flex flex-wrap gap-4">
-                {Object.values(userDrinkData).map((drinkData) => (
+                {Object.values(userDrinkData).map((drinkData, index) => (
                     <DrinkCard
-                        key={drinkData.id} // Assuming drinkData has a unique id
+                        key={`${drinkData.id}-${index}`} // Assuming drinkData has a unique id
                         userUid={user?.uid}
                         drinkData={drinkData}
                         isEditable={isEditable}
