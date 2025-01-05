@@ -1,21 +1,15 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { doc, collection, onSnapshot } from "firebase/firestore";
 import { Group } from "@/classes/Group";
 import { IMenu } from "@/interfaces/IMenu";
 import { Drink } from "@/classes/Drink";
 
-/**
- * Custom group onSnapShot hook for user drink data
- *
- * @param firestore
- * @param userUid
- * @returns
- */
 export const useUserDrinkData = (firestore: any, userUid: string | null) => {
     const [drinkData, setDrinkData] = useState<IMenu>({});
+    const isListenerSet = useRef(false); // Ref to track if listener is already set
 
     useEffect(() => {
-        if (!userUid) return;
+        if (!userUid || isListenerSet.current) return;
 
         const userDocRef = doc(firestore, "users", userUid);
         const userDrinkDataCollectionRef = collection(
@@ -39,14 +33,28 @@ export const useUserDrinkData = (firestore: any, userUid: string | null) => {
                     {} as IMenu
                 );
 
-                setDrinkData(formattedDrinkData);
+                setDrinkData((prevData) => {
+                    // Avoid unnecessary updates if data is unchanged
+                    if (
+                        JSON.stringify(prevData) ===
+                        JSON.stringify(formattedDrinkData)
+                    ) {
+                        return prevData;
+                    }
+                    return formattedDrinkData;
+                });
             },
             (error) => {
                 console.error("Error fetching user drinks:", error.message);
             }
         );
 
-        return () => unsubscribe();
+        isListenerSet.current = true; // Mark listener as set
+
+        return () => {
+            isListenerSet.current = false; // Reset the flag on unmount
+            unsubscribe();
+        };
     }, [firestore, userUid]);
 
     return drinkData;

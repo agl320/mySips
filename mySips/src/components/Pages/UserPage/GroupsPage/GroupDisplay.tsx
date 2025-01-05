@@ -28,8 +28,8 @@ import {
     removeGroupDrinkPair,
     updateGroup,
 } from "@/firebase/GroupHelpers";
-import { useUserGroups } from "@/components/Hooks/useUserGroup";
-import { useUserDrinkData } from "../../../Hooks/useUserDrinkData";
+import { useUserGroups } from "@/hooks/useUserGroup";
+import { useUserDrinkData } from "../../../../hooks/useUserDrinkData";
 import {
     Command,
     CommandEmpty,
@@ -43,8 +43,8 @@ import { Drink } from "@/classes/Drink";
 import GroupDrinkDisplay from "./GroupDrinkDisplay";
 import EditGroupDialog from "@/components/GroupForms/EditGroupDialog";
 import CustomCommandItem from "./CustomCommandItem";
-import { useUserConnections } from "@/components/Hooks/useUserConnections";
-import { useAllGroupDocs } from "@/components/Hooks/useAllGroupDocs";
+import { useUserConnections } from "@/hooks/useUserConnections";
+import { useAllGroupDocs } from "@/hooks/useAllGroupDocs";
 import { ConnectionStatus } from "@/classes/Connection";
 import {
     Tooltip,
