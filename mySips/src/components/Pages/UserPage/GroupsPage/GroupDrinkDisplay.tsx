@@ -1,11 +1,11 @@
-import { useUserGroupDrinkData } from "@/components/Hooks/useUserGroupDrinkData";
+import { useUserGroupDrinkData } from "@/hooks/useUserGroupDrinkData";
 import { User } from "firebase/auth";
 import { useFirestore } from "reactfire";
 import GroupItem from "./GroupItem";
 import { useEffect, useState } from "react";
 import { getAllGroupUids } from "@/firebase/DrinkHelpers";
-import { useAllGroupDrinks } from "@/components/Hooks/useAllGroupDrinks";
-import { useAllGroupEntries } from "@/components/Hooks/useAllGroupEntries";
+import { useAllGroupDrinks } from "@/hooks/useAllGroupDrinks";
+import { useAllGroupEntries } from "@/hooks/useAllGroupEntries";
 import { Skeleton } from "@/components/ui/skeleton";
 import { LoaderCircle, LoaderIcon } from "lucide-react";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";

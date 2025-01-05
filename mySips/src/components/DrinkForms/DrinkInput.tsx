@@ -214,7 +214,9 @@ function DrinkInput({
                             })
                         }
                         maxLength={300}
-                        className="h-full"
+
+                        className="resize-none h-full"
+
                     />
                 </div>
                 <div className="w-1/2 ml-6 pr-4 pl-2">
