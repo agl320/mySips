@@ -175,7 +175,8 @@ function OverviewPage({ user }: IUserProps) {
                     <h1 className="text-3xl font-semibold">Most Popular</h1>
                     <div className="inline-flex bg-white/15 px-4 py-2 rounded-lg w-max">
                         <Info className="mr-4" />
-                        {cachedData?.top_three_drinks.length === 0 ? (
+                        {cachedData &&
+                        cachedData?.top_three_drinks.length === 0 ? (
                             <p>There are currently no drinks.</p>
                         ) : (
                             <p>

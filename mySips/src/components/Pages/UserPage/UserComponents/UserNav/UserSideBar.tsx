@@ -42,12 +42,13 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Link } from "react-router-dom";
 import { PageTypes } from "@/enums/PageTypes";
+import { useUser } from "reactfire";
 
-const user = {
-    name: "xegativ",
-    email: "x@example.com",
-    avatar: "/avatars/shadcn.jpg",
-};
+// const user = {
+//     name: "xegativ",
+//     email: "x@example.com",
+//     avatar: "/avatars/shadcn.jpg",
+// };
 // Menu items.
 const groupArr = [
     {
@@ -130,6 +131,12 @@ const groupArr = [
 ];
 
 export function UserSideBar(props: { selectedPage: PageTypes }) {
+    const { status: statusUser, data: userData } = useUser();
+    const user = {
+        name: userData?.displayName,
+        email: userData?.email,
+        avatar: "/avatars/shadcn.jpg",
+    };
     const { selectedPage } = props;
     return (
         <Sidebar className="p-4">
@@ -190,7 +197,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                             alt={user.name}
                                         />
                                         <AvatarFallback className="rounded-lg">
-                                            AL
+                                            JB
                                         </AvatarFallback>
                                     </Avatar>
                                     <div className="grid flex-1 text-left text-sm leading-tight">
@@ -210,7 +217,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                 align="end"
                                 sideOffset={4}
                             >
-                                <DropdownMenuLabel className="p-0 font-normal">
+                                <DropdownMenuLabel className="p-0 font-normal text-white">
                                     <div className="flex items-center gap-2 px-1 py-1.5 text-left text-sm">
                                         <Avatar className="h-8 w-8 rounded-lg">
                                             <AvatarImage
@@ -218,7 +225,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                                 alt={user.name}
                                             />
                                             <AvatarFallback className="rounded-lg">
-                                                AL
+                                                JB
                                             </AvatarFallback>
                                         </Avatar>
                                         <div className="grid flex-1 text-left text-sm leading-tight">
@@ -231,20 +238,22 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                         </div>
                                     </div>
                                 </DropdownMenuLabel>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuGroup>
+                                <DropdownMenuSeparator className="bg-white/50" />
+                                {/* <DropdownMenuGroup>
                                     <DropdownMenuItem>
                                         <Sparkles />
                                         Upgrade to Pro
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuGroup>
-                                    <DropdownMenuItem>
-                                        <BadgeCheck />
-                                        Account
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
+                                <DropdownMenuSeparator /> */}
+                                {/* <DropdownMenuGroup> */}
+                                <DropdownMenuItem>
+                                    <BadgeCheck className="stroke-white mr-2" />
+                                    <p className="text-white">
+                                        Account Settings
+                                    </p>
+                                </DropdownMenuItem>
+                                {/* <DropdownMenuItem>
                                         <CreditCard />
                                         Billing
                                     </DropdownMenuItem>
@@ -253,11 +262,11 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                         Notifications
                                     </DropdownMenuItem>
                                 </DropdownMenuGroup>
-                                <DropdownMenuSeparator />
-                                <DropdownMenuItem>
+                                <DropdownMenuSeparator /> */}
+                                {/* <DropdownMenuItem>
                                     <LogOut />
                                     Log out
-                                </DropdownMenuItem>
+                                </DropdownMenuItem> */}
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </SidebarMenuItem>

@@ -32,7 +32,7 @@ function ConfirmDialog({
     const triggerComponent = customTrigger ? (
         cloneElement(customTrigger as React.ReactElement)
     ) : (
-        <Button className="w-4 h-8 hover:bg-white/15">
+        <Button className="w-4 h-8 hover:bg-white/15 ">
             <Trash2 />
         </Button>
     );
@@ -49,14 +49,14 @@ function ConfirmDialog({
                 <DialogFooter className="sm:justify-end">
                     <DialogClose asChild>
                         <Button
-                            className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30"
+                            className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30 hover:saturate-150"
                             onClick={callback}
                         >
                             {confirm}
                         </Button>
                     </DialogClose>
                     <DialogClose asChild>
-                        <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white">
+                        <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white hover:saturate-150">
                             {cancel}
                         </Button>
                     </DialogClose>
