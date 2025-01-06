@@ -46,6 +46,7 @@ interface IUserGraphBar {
         data: number[];
         backgroundColor?: string;
     }>;
+    yAxisLabel: string;
 }
 
 // Bar chart component
@@ -58,6 +59,7 @@ const UserGraphBar: React.FC<IUserGraphBar> = ({
     title,
     labels = ["0", "25", "50", "75", "100"], // Default labels for Sugar/Ice levels
     datasets = [],
+    yAxisLabel = "Frequency",
 }) => {
     const options = {
         maintainAspectRatio: false,
@@ -91,7 +93,7 @@ const UserGraphBar: React.FC<IUserGraphBar> = ({
             y: {
                 title: {
                     display: true,
-                    text: "Frequency",
+                    text: yAxisLabel,
                     font: {
                         size: fontSize + 2,
                         family: "General Sans, sans-serif",

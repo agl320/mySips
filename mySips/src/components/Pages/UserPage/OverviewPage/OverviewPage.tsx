@@ -11,7 +11,7 @@ import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
 import { Separator } from "@/components/ui/separator";
 import UserGraphLine from "../UserComponents/UserStatistics/UserGraphLine";
 import CustomDrinkDisplay from "@/components/DrinkDisplay/CustomDrinkDisplay";
-import { CircleDollarSign, DollarSign, Info } from "lucide-react";
+import { BookOpenText, CircleDollarSign, DollarSign, Info } from "lucide-react";
 import UserGraphBar from "../UserComponents/UserStatistics/UserGraphBar";
 import {
     colors,
@@ -19,6 +19,7 @@ import {
     monthLabels,
 } from "../UserComponents/UserStatistics/GraphHelpers";
 import DrinkTable from "@/components/DrinkDisplay/DrinkTable";
+import { Button } from "@/components/ui/button";
 
 interface IUserProps {
     user: User;
@@ -61,10 +62,14 @@ function OverviewPage({ user }: IUserProps) {
                 </UserBlock>
 
                 <UserBlock className="bg-gradient-to-r from-pastel-pink to-pastel-orange w-full mr-4">
-                    <div className="h-48">
+                    <div className="h-48 flex flex-col justify-between">
                         <h1 className="text-4xl font-semibold">
                             Welcome back, {user?.displayName}
                         </h1>
+                        <Button className="bg-white text-pastel-orange font-medium float-right ml-auto">
+                            Explore Menus
+                            <BookOpenText />
+                        </Button>
                     </div>
                 </UserBlock>
                 <UserBlock className="bg-gradient-to-r from-pastel-orange to-pastel-light-orange w-[600px]">
@@ -135,7 +140,7 @@ function OverviewPage({ user }: IUserProps) {
                             fontSize={10}
                             fontColor="white"
                             xAxisLabel="Months"
-                            yAxisLabel="# of Drinks"
+                            yAxisLabel="Drinks"
                             labels={monthLabels}
                             datasets={convertToDatasets(
                                 cachedData?.drinks_per_month,
@@ -156,6 +161,7 @@ function OverviewPage({ user }: IUserProps) {
                             fontSize={10}
                             fontColor="white"
                             title="Ice & Sugar Levels"
+                            yAxisLabel="Drinks"
                         />
                     </UserGraphWrapper>
                 </UserBlock>

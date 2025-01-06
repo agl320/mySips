@@ -114,6 +114,12 @@ function LandingPage() {
                             for producers.
                         </span>
                     </h1>
+                    <p className="text-center text-white-blue text-xl opacity-80 ">
+                        mySips offers an easy and intuitive way to quantify
+                        customer satisfaction. This allows you to maximize
+                        production efficiency and sales, providing another facet
+                        into your menu analysis.
+                    </p>
                 </div>
             </section>
             <footer className="min-h-[200px] bg-background-block"></footer>

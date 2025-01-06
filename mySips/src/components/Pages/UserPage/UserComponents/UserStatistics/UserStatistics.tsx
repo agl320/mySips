@@ -15,6 +15,7 @@ interface IUserStatisticsProps {
     deltaPrefix?: string; // Unit for the delta (e.g., $, %, etc.)
     deltaPostfix?: string;
     customIcon?: React.ReactNode; // Custom icon
+    customColor?: string; // Custom background color
     className?: string;
 }
 
@@ -28,13 +29,16 @@ function UserStatistics(props: IUserStatisticsProps) {
         deltaPrefix = "",
         deltaPostfix = "",
         customIcon,
+        customColor = "bg-pastel-pink/15", // Default background color
         className,
     } = props;
 
     return (
         <div className={className}>
             <div className="flex items-center space-x-2">
-                <div className="bg-pastel-pink/15 rounded-full flex items-center justify-center w-6 h-6 border border-pastel-pink/5">
+                <div
+                    className={`rounded-full flex items-center justify-center w-6 h-6 border border-pastel-pink/5 ${customColor}`}
+                >
                     {customIcon ? (
                         customIcon
                     ) : (

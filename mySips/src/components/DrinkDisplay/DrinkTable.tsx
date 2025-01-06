@@ -17,6 +17,18 @@ interface IDrinkTableProps {
     className?: string;
 }
 
+const getRatingColor = (rating: number) => {
+    if (rating >= 8) {
+        return "bg-gradient-to-r from-pastel-light-orange to-pastel-yellow";
+    } else if (rating >= 6) {
+        return "bg-pastel-light-orange";
+    } else if (rating >= 4) {
+        return "bg-pastel-orange";
+    } else {
+        return "bg-pastel-pink";
+    }
+};
+
 function DrinkTable({ user, className }: IDrinkTableProps) {
     const firestore = useFirestore();
 
@@ -51,7 +63,13 @@ function DrinkTable({ user, className }: IDrinkTableProps) {
                                     {drinkData.store?.storeName ?? "N/A"}
                                 </TableCell>
                                 <TableCell className="text-right">
-                                    {drinkData.rating ?? 5}
+                                    <div
+                                        className={`inline-block py-1 px-2 rounded-md text-background-dark font-semibold ${getRatingColor(
+                                            drinkData.rating ?? 5
+                                        )}`}
+                                    >
+                                        {drinkData.rating ?? 5}
+                                    </div>
                                 </TableCell>
                             </TableRow>
                         ))}

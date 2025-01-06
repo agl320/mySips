@@ -8,7 +8,13 @@ import { Button } from "@/components/ui/button";
 import { useUserDrinkData } from "@/hooks/useUserDrinkData";
 import { useUserGroups } from "@/hooks/useUserGroup";
 import { Separator } from "@/components/ui/separator";
-import { ArrowDownWideNarrow, ListFilter } from "lucide-react";
+import {
+    ArrowDownWideNarrow,
+    CircleMinus,
+    DollarSign,
+    ListFilter,
+    UsersRound,
+} from "lucide-react";
 import UserGraphScatter from "../UserComponents/UserStatistics/UserGraphScatter";
 import { useDrinkStats } from "@/hooks/useDrinkStats";
 import UserGraphWrapper from "../UserComponents/UserStatistics/UserGraphWrapper";
@@ -71,6 +77,10 @@ function MySipsPage(props: IUserProps) {
                             userId={user?.uid ?? ""}
                             name="Groups"
                             value={String(Object.keys(userGroups).length)}
+                            customIcon={
+                                <UsersRound className="w-3 h-3 stroke-pastel-orange" />
+                            }
+                            customColor="bg-pastel-orange/15"
                         />
                     </div>
                     <Separator
@@ -86,6 +96,10 @@ function MySipsPage(props: IUserProps) {
                                 "0.00"
                             }
                             valueUnit="$"
+                            customIcon={
+                                <DollarSign className="w-3 h-3 stroke-pastel-green" />
+                            }
+                            customColor="bg-pastel-green/15"
                         />
                         <Separator className="bg-white/15 my-8" />
                         <UserStatistics
@@ -96,12 +110,14 @@ function MySipsPage(props: IUserProps) {
                                 "0.00"
                             }
                             valueUnit="$"
+                            customIcon={
+                                <CircleMinus className="w-3 h-3 stroke-white" />
+                            }
+                            customColor="bg-white/15"
                         />
                     </div>
-                    <Separator
-                        orientation="vertical"
-                        className="bg-white/15 mx-8"
-                    />
+                </UserBlock>
+                <UserBlock className="flex">
                     <div>
                         <UserStatistics
                             userId={user?.uid ?? ""}
@@ -150,7 +166,7 @@ function MySipsPage(props: IUserProps) {
                             fontSize={10}
                             fontColor="white"
                             xAxisLabel="Months"
-                            yAxisLabel="# of Drinks"
+                            yAxisLabel="Drinks"
                             labels={monthLabels}
                             datasets={convertToDatasets(
                                 cachedData?.drinks_per_month,
