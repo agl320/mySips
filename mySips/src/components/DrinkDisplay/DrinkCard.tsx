@@ -12,8 +12,8 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
     const [showInfo, setShowInfo] = useState(false);
 
     const renderEditableActions = () => (
-        <div className="mt-4">
-            <Separator className="w-full bg-white mb-4 bg-opacity-50" />
+        <div className="mt-2">
+            <Separator className="w-full bg-white mb-2 bg-opacity-50" />
             <div className="flex">
                 <EditDrinkDialog
                     userUid={userUid}
@@ -21,14 +21,16 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
                     editCallback={updateDrink}
                 />
                 <Button
-                    className="h-4 w-4"
+                    className="h-8 w-4 hover:bg-white/15"
                     onClick={() => setShowInfo(!showInfo)}
                 >
                     <Info className="h-4 w-4" />
                 </Button>
                 <Popover>
-                    <PopoverTrigger className="h-4 w-4 mx-2">
-                        <Share className="h-4 w-4" />
+                    <PopoverTrigger className="">
+                        <Button className="h-8 w-4 hover:bg-white/15">
+                            <Share className="h-4 w-4 " />
+                        </Button>
                     </PopoverTrigger>
                     <PopoverContent className="bg-white border-0 space-y-8">
                         <Label>Share to</Label>
@@ -42,7 +44,7 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
                     cancel="Cancel"
                 />
             </div>
-            <p className="text-xs line-clamp-1 no-wrap mt-2 opacity-[0.5]">
+            <p className="text-xs line-clamp-1 no-wrap mt-1 opacity-[0.5]">
                 {drinkData.uid}
             </p>
         </div>

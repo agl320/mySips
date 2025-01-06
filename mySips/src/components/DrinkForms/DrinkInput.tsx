@@ -164,7 +164,7 @@ function DrinkInput({
                                     : false
                             }
                             onClick={toggleDrinkRecord}
-                            className="mt-2 bg-white/25 text-pastel-pink rounded-md w-full flex items-center justify-center focus:outline-none data-[state=on]:bg-white data-[state=on]:text-pastel-orange"
+                            className="mt-2 bg-white/25 text-pastel-pink rounded-md w-full flex items-center justify-center focus:outline-none data-[state=on]:bg-white data-[state=on]:text-pastel-orange hover:bg-white/40"
                         >
                             <Check strokeWidth={4} />
                         </Toggle>
@@ -214,9 +214,7 @@ function DrinkInput({
                             })
                         }
                         maxLength={300}
-
                         className="resize-none h-full"
-
                     />
                 </div>
                 <div className="w-1/2 ml-6 pr-4 pl-2">

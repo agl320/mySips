@@ -23,6 +23,9 @@ module.exports = {
                 orange: "#e0ad14",
                 ["pastel-light-orange"]: "#ffc04b",
             },
+            backgroundImage: {
+                overview: "url('/images/overview.webp')",
+            },
         },
     },
     plugins: [require("tailwindcss-animate")],

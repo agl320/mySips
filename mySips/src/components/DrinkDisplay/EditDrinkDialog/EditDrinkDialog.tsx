@@ -42,7 +42,7 @@ function EditDrinkDialog({
                 <DialogTrigger asChild>
                     <Button
                         onClick={() => setDrinkInputState(drinkData)}
-                        className="h-4 w-4"
+                        className="h-8 w-4 hover:bg-white/15"
                     >
                         <Pen className="h-4 w-4" />
                     </Button>
@@ -58,13 +58,13 @@ function EditDrinkDialog({
                         <TabsList className="w-full">
                             <TabsTrigger
                                 value="activity"
-                                className="w-full rounded-md mr-2"
+                                className="w-full rounded-md mr-2 hover:saturate-200"
                             >
                                 Activity
                             </TabsTrigger>
                             <TabsTrigger
                                 value="information"
-                                className="w-full rounded-md"
+                                className="w-full rounded-md hover:saturate-200"
                             >
                                 Information
                             </TabsTrigger>
@@ -91,7 +91,7 @@ function EditDrinkDialog({
                         <DialogFooter className="sm:justify-end">
                             <DialogClose asChild>
                                 <Button
-                                    className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
+                                    className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white hover:saturate-150"
                                     onClick={() =>
                                         editDrinkCallback(
                                             userUid,
@@ -104,7 +104,7 @@ function EditDrinkDialog({
                                 </Button>
                             </DialogClose>
                             <DialogClose asChild>
-                                <Button className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30 mb-2 sm:mt-0">
+                                <Button className="bg-pastel-orange text-md rounded-md px-4 text-pastel-orange bg-opacity-30 mb-2 sm:mt-0 hover:saturate-150">
                                     Cancel
                                 </Button>
                             </DialogClose>

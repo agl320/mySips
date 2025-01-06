@@ -32,7 +32,7 @@ function ConfirmDialog({
     const triggerComponent = customTrigger ? (
         cloneElement(customTrigger as React.ReactElement)
     ) : (
-        <Button className="w-4 h-4">
+        <Button className="w-4 h-8 hover:bg-white/15">
             <Trash2 />
         </Button>
     );

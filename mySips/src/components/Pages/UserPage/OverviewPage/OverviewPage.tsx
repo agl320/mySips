@@ -61,17 +61,20 @@ function OverviewPage({ user }: IUserProps) {
                     />
                 </UserBlock>
 
-                <UserBlock className="bg-gradient-to-r from-pastel-pink to-pastel-orange w-full mr-4">
-                    <div className="h-48 flex flex-col justify-between">
-                        <h1 className="text-4xl font-semibold">
-                            Welcome back, {user?.displayName}
-                        </h1>
-                        <Button className="bg-white text-pastel-orange font-medium float-right ml-auto">
-                            Explore Menus
-                            <BookOpenText />
-                        </Button>
+                <UserBlock className="bg-gradient-to-r from-pastel-pink to-pastel-orange w-full mr-4 px-0 py-0 ">
+                    <div className="bg-overview bg-cover bg-right-bottom rounded-md h-full p-8 backdrop-saturate-150">
+                        <div className="relative z-10 h-48 flex flex-col justify-between">
+                            <h1 className="text-4xl font-semibold">
+                                Welcome back, {user?.displayName}
+                            </h1>
+                            <Button className="bg-white text-pastel-orange font-medium float-right ml-auto shadow-lg hover:shadow-none">
+                                Explore Menus
+                                <BookOpenText />
+                            </Button>
+                        </div>
                     </div>
                 </UserBlock>
+
                 <UserBlock className="bg-gradient-to-r from-pastel-orange to-pastel-light-orange w-[600px]">
                     <div className="h-48">
                         <h1 className="text-4xl font-semibold">User Info</h1>
