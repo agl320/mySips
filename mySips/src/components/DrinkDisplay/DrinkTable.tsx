@@ -26,7 +26,9 @@ function DrinkTable({ user, className }: IDrinkTableProps) {
     return (
         <div className={className}>
             <Table>
-                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableCaption className="text-white/75">
+                    A list of your top 5 drinks, sorted by rating.
+                </TableCaption>
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-[200px]">Name</TableHead>
@@ -38,6 +40,7 @@ function DrinkTable({ user, className }: IDrinkTableProps) {
                 <TableBody>
                     {Object.values(userDrinkData)
                         .sort((a, b) => (b.rating ?? 5) - (a.rating ?? 5))
+                        .slice(0, 5)
                         .map((drinkData, index) => (
                             <TableRow key={index}>
                                 <TableCell className="font-medium">

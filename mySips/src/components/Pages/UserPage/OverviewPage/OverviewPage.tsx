@@ -163,7 +163,7 @@ function OverviewPage({ user }: IUserProps) {
 
             <div className="flex mt-4">
                 <UserBlock className="space-y-8 max-content inline-block mr-4">
-                    <h1 className="text-3xl font-semibold">Top Drinks</h1>
+                    <h1 className="text-3xl font-semibold">Most Popular</h1>
                     <div className="inline-flex bg-white/15 px-4 py-2 rounded-lg w-max">
                         <Info className="mr-4" />
                         {cachedData?.top_three_drinks.length === 0 ? (
@@ -188,7 +188,9 @@ function OverviewPage({ user }: IUserProps) {
                     />
                 </UserBlock>
                 <UserBlock className="flex-grow">
-                    <h1 className="text-3xl font-semibold">Drink Table</h1>
+                    <h1 className="text-3xl font-semibold mb-4">
+                        Sip Rankings
+                    </h1>
                     <DrinkTable user={user} />
                 </UserBlock>
             </div>
