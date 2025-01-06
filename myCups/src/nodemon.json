@@ -1,5 +1,5 @@
 {
     "watch": ["*.py", "*.env"],
     "ext": "py,env",
-    "exec": "py firebase_setup.py"
+    "exec": "py app.py"
 }

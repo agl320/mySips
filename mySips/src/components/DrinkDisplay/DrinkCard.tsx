@@ -102,7 +102,7 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
                     <div className="text-left opacity-75">
                         <p>{drinkData.store?.storeAddress}</p>
                         <p className="font-medium">
-                            {drinkData.store.storeName}
+                            {drinkData.store?.storeName}
                         </p>
                     </div>
                 </div>

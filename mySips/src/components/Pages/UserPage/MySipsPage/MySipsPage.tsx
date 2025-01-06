@@ -14,6 +14,13 @@ import { useDrinkStats } from "@/hooks/useDrinkStats";
 import UserGraphWrapper from "../UserComponents/UserStatistics/UserGraphWrapper";
 import { useEffect, useState } from "react";
 import _ from "lodash";
+import { useCachedDrinkStats } from "@/hooks/useCachedDrinkStats";
+import UserGraphLine from "../UserComponents/UserStatistics/UserGraphLine";
+import {
+    colors,
+    convertToDatasets,
+    monthLabels,
+} from "../UserComponents/UserStatistics/GraphHelpers";
 
 interface IUserProps {
     user: User;
@@ -22,38 +29,29 @@ interface IUserProps {
 function MySipsPage(props: IUserProps) {
     const { user } = props;
 
-    const [cachedData, setCachedData] = useState<any>(null);
     const firestore = useFirestore();
 
     const userDrinkData = useUserDrinkData(firestore, user.uid);
     const userGroups = useUserGroups(firestore, user?.uid ?? "");
 
-    const { data, isLoading, error, refetch } = useDrinkStats({
+    const { cachedData, isLoading } = useCachedDrinkStats({
         user,
         userUid: user.uid,
-        graphTypes: ["sugar_vs_ice"], // Request only this graph type
-        userDrinkData, // Pass as a dependency
+        graphTypes: [
+            "sugar_vs_ice",
+            "average_drink_price",
+            "drink_count_change_previous_month",
+            "total_drink_count",
+            "drinks_per_month",
+            "total_money_spent",
+        ],
+        userDrinkData,
     });
-
-    useEffect(() => {
-        if (data != undefined && _.isEqual(data, cachedData) == false) {
-            setCachedData(data);
-        }
-    }, [data, cachedData]);
-
-    // Add delay before triggering fetch
-    useEffect(() => {
-        const delayFetch = setTimeout(() => {
-            refetch(); // Trigger query refetch after 2 seconds
-        }, 2000);
-
-        return () => clearTimeout(delayFetch); // Clean up timeout
-    }, [userDrinkData, refetch]); // Trigger on userDrinkData changes
 
     return (
         <div className="w-full h-full p-8 text-white bg-gradient-to-r from-background-dark to-[#1c1a10] via-[#1c1015]">
             <div className="flex space-x-4 max-h-72">
-                <UserBlock>
+                <UserBlock className="">
                     <UserPageHeader
                         pageTitle="mySips"
                         linkTrail={[{ value: "Home" }, { value: "mySips" }]}
@@ -61,38 +59,103 @@ function MySipsPage(props: IUserProps) {
                     />
                 </UserBlock>
                 <UserBlock className="flex">
-                    <UserStatistics
-                        userId={user?.uid ?? ""}
-                        name="Drinks"
-                        value={String(Object.keys(userDrinkData).length)}
-                    />
+                    <div>
+                        {" "}
+                        <UserStatistics
+                            userId={user?.uid ?? ""}
+                            name="Drinks"
+                            value={String(Object.keys(userDrinkData).length)}
+                        />
+                        <Separator className="bg-white/15 my-8" />
+                        <UserStatistics
+                            userId={user?.uid ?? ""}
+                            name="Groups"
+                            value={String(Object.keys(userGroups).length)}
+                        />
+                    </div>
                     <Separator
                         orientation="vertical"
                         className="bg-white/15 mx-8"
                     />
-                    <UserStatistics
-                        userId={user?.uid ?? ""}
-                        name="Groups"
-                        value={String(Object.keys(userGroups).length)}
-                    />
+                    <div>
+                        <UserStatistics
+                            userId={user?.uid ?? ""}
+                            name="Money Spent"
+                            value={
+                                cachedData?.total_money_spent.toFixed(2) ??
+                                "0.00"
+                            }
+                            valueUnit="$"
+                        />
+                        <Separator className="bg-white/15 my-8" />
+                        <UserStatistics
+                            userId={user?.uid ?? ""}
+                            name="Avg. Price"
+                            value={
+                                cachedData?.average_drink_price.toFixed(2) ??
+                                "0.00"
+                            }
+                            valueUnit="$"
+                        />
+                    </div>
                     <Separator
                         orientation="vertical"
                         className="bg-white/15 mx-8"
                     />
-                    <UserStatistics
-                        userId={user?.uid ?? ""}
-                        name="Money Spent"
-                        value="$5,604.65"
+                    <div>
+                        <UserStatistics
+                            userId={user?.uid ?? ""}
+                            name="Blank Widget"
+                            value="0.00"
+                        />
+                        <Separator className="bg-white/15 my-8" />
+                        <UserStatistics
+                            userId={user?.uid ?? ""}
+                            name="Blank Widget"
+                            value="0.00"
+                        />
+                    </div>
+                    <Separator
+                        orientation="vertical"
+                        className="bg-white/15 mx-8"
                     />
+                    <div>
+                        <UserStatistics
+                            userId={user?.uid ?? ""}
+                            name="Blank Widget"
+                            value="0.00"
+                        />
+                        <Separator className="bg-white/15 my-8" />
+                        <UserStatistics
+                            userId={user?.uid ?? ""}
+                            name="Blank Widget"
+                            value="0.00"
+                        />
+                    </div>
                 </UserBlock>
-                <UserBlock className="w-full">
+                <UserBlock className="w-full min-w-[525px] flex justify-center">
+                    <UserStatistics
+                        userId={user.uid}
+                        name="Drinks Bought"
+                        value={`${cachedData?.total_drink_count ?? "0"} drinks`}
+                        className="mr-6 flex flex-col justify-center"
+                        delta={
+                            cachedData?.drink_count_change_previous_month.change
+                        }
+                    />
                     <UserGraphWrapper isLoading={cachedData == undefined}>
-                        <UserGraphScatter
-                            xAxisLabel="Sugar Level"
-                            yAxisLabel="Ice Level"
-                            title="Ice vs. Sugar Level"
-                            height={150}
-                            data={cachedData?.sugar_vs_ice}
+                        <UserGraphLine
+                            height={200}
+                            width={300}
+                            fontSize={10}
+                            fontColor="white"
+                            xAxisLabel="Months"
+                            yAxisLabel="# of Drinks"
+                            labels={monthLabels}
+                            datasets={convertToDatasets(
+                                cachedData?.drinks_per_month,
+                                colors
+                            )}
                         />
                     </UserGraphWrapper>
                 </UserBlock>

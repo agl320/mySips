@@ -21,6 +21,7 @@ module.exports = {
                 ["pastel-green"]: "#54ff54",
                 ["pastel-yellow"]: "#f2ef3f",
                 orange: "#e0ad14",
+                ["pastel-light-orange"]: "#ffc04b",
             },
         },
     },
