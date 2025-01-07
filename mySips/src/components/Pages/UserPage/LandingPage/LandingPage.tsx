@@ -5,9 +5,11 @@ import {
     ChevronDown,
     ChevronsDown,
     CircleArrowDown,
+    CircleCheck,
     CircleChevronDown,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import LandingFooter from "@/components/Landing/LandingFooter";
 
 function LandingPage() {
     return (
@@ -56,10 +58,37 @@ function LandingPage() {
                     </p>
                     <div>
                         <div className="lg:flex justify-center">
-                            <div className="w-full lg:w-1/2  h-[500px] mt-8 rounded-md lg:mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
-                                <h2 className="w-full text-6xl font-semibold text-white-blue p-4">
-                                    Add Drinks
-                                </h2>
+                            <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
+                                <div className="bg-card-add bg-cover bg-left-bottom">
+                                    <div className="p-4">
+                                        <h2 className="w-full text-6xl font-semibold text-white mb-8">
+                                            Add Drinks
+                                        </h2>
+                                        <ul className="space-y-2 text-lg">
+                                            <li className="flex gap-x-4 text-white">
+                                                <CircleCheck
+                                                    fill="white"
+                                                    className="stroke-pastel-pink w-8 h-8"
+                                                    strokeWidth={3}
+                                                />
+                                                <p className="font-medium flex flex-col flex-1 justify-center">
+                                                    Highly customizable
+                                                </p>
+                                            </li>
+                                            <li className="flex gap-x-4 text-white">
+                                                <CircleCheck
+                                                    fill="white"
+                                                    className="stroke-pastel-pink w-8 h-8"
+                                                    strokeWidth={3}
+                                                />
+                                                <p className="font-medium flex flex-col flex-1 justify-center">
+                                                    Easy to create
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+
                                 <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
                                     <p className="text-white/50 text-[300px] font-bold rotate-12">
                                         1
@@ -67,9 +96,35 @@ function LandingPage() {
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:ml-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
-                                <h2 className="w-full text-6xl font-semibold text-white-blue p-4">
-                                    Track Stats
-                                </h2>
+                                <div className="bg-card-stats bg-cover bg-left-bottom">
+                                    <div className="p-4">
+                                        <h2 className="w-full text-6xl font-semibold text-white mb-8">
+                                            Track Stats
+                                        </h2>
+                                        <ul className="space-y-2 text-lg">
+                                            <li className="flex gap-x-4 text-white">
+                                                <CircleCheck
+                                                    fill="white"
+                                                    className="stroke-pastel-pink w-8 h-8"
+                                                    strokeWidth={3}
+                                                />
+                                                <p className="font-medium flex flex-col flex-1 justify-center">
+                                                    Rich, useful charts
+                                                </p>
+                                            </li>
+                                            <li className="flex gap-x-4 text-white">
+                                                <CircleCheck
+                                                    fill="white"
+                                                    className="stroke-pastel-pink w-8 h-8"
+                                                    strokeWidth={3}
+                                                />
+                                                <p className="font-medium flex flex-col flex-1 justify-center">
+                                                    Easy to understand
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                                 <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
                                     <p className="text-white/50 text-[300px] font-bold -rotate-6">
                                         2
@@ -79,9 +134,25 @@ function LandingPage() {
                         </div>
                         <div className="lg:flex justify-center">
                             <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex ">
-                                <h2 className="w-full text-6xl font-semibold text-white-blue p-4">
-                                    Make Boards
-                                </h2>
+                                <div className="bg-card-groups bg-cover bg-left-bottom">
+                                    <div className="p-4">
+                                        <h2 className="w-full text-6xl font-semibold text-white mb-8">
+                                            Make Groups
+                                        </h2>
+                                        <ul className="space-y-2 text-lg">
+                                            <li className="flex gap-x-4 text-white">
+                                                <CircleCheck
+                                                    fill="white"
+                                                    className="stroke-pastel-pink w-8 h-8"
+                                                    strokeWidth={3}
+                                                />
+                                                <p className="font-medium flex flex-col flex-1 justify-center">
+                                                    Collaborate and create
+                                                </p>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                                 <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
                                     <p className="text-white/50 text-[300px] font-bold rotate-12">
                                         3
@@ -89,7 +160,7 @@ function LandingPage() {
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:ml-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex overflow-hidden">
-                                <h2 className="w-full text-6xl font-semibold text-white-blue p-4">
+                                <h2 className="w-full text-6xl font-semibold text-white p-4">
                                     Share to Friends
                                 </h2>
                                 <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
@@ -122,7 +193,7 @@ function LandingPage() {
                     </p>
                 </div>
             </section>
-            <footer className="min-h-[200px] bg-background-block"></footer>
+            <LandingFooter />
         </section>
     );
 }

@@ -25,6 +25,9 @@ module.exports = {
             },
             backgroundImage: {
                 overview: "url('/images/overview.webp')",
+                "card-add": "url('/images/landing-card-1.webp')",
+                "card-stats": "url('/images/landing-card-2.webp')",
+                "card-groups": "url('/images/landing-card-3.webp')",
             },
         },
     },
