@@ -74,7 +74,7 @@ const UserGraphLine: React.FC<IUserGraphLine> = ({
                 display: datasets.length > 0,
                 labels: {
                     usePointStyle: true, // Use point style for rounded legends
-                    pointStyle: "circle", // Set the legend point style to circle
+                    pointStyle: "rectRounded", // Rounded legend boxes
                     padding: 20, // Add padding for better spacing
                     boxWidth: 15, // Adjust the size of the point
                     color: fontColor,

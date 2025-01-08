@@ -368,6 +368,35 @@ def calculate_drink_count_change_previous_month(user_drink_data):
             "change": 0,
         }
 
+def calculate_average_drink_rating(user_drink_data):
+    """
+    Calculate the average drink rating.
+
+    Args:
+        user_drink_data (list): List of user drink records.
+
+    Returns:
+        float: Average rating of all drinks, rounded to 2 decimal places.
+    """
+    try:
+        # Filter out drinks without a valid rating and get their ratings
+        ratings = [
+            drink.get("rating")
+            for drink in user_drink_data
+            if drink.get("rating") is not None
+        ]
+
+        # Check if there are any ratings to calculate
+        if not ratings:
+            return 0.0
+
+        # Calculate the average and round to 2 decimal places
+        average_rating = sum(ratings) / len(ratings)
+        return round(average_rating, 2)
+
+    except Exception as e:
+        logging.error(f"Error calculating average drink rating: {e}")
+        return 0.0
 
 
 # Mapping Statistic Types to Functions
@@ -385,4 +414,5 @@ STATISTIC_FUNCTIONS = {
     "sugar_vs_ice_freq": calculate_sugar_vs_ice_freq,
     "money_spent_change_previous_month": calculate_money_spent_change_previous_month,
     "drink_count_change_previous_month": calculate_drink_count_change_previous_month,
+    "average_drink_rating": calculate_average_drink_rating,
 }

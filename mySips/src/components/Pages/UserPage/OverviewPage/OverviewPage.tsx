@@ -11,15 +11,23 @@ import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
 import { Separator } from "@/components/ui/separator";
 import UserGraphLine from "../UserComponents/UserStatistics/UserGraphLine";
 import CustomDrinkDisplay from "@/components/DrinkDisplay/CustomDrinkDisplay";
-import { BookOpenText, CircleDollarSign, DollarSign, Info } from "lucide-react";
+import {
+    BookOpenText,
+    CircleDollarSign,
+    DollarSign,
+    Info,
+    Trophy,
+} from "lucide-react";
 import UserGraphBar from "../UserComponents/UserStatistics/UserGraphBar";
 import {
     colors,
     convertToDatasets,
+    convertToPieDataset,
     monthLabels,
 } from "../UserComponents/UserStatistics/GraphHelpers";
 import DrinkTable from "@/components/DrinkDisplay/DrinkTable";
 import { Button } from "@/components/ui/button";
+import UserGraphPie from "../UserComponents/UserStatistics/UserGraphPie";
 
 interface IUserProps {
     user: User;
@@ -44,6 +52,8 @@ function OverviewPage({ user }: IUserProps) {
             "sugar_vs_ice_freq",
             "money_spent_change_previous_month",
             "drink_count_change_previous_month",
+            "rating_count",
+            "average_drink_rating",
         ],
         userDrinkData,
     });
@@ -60,10 +70,61 @@ function OverviewPage({ user }: IUserProps) {
                         pageCaption="Here's your drink data overview."
                     />
                 </UserBlock>
+                <UserBlock className="mr-4 w-[500px]">
+                    <div className="flex h-full p-2">
+                        <div className="flex flex-col justify-between mr-4">
+                            <UserStatistics
+                                customIcon={
+                                    <Trophy className="w-3 h-3 stroke-pastel-pink" />
+                                }
+                                userId={user.uid}
+                                name="Average Rating"
+                                value={`${
+                                    cachedData?.average_drink_rating.toFixed(
+                                        2
+                                    ) ?? "0"
+                                }/10`}
+                                className="mr-6 flex flex-col justify-center"
+                            />
 
+                            <p className="text-white text-xs whitespace-normal break-words">
+                                <span className="bg-[#F1F33F] inline-block w-3 h-2 rounded-sm"></span>{" "}
+                                is for rating 10, ranging to{" "}
+                                <span className="bg-[#E84B5D] inline-block w-3 h-2 rounded-sm"></span>{" "}
+                                for 0.
+                            </p>
+                        </div>
+                        <div className="flex flex-col justify-center">
+                            <UserGraphWrapper
+                                isLoading={cachedData == undefined}
+                            >
+                                <UserGraphPie
+                                    datasets={convertToPieDataset(
+                                        cachedData?.rating_count
+                                    )}
+                                    height={150}
+                                    width={150}
+                                    labels={[
+                                        "Rating 0",
+                                        "Rating 1",
+                                        "Rating 2",
+                                        "Rating 3",
+                                        "Rating 4",
+                                        "Rating 5",
+                                        "Rating 6",
+                                        "Rating 7",
+                                        "Rating 8",
+                                        "Rating 9",
+                                        "Rating 10",
+                                    ].map(String)}
+                                />
+                            </UserGraphWrapper>
+                        </div>
+                    </div>
+                </UserBlock>
                 <UserBlock className="bg-gradient-to-r from-pastel-pink to-pastel-orange w-full mr-4 px-0 py-0 ">
-                    <div className="bg-overview bg-cover bg-right-bottom rounded-md h-full p-8 backdrop-saturate-150">
-                        <div className="relative z-10 h-48 flex flex-col justify-between">
+                    <div className="bg-overview bg-cover bg-right-bottom rounded-md h-full backdrop-saturate-150">
+                        <div className="relative z-10 h-full flex flex-col justify-between p-6">
                             <h1 className="text-4xl font-semibold">
                                 Welcome back, {user?.displayName}
                             </h1>
@@ -76,7 +137,7 @@ function OverviewPage({ user }: IUserProps) {
                 </UserBlock>
 
                 <UserBlock className="bg-gradient-to-r from-pastel-orange to-pastel-light-orange w-[600px]">
-                    <div className="h-48">
+                    <div className="h-40">
                         <h1 className="text-4xl font-semibold">User Info</h1>
                         <p className="mt-4">
                             <span className="opacity-50">Display Name:</span>{" "}

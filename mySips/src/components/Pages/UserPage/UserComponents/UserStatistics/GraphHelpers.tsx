@@ -62,3 +62,42 @@ export const convertToDatasets = (
 
     return datasets;
 };
+
+interface Dataset {
+    label: string;
+    data: number[];
+    backgroundColor: string[];
+}
+
+export const convertToPieDataset = (
+    input: Record<number, number>, // Input object with numerical keys and values
+    colors: string[] = [
+        "#E84B5D", // Darker Red (slightly pastel)
+        "#F24F63", // Deep Red (slightly pastel)
+        "#FF5868", // Red (slightly pastel)
+        "#FF6A5E", // Red-Orange (slightly pastel)
+        "#FF7E54", // Reddish-Orange (slightly pastel)
+        "#FF9250", // Orange-Red (slightly pastel)
+        "#FFA750", // Orange (slightly pastel)
+        "#FDBC3F", // Light Orange (slightly pastel)
+        "#FACA3F", // Orange-Yellow (slightly pastel)
+        "#F5E03F", // Yellow-Orange (slightly pastel)
+        "#f2ef3f", // Yellow (slightly pastel)
+    ]
+) => {
+    if (!input) return [];
+
+    const labels = Object.keys(input).map((key) => String(key)); // Convert numerical keys to strings
+    const data = Object.values(input); // Extract values as data
+    const backgroundColor = labels.map(
+        (_, index) => colors[index % colors.length]
+    ); // Assign colors cyclically
+
+    return [
+        {
+            label: "Pie Chart", // Default label
+            data,
+            backgroundColor,
+        },
+    ];
+};

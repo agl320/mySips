@@ -28,6 +28,7 @@ module.exports = {
                 "card-add": "url('/images/landing-card-1.webp')",
                 "card-stats": "url('/images/landing-card-2.webp')",
                 "card-groups": "url('/images/landing-card-3.webp')",
+                preview: "url('/images/preview.webp')",
             },
         },
     },

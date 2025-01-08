@@ -142,7 +142,15 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
         <Sidebar className="p-4">
             <SidebarHeader className="mb-8">
                 <h1 className="text-5xl font-wide">
-                    <Link to="/">mySips</Link>
+                    <Link
+                        to="/"
+                        className="text-4xl font-regular font-wide whitespace-nowrap"
+                    >
+                        ./my
+                        <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
+                            Sips
+                        </span>
+                    </Link>
                 </h1>
             </SidebarHeader>
             <SidebarContent>
@@ -160,9 +168,11 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                             item.title.toLowerCase() ? (
                                                 <Link
                                                     to={item.url}
-                                                    className="rounded-md bg-pastel-pink text-black"
+                                                    className="rounded-md bg-gradient-to-r from-pastel-pink to-pastel-orange text-white font-medium"
                                                 >
-                                                    <item.icon />
+                                                    <item.icon
+                                                        strokeWidth={3}
+                                                    />
                                                     <span>{item.title}</span>
                                                 </Link>
                                             ) : (
