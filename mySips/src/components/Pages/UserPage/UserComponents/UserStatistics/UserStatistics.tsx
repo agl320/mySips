@@ -57,7 +57,11 @@ function UserStatistics(props: IUserStatisticsProps) {
             </p>
 
             {delta !== undefined && (
-                <div className="mt-4 flex items-center">
+                <div
+                    className={`mt-4 inline-flex items-center px-2 py-1 rounded-md w-min ${
+                        delta > 0 ? "bg-pastel-green/10" : "bg-pastel-pink/10"
+                    }`}
+                >
                     {delta > 0 ? (
                         <ArrowUpRight className="stroke-pastel-green w-5 h-5 mr-2" />
                     ) : delta < 0 ? (
@@ -66,7 +70,7 @@ function UserStatistics(props: IUserStatisticsProps) {
                         <ArrowRight className="stroke-white/50 w-5 h-5 mr-2" />
                     )}
                     <p
-                        className={`text-sm ${
+                        className={`text-sm whitespace-nowrap ${
                             delta > 0
                                 ? "text-pastel-green"
                                 : delta < 0

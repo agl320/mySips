@@ -83,12 +83,12 @@ function LoginPageContent() {
     };
 
     return (
-        <div className="bg-background-dark h-full">
+        <div className="bg-gradient-to-r from-background-dark to-[#1c1a10] via-[#1c1015] bg-cover h-full">
             <section className="flex flex-col flex-1 h-screen  min-h-[900px]">
                 <LandingNav />
                 <div className="lg:flex h-full justify-center">
                     <LoginPageContentLeftCard />
-                    <div className="lg:w-1/2 m-8 lg:ml-4 bg-background-block text-white rounded-md flex flex-col justify-center p-8 py-16">
+                    <div className="lg:w-1/2 m-8 lg:ml-4 bg-white/5 text-white rounded-md flex flex-col justify-center p-8 py-16">
                         <div className="max-w-sm mx-auto">
                             <div className="text-center space-y-4 mb-8">
                                 <h2 className="text-2xl font-semibold">

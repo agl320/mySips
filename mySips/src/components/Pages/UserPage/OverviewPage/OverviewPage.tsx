@@ -163,9 +163,9 @@ function OverviewPage({ user }: IUserProps) {
                             cachedData?.total_money_spent.toFixed(2) ?? "0.00"
                         }`}
                         className="mr-6 flex flex-col justify-center"
-                        delta={
-                            cachedData?.money_spent_change_previous_month.change
-                        }
+                        delta={cachedData?.money_spent_change_previous_month.change.toFixed(
+                            2
+                        )}
                         deltaPrefix={"$"}
                     />
                     <UserGraphWrapper isLoading={cachedData == undefined}>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Separator } from "../ui/separator";
 
 const GithubSVG = (
     <svg
@@ -36,135 +37,126 @@ const InstaSVG = (
 
 function FooterSection() {
     return (
-        <footer className="footer pt-12 pb-24 px-8 text-left bg-white/5 border-t border-white/15 text-white">
-            <div className="sm:max-w-6xl mx-auto space-y-16">
-                <div className="footer-content sm:flex justify-between">
-                    <div className="flex flex-col justify-between">
-                        <Link
-                            to="/"
-                            className="text-5xl font-regular font-wide whitespace-nowrap"
-                        >
-                            ./my
-                            <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
-                                Sips
-                            </span>
-                        </Link>
-                        <address className="flex space-x-4  pb-8 pt-12 sm:p-0">
-                            <a
-                                href="https://instagram.com/verzenaofficial"
-                                target="_blank"
-                                rel="noreferrer"
-                                alt="Link to our Instagram"
+        <footer>
+            <Separator className="w-full bg-custom h-[1px]" />
+            <div className="footer pt-12 pb-24 px-8 text-left bg-white/5 text-white">
+                <div className="sm:max-w-6xl mx-auto space-y-16">
+                    <div className="footer-content sm:flex justify-between">
+                        <div className="flex flex-col justify-between">
+                            <Link
+                                to="/"
+                                className="text-5xl font-regular font-wide whitespace-nowrap"
                             >
-                                {InstaSVG}
-                            </a>
-                            <a
-                                href="https://linkedin.com/company/Verzena"
-                                target="_blank"
-                                rel="noreferrer"
-                                alt="Link to our Linkedin"
-                            >
-                                {LinkSVG}
-                            </a>
-                            <a
-                                href="https://github.com/Verzena"
-                                target="_blank"
-                                rel="noreferrer"
-                                alt="Link to our Github"
-                            >
-                                {GithubSVG}
-                            </a>
-                        </address>
-                    </div>
-                    <nav>
-                        <div className="flex space-x-16 [&_*]:text-base mt-8 md:mt-0">
-                            <div>
-                                <p className="font-medium">Company</p>
-                                <ul className="mt-8 space-y-2 [&_*]:block [&_*]:font-normal [&_*]:text-white">
-                                    <li>
-                                        <a
-                                            className="hover:text-white duration-200"
-                                            href="/about"
-                                        >
-                                            About
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="hover:text-white duration-200"
-                                            href="/portfolio"
-                                        >
-                                            Portfolio
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="hover:text-white duration-200"
-                                            href="/services"
-                                        >
-                                            Services
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <p className="font-medium">Support</p>
-                                <ul className="mt-8 space-y-2 [&_*]:block [&_*]:font-normal [&_*]:text-white">
-                                    <li>
-                                        <a
-                                            className="hover:text-white duration-200"
-                                            href="/contact"
-                                        >
-                                            Contact Us
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="hover:text-white duration-200"
-                                            href="/privacy-policy"
-                                        >
-                                            Privacy Policy
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a
-                                            className="hover:text-white duration-200"
-                                            href="/terms-conditions"
-                                        >
-                                            Terms of Service
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
+                                ./my
+                                <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
+                                    Sips
+                                </span>
+                            </Link>
+                            <address className="flex space-x-4  pb-8 pt-12 sm:p-0">
+                                <a
+                                    href="https://instagram.com/verzenaofficial"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    alt="Link to our Instagram"
+                                >
+                                    {InstaSVG}
+                                </a>
+                                <a
+                                    href="https://linkedin.com/company/Verzena"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    alt="Link to our Linkedin"
+                                >
+                                    {LinkSVG}
+                                </a>
+                                <a
+                                    href="https://github.com/Verzena"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    alt="Link to our Github"
+                                >
+                                    {GithubSVG}
+                                </a>
+                            </address>
                         </div>
-                    </nav>
-                </div>
-                <svg
-                    className="w-full h-px bg-white bg-opacity-15 rounded-2xl"
-                    viewBox="0 0 1200 1"
-                    preserveAspectRatio="none"
-                >
-                    <rect
-                        x="0"
-                        y="0"
-                        width="100%"
-                        height="1"
-                        fill="rgba(0,0,0,0)"
-                    />
-                </svg>
-                <div className="[&_*]:font-normal [&_*]:text-soft-light sm:flex sm:flex-wrap justify-between space-y-2 sm:space-y-0">
-                    <div className="flex space-x-4 [&_*]:block">
-                        <a
-                            href="/privacy-policy"
-                            className="hover:text-white duration-200"
-                        >{`Privacy Policy`}</a>
-                        <p>{`·`}</p>
-                        <a
-                            href="/terms-conditions"
-                            className="hover:text-white duration-200"
-                        >{`Terms of Service`}</a>
+                        <nav>
+                            <div className="flex space-x-16 [&_*]:text-base mt-8 md:mt-0">
+                                <div>
+                                    <p className="font-medium">Company</p>
+                                    <ul className="mt-8 space-y-2 [&_*]:block [&_*]:font-normal [&_*]:text-white">
+                                        <li>
+                                            <a
+                                                className="hover:text-white duration-200"
+                                                href="/about"
+                                            >
+                                                About
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                className="hover:text-white duration-200"
+                                                href="/portfolio"
+                                            >
+                                                Portfolio
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                className="hover:text-white duration-200"
+                                                href="/services"
+                                            >
+                                                Services
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <p className="font-medium">Support</p>
+                                    <ul className="mt-8 space-y-2 [&_*]:block [&_*]:font-normal [&_*]:text-white">
+                                        <li>
+                                            <a
+                                                className="hover:text-white duration-200"
+                                                href="/contact"
+                                            >
+                                                Contact Us
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                className="hover:text-white duration-200"
+                                                href="/privacy-policy"
+                                            >
+                                                Privacy Policy
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a
+                                                className="hover:text-white duration-200"
+                                                href="/terms-conditions"
+                                            >
+                                                Terms of Service
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </nav>
                     </div>
-                    <p>{`© 2024 mySips. All Rights Reserved.`}</p>
+                    <Separator className="w-full bg-custom h-[1px]" />
+                    <div className="[&_*]:font-normal [&_*]:text-soft-light sm:flex sm:flex-wrap justify-between space-y-2 sm:space-y-0">
+                        <div className="flex space-x-4 [&_*]:block">
+                            <a
+                                href="/privacy-policy"
+                                className="hover:text-white duration-200"
+                            >{`Privacy Policy`}</a>
+                            <p>{`·`}</p>
+                            <a
+                                href="/terms-conditions"
+                                className="hover:text-white duration-200"
+                            >{`Terms of Service`}</a>
+                        </div>
+                        <p>{`© 2024 mySips. All Rights Reserved.`}</p>
+                    </div>
                 </div>
             </div>
         </footer>
