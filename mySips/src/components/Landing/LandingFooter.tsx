@@ -36,7 +36,7 @@ const InstaSVG = (
 
 function FooterSection() {
     return (
-        <footer className="footer pt-12 pb-24 px-8 text-left bg-background-block border-t border-white/15 text-white">
+        <footer className="footer pt-12 pb-24 px-8 text-left bg-white/5 border-t border-white/15 text-white">
             <div className="sm:max-w-6xl mx-auto space-y-16">
                 <div className="footer-content sm:flex justify-between">
                     <div className="flex flex-col justify-between">

@@ -2,18 +2,22 @@ import LandingNav from "@/components/Landing/LandingNav";
 import { Button } from "@/components/ui/button";
 import {
     ArrowDown,
+    ArrowUpRight,
     ChevronDown,
     ChevronsDown,
     CircleArrowDown,
     CircleCheck,
     CircleChevronDown,
+    MousePointerClick,
+    Sparkles,
+    Wand,
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import LandingFooter from "@/components/Landing/LandingFooter";
 
 function LandingPage() {
     return (
-        <section className="bg-background-dark bg-cover">
+        <section className="bg-gradient-to-r from-background-dark to-[#1c1a10] via-[#1c1015] bg-cover">
             <LandingNav />
 
             <section className="flex flex-col mt-24 min-h-screen w-full px-16">
@@ -21,7 +25,7 @@ function LandingPage() {
                     <h1 className="text-6xl font-semibold text-white-blue ">
                         Where every sip tells a story, your{" "}
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
-                            personal drink journal
+                            personal drink journal.
                         </span>
                     </h1>
                     <p className="text-white-blue text-xl opacity-80">
@@ -29,7 +33,8 @@ function LandingPage() {
                         going out effortless.
                     </p>
                     <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-8 text-white">
-                        Get started, it's free
+                        Get started, it's free{" "}
+                        <MousePointerClick strokeWidth={2} />
                     </Button>
                     <p className="text-white-blue text-sm opacity-60">
                         No in-app purchases
@@ -179,20 +184,25 @@ function LandingPage() {
                 <Separator className="absolute relative bg-white opacity-15 max-w-4xl mx-auto" />
                 <CircleChevronDown className="absolute relative -top-4 w-8 h-8 mx-auto stroke-pastel-pink bg-background-dark" />
             </div>
-            <section className="flex flex-col h-full w-full px-16">
-                <div className="mx-auto  max-w-4xl space-y-8 w-full">
+            <section className="flex flex-col h-full w-full px-16 mb-32">
+                <div className="mx-auto  max-w-4xl w-full">
                     <h1 className="text-center text-6xl font-semibold text-white-blue leading-none">
                         Utilizing drink data<br></br>
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             for producers.
                         </span>
                     </h1>
-                    <p className="text-center text-white-blue text-xl opacity-80 ">
+                    <p className="text-center text-white-blue text-xl opacity-80 mt-8">
                         mySips offers an easy and intuitive way to quantify
                         customer satisfaction. This allows you to maximize
                         production efficiency and sales, providing another facet
                         into your menu analysis.
                     </p>
+                    <p className="text-center text-white-blue text-xl opacity-80 mt-8">
+                        Want to upload your menu and view analytics beneficial
+                        to your business?
+                    </p>
+                    <div className="w-full h-[500px] rounded-md bg-gradient-to-r from-pastel-pink to-pastel-orange flex mt-16"></div>
                 </div>
             </section>
             <LandingFooter />
