@@ -8,7 +8,7 @@ function LandingNav() {
     const { userLoggedIn } = useContext(AuthContext);
     return (
         <header>
-            <div className="flex justify-center w-full px-16 bg-white/5">
+            <div className="flex justify-center w-full px-16 bg-white bg-opacity-[2%]">
                 <div className="flex justify-between text-white max-w-6xl w-full py-8 ">
                     <Link
                         to="/"
@@ -21,14 +21,29 @@ function LandingNav() {
                     </Link>
                     <div className=" gap-x-12 w-full flex-grow flex items-center w-auto text-center">
                         <ul className="flex-1 justify-end items-center text-center flex">
-                            <li className="mr-12">
-                                <Link to="/app">Features</Link>
+                            <li className="">
+                                <Link
+                                    className="px-6 py-2 hover:bg-white/15 rounded-md duration-100"
+                                    to="/app "
+                                >
+                                    Features
+                                </Link>
                             </li>
-                            <li className="mr-12">
-                                <Link to="/app">Pricing</Link>
+                            <li className="">
+                                <Link
+                                    className="px-6 py-2 hover:bg-white/15 rounded-md duration-100"
+                                    to="/app"
+                                >
+                                    Pricing
+                                </Link>
                             </li>
-                            <li className="mr-12">
-                                <Link to="/app">About Us</Link>
+                            <li className="mr-6">
+                                <Link
+                                    className="px-6 py-2 hover:bg-white/15 rounded-md duration-100"
+                                    to="/app"
+                                >
+                                    About Us
+                                </Link>
                             </li>
 
                             {userLoggedIn ? (

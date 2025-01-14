@@ -39,7 +39,7 @@ function FooterSection() {
     return (
         <footer>
             <Separator className="w-full bg-custom h-[1px]" />
-            <div className="footer pt-12 pb-24 px-8 text-left bg-white/5 text-white">
+            <div className="footer pt-12 pb-24 px-8 text-left bg-white bg-opacity-[2%] text-white">
                 <div className="sm:max-w-6xl mx-auto space-y-16">
                     <div className="footer-content sm:flex justify-between">
                         <div className="flex flex-col justify-between">

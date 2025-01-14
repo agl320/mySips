@@ -171,7 +171,7 @@ function MySipsPage(props: IUserProps) {
                             datasets={convertToDatasets(
                                 cachedData?.drinks_per_month,
                                 colors
-                            )}
+                            ).reverse()}
                         />
                     </UserGraphWrapper>
                 </UserBlock>

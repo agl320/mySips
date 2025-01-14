@@ -7,6 +7,7 @@ module.exports = {
             fontFamily: {
                 sans: ["General Sans", "sans-serif"],
                 wide: ["Moliga DEMO", "sans-serif"],
+                display: ["Aeonik Pro Regular", "sans-serif"],
             },
             colors: {
                 "background-dark": "#121312",

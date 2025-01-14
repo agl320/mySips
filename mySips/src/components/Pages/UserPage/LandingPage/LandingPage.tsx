@@ -22,13 +22,18 @@ function LandingPage() {
 
             <section className="flex flex-col mt-24 min-h-screen w-full px-16">
                 <div className="mx-auto text-center max-w-4xl space-y-8 w-full">
-                    <h1 className="text-6xl font-semibold text-white-blue ">
+                    <p className="bg-pastel-pink/10 px-3 py-1 rounded-full text-pastel-pink border border-pastel-pink text-sm inline-flex items-center">
+                        Store Drinks Easily{" "}
+                        <Sparkles className="w-4 h-4 ml-2" />
+                    </p>
+
+                    <h1 className="text-6xl font-semibold text-white-blue font-display">
                         Where every sip tells a story, your{" "}
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             personal drink journal.
                         </span>
                     </h1>
-                    <p className="text-white-blue text-xl opacity-80">
+                    <p className="text-white-blue text-lg opacity-80">
                         Store all your favorite drinks in one place — making
                         going out effortless.
                     </p>
@@ -51,14 +56,14 @@ function LandingPage() {
             </div>
             <section className="flex flex-col h-full w-full px-16">
                 <div className="mx-auto  max-w-4xl space-y-8 w-full">
-                    <h1 className="text-center text-6xl font-semibold text-white-blue">
+                    <h1 className="text-center text-6xl font-semibold text-white-blue font-display">
                         How to use mySips<br></br>
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             for consumers.
                         </span>
                     </h1>
 
-                    <p className="text-center text-white-blue text-xl opacity-80 ">
+                    <p className="text-center text-white-blue text-lg opacity-80 ">
                         mySips offers an easy and intuitive way to manage your
                         drinks. There are generally four steps involved in how
                         you can use this platform.
@@ -66,9 +71,9 @@ function LandingPage() {
                     <div>
                         <div className="lg:flex justify-center">
                             <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
-                                <div className="bg-card-add bg-cover bg-left-bottom rounded-bl-md">
-                                    <div className="p-4">
-                                        <h2 className="w-full text-6xl font-semibold text-white mb-8">
+                                <div className="bg-card-add bg-cover bg-left-bottom rounded-bl-md w-full">
+                                    <div className="p-6">
+                                        <h2 className="w-full text-5xl font-semibold text-white mb-4 font-display">
                                             Add Drinks
                                         </h2>
                                         <ul className="space-y-2 text-lg">
@@ -96,16 +101,16 @@ function LandingPage() {
                                     </div>
                                 </div>
 
-                                <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
+                                <div className="bg-white bg-opacity-25 ml-auto w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
                                     <p className="text-white/50 text-[300px] font-bold rotate-12">
                                         1
                                     </p>
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:ml-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex">
-                                <div className="bg-card-stats bg-cover bg-left-bottom rounded-bl-md">
-                                    <div className="p-4">
-                                        <h2 className="w-full text-6xl font-semibold text-white mb-8">
+                                <div className="bg-card-stats bg-cover bg-left-bottom rounded-bl-md w-full">
+                                    <div className="p-6">
+                                        <h2 className="w-full text-5xl font-semibold text-white mb-4 font-display">
                                             Track Stats
                                         </h2>
                                         <ul className="space-y-2 text-lg">
@@ -132,7 +137,7 @@ function LandingPage() {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
+                                <div className="bg-white bg-opacity-25 ml-auto w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
                                     <p className="text-white/50 text-[300px] font-bold -rotate-6">
                                         2
                                     </p>
@@ -141,9 +146,9 @@ function LandingPage() {
                         </div>
                         <div className="lg:flex justify-center">
                             <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex ">
-                                <div className="bg-card-groups bg-cover bg-left-bottom rounded-bl-md">
-                                    <div className="p-4">
-                                        <h2 className="w-full text-6xl font-semibold text-white mb-8">
+                                <div className="bg-card-groups bg-cover bg-left-bottom rounded-bl-md w-full">
+                                    <div className="p-6">
+                                        <h2 className="w-full text-5xl font-semibold text-white mb-4 font-display">
                                             Make Groups
                                         </h2>
                                         <ul className="space-y-2 text-lg">
@@ -160,17 +165,21 @@ function LandingPage() {
                                         </ul>
                                     </div>
                                 </div>
-                                <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
+                                <div className="bg-white bg-opacity-25 ml-auto w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
                                     <p className="text-white/50 text-[300px] font-bold rotate-12">
                                         3
                                     </p>
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:ml-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex overflow-hidden">
-                                <h2 className="w-full text-6xl font-semibold text-white p-4 rounded-bl-md">
-                                    Share to Friends
-                                </h2>
-                                <div className="bg-white bg-opacity-25 w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
+                                <div className="bg-card-groups bg-cover bg-left-bottom rounded-bl-md w-full">
+                                    <div className="p-6">
+                                        <h2 className="w-full text-5xl font-semibold text-white rounded-bl-md mb-4 w-full font-display">
+                                            Share to Friends
+                                        </h2>
+                                    </div>
+                                </div>
+                                <div className="bg-white bg-opacity-25 ml-auto w-[150px] h-full rounded-md flex items-center justify-center overflow-hidden">
                                     <p className="text-white/50 text-[300px] font-bold -rotate-12">
                                         4
                                     </p>
@@ -186,19 +195,19 @@ function LandingPage() {
             </div>
             <section className="flex flex-col h-full w-full px-16 mb-32">
                 <div className="mx-auto  max-w-4xl w-full">
-                    <h1 className="text-center text-6xl font-semibold text-white-blue leading-none">
+                    <h1 className="text-center text-6xl font-semibold text-white-blue leading-none font-display">
                         Utilizing drink data<br></br>
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             for producers.
                         </span>
                     </h1>
-                    <p className="text-center text-white-blue text-xl opacity-80 mt-8">
+                    <p className="text-center text-white-blue text-lg opacity-80 mt-8">
                         mySips offers an easy and intuitive way to quantify
                         customer satisfaction. This allows you to maximize
                         production efficiency and sales, providing another facet
                         into your menu analysis.
                     </p>
-                    <p className="text-center text-white-blue text-xl opacity-80 mt-8">
+                    <p className="text-center text-white-blue text-lg opacity-80 mt-8">
                         Want to upload your menu and view analytics beneficial
                         to your business?
                     </p>

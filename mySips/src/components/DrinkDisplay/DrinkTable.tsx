@@ -8,7 +8,6 @@ import {
     TableHeader,
     TableRow,
 } from "../ui/table";
-import DrinkCard from "./DrinkCard";
 import { useUserDrinkData } from "@/hooks/useUserDrinkData";
 import { User } from "firebase/auth";
 

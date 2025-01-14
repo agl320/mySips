@@ -37,7 +37,9 @@ function UserPageHeader({
                     ))}
                 </BreadcrumbList>
             </Breadcrumb>
-            <h1 className="text-3xl font-semibold my-4">{pageTitle}</h1>
+            <h1 className="text-3xl font-semibold my-4 font-display">
+                {pageTitle}
+            </h1>
             <p className="opacity-50">{pageCaption}</p>
         </div>
     );

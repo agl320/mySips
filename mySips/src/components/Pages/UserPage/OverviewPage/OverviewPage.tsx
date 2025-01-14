@@ -125,7 +125,7 @@ function OverviewPage({ user }: IUserProps) {
                 <UserBlock className="bg-gradient-to-r from-pastel-pink to-pastel-orange w-full mr-4 px-0 py-0 ">
                     <div className="bg-overview bg-cover bg-right-bottom rounded-md h-full backdrop-saturate-150">
                         <div className="relative z-10 h-full flex flex-col justify-between p-6">
-                            <h1 className="text-4xl font-semibold">
+                            <h1 className="text-4xl font-semibold font-display">
                                 Welcome back, {user?.displayName}
                             </h1>
                             <Button className="bg-white text-pastel-orange font-medium float-right ml-auto shadow-lg hover:shadow-none">
@@ -138,7 +138,9 @@ function OverviewPage({ user }: IUserProps) {
 
                 <UserBlock className="bg-gradient-to-r from-pastel-orange to-pastel-light-orange w-[600px]">
                     <div className="h-40">
-                        <h1 className="text-4xl font-semibold">User Info</h1>
+                        <h1 className="text-4xl font-semibold font-display">
+                            User Info
+                        </h1>
                         <p className="mt-4">
                             <span className="opacity-50">Display Name:</span>{" "}
                             {user.displayName}
@@ -209,7 +211,7 @@ function OverviewPage({ user }: IUserProps) {
                             datasets={convertToDatasets(
                                 cachedData?.drinks_per_month,
                                 colors
-                            )}
+                            ).reverse()}
                         />
                     </UserGraphWrapper>
                 </UserBlock>
@@ -233,7 +235,9 @@ function OverviewPage({ user }: IUserProps) {
 
             <div className="flex mt-4">
                 <UserBlock className="space-y-8 max-content inline-block mr-4">
-                    <h1 className="text-3xl font-semibold">Most Popular</h1>
+                    <h1 className="text-3xl font-semibold font-display">
+                        Most Popular
+                    </h1>
                     <div className="inline-flex bg-white/15 px-4 py-2 rounded-lg w-max">
                         <Info className="mr-4" />
                         {!cachedData ||
@@ -251,6 +255,7 @@ function OverviewPage({ user }: IUserProps) {
                     </div>
 
                     <CustomDrinkDisplay
+                        user={user}
                         drinks={
                             cachedData?.top_three_drinks.map(
                                 (drink) => drink.data
@@ -259,7 +264,7 @@ function OverviewPage({ user }: IUserProps) {
                     />
                 </UserBlock>
                 <UserBlock className="flex-grow">
-                    <h1 className="text-3xl font-semibold mb-4">
+                    <h1 className="text-3xl font-semibold mb-4 font-display">
                         Sip Rankings
                     </h1>
                     <DrinkTable user={user} />

@@ -12,6 +12,7 @@ import {
 import { v4 as uidv4 } from "uuid";
 import { firebaseDB } from "./FirebaseSetup";
 import { removeDrinkFromGroup } from "./GroupHelpers";
+import { User } from "firebase/auth";
 
 /**
  * Sets connection A-B for both users, such that A is initator/requester
@@ -93,6 +94,31 @@ export const deleteDrink = async (userUid: string, drinkUid: string) => {
         console.error("Error deleting drink:", error);
         throw error; // Optionally re-throw the error if you want to handle it elsewhere
     }
+};
+
+// Deletes drinks and sub collections
+export const deleteDrinkAndSubCollections = async (
+    user: User,
+    userUid: string,
+    drinkUid: string
+) => {
+    const idToken = await user.getIdToken();
+    const response = await fetch(
+        `http://127.0.0.1:5000/api/delete-drink?userUid=${userUid}&drinkUid=${drinkUid}`,
+        {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${idToken}`, // Add Bearer token here
+                "Content-Type": "application/json",
+            },
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to delete drink");
+    }
+
+    // return response.json();
 };
 
 export const getDrink = async (userUid: string, drinkUid: string) => {

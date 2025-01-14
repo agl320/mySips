@@ -15,7 +15,7 @@ function GroupDrinkDisplay(props: {
     groupUid: string;
     userGroups: any;
 }) {
-    const { groupUid, userGroups } = props;
+    const { user, groupUid, userGroups } = props;
     const firestore = useFirestore();
 
     // Retrieves ALL
@@ -31,6 +31,7 @@ function GroupDrinkDisplay(props: {
             {Object.values(groupEntries[groupUid]).map(
                 (groupDrink: any, index) => (
                     <GroupItem
+                        user={user}
                         userUid={groupDrink.userUid}
                         drinkUid={groupDrink.drinkUid}
                         groupUid={groupUid}

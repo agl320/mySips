@@ -11,11 +11,12 @@ import { User } from "firebase/auth";
 import { useEffect, useState } from "react";
 
 function GroupItem(props: {
+    user: User;
     userUid: string;
     drinkUid: string;
     groupUid: string;
 }) {
-    const { userUid, drinkUid, groupUid } = props;
+    const { user, userUid, drinkUid, groupUid } = props;
     console.log({ userUid, drinkUid, groupUid });
 
     const [drinkData, setDrinkData] = useState<any>(null);
@@ -52,7 +53,12 @@ function GroupItem(props: {
         return <></>;
     }
     return (
-        <DrinkCard userUid={userUid} drinkData={drinkData} isEditable={false} />
+        <DrinkCard
+            user={user}
+            userUid={userUid}
+            drinkData={drinkData}
+            isEditable={false}
+        />
     );
 }
 
