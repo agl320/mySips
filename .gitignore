@@ -1,3 +1,6 @@
 
 firebaseConfig.ts
 /myCups/src/priv
+/myTraining/NER/output/model-best
+/myTraining/NER/priv
+/myTraining/NER/output
