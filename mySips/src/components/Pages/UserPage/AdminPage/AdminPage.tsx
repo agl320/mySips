@@ -10,6 +10,7 @@ import AddDrinkDialog from "@/components/DrinkForms/AddDrinkDialog";
 import { createEmptyDrink } from "../../../../firebase/DrinkHelpers";
 import { Button } from "@/components/ui/button";
 import { useStoresData } from "@/hooks/useStoresData";
+import { addDrinkToStore } from "@/firebase/StoreHelpers";
 
 function AdminPage() {
     const firestore = useFirestore();
@@ -61,11 +62,10 @@ function AdminPage() {
                                 <AddDrinkDialog
                                     user={user}
                                     baseDrinkData={createEmptyDrink()}
-                                    addDrinkCallback={() =>
-                                        addDrinkToMenu(storeData.uid)
-                                    }
+                                    addDrinkCallback={addDrinkToStore}
                                     open={isDialogOpen}
                                     onOpenChange={setIsDialogOpen}
+                                    storeUid={storeData.uid}
                                 />
                             </div>
                         );

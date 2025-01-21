@@ -30,6 +30,7 @@ interface IAddDrinkDialogProps {
     ) => Promise<void>;
     open: boolean;
     onOpenChange: React.Dispatch<React.SetStateAction<boolean>>;
+    storeUid?: string;
 }
 
 function AddDrinkDialog({
@@ -38,6 +39,7 @@ function AddDrinkDialog({
     addDrinkCallback,
     open,
     onOpenChange,
+    storeUid,
 }: IAddDrinkDialogProps) {
     const [drinkInputState, setDrinkInputState] =
         useState<Drink>(baseDrinkData);
@@ -70,7 +72,10 @@ function AddDrinkDialog({
                     <Button
                         className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white"
                         onClick={() => {
-                            addDrinkCallback(user?.uid, drinkInputState);
+                            addDrinkCallback(
+                                storeUid ? storeUid : user?.uid,
+                                drinkInputState
+                            );
                             onOpenChange(false); // Close dialog
                         }}
                     >
