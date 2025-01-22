@@ -205,7 +205,7 @@ const FriendsPage = ({ user }) => {
                                         <div>
                                             <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50 rounded-md"></div>
 
-                                            <Avatar className="mt-[-60px] w-[100px] h-[100px] aspect-square bg-pastel-orange mx-auto border-4 border-white/15 mb-2 rounded-md">
+                                            <Avatar className="mt-[-60px] w-[80px] h-[80px] aspect-square bg-pastel-orange mx-auto border-4 border-white/15 mb-2 rounded-md">
                                                 <AvatarFallback className="text-4xl font-semibold">
                                                     {getInitials(userData.name)}
                                                 </AvatarFallback>
@@ -254,7 +254,7 @@ const FriendsPage = ({ user }) => {
                                         <div>
                                             <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50 rounded-md"></div>
 
-                                            <Avatar className="mt-[-60px] w-[100px] h-[100px] aspect-square bg-pastel-orange mx-auto border-4 border-white/15 mb-2 rounded-md">
+                                            <Avatar className="mt-[-60px] w-[80px] h-[80px] aspect-square bg-pastel-orange mx-auto border-4 border-white/15 mb-2 rounded-md">
                                                 <AvatarFallback className="text-4xl font-semibold">
                                                     {getInitials(userData.name)}
                                                 </AvatarFallback>

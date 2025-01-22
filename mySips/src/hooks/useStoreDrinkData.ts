@@ -1,64 +1,52 @@
-import { useState, useEffect, useRef } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
-import { Drink } from "@/classes/Drink";
-import { IMenu } from "@/interfaces/IMenu";
+import { useState, useEffect } from "react";
+import { doc, collection, onSnapshot } from "firebase/firestore";
 
-export const useStoreDrinkData = (firestore: any) => {
-    const [storeDrinkData, setStoreDrinkData] = useState<IMenu>({});
-    const isListenerSet = useRef(false); // Ref to track if listener is already set
+/**
+ * Custom hook for accessing store's storeDrinkData collection
+ *
+ * @param firestore
+ * @param storeUid
+ * @returns
+ */
+export const useStoreDrinkData = (firestore: any, storeUid: string | null) => {
+    const [storeDrinkData, setStoreDrinkData] = useState<any>({});
 
     useEffect(() => {
-        if (isListenerSet.current) return; // Skip if the listener is already set
+        if (!storeUid) return;
 
-        const storesCollectionRef = collection(firestore, "stores");
+        const storeDocRef = doc(firestore, "stores", storeUid);
+        const storeDrinkDataCollectionRef = collection(
+            storeDocRef,
+            "storeDrinkData"
+        );
 
         const unsubscribe = onSnapshot(
-            storesCollectionRef,
+            storeDrinkDataCollectionRef,
             (querySnapshot) => {
-                const fetchedDrinks = querySnapshot.docs.flatMap((storeDoc) => {
-                    const storeDrinkDataCollectionRef = collection(
-                        storeDoc.ref,
-                        "storeDrinkData"
-                    );
-                    // Fetch nested documents for storeDrinkData
-                    const nestedDocs = storeDrinkDataCollectionRef.stream();
-                    return nestedDocs.map((drinkDoc) =>
-                        Drink.fromFirestore(drinkDoc.data())
-                    );
-                });
+                const fetchedDrinks = querySnapshot.docs.map((doc) =>
+                    doc.data()
+                );
 
                 const formattedDrinkData = fetchedDrinks.reduce(
                     (acc, drinkData) => {
-                        if (!drinkData.uid) return acc;
+                        if (Object.hasOwn(drinkData, "placeholder")) return acc;
                         acc[drinkData.uid] = drinkData;
                         return acc;
                     },
-                    {} as IMenu
+                    {} as any
                 );
-
-                setStoreDrinkData((prevData) => {
-                    // Avoid unnecessary updates if data is unchanged
-                    if (
-                        JSON.stringify(prevData) ===
-                        JSON.stringify(formattedDrinkData)
-                    ) {
-                        return prevData;
-                    }
-                    return formattedDrinkData;
-                });
+                setStoreDrinkData(formattedDrinkData);
             },
             (error) => {
-                console.error("Error fetching store drinks:", error.message);
+                console.error(
+                    "Error fetching    store drink data:",
+                    error.message
+                );
             }
         );
 
-        isListenerSet.current = true; // Mark listener as set
-
-        return () => {
-            isListenerSet.current = false; // Reset the flag on unmount
-            unsubscribe();
-        };
-    }, [firestore]);
+        return () => unsubscribe();
+    }, [firestore, storeUid]);
 
     return storeDrinkData;
 };
