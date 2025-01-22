@@ -10,4 +10,5 @@ export enum PageTypes {
     FRIENDS = "FRIENDS",
     MYGROUPS = "MYGROUPS",
     INBOX = "INBOX",
+    MENU = "MENU",
 }

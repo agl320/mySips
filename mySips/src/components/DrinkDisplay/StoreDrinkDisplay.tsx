@@ -2,6 +2,7 @@ import { useFirestore } from "reactfire";
 import { User } from "firebase/auth";
 import DrinkCard from "./DrinkCard";
 import { useStoreDrinkData } from "../../hooks/useStoreDrinkData";
+import StoreDrinkCard from "./StoreDrinkCard";
 
 interface IStoreDrinkDisplayProps {
     user: User;
@@ -19,18 +20,15 @@ function StoreDrinkDisplay({
     // Fetch store's drink data
     const storeDrinkData = useStoreDrinkData(firestore, storeUid);
 
-    console.log({ storeDrinkData });
-
     return (
         <div className={className}>
             <div className="flex flex-wrap gap-4">
                 {Object.values(storeDrinkData).map((drinkData, index) => (
-                    <DrinkCard
+                    <StoreDrinkCard
                         user={user}
+                        storeUid={storeUid}
                         key={`${drinkData.id}-${index}`} // Assuming drinkData has a unique id
-                        userUid={user?.uid}
                         drinkData={drinkData}
-                        isEditable={false}
                     />
                 ))}
             </div>

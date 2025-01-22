@@ -75,6 +75,10 @@ const router = createBrowserRouter([
         path: "/app/inbox",
         element: <UserPage selectedPage={PageTypes.INBOX} />,
     },
+    {
+        path: "/app/menu",
+        element: <UserPage selectedPage={PageTypes.MENU} />,
+    },
     { path: "/logout", element: <LogoutPage /> },
 ]);
 

@@ -42,11 +42,16 @@ export const createDrink = async (userUid: string, newDrinkProperties: any) => {
     await addDoc(groupDrinksCollectionRef, { placeholder: true });
 };
 
-export const createEmptyDrink = (): Drink => {
+export const createEmptyDrink = (store?: {
+    storeName: string;
+    storeAddress: string;
+    storeUid: string;
+}): Drink => {
     const newDrinkObj = new Drink({
         name: "New Drink",
         uid: uidv4(),
         description: "",
+        store,
     });
 
     return newDrinkObj;
@@ -156,4 +161,19 @@ export const getAllGroupUids = async (userUid: string, drinkUid: string) => {
         console.error("Error fetching group UIDs:", error);
         throw error;
     }
+};
+
+export const doesUserDrinkExist = async (
+    userUid: string,
+    drinkUid: string
+): Promise<boolean> => {
+    const drinkDocRef = doc(
+        firebaseDB,
+        "users",
+        userUid,
+        "userDrinkData",
+        drinkUid
+    );
+    const drinkSnapshot = await getDoc(drinkDocRef);
+    return drinkSnapshot.exists();
 };

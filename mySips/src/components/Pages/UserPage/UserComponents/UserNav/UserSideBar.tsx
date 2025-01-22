@@ -96,8 +96,8 @@ const groupArr = [
                 icon: UsersRound,
             },
             {
-                title: "Menus",
-                url: "#",
+                title: "Menu",
+                url: "/app/menu",
                 icon: ShoppingBasket,
             },
         ],
