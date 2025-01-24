@@ -30,6 +30,7 @@ function AdminPage({ user }: { user: User }) {
         return <CustomLoader />;
     }
 
+    console.log({ storesData });
     if (user && userData.email === firebaseConfig.adminEmail) {
         return (
             <section className="m-8">

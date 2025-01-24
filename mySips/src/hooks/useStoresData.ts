@@ -16,7 +16,7 @@ export const useStoresData = (firestore: Firestore) => {
             storesCollectionRef,
             (querySnapshot) => {
                 const storeData = querySnapshot.docs.map((doc) => ({
-                    uid: doc.id,
+                    storeUid: doc.id,
                     ...doc.data(),
                 }));
 

@@ -20,7 +20,7 @@ function MenuPage({ user }: { user: User }) {
 
     const storesData = useStoresData(firestore);
     return (
-        <section className="m-8">
+        <section className="p-8 h-full bg-gradient-to-r from-background-dark to-[#1c1a10] via-[#1c1015]">
             <UserBlock className="mr-4">
                 <UserPageHeader
                     pageTitle="Menu"
@@ -28,9 +28,12 @@ function MenuPage({ user }: { user: User }) {
                     pageCaption="Copy drink data from our menu database."
                 />
                 <div className="mt-8">
-                    {storesData.map((storeData) => {
+                    {storesData.map((storeData, index) => {
                         return (
-                            <div className="bg-white/15 border border-white/15 inline-block p-6 rounded-md ">
+                            <div
+                                className="bg-white/15 border border-white/15 inline-block p-6 rounded-md "
+                                key={`storeCard-${index}`}
+                            >
                                 <h2 className="text-2xl font-display font-semibold">
                                     {storeData.storeName}
                                 </h2>

@@ -11,6 +11,7 @@ import React, { useEffect, useState } from "react";
 import { CircleCheck, CupSoda, TriangleAlert } from "lucide-react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 interface IAddDrinkDialogProps {
     user: User;
@@ -98,6 +99,10 @@ function AddDrinkDialog({
                     <DialogTitle className="text-2xl opacity-80">
                         Add New Drink
                     </DialogTitle>
+                    <DialogDescription>
+                        Ensure your picture is horizontally aligned, and is
+                        placed flat on a surface.
+                    </DialogDescription>
                 </DialogHeader>
                 <div>
                     <Label>Import From Receipt (Beta)</Label>
