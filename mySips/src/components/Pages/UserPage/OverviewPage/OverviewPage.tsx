@@ -28,6 +28,7 @@ import {
 import DrinkTable from "@/components/DrinkDisplay/DrinkTable";
 import { Button } from "@/components/ui/button";
 import UserGraphPie from "../UserComponents/UserStatistics/UserGraphPie";
+import { Link } from "react-router-dom";
 
 interface IUserProps {
     user: User;
@@ -129,7 +130,7 @@ function OverviewPage({ user }: IUserProps) {
                                 Welcome back, {user?.displayName}
                             </h1>
                             <Button className="bg-white text-pastel-orange font-medium float-right ml-auto shadow-lg hover:shadow-none">
-                                Explore Menus
+                                <Link to="/app/menu">Explore Menus</Link>
                                 <BookOpenText />
                             </Button>
                         </div>

@@ -8,6 +8,7 @@ import cv2
 import sys
 from pathlib import Path
 import pytesseract
+from fuzzywuzzy import fuzz
 
 import spacy
 
@@ -91,6 +92,15 @@ def get_user_drinks():
     except Exception as e:
         logging.error(f"error occurred: {str(e)}")
         return jsonify({"error": str(e)}), 500
+
+def get_all_drinks():
+    stores_ref = db.collection('stores')
+    all_drinks = []
+    for store in stores_ref.stream():
+        store_drinks_ref = store.reference.collection('storeDrinkData')
+        store_drinks = [drink.to_dict() for drink in store_drinks_ref.stream()]
+        all_drinks.extend(store_drinks)
+    return all_drinks
     
 # process receipt
 #  involves post processing -> ner model -> fuzzy synt match w/ menu drinks -> return drinkUid if match, else null/none
@@ -159,12 +169,38 @@ def process_receipt():
     # Run NLP to extract drink names
     entities = extract_drink_name_from_text(extracted_text, nlp)
 
+    if(len(entities) <= 0):
+         return jsonify({
+            "status": "success",
+            "message": "No receipt results.",
+            "entities": []
+        }), 200
+
+    # MATCH SYNTACTICALLY (not semantically)
+    all_drinks = get_all_drinks()
+    logging.info(f"Retrieved {len(all_drinks)} drinks from all stores")
+    logging.info(all_drinks)
+    logging.info(entities)
+    # since our database is small (<100), let's just check all and return drink id match on two conditions:
+    # 1. past a certain treshold
+    # 2. top n results
+    matchTreshold = 0.5
+    maxResults = 3
+
+    matched_drinks = []
+
+    for entity_data in entities:
+        for drink_data in all_drinks:
+            if(fuzz.partial_ratio(drink_data.get("name"), entity_data.get("entity")) > 60):
+                matched_drinks.append(drink_data)
+
     drinkUid = "temp"
     # Return success response with optional data
     return jsonify({
         "status": "success",
         "message": "Receipt processed successfully.",
-        "entities": entities
+        "entities": entities,
+        "matchedDrinks": matched_drinks
     }), 200
 
     # except Exception as e:
