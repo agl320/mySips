@@ -101,7 +101,6 @@ function DrinkApp(props: IDrinkAppProps) {
                         key={`groupDisplay-${groupItem.groupName}`}
                         drinksState={drinksState}
                         group={groupItem}
-                        groupsState={groupsState}
                         setGroupsState={setGroupsState}
                         editDrinksState={editDrinksState}
                     />

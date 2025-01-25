@@ -49,12 +49,15 @@ function StoreDrinkCard({ user, drinkData, storeUid }) {
             </div>
             <div>
                 {userHasAdded ? (
-                    <button disabled className="bg-white/50 p-2 m-4 rounded-md">
+                    <Button
+                        disabled
+                        className="bg-white/50 w-4 h-8 m-4 rounded-md"
+                    >
                         <Check
                             className="w-4 h-4 stroke-pastel-orange"
                             strokeWidth={4}
                         />
-                    </button>
+                    </Button>
                 ) : (
                     <button
                         className="bg-white p-2 m-4 rounded-md"

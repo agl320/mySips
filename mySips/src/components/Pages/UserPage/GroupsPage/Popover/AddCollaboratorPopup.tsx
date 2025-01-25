@@ -3,7 +3,6 @@ import {
     PopoverTrigger,
     PopoverContent,
 } from "@/components/ui/popover";
-import { Label } from "@/components/ui/label";
 import {
     Command,
     CommandInput,
@@ -21,7 +20,6 @@ function AddCollaboratorPopup({ user, userConnections, groupUid }) {
             </PopoverTrigger>
             <PopoverContent className="bg-white border-0 space-y-8">
                 <div className="space-y-4">
-                    {/* <Label className="text-base">Share GroupName</Label> */}
                     <Command>
                         <CommandInput placeholder="Type a friend to search..." />
                         <CommandList>

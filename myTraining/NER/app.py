@@ -184,28 +184,25 @@ def process_receipt():
     # since our database is small (<100), let's just check all and return drink id match on two conditions:
     # 1. past a certain treshold
     # 2. top n results
-    matchTreshold = 0.5
-    maxResults = 3
+    match_threshold = 60
+    max_results = 3
 
     matched_drinks = []
 
     for entity_data in entities:
         for drink_data in all_drinks:
-            if(fuzz.partial_ratio(drink_data.get("name"), entity_data.get("entity")) > 60):
+            if(fuzz.partial_ratio(drink_data.get("name"), entity_data.get("entity")) > match_threshold):
                 matched_drinks.append(drink_data)
+                if(len(matched_drinks) >= max_results):
+                    break
 
-    drinkUid = "temp"
     # Return success response with optional data
     return jsonify({
         "status": "success",
         "message": "Receipt processed successfully.",
-        "entities": entities,
         "matchedDrinks": matched_drinks
     }), 200
 
-    # except Exception as e:
-    #     logging.error(f"error occurred: {str(e)}")
-    #     return jsonify({"error": str(e)}), 500
 
 # delete endpoint
 @app.route('/api/delete-drink', methods=['DELETE'])
@@ -276,7 +273,6 @@ def delete_collection(collection_ref, batch_size=10):
         for doc in docs:
             delete_subcollections(doc.reference)
             doc.reference.delete()
-            
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)

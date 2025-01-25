@@ -44,12 +44,6 @@ import { Link } from "react-router-dom";
 import { PageTypes } from "@/enums/PageTypes";
 import { useUser } from "reactfire";
 
-// const user = {
-//     name: "xegativ",
-//     email: "x@example.com",
-//     avatar: "/avatars/shadcn.jpg",
-// };
-// Menu items.
 const groupArr = [
     {
         title: "Home",
@@ -70,26 +64,17 @@ const groupArr = [
                 url: "/app/groups",
                 icon: PackageOpen,
             },
-            // {
-            //     title: "Inbox",
-            //     url: "/app/inbox",
-            //     icon: Inbox,
-            // },
             {
                 title: "Calendar",
                 url: "#",
                 icon: Calendar,
+                disabled: true,
             },
         ],
     },
     {
         title: "Social",
         items: [
-            // {
-            //     title: "Search",
-            //     url: "#",
-            //     icon: Search,
-            // },
             {
                 title: "Friends",
                 url: "/app/friends",
@@ -115,6 +100,7 @@ const groupArr = [
                 title: "Settings",
                 url: "#",
                 icon: Settings,
+                disabled: true,
             },
         ],
     },
@@ -138,6 +124,16 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
         avatar: "/avatars/shadcn.jpg",
     };
     const { selectedPage } = props;
+
+    const getInitials = (name: string) => {
+        const nameParts = name.split(" ");
+        const initials =
+            nameParts.length > 1
+                ? `${nameParts[0][0]}${nameParts[1][0]}`
+                : `${nameParts[0][0]}`;
+        return initials.toUpperCase();
+    };
+
     return (
         <Sidebar className="p-4">
             <SidebarHeader className="mb-8">
@@ -164,8 +160,16 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                 {group.items.map((item) => (
                                     <SidebarMenuItem key={item.title}>
                                         <SidebarMenuButton asChild>
-                                            {selectedPage.toLowerCase() ===
-                                            item.title.toLowerCase() ? (
+                                            {item.disabled ? (
+                                                <Link
+                                                    to={item.url}
+                                                    className="rounded-md duration-200 text-[#cccccc]/50 cursor-default"
+                                                >
+                                                    <item.icon />
+                                                    <span>{item.title}</span>
+                                                </Link>
+                                            ) : selectedPage.toLowerCase() ===
+                                              item.title.toLowerCase() ? (
                                                 <Link
                                                     to={item.url}
                                                     className="rounded-md bg-gradient-to-r from-pastel-pink to-pastel-orange text-white font-medium"
@@ -235,7 +239,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                                 alt={user.name}
                                             />
                                             <AvatarFallback className="rounded-lg">
-                                                JB
+                                                {getInitials(user.name ?? "")}
                                             </AvatarFallback>
                                         </Avatar>
                                         <div className="grid flex-1 text-left text-sm leading-tight">
@@ -249,34 +253,13 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                     </div>
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator className="bg-white/50" />
-                                {/* <DropdownMenuGroup>
-                                    <DropdownMenuItem>
-                                        <Sparkles />
-                                        Upgrade to Pro
-                                    </DropdownMenuItem>
-                                </DropdownMenuGroup>
-                                <DropdownMenuSeparator /> */}
-                                {/* <DropdownMenuGroup> */}
+
                                 <DropdownMenuItem>
-                                    <BadgeCheck className="stroke-white mr-2" />
-                                    <p className="text-white">
+                                    <Settings className="stroke-white/50 mr-2" />
+                                    <p className="text-white/50">
                                         Account Settings
                                     </p>
                                 </DropdownMenuItem>
-                                {/* <DropdownMenuItem>
-                                        <CreditCard />
-                                        Billing
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        <Bell />
-                                        Notifications
-                                    </DropdownMenuItem>
-                                </DropdownMenuGroup>
-                                <DropdownMenuSeparator /> */}
-                                {/* <DropdownMenuItem>
-                                    <LogOut />
-                                    Log out
-                                </DropdownMenuItem> */}
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </SidebarMenuItem>

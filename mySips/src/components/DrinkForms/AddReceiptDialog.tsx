@@ -13,6 +13,7 @@ import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { DialogDescription } from "@radix-ui/react-dialog";
 import CustomLoader from "../CustomLoader/CustomLoader";
+import DrinkRow from "../DrinkDisplay/DrinkRow";
 
 interface IAddDrinkDialogProps {
     user: User;
@@ -120,19 +121,7 @@ function AddDrinkDialog({
                     <div className="w-full">
                         {matchedDrinks.length > 0 ? (
                             matchedDrinks.map((drinkData) => (
-                                <div className="w-full bg-gradient-to-r from-pastel-pink to-pastel-orange py-2 px-2 rounded-md mb-2 flex justify-between">
-                                    <div className="flex justify-between items-center w-full pl-2 pr-4">
-                                        <p className="text-white font-medium">
-                                            {drinkData.name}
-                                        </p>
-                                        <p className="bg-white/25 px-2 rounded-md text-white font-medium">
-                                            ${drinkData.drinkPrice}
-                                        </p>
-                                    </div>
-                                    <Button className="bg-white/25 w-4 h-8">
-                                        <Plus className="w-4 h-8 stroke-white" />
-                                    </Button>
-                                </div>
+                                <DrinkRow user={user} drinkData={drinkData} />
                             ))
                         ) : (
                             <div className="">

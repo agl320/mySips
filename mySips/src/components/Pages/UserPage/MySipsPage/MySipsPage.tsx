@@ -179,11 +179,14 @@ function MySipsPage(props: IUserProps) {
 
             <UserBlock className="mt-4">
                 <div className="flex">
-                    <Button className="bg-pastel-pink h-12 text-base">
+                    <Button className="bg-pastel-pink h-12 text-base" disabled>
                         <ArrowDownWideNarrow />
                         Sort by
                     </Button>
-                    <Button className="bg-pastel-pink h-12 text-base ml-4">
+                    <Button
+                        className="bg-pastel-pink h-12 text-base ml-4"
+                        disabled
+                    >
                         <ListFilter />
                         Filter by
                     </Button>
