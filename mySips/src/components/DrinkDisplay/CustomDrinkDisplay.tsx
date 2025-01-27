@@ -1,9 +1,10 @@
 import { User } from "firebase/auth";
 import DrinkCard from "./DrinkCard";
+import { Drink } from "@/classes/Drink";
 
 interface ICustomDrinkDisplayProps {
     user: User;
-    drinks: Array<any>; // Replace `any` with a specific drink type/interface if available
+    drinks: Drink[]; // Replace `any` with a specific drink type/interface if available
     className?: string;
 }
 
@@ -19,7 +20,7 @@ function CustomDrinkDisplay({
                 {drinks.map((drinkData, index) => (
                     <DrinkCard
                         user={user}
-                        key={`${drinkData.id}-${index}`} // Assuming each drink has a unique `id`
+                        key={`${drinkData.drink}-${index}`} // Assuming each drink has a unique `id`
                         userUid={drinkData.userUid} // Pass the associated user's UID if available
                         drinkData={drinkData}
                         isEditable={false} // Always non-editable

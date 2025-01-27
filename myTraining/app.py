@@ -12,16 +12,16 @@ from fuzzywuzzy import fuzz
 
 import spacy
 
-from setup import get_firestore_client
-from data_calculations import STATISTIC_FUNCTIONS
+from calculations.data_calculations import STATISTIC_FUNCTIONS
+from firebase.setup import get_firestore_client
 
-from image_preprocessing import preprocess_image, extract_drink_name_from_text
+from NER.image_preprocessing import preprocess_image, extract_drink_name_from_text
 
 pytesseract.pytesseract.tesseract_cmd = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 
 logging.basicConfig(level=logging.INFO)
 
-nlp = spacy.load("./output/model-best") 
+nlp = spacy.load("./NER/output/model-best") 
 
 # initialize flask app
 app = Flask(__name__)

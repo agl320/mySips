@@ -1,4 +1,3 @@
-import DrinkDisplay from "@/components/DrinkDisplay/DrinkDisplay";
 import UserBlock from "../UserComponents/Blocks/UserBlock";
 import UserPageHeader from "../UserPageHeader/UserPageHeader";
 import { User } from "firebase/auth";
@@ -6,18 +5,11 @@ import { useCachedDrinkStats } from "@/hooks/useCachedDrinkStats";
 import { useUserDrinkData } from "@/hooks/useUserDrinkData";
 import { useFirestore } from "reactfire";
 import UserGraphWrapper from "../UserComponents/UserStatistics/UserGraphWrapper";
-import UserGraphScatter from "../UserComponents/UserStatistics/UserGraphScatter";
 import UserStatistics from "../UserComponents/UserStatistics/UserStatistics";
 import { Separator } from "@/components/ui/separator";
 import UserGraphLine from "../UserComponents/UserStatistics/UserGraphLine";
 import CustomDrinkDisplay from "@/components/DrinkDisplay/CustomDrinkDisplay";
-import {
-    BookOpenText,
-    CircleDollarSign,
-    DollarSign,
-    Info,
-    Trophy,
-} from "lucide-react";
+import { BookOpenText, DollarSign, Info, Trophy } from "lucide-react";
 import UserGraphBar from "../UserComponents/UserStatistics/UserGraphBar";
 import {
     colors,
@@ -29,6 +21,7 @@ import DrinkTable from "@/components/DrinkDisplay/DrinkTable";
 import { Button } from "@/components/ui/button";
 import UserGraphPie from "../UserComponents/UserStatistics/UserGraphPie";
 import { Link } from "react-router-dom";
+import { Drink } from "@/classes/Drink";
 
 interface IUserProps {
     user: User;
@@ -59,7 +52,7 @@ function OverviewPage({ user }: IUserProps) {
         userDrinkData,
     });
 
-    console.log(cachedData);
+    console.log({ cachedData });
 
     return (
         <div className="w-full h-full p-8 text-white bg-gradient-to-r from-background-dark to-[#1c1a10] via-[#1c1015]">
@@ -259,7 +252,7 @@ function OverviewPage({ user }: IUserProps) {
                         user={user}
                         drinks={
                             cachedData?.top_three_drinks.map(
-                                (drink) => drink.data
+                                (drink: { data: Drink }) => drink.data
                             ) ?? []
                         }
                     />

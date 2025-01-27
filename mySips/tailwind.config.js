@@ -29,8 +29,8 @@ module.exports = {
                 "card-add": "url('/images/landing-card-1.webp')",
                 "card-stats": "url('/images/landing-card-2.webp')",
                 "card-groups": "url('/images/landing-card-3.webp')",
+                "card-share": "url('/images/landing-card-4.webp')",
                 preview: "url('/images/preview.png')",
-
                 custom: "radial-gradient(62.87% 100% at 50% 100%, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0) 100%)",
             },
         },

@@ -1,14 +1,11 @@
 import os
-from firebase_admin import auth, credentials, firestore
+from firebase_admin import credentials, firestore
 import firebase_admin
 from dotenv import load_dotenv
 
 # Load environment variables
-dotenv_path = os.path.join(os.path.dirname(__file__), './priv/.env')
+dotenv_path = os.path.join(os.path.dirname(__file__), '../priv/.env')
 load_dotenv(dotenv_path)
-
-if not os.getenv('GOOGLE_APPLICATION_CREDENTIALS'):
-    raise ValueError("Env var GOOGLE_APPLICATION_CREDENTIALS is unknown")
 
 # Initialize Firebase
 cred = credentials.Certificate(os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))

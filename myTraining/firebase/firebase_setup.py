@@ -12,9 +12,6 @@ logging.basicConfig(level=logging.INFO)
 dotenv_path = os.path.join(os.path.dirname(__file__), './priv/.env')
 load_dotenv(dotenv_path)
 
-if not os.getenv('GOOGLE_APPLICATION_CREDENTIALS'):
-    raise ValueError("Env var GOOGLE_APPLICATION_CREDENTIALS is unknown")
-
 cred = credentials.Certificate(os.getenv('GOOGLE_APPLICATION_CREDENTIALS'))
 firebase_admin.initialize_app(cred)
 

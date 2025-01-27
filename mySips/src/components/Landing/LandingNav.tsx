@@ -19,7 +19,7 @@ function LandingNav() {
                             Sips
                         </span>
                     </Link>
-                    <div className=" gap-x-12 w-full flex-grow flex items-center w-auto text-center">
+                    <div className="gap-x-12 w-full flex-grow flex items-center w-auto text-center">
                         <ul className="flex-1 justify-end items-center text-center flex">
                             <li className="">
                                 <Link

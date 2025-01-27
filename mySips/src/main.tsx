@@ -1,12 +1,10 @@
 import ReactDOM from "react-dom/client";
 import "./output.css";
 import "./index.css";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import AuthProvider from "./components/contexts/authContext/index.tsx";
 import { FirebaseAppProvider } from "reactfire";
 import firebaseConfig from "../../firebaseConfig";
-
 import LoginPage from "./components/Pages/LoginPage/LoginPage.tsx";
 import LandingPage from "./components/Pages/UserPage/LandingPage/LandingPage.tsx";
 import RegisterPage from "./components/Pages/RegisterPage/RegisterPage.tsx";

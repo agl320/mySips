@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import LandingFooter from "@/components/Landing/LandingFooter";
+import { Input } from "@/components/ui/input";
 
 function LandingPage() {
     return (
@@ -172,7 +173,7 @@ function LandingPage() {
                                 </div>
                             </div>
                             <div className="w-full lg:w-1/2 h-[500px] mt-8 rounded-md lg:ml-4 bg-gradient-to-r from-pastel-pink to-pastel-orange flex overflow-hidden">
-                                <div className="bg-card-groups bg-cover bg-left-bottom rounded-bl-md w-full">
+                                <div className="bg-card-share bg-cover bg-left-bottom rounded-bl-md w-full">
                                     <div className="p-6">
                                         <h2 className="w-full text-5xl font-semibold text-white rounded-bl-md mb-4 w-full font-display">
                                             Share to Friends
@@ -207,11 +208,30 @@ function LandingPage() {
                         production efficiency and sales, providing another facet
                         into your menu analysis.
                     </p>
-                    <p className="text-center text-white-blue text-lg opacity-80 mt-8">
-                        Want to upload your menu and view analytics beneficial
-                        to your business?
-                    </p>
-                    <div className="w-full h-[500px] rounded-md bg-gradient-to-r from-pastel-pink to-pastel-orange flex mt-16"></div>
+
+                    <div className="w-full h-[500px] rounded-md bg-gradient-to-r from-pastel-pink to-pastel-orange mt-16">
+                        <div className="flex flex-col justify-center h-full">
+                            <h2 className="text-center text-white-blue  text-5xl font-semibold text-white font-display max-w-lg mx-auto mb-12">
+                                Upload your menu and join mySips!
+                            </h2>
+                            <div className="max-w-lg mx-auto flex mb-4">
+                                <Input
+                                    placeholder="company@domain.com"
+                                    className="text-black"
+                                    disabled
+                                ></Input>
+                                <Button
+                                    className="ml-2 bg-white text-pastel-orange font-semibold shadow-lg"
+                                    disabled
+                                >
+                                    Join
+                                </Button>
+                            </div>
+                            <p className=" max-w-md mx-auto text-white/75 text-sm">
+                                mySips is currently not accepting new stores.
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </section>
             <LandingFooter />
