@@ -140,12 +140,17 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                 <h1 className="text-5xl font-wide">
                     <Link
                         to="/"
-                        className="text-4xl font-regular font-wide whitespace-nowrap"
+                        className="text-4xl font-regular font-wide whitespace-nowrap items-baseline flex"
                     >
-                        ./my
+                        my
                         <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             Sips
                         </span>
+                        <img
+                            src="./images/mysips-logo.png"
+                            className="h-8 w-8 ml-2"
+                            style={{ verticalAlign: "baseline" }}
+                        />
                     </Link>
                 </h1>
             </SidebarHeader>

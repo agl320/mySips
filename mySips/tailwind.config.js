@@ -32,6 +32,7 @@ module.exports = {
                 "card-share": "url('/images/landing-card-4.webp')",
                 preview: "url('/images/preview.png')",
                 custom: "radial-gradient(62.87% 100% at 50% 100%, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0) 100%)",
+                "contact-bg": "url('/images/contact-bg.png')",
             },
         },
     },

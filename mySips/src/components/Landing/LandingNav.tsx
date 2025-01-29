@@ -11,39 +11,36 @@ function LandingNav() {
             <div className="flex justify-center w-full px-16 bg-white bg-opacity-[2%]">
                 <div className="flex justify-between text-white max-w-6xl w-full py-8 ">
                     <Link
-                        to="/"
-                        className="text-5xl font-regular font-wide whitespace-nowrap"
+                        to="#mysips"
+                        className="text-5xl font-regular font-wide whitespace-nowrap flex items-baseline"
                     >
-                        ./my
+                        my
                         <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             Sips
                         </span>
+                        <img
+                            src="./images/mysips-logo.png"
+                            className="h-10 w-10 ml-2"
+                            style={{ verticalAlign: "baseline" }}
+                        />
                     </Link>
-                    <div className="gap-x-12 w-full flex-grow flex items-center w-auto text-center">
+                    <div className="gap-x-12 w-full flex-grow flex items-center w-auto text-center text-sm">
                         <ul className="flex-1 justify-end items-center text-center flex">
                             <li className="">
-                                <Link
-                                    className="px-6 py-2 hover:bg-white/15 rounded-md duration-100"
-                                    to="/app "
+                                <a
+                                    className="px-6 py-2 hover:bg-white/15 rounded-md duration-100 cursor-pointer"
+                                    href="#consumers"
                                 >
-                                    Features
-                                </Link>
-                            </li>
-                            <li className="">
-                                <Link
-                                    className="px-6 py-2 hover:bg-white/15 rounded-md duration-100"
-                                    to="/app"
-                                >
-                                    Pricing
-                                </Link>
+                                    Consumers
+                                </a>
                             </li>
                             <li className="mr-6">
-                                <Link
+                                <a
                                     className="px-6 py-2 hover:bg-white/15 rounded-md duration-100"
-                                    to="/app"
+                                    href="#producers"
                                 >
-                                    About Us
-                                </Link>
+                                    Producers
+                                </a>
                             </li>
 
                             {userLoggedIn ? (
