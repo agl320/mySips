@@ -23,23 +23,23 @@ function LandingPage() {
                 className="flex flex-col mt-24 min-h-[600px] sm:min-h-screen w-full px-16"
                 id="mysips"
             >
-                <div className="mx-auto text-center max-w-4xl space-y-8 w-full">
-                    <p className="bg-pastel-pink/10 px-3 py-1 rounded-full text-pastel-pink border border-pastel-pink text-sm inline-flex items-center">
+                <div className="mx-auto text-center max-w-4xl w-full">
+                    <p className="bg-pastel-pink/10 px-3 py-1 rounded-full text-pastel-pink border border-pastel-pink text-sm inline-flex items-center mb-8">
                         Store Drinks Easily{" "}
                         <Sparkles className="w-4 h-4 ml-2" />
                     </p>
 
-                    <h1 className="text-5xl sm:text-6xl font-semibold text-white-blue font-display">
+                    <h1 className="text-5xl sm:text-6xl font-semibold text-white-blue font-display mb-8">
                         Where every sip tells a story, your{" "}
                         <span className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-transparent bg-clip-text">
                             personal drink journal.
                         </span>
                     </h1>
-                    <p className="text-white-blue text-md sm:text-lg opacity-80">
+                    <p className="text-white-blue text-md sm:text-lg opacity-80 mb-8">
                         Store all your favorite drinks in one place — making
                         going out effortless.
                     </p>
-                    <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-8 text-white">
+                    <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-8 text-white mb-8">
                         Get started, it's free{" "}
                         <MousePointerClick strokeWidth={2} />
                     </Button>
@@ -47,7 +47,7 @@ function LandingPage() {
                         No in-app purchases
                     </p>
                     <div className="flex justify-center hidden sm:block">
-                        <div className="bg-preview bg-contain bg-no-repeat bg-center mt-8 rounded-md w-full h-[500px]"></div>
+                        <div className="bg-preview bg-contain bg-no-repeat bg-center rounded-md w-full h-[600px] mt-[-100px]"></div>
                     </div>
                 </div>
             </section>
@@ -240,9 +240,8 @@ function LandingPage() {
                                 Sign up for updates
                             </h3>
                             <p className="text-center text-white text-lg mt-8 mb-8 max-w-lg mx-auto font-medium">
-                                We’re not accepting new stores or emails right
-                                now, but check back for updates on future
-                                opportunities!
+                                We’re not accepting new stores right now, but
+                                check back for updates on future opportunities!
                             </p>
                             <div className="max-w-lg mx-auto flex mb-4 bg-white rounded-md">
                                 <Input

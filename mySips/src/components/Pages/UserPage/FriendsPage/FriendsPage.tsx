@@ -173,6 +173,7 @@ const FriendsPage = ({ user }) => {
     };
 
     const getInitials = (name: string) => {
+        if (!name) return;
         const nameParts = name.split(" ");
         const initials =
             nameParts.length > 1

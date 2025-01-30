@@ -138,6 +138,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
     const { selectedPage } = props;
 
     const getInitials = (name: string) => {
+        if (!name) return;
         const nameParts = name.split(" ");
         const initials =
             nameParts.length > 1
