@@ -29,10 +29,8 @@ interface IUserProps {
 
 function OverviewPage({ user }: IUserProps) {
     const firestore = useFirestore();
-
     const userDrinkData = useUserDrinkData(firestore, user.uid);
-
-    const { cachedData, isLoading } = useCachedDrinkStats({
+    const { cachedData } = useCachedDrinkStats({
         user,
         userUid: user.uid,
         graphTypes: [
@@ -51,8 +49,6 @@ function OverviewPage({ user }: IUserProps) {
         ],
         userDrinkData,
     });
-
-    console.log({ cachedData });
 
     return (
         <div className="w-full h-full p-8 text-white bg-gradient-to-r from-background-dark to-[#1c1a10] via-[#1c1015]">
@@ -80,7 +76,6 @@ function OverviewPage({ user }: IUserProps) {
                                 }/10`}
                                 className="mr-6 flex flex-col justify-center"
                             />
-
                             <p className="text-white text-xs whitespace-normal break-words">
                                 <span className="bg-[#F1F33F] inline-block w-3 h-2 rounded-sm"></span>{" "}
                                 is for rating 10, ranging to{" "}
@@ -122,14 +117,13 @@ function OverviewPage({ user }: IUserProps) {
                             <h1 className="text-4xl font-semibold font-display">
                                 Welcome back, {user?.displayName}
                             </h1>
-                            <Button className="bg-white text-pastel-orange font-medium float-right ml-auto shadow-lg hover:shadow-none">
+                            <Button className="bg-white text-pastel-orange font-medium float-right ml-auto">
                                 <Link to="/app/menu">Explore Menus</Link>
                                 <BookOpenText />
                             </Button>
                         </div>
                     </div>
                 </UserBlock>
-
                 <UserBlock className="bg-gradient-to-r from-pastel-orange to-pastel-light-orange w-[600px]">
                     <div className="h-40">
                         <h1 className="text-4xl font-semibold font-display">
@@ -183,7 +177,6 @@ function OverviewPage({ user }: IUserProps) {
                         orientation="vertical"
                         className="bg-white/15 mx-8 h-auto self-stretch"
                     />
-
                     <UserStatistics
                         userId={user.uid}
                         name="Drinks Bought"
@@ -234,9 +227,9 @@ function OverviewPage({ user }: IUserProps) {
                     </h1>
                     <div className="inline-flex bg-white/15 px-4 py-2 rounded-lg w-max">
                         <Info className="mr-4" />
-                        {!cachedData ||
-                        cachedData?.top_three_drinks.length === 0 ? (
-                            <p>There are currently no drinks.</p>
+                        {!userDrinkData ||
+                        Object.keys(userDrinkData).length === 0 ? (
+                            <p>You currently have no drinks.</p>
                         ) : (
                             <p>
                                 Your top drink is{" "}
@@ -247,7 +240,6 @@ function OverviewPage({ user }: IUserProps) {
                             </p>
                         )}
                     </div>
-
                     <CustomDrinkDisplay
                         user={user}
                         drinks={

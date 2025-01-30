@@ -1,7 +1,6 @@
 import cv2
 import numpy as np
 import pytesseract
-from PIL import Image
 import re
 # This just a file for all preprocessing cleaned up so I can import and use in app
 

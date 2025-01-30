@@ -2,7 +2,6 @@ import {
     collection,
     doc,
     getDoc,
-    getDocs,
     onSnapshot,
     query,
     runTransaction,

@@ -9,10 +9,10 @@ function LandingNav() {
     return (
         <header>
             <div className="flex justify-center w-full px-16 bg-white bg-opacity-[2%]">
-                <div className="flex justify-between text-white max-w-6xl w-full py-8 ">
+                <div className="flex justify-between text-white max-w-6xl w-full py-6">
                     <Link
                         to="#mysips"
-                        className="text-5xl font-regular font-wide whitespace-nowrap flex items-baseline"
+                        className="text-4xl font-regular font-wide whitespace-nowrap flex items-baseline"
                     >
                         my
                         <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
@@ -20,15 +20,15 @@ function LandingNav() {
                         </span>
                         <img
                             src="./images/mysips-logo.png"
-                            className="h-10 w-10 ml-2"
+                            className="h-8 w-8 ml-2"
                             style={{ verticalAlign: "baseline" }}
                         />
                     </Link>
-                    <div className="gap-x-12 w-full flex-grow flex items-center w-auto text-center text-sm">
+                    <div className="gap-x-12 w-full flex-grow flex items-center w-auto text-center text-md">
                         <ul className="flex-1 justify-end items-center text-center flex">
                             <li className="">
                                 <a
-                                    className="px-6 py-2 hover:bg-white/15 rounded-md duration-100 cursor-pointer"
+                                    className="px-3 mx-3 py-2 hover:bg-white/10 rounded-md duration-100 cursor-pointer"
                                     href="#consumers"
                                 >
                                     Consumers
@@ -36,7 +36,7 @@ function LandingNav() {
                             </li>
                             <li className="mr-6">
                                 <a
-                                    className="px-6 py-2 hover:bg-white/15 rounded-md duration-100"
+                                    className="px-3 mx-3 py-2 hover:bg-white/10 rounded-md duration-100"
                                     href="#producers"
                                 >
                                     Producers

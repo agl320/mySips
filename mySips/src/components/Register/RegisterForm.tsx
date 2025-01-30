@@ -10,21 +10,26 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import { doCreateUserWithEmailAndPassword } from "../../firebase/Auth";
+import { doCreateUserWithEmailAndPassword } from "@/firebase/Auth";
+import { useState } from "react";
 
 const formSchema = z
     .object({
         email: z.string().min(2).max(50),
         username: z.string().min(2).max(50),
-        password: z.string().min(8).max(50),
+        password: z
+            .string()
+            .min(8, "String must be between 8 and 50 characters")
+            .max(50),
         passwordVerify: z.string().min(8).max(50),
     })
     .refine((data) => data.password === data.passwordVerify, {
-        message: "Passwords don't match",
+        message: "Strings don't match",
         path: ["passwordVerify"],
     });
 
 function RegisterForm() {
+    const [errorMessage, setErrorMessage] = useState("");
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -35,44 +40,70 @@ function RegisterForm() {
         },
     });
 
-    function onSubmitHandler(values: z.infer<typeof formSchema>) {
-        doCreateUserWithEmailAndPassword(values.email, values.password);
+    async function onSubmitHandler(values: z.infer<typeof formSchema>) {
+        const response = await doCreateUserWithEmailAndPassword(
+            values.email,
+            values.password
+        );
+        setErrorMessage(
+            !response || response.status === false
+                ? "Registration failed. Please try again."
+                : ""
+        );
     }
 
     return (
         <Form {...form}>
             <form
                 onSubmit={form.handleSubmit(onSubmitHandler)}
-                className="space-y-8"
+                className="space-y-8 mx-auto"
             >
                 <FormField
                     control={form.control}
                     name="email"
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                                <Input placeholder="Email" {...field} />
+                                <Input
+                                    placeholder="Email"
+                                    {...field}
+                                    className="text-black"
+                                />
                             </FormControl>
+                            {fieldState.error && (
+                                <p className="text-red-500">
+                                    {fieldState.error.message}
+                                </p>
+                            )}
                         </FormItem>
                     )}
                 />
                 <FormField
                     control={form.control}
                     name="username"
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <FormItem>
                             <FormLabel>Username</FormLabel>
                             <FormControl>
-                                <Input placeholder="Username" {...field} />
+                                <Input
+                                    placeholder="Username"
+                                    {...field}
+                                    className="text-black"
+                                />
                             </FormControl>
+                            {fieldState.error && (
+                                <p className="text-red-500">
+                                    {fieldState.error.message}
+                                </p>
+                            )}
                         </FormItem>
                     )}
                 />
                 <FormField
                     control={form.control}
                     name="password"
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <FormItem>
                             <FormLabel>Password</FormLabel>
                             <FormControl>
@@ -80,15 +111,21 @@ function RegisterForm() {
                                     placeholder="Password"
                                     type="password"
                                     {...field}
+                                    className="text-black"
                                 />
                             </FormControl>
+                            {fieldState.error && (
+                                <p className="text-red-500">
+                                    {fieldState.error.message}
+                                </p>
+                            )}
                         </FormItem>
                     )}
                 />
                 <FormField
                     control={form.control}
                     name="passwordVerify"
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <FormItem>
                             <FormLabel>Re-type Password</FormLabel>
                             <FormControl>
@@ -96,14 +133,27 @@ function RegisterForm() {
                                     placeholder="Re-type Password"
                                     type="password"
                                     {...field}
+                                    className="text-black"
                                 />
                             </FormControl>
+                            {fieldState.error && (
+                                <p className="text-red-500">
+                                    {fieldState.error.message}
+                                </p>
+                            )}
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
+                {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+                <Button
+                    type="submit"
+                    className="bg-gradient-to-r from-pastel-pink to-pastel-orange w-full"
+                >
+                    Sign Up
+                </Button>
             </form>
         </Form>
     );
 }
+
 export default RegisterForm;

@@ -5,6 +5,7 @@ import MySipsPage from "../../MySipsPage/MySipsPage";
 import { useUser } from "reactfire";
 import FriendsPage from "../../FriendsPage/FriendsPage";
 import GroupsPage from "../../GroupsPage/GroupsPage";
+import InboxPage from "../../InboxPage/InboxPage";
 import MenuPage from "../../MenuPage/MenuPage";
 import CustomLoader from "@/components/CustomLoader/CustomLoader";
 import { useNavigate } from "react-router-dom";
@@ -24,7 +25,6 @@ function UserApplication({ selectedPage }: IUserApplication) {
 
     if (!user) {
         navigate("/");
-        return null;
     }
 
     // Map selectedPage to corresponding component

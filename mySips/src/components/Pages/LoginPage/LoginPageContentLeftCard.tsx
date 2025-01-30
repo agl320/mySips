@@ -1,10 +1,18 @@
-import { CircleCheck } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ArrowLeftToLine, CircleCheck } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function LoginPageContentLeftCard() {
     return (
         <div className="lg:w-1/3 m-8 lg:mr-4 bg-gradient-to-r from-pastel-pink to-pastel-orange rounded-md">
             <section className="space-y-8 p-16">
-                <h1 className="text-white text-5xl font-semibold">
+                <Link to="/">
+                    <Button className="bg-white text-pastel-pink font-medium flex">
+                        <ArrowLeftToLine strokeWidth={3} /> Back
+                    </Button>
+                </Link>
+
+                <h1 className="text-white text-4xl xl:text-5xl font-semibold">
                     Unlock a new way of drink management
                 </h1>
                 <p className="text-white text-base">
