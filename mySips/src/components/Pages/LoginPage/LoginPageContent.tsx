@@ -1,67 +1,19 @@
 import LandingNav from "@/components/Landing/LandingNav";
 import { Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { doSignInWithGoogle, doSignOut } from "@/firebase/Auth";
-import { AuthContext } from "@/components/contexts/authContext";
-import { useContext } from "react";
-import { firebaseApp, firebaseAuth } from "@/firebase/FirebaseSetup";
+import {
+    createUserProfile,
+    doSignInWithGoogle,
+    doSignOut,
+} from "@/firebase/Auth";
 import { useFirestore, useSigninCheck, useUser } from "reactfire";
 import LoginForm from "@/components/Login/LoginForm";
-import {
-    addDoc,
-    collection,
-    doc,
-    DocumentData,
-    DocumentReference,
-    getDocs,
-    setDoc,
-} from "firebase/firestore";
-import { User } from "firebase/auth";
 import { Separator } from "@/components/ui/separator";
 import LoginPageContentLeftCard from "./LoginPageContentLeftCard";
 
 function LoginPageContent() {
     const { status, data: signInCheckResult } = useSigninCheck();
     const { status: statusUser, data: userData } = useUser();
-
-    const firestore = useFirestore();
-
-    // Create collection within document if exists
-    const checkAndCreateCollection = async (
-        userDocRef: DocumentReference<DocumentData, DocumentData>,
-        collectionName: string
-    ) => {
-        const collectionRef = collection(userDocRef, collectionName);
-
-        try {
-            const querySnapshot = await getDocs(collectionRef);
-
-            if (querySnapshot.empty) {
-                await addDoc(collectionRef, { placeholder: true });
-            } else {
-                console.log(`${collectionName} already exists.`);
-            }
-        } catch (error) {
-            console.error(`Error checking ${collectionName}:`, error.message);
-        }
-    };
-
-    const createUserProfile = async (user: User) => {
-        try {
-            const userDocRef = doc(firestore, "users", user.uid);
-
-            await setDoc(userDocRef, {
-                name: user.displayName,
-                email: user.email,
-            });
-
-            await checkAndCreateCollection(userDocRef, "userDrinkData");
-            await checkAndCreateCollection(userDocRef, "userGroups");
-            await checkAndCreateCollection(userDocRef, "userConnections");
-        } catch (error) {
-            console.error("Error creating user profile:", error.message);
-        }
-    };
 
     // If loading, return nothing
     if (status === "loading") {

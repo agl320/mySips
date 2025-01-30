@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import { LogIn } from "lucide-react";
 
 function LandingNav() {
     const { userLoggedIn } = useContext(AuthContext);
@@ -26,7 +27,7 @@ function LandingNav() {
                     </Link>
                     <div className="gap-x-12 w-full flex-grow flex items-center w-auto text-center text-md">
                         <ul className="flex-1 justify-end items-center text-center flex">
-                            <li className="">
+                            <li className="hidden md:block">
                                 <a
                                     className="px-3 mx-3 py-2 hover:bg-white/10 rounded-md duration-100 cursor-pointer"
                                     href="#consumers"
@@ -34,7 +35,7 @@ function LandingNav() {
                                     Consumers
                                 </a>
                             </li>
-                            <li className="mr-6">
+                            <li className="hidden md:block mr-6">
                                 <a
                                     className="px-3 mx-3 py-2 hover:bg-white/10 rounded-md duration-100"
                                     href="#producers"
@@ -52,7 +53,16 @@ function LandingNav() {
                             ) : (
                                 <li>
                                     <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white">
-                                        <Link to="/login">Log In</Link>
+                                        <Link
+                                            to="/login"
+                                            className="flex items-center"
+                                        >
+                                            Log In
+                                            <LogIn
+                                                className="h-6 w-6 ml-2"
+                                                strokeWidth={3}
+                                            />
+                                        </Link>
                                     </Button>
                                 </li>
                             )}

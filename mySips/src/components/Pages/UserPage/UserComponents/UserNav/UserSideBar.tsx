@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
     Calendar,
     Home,
@@ -118,11 +119,22 @@ const groupArr = [
 
 export function UserSideBar(props: { selectedPage: PageTypes }) {
     const { status: statusUser, data: userData } = useUser();
-    const user = {
+    const [user, setUser] = useState({
         name: userData?.displayName,
         email: userData?.email,
         avatar: "/avatars/shadcn.jpg",
-    };
+    });
+
+    useEffect(() => {
+        if (userData) {
+            setUser({
+                name: userData.displayName,
+                email: userData.email,
+                avatar: "/avatars/shadcn.jpg",
+            });
+        }
+    }, [userData]);
+
     const { selectedPage } = props;
 
     const getInitials = (name: string) => {
@@ -216,7 +228,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                             alt={user.name}
                                         />
                                         <AvatarFallback className="rounded-lg">
-                                            JB
+                                            {getInitials(user.name)}
                                         </AvatarFallback>
                                     </Avatar>
                                     <div className="grid flex-1 text-left text-sm leading-tight">

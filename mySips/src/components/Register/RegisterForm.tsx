@@ -43,6 +43,7 @@ function RegisterForm() {
     async function onSubmitHandler(values: z.infer<typeof formSchema>) {
         const response = await doCreateUserWithEmailAndPassword(
             values.email,
+            values.username,
             values.password
         );
         setErrorMessage(
