@@ -50,6 +50,8 @@ function OverviewPage({ user }: IUserProps) {
         userDrinkData,
     });
 
+    console.log({ cachedData });
+
     return (
         <div className="w-full h-full p-8 text-white bg-gradient-to-r from-background-dark to-[#1c1a10] via-[#1c1015]">
             <div className="flex">

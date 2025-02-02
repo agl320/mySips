@@ -1,6 +1,7 @@
 import logging
 from collections import defaultdict
 from datetime import datetime
+import unittest
 
 def calculate_sugar_vs_ice(user_drink_data):
     try:
@@ -28,8 +29,7 @@ def calculate_money_per_week(user_drink_data):
     return {"week1": 50, "week2": 75}
 
 def calculate_average_drink_price(user_drink_data):
-    logging.info(user_drink_data)
-    prices = [float(drink.get("drinkPrice", 0)) for drink in user_drink_data]
+    prices = [float(drink.get("drinkPrice", 0)) for drink in user_drink_data if float(drink.get("drinkPrice", 0)) > 0]
     return sum(prices) / len(prices) if prices else 0
 
 def calculate_money_spent_per_month(user_drink_data):
