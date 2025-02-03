@@ -39,22 +39,27 @@ function FooterSection() {
     return (
         <footer>
             <Separator className="w-full bg-custom h-[1px]" />
-            <div className="footer pt-12 pb-24 px-8 text-left bg-white/5 text-white">
+            <div className="footer pt-12 pb-24 px-8 text-left bg-white bg-opacity-[2%] text-white">
                 <div className="sm:max-w-6xl mx-auto space-y-16">
                     <div className="footer-content sm:flex justify-between">
                         <div className="flex flex-col justify-between">
                             <Link
                                 to="/"
-                                className="text-5xl font-regular font-wide whitespace-nowrap"
+                                className="text-5xl font-regular font-wide whitespace-nowrap flex items-baseline"
                             >
-                                ./my
-                                <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
+                                my
+                                <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange text-transparent bg-clip-text">
                                     Sips
                                 </span>
+                                <img
+                                    src="./images/mysips-logo.png"
+                                    className="h-10 w-10 ml-2"
+                                    style={{ verticalAlign: "baseline" }}
+                                />
                             </Link>
                             <address className="flex space-x-4  pb-8 pt-12 sm:p-0">
                                 <a
-                                    href="https://instagram.com/verzenaofficial"
+                                    href="https://www.linkedin.com/in/andrew-lai-8b3969190/"
                                     target="_blank"
                                     rel="noreferrer"
                                     alt="Link to our Instagram"
@@ -70,7 +75,7 @@ function FooterSection() {
                                     {LinkSVG}
                                 </a>
                                 <a
-                                    href="https://github.com/Verzena"
+                                    href="https://github.com/agl320/mySips"
                                     target="_blank"
                                     rel="noreferrer"
                                     alt="Link to our Github"
@@ -80,14 +85,14 @@ function FooterSection() {
                             </address>
                         </div>
                         <nav>
-                            <div className="flex space-x-16 [&_*]:text-base mt-8 md:mt-0">
+                            <div className="flex space-x-16 text-sm mt-8 md:mt-0">
                                 <div>
-                                    <p className="font-medium">Company</p>
-                                    <ul className="mt-8 space-y-2 [&_*]:block [&_*]:font-normal [&_*]:text-white">
+                                    <p className="font-medium">mySips</p>
+                                    <ul className="mt-8 space-y-4 [&_*]:block [&_*]:font-normal [&_*]:text-white/75 ">
                                         <li>
                                             <a
                                                 className="hover:text-white duration-200"
-                                                href="/about"
+                                                href="#mysips"
                                             >
                                                 About
                                             </a>
@@ -95,46 +100,17 @@ function FooterSection() {
                                         <li>
                                             <a
                                                 className="hover:text-white duration-200"
-                                                href="/portfolio"
+                                                href="#consumers"
                                             >
-                                                Portfolio
+                                                Consumers
                                             </a>
                                         </li>
                                         <li>
                                             <a
                                                 className="hover:text-white duration-200"
-                                                href="/services"
+                                                href="#producers"
                                             >
-                                                Services
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <p className="font-medium">Support</p>
-                                    <ul className="mt-8 space-y-2 [&_*]:block [&_*]:font-normal [&_*]:text-white">
-                                        <li>
-                                            <a
-                                                className="hover:text-white duration-200"
-                                                href="/contact"
-                                            >
-                                                Contact Us
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                className="hover:text-white duration-200"
-                                                href="/privacy-policy"
-                                            >
-                                                Privacy Policy
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a
-                                                className="hover:text-white duration-200"
-                                                href="/terms-conditions"
-                                            >
-                                                Terms of Service
+                                                Producers
                                             </a>
                                         </li>
                                     </ul>
@@ -143,17 +119,11 @@ function FooterSection() {
                         </nav>
                     </div>
                     <Separator className="w-full bg-custom h-[1px]" />
-                    <div className="[&_*]:font-normal [&_*]:text-soft-light sm:flex sm:flex-wrap justify-between space-y-2 sm:space-y-0">
-                        <div className="flex space-x-4 [&_*]:block">
-                            <a
-                                href="/privacy-policy"
-                                className="hover:text-white duration-200"
-                            >{`Privacy Policy`}</a>
+                    <div className="[&_*]:font-normal [&_*]:text-soft-light sm:flex sm:flex-wrap justify-between space-y-2 sm:space-y-0 text-white/75 text-sm">
+                        <div className="flex space-x-4 [&_*]:block ">
+                            <a className="hover:text-white duration-200 cursor-not-allowed">{`Privacy Policy`}</a>
                             <p>{`·`}</p>
-                            <a
-                                href="/terms-conditions"
-                                className="hover:text-white duration-200"
-                            >{`Terms of Service`}</a>
+                            <a className="hover:text-white duration-200 cursor-not-allowed">{`Terms of Service`}</a>
                         </div>
                         <p>{`© 2024 mySips. All Rights Reserved.`}</p>
                     </div>

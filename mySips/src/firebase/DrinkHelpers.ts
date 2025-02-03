@@ -12,6 +12,7 @@ import {
 import { v4 as uidv4 } from "uuid";
 import { firebaseDB } from "./FirebaseSetup";
 import { removeDrinkFromGroup } from "./GroupHelpers";
+import { User } from "firebase/auth";
 
 /**
  * Sets connection A-B for both users, such that A is initator/requester
@@ -41,11 +42,16 @@ export const createDrink = async (userUid: string, newDrinkProperties: any) => {
     await addDoc(groupDrinksCollectionRef, { placeholder: true });
 };
 
-export const createEmptyDrink = (): Drink => {
+export const createEmptyDrink = (store?: {
+    storeName: string;
+    storeAddress: string;
+    storeUid: string;
+}): Drink => {
     const newDrinkObj = new Drink({
         name: "New Drink",
         uid: uidv4(),
         description: "",
+        store,
     });
 
     return newDrinkObj;
@@ -95,6 +101,31 @@ export const deleteDrink = async (userUid: string, drinkUid: string) => {
     }
 };
 
+// Deletes drinks and sub collections
+export const deleteDrinkAndSubCollections = async (
+    user: User,
+    userUid: string,
+    drinkUid: string
+) => {
+    const idToken = await user.getIdToken();
+    const response = await fetch(
+        `http://127.0.0.1:5000/api/delete-drink?userUid=${userUid}&drinkUid=${drinkUid}`,
+        {
+            method: "DELETE",
+            headers: {
+                Authorization: `Bearer ${idToken}`, // Add Bearer token here
+                "Content-Type": "application/json",
+            },
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Failed to delete drink");
+    }
+
+    // return response.json();
+};
+
 export const getDrink = async (userUid: string, drinkUid: string) => {
     const drinkDocRef = doc(
         firebaseDB,
@@ -130,4 +161,19 @@ export const getAllGroupUids = async (userUid: string, drinkUid: string) => {
         console.error("Error fetching group UIDs:", error);
         throw error;
     }
+};
+
+export const doesUserDrinkExist = async (
+    userUid: string,
+    drinkUid: string
+): Promise<boolean> => {
+    const drinkDocRef = doc(
+        firebaseDB,
+        "users",
+        userUid,
+        "userDrinkData",
+        drinkUid
+    );
+    const drinkSnapshot = await getDoc(drinkDocRef);
+    return drinkSnapshot.exists();
 };

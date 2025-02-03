@@ -51,7 +51,7 @@ function UserStatistics(props: IUserStatisticsProps) {
                 </h1>
             </div>
 
-            <p className="text-3xl font-semibold mt-4">
+            <p className="text-3xl font-semibold mt-4 font-displayd">
                 {valueUnit}
                 {value}
             </p>
@@ -59,7 +59,11 @@ function UserStatistics(props: IUserStatisticsProps) {
             {delta !== undefined && (
                 <div
                     className={`mt-4 inline-flex items-center px-2 py-1 rounded-md w-min ${
-                        delta > 0 ? "bg-pastel-green/10" : "bg-pastel-pink/10"
+                        delta > 0
+                            ? "bg-pastel-green/10"
+                            : delta < 0
+                            ? "bg-pastel-pink/10"
+                            : "bg-white/10"
                     }`}
                 >
                     {delta > 0 ? (

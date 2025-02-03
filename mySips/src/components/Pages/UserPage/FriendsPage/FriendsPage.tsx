@@ -20,6 +20,7 @@ import {
     X,
 } from "lucide-react";
 import ConfirmDialog from "@/components/DrinkDisplay/ConfirmDialog/ConfirmDialog";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const FriendsPage = ({ user }) => {
     const [userConnections, setUserConnections] = useState<any>({});
@@ -171,33 +172,52 @@ const FriendsPage = ({ user }) => {
         );
     };
 
+    const getInitials = (name: string) => {
+        if (!name) return;
+        const nameParts = name.split(" ");
+        const initials =
+            nameParts.length > 1
+                ? `${nameParts[0][0]}${nameParts[1][0]}`
+                : `${nameParts[0][0]}`;
+        return initials.toUpperCase();
+    };
+
     return (
         <div className="w-full h-full p-8 text-white bg-background-dark">
             <UserBlock>
                 <UserPageHeader
                     pageTitle="Friends"
                     linkTrail={[{ value: "Social" }, { value: "Friends" }]}
+                    pageCaption="Keep up-to-date with your friends and their drinks."
                 />
-            </UserBlock>
+                <div className="flex gap-x-4 mt-8">
+                    {Object.values(userConnections).map(
+                        (userData: any, index) => {
+                            if (
+                                user?.uid !== userData.uid &&
+                                userData.connection?.status ===
+                                    ConnectionStatus.Friend
+                            ) {
+                                return (
+                                    <div
+                                        key={`user-${index}`}
+                                        className="h-[300px] min-w-[200px] p-2 rounded-md bg-white/20 border border-white/15 space-y-4 flex flex-col justify-between"
+                                    >
+                                        <div>
+                                            <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50 rounded-md"></div>
 
-            <UserBlock className="flex gap-x-4 mt-4">
-                {Object.values(userConnections).map((userData: any, index) => {
-                    if (user?.uid !== userData.uid) {
-                        return (
-                            <div
-                                key={`user-${index}`}
-                                className="h-[300px] min-w-[200px] p-2 rounded-md bg-white space-y-4 flex flex-col justify-between"
-                            >
-                                <div>
-                                    <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50 rounded-md"></div>
-                                    <div className="mt-[-60px]  w-[100px] aspect-square bg-pastel-orange mx-auto border-4 border-white mb-2 rounded-full"></div>
-                                    <h2 className="text-4xl font-semibold text-black text-center">
-                                        {userData.name}
-                                    </h2>
-                                </div>
-                                <div className="flex">
-                                    <Button
-                                        className={`h-full bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-30 rounded-md 
+                                            <Avatar className="mt-[-60px] w-[80px] h-[80px] aspect-square bg-pastel-orange mx-auto border-4 border-white/15 mb-2 rounded-md">
+                                                <AvatarFallback className="text-4xl font-semibold">
+                                                    {getInitials(userData.name)}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <h2 className="text-2xl font-medium text-white text-center mt-4">
+                                                {userData.name}
+                                            </h2>
+                                        </div>
+                                        <div className="flex">
+                                            <Button
+                                                className={`h-full bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-30 rounded-md 
                                             ${
                                                 userData.connection?.status ===
                                                 ConnectionStatus.Friend
@@ -205,18 +225,69 @@ const FriendsPage = ({ user }) => {
                                                     : "aspect-square"
                                             }
                                                 `}
+                                            >
+                                                <UserRoundSearch
+                                                    // stroke="#ff844b"
+                                                    strokeWidth={3}
+                                                />
+                                            </Button>
+                                            {getButtonComponent(userData)}
+                                        </div>
+                                    </div>
+                                );
+                            }
+                        }
+                    )}
+                </div>
+            </UserBlock>
+
+            <UserBlock className="mt-4">
+                <h1 className="text-3xl font-semibold font-display">Users</h1>
+                <div className="gap-x-4 mt-4 flex">
+                    {Object.values(userConnections).map(
+                        (userData: any, index) => {
+                            if (user?.uid !== userData.uid) {
+                                return (
+                                    <div
+                                        key={`user-${index}`}
+                                        className="h-[300px] min-w-[200px] p-2 rounded-md bg-white/20 border border-white/15 space-y-4 flex flex-col justify-between"
                                     >
-                                        <UserRoundSearch
-                                            // stroke="#ff844b"
-                                            strokeWidth={3}
-                                        />
-                                    </Button>
-                                    {getButtonComponent(userData)}
-                                </div>
-                            </div>
-                        );
-                    }
-                })}
+                                        <div>
+                                            <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50 rounded-md"></div>
+
+                                            <Avatar className="mt-[-60px] w-[80px] h-[80px] aspect-square bg-pastel-orange mx-auto border-4 border-white/15 mb-2 rounded-md">
+                                                <AvatarFallback className="text-4xl font-semibold">
+                                                    {getInitials(userData.name)}
+                                                </AvatarFallback>
+                                            </Avatar>
+                                            <h2 className="text-2xl font-medium text-white text-center mt-4">
+                                                {userData.name}
+                                            </h2>
+                                        </div>
+                                        <div className="flex">
+                                            <Button
+                                                className={`h-full bg-gradient-to-r from-pastel-pink to-pastel-orange bg-opacity-30 rounded-md 
+                                            ${
+                                                userData.connection?.status ===
+                                                ConnectionStatus.Friend
+                                                    ? "w-full"
+                                                    : "aspect-square"
+                                            }
+                                                `}
+                                            >
+                                                <UserRoundSearch
+                                                    // stroke="#ff844b"
+                                                    strokeWidth={3}
+                                                />
+                                            </Button>
+                                            {getButtonComponent(userData)}
+                                        </div>
+                                    </div>
+                                );
+                            }
+                        }
+                    )}
+                </div>
             </UserBlock>
         </div>
     );

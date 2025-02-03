@@ -62,13 +62,13 @@ function CustomCommandItem({
         <CommandItem
             className={`mt-1 flex justify-between hover:bg-gradient-to-r hover:from-pastel-pink/50 hover:to-pastel-orange/50 rounded-md cursor-pointer ${
                 isInGroup
-                    ? "bg-gradient-to-r from-pastel-pink/50 to-pastel-orange/50"
+                    ? "bg-gradient-to-r from-pastel-pink to-pastel-orange text-white font-medium"
                     : ""
             }`}
             onClickCapture={handleDrinkAction}
         >
             <p>{drinkData.name}</p>
-            <p>{drinkData.rating}</p>
+            <p>{drinkData.rating ?? 5}</p>
         </CommandItem>
     );
 }

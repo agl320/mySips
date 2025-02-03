@@ -1,4 +1,8 @@
-import { deleteDrink, updateDrink } from "@/firebase/DrinkHelpers";
+import {
+    deleteDrink,
+    deleteDrinkAndSubCollections,
+    updateDrink,
+} from "@/firebase/DrinkHelpers";
 import { Separator } from "../ui/separator";
 import EditDrinkDialog from "./EditDrinkDialog/EditDrinkDialog";
 import { Button } from "../ui/button";
@@ -8,7 +12,7 @@ import { useState } from "react";
 import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Label } from "../ui/label";
 
-function DrinkCard({ userUid, drinkData, isEditable }) {
+function DrinkCard({ user, userUid, drinkData, isEditable }) {
     const [showInfo, setShowInfo] = useState(false);
 
     const renderEditableActions = () => (
@@ -27,17 +31,22 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
                     <Info className="h-4 w-4" />
                 </Button>
                 <Popover>
-                    <PopoverTrigger className="">
-                        <Button className="h-8 w-4 hover:bg-white/15">
-                            <Share className="h-4 w-4 " />
-                        </Button>
+                    <PopoverTrigger className="h-8 w-8 hover:bg-white/15 rounded-md">
+                        <Share className="h-4 w-4 mx-auto" />
                     </PopoverTrigger>
                     <PopoverContent className="bg-white border-0 space-y-8">
                         <Label>Share to</Label>
                     </PopoverContent>
                 </Popover>
                 <ConfirmDialog
-                    callback={() => deleteDrink(userUid, drinkData.uid)}
+                    // callback={() => deleteDrink(userUid, drinkData.uid)}
+                    callback={() =>
+                        deleteDrinkAndSubCollections(
+                            user,
+                            userUid,
+                            drinkData.uid
+                        )
+                    }
                     title="Confirm Delete Drink"
                     description={`Remove ${drinkData.name}?`}
                     confirm="Delete Drink"
@@ -62,7 +71,9 @@ function DrinkCard({ userUid, drinkData, isEditable }) {
                 <div className="w-[476px] h-[300px] flex flex-col justify-between p-4">
                     <div className="flex h-full">
                         <div className="w-full h-full">
-                            <h1 className="font-semibold">{drinkData.name}</h1>
+                            <h1 className="font-semibold font-display">
+                                {drinkData.name}
+                            </h1>
                             <p>
                                 <span className="opacity-50">Rating:</span>{" "}
                                 {drinkData.rating ?? 5}

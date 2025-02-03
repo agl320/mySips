@@ -1,0 +1,916 @@
+[
+    [
+        "X L. Bubble GaGa",
+        {
+            "entities": [[0, 16, "drink name"]]
+        }
+    ],
+    [
+        "3$ kfdf i3 jdf 1X M Mango Smoothie @4599",
+        {
+            "entities": [[15, 34, "drink name"]]
+        }
+    ],
+    [
+        "1X M.Roasted Milk Tea",
+        {
+            "entities": [[0, 21, "drink name"]]
+        }
+    ],
+    [
+        "2X XX ## kdja 1X M Pearl Milk ##@34",
+        {
+            "entities": [[15, 30, "drink name"]]
+        }
+    ],
+    [
+        "Extra text before 1X M Taro Slush $$$ 99",
+        {
+            "entities": [[19, 34, "drink name"]]
+        }
+    ],
+    [
+        "20X M Bubble Tea",
+        {
+            "entities": [[0, 16, "drink name"]]
+        }
+    ],
+    [
+        "Noise: ### 1X M Strawb Latte @@22",
+        {
+            "entities": [[10, 27, "drink name"]]
+        }
+    ],
+    [
+        "1X M 3 Guys",
+        {
+            "entities": [[0, 11, "drink name"]]
+        }
+    ],
+    [
+        "##Store### 1X L Top Special ##Price$$",
+        {
+            "entities": [[12, 28, "drink name"]]
+        }
+    ],
+    [
+        "Additional: 1X L Trop Special @#$",
+        {
+            "entities": [[12, 29, "drink name"]]
+        }
+    ],
+    [
+        "Noisy #@*& 1X M Salty Choco ##",
+        {
+            "entities": [[11, 27, "drink name"]]
+        }
+    ],
+    [
+        "Receipt text 1X L Lemon King ###",
+        {
+            "entities": [[14, 29, "drink name"]]
+        }
+    ],
+    [
+        "Extra info 1X L Tapioca Chocolate --",
+        {
+            "entities": [[12, 34, "drink name"]]
+        }
+    ],
+    [
+        "1X M Jasmine Tea",
+        {
+            "entities": [[0, 16, "drink name"]]
+        }
+    ],
+    [
+        "More noise @@** 1X M Matcha Latte $$$",
+        {
+            "entities": [[14, 31, "drink name"]]
+        }
+    ],
+    [
+        "1X M Earl Grey Tea",
+        {
+            "entities": [[0, 18, "drink name"]]
+        }
+    ],
+    [
+        "RandomText 1X L Strawberry Bliss ##Text",
+        {
+            "entities": [[11, 32, "drink name"]]
+        }
+    ],
+    [
+        "1X M Passionfruit Juice",
+        {
+            "entities": [[0, 23, "drink name"]]
+        }
+    ],
+    [
+        "Additional Text 1X L Honeydew Slush $$$",
+        {
+            "entities": [[17, 36, "drink name"]]
+        }
+    ],
+    [
+        "Noise Here 1X M Wintermelon Tea @@@",
+        {
+            "entities": [[11, 31, "drink name"]]
+        }
+    ],
+    [
+        "Extra info ##@# 1X M Coconut Bliss ***",
+        {
+            "entities": [[15, 33, "drink name"]]
+        }
+    ],
+    [
+        "1X L Mocha Delight",
+        {
+            "entities": [[0, 18, "drink name"]]
+        }
+    ],
+    [
+        "Preceding text 1X M Vanilla Shake ##",
+        {
+            "entities": [[17, 34, "drink name"]]
+        }
+    ],
+    [
+        "Random noise ## 1X M Oreo Milkshake **",
+        {
+            "entities": [[15, 34, "drink name"]]
+        }
+    ],
+    [
+        "** 1X L Orange Juice",
+        {
+            "entities": [[4, 20, "drink name"]]
+        }
+    ],
+    [
+        "1x L Strawberry Milkshake",
+        {
+            "entities": [[0, 23, "drink name"]]
+        }
+    ],
+    [
+        "Extra words 1x M Mango Lassi",
+        {
+            "entities": [[12, 28, "drink name"]]
+        }
+    ],
+    [
+        "I am drinking 1X L Orange Smoothie",
+        {
+            "entities": [[15, 34, "drink name"]]
+        }
+    ],
+    [
+        "Noise 1x M Blueberry Delight @@345",
+        {
+            "entities": [[6, 30, "drink name"]]
+        }
+    ],
+    [
+        "I see 1x L Coconut Latte here",
+        {
+            "entities": [[6, 26, "drink name"]]
+        }
+    ],
+    [
+        "1X L Pineapple Slush @@@99",
+        {
+            "entities": [[0, 21, "drink name"]]
+        }
+    ],
+    [
+        "RandomText ## 1X M Choco Lava",
+        {
+            "entities": [[13, 29, "drink name"]]
+        }
+    ],
+    [
+        "Item 1x L Passionfruit Bliss ##@",
+        {
+            "entities": [[5, 30, "drink name"]]
+        }
+    ],
+    [
+        "Receipt shows 2X L Matcha Delight ***",
+        {
+            "entities": [[15, 33, "drink name"]]
+        }
+    ],
+    [
+        "Preceding noise 1x L Lemon Iced Tea",
+        {
+            "entities": [[16, 35, "drink name"]]
+        }
+    ],
+    [
+        "1x M Papaya Shake ##Extra Info",
+        {
+            "entities": [[0, 18, "drink name"]]
+        }
+    ],
+    [
+        "RandomText: 1X M Berry Blast",
+        {
+            "entities": [[13, 28, "drink name"]]
+        }
+    ],
+    [
+        "2X L Tropical Fizz ***Additional",
+        {
+            "entities": [[0, 19, "drink name"]]
+        }
+    ],
+    [
+        "1x M Lychee Smoothie",
+        {
+            "entities": [[0, 20, "drink name"]]
+        }
+    ],
+    [
+        "Extra Text before 1x L Honeydew Juice",
+        {
+            "entities": [[18, 37, "drink name"]]
+        }
+    ],
+    [
+        "More RandomText I am 1X M Raspberry Swirl",
+        {
+            "entities": [[15, 36, "drink name"]]
+        }
+    ],
+    [
+        "1X L Mango Smoothie",
+        {
+            "entities": [[0, 19, "drink name"]]
+        }
+    ],
+    [
+        "Noise here 1X L Passionfruit Iced Tea",
+        {
+            "entities": [[11, 37, "drink name"]]
+        }
+    ],
+    [
+        "1X M Chocolate Frappe with extra cream",
+        {
+            "entities": [[0, 23, "drink name"]]
+        }
+    ],
+    [
+        "1X M Lychee Bubble Tea",
+        {
+            "entities": [[0, 22, "drink name"]]
+        }
+    ],
+    [
+        "1X L Pineapple Juice and other text",
+        {
+            "entities": [[6, 28, "drink name"]]
+        }
+    ],
+    [
+        "2X M Raspberry Shake ##Extra",
+        {
+            "entities": [[0, 23, "drink name"]]
+        }
+    ],
+    [
+        "2X L Honeydew Slush ##Extra Info",
+        {
+            "entities": [[0, 21, "drink name"]]
+        }
+    ],
+    [
+        "Irrelevant text 2X M Orange Delight ##",
+        {
+            "entities": [[17, 37, "drink name"]]
+        }
+    ],
+    [
+        "3X M Kiwi Smoothie is tasty",
+        {
+            "entities": [[0, 19, "drink name"]]
+        }
+    ],
+    [
+        "Random receipt 3X L Watermelon Cooler ##",
+        {
+            "entities": [[16, 39, "drink name"]]
+        }
+    ],
+    [
+        "3X M Matcha Latte ##Delicious",
+        {
+            "entities": [[0, 17, "drink name"]]
+        }
+    ],
+    [
+        "Receipt Item 3X M Vanilla Shake",
+        {
+            "entities": [[14, 31, "drink name"]]
+        }
+    ],
+    [
+        "3X M Mocha Delight ##More Text",
+        {
+            "entities": [[0, 18, "drink name"]]
+        }
+    ],
+    [
+        "3X L Strawberry Bliss",
+        {
+            "entities": [[0, 21, "drink name"]]
+        }
+    ],
+    [
+        "4X M Peach Mango Smoothie ##Extra##",
+        {
+            "entities": [[0, 27, "drink name"]]
+        }
+    ],
+    [
+        "5X M Lemon Green Tea ##Extras",
+        {
+            "entities": [[0, 22, "drink name"]]
+        }
+    ],
+    [
+        "5X M Hazelnut Latte ##More Text",
+        {
+            "entities": [[0, 22, "drink name"]]
+        }
+    ],
+    [
+        "5X L Chocolate Milk ##Price",
+        {
+            "entities": [[0, 23, "drink name"]]
+        }
+    ],
+    [
+        "Unrelated 5X M Almond Milkshake",
+        {
+            "entities": [[10, 30, "drink name"]]
+        }
+    ],
+    [
+        "5X L Mango Sorbet ##RandomText",
+        {
+            "entities": [[0, 19, "drink name"]]
+        }
+    ],
+    [
+        "Receipt: 1X M Green Apple Juice ##Extra",
+        {
+            "entities": [[9, 31, "drink name"]]
+        }
+    ],
+    [
+        "1X M Blueberry Slush ##More Details",
+        {
+            "entities": [[0, 22, "drink name"]]
+        }
+    ],
+    [
+        "1X L Caramel Macchiato ##",
+        {
+            "entities": [[0, 24, "drink name"]]
+        }
+    ],
+
+    [
+        "Random text with no structure 234567!",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "This is just noise @@$$###",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "abcd efgh ijkl mnop qrst uvwx yz123",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Some random receipt information ##@!",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Store Name: Grocery Outlet, Total: $45.67",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Receipt ID: 12345 Date: 01/10/2025",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "¥ 2 Bh ~ Etta Pad ir, Ing dia. 7  & H ; 4 * on",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Unrelated line with numbers 1 2 3 4 5 6",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "asdf qwer zxcv uiop hjkl mnop ghijk",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Irrelevant gibberish lorem ipsum dolor sit amet",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Receipt Details: Item #123, Quantity: 2, Price: $4.99",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Unnecessary text here with random & characters %!",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Nothing to see here. Move along.",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Plain text with no drink names or meaningful content",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Invoice #44567 Total Amount $123.45",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Some unrelated receipt total ##!!@ Amount: $56.78",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Grocery shopping list: Milk, Eggs, Bread, Bananas",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Date: 2025-01-10 Time: 14:35:22 Location: Store A",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Pure gibberish line 1 2 3 4 5 x y z a b c",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Address: 1234 Elm Street, Springfield, USA.",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Payment Method: Credit Card Ending in 1234.",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Contact: support@example.com Phone: (123) 456-7890",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "¥ 4 Ir !*&^ Ing dia; etta Pad random things.",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "Invoice Line Item: Product A  Qty: 3  Unit Price: $15.00",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "district H  Et",
+        {
+            "entities": []
+        }
+    ],
+    [
+        "1X LTaploca Chocolate",
+        {
+            "entities": [[0, 21, "drink name"]]
+        }
+    ],
+    [
+        "Noise before 1X MPearl Milk @@##",
+        {
+            "entities": [[13, 28, "drink name"]]
+        }
+    ],
+    [
+        "ExtraText 1X LStrawberry Bliss ##Extra",
+        {
+            "entities": [[11, 31, "drink name"]]
+        }
+    ],
+    [
+        "2X MGreen Tea with Jelly",
+        {
+            "entities": [[0, 20, "drink name"]]
+        }
+    ],
+    [
+        "Receipt shows 1x LWatermelon Cooler ##",
+        {
+            "entities": [[14, 37, "drink name"]]
+        }
+    ],
+    [
+        "Preceding text 1X LPassionfruit Iced Tea",
+        {
+            "entities": [[15, 39, "drink name"]]
+        }
+    ],
+    [
+        "Random noise 2X MChocolate Frappe ##Extra",
+        {
+            "entities": [[14, 36, "drink name"]]
+        }
+    ],
+    [
+        "1X MMatcha Latte ##More Text Here",
+        {
+            "entities": [[0, 18, "drink name"]]
+        }
+    ],
+    [
+        "1X MCoconut Bliss is great!",
+        {
+            "entities": [[0, 17, "drink name"]]
+        }
+    ],
+    [
+        "Receipt for 2x LTaro Slush at store",
+        {
+            "entities": [[12, 27, "drink name"]]
+        }
+    ],
+    [
+        "Noise ## 1x MRaspberry Shake with extras",
+        {
+            "entities": [[9, 28, "drink name"]]
+        }
+    ],
+    [
+        "Extra info 1x LPineapple Juice ##More",
+        {
+            "entities": [[12, 30, "drink name"]]
+        }
+    ],
+    [
+        "More text 1x LMocha Delight ##",
+        {
+            "entities": [[10, 28, "drink name"]]
+        }
+    ],
+    [
+        "Receipt details 1x MPassionfruit Juice ##",
+        {
+            "entities": [[17, 40, "drink name"]]
+        }
+    ],
+    [
+        "Irrelevant text 1x LPeach Mango Smoothie ##",
+        {
+            "entities": [[18, 42, "drink name"]]
+        }
+    ],
+    [
+        "More random text 1x MStrawberry Milkshake ##",
+        {
+            "entities": [[20, 43, "drink name"]]
+        }
+    ],
+    [
+        "1x M Kiwi Smoothie",
+        {
+            "entities": [[0, 18, "drink name"]]
+        }
+    ],
+    [
+        "1x M Lemon Iced Tea ##Extra",
+        {
+            "entities": [[0, 20, "drink name"]]
+        }
+    ],
+    [
+        "Receipt text 2x LTropical Fizz ##",
+        {
+            "entities": [[14, 31, "drink name"]]
+        }
+    ],
+    [
+        "1x L Honeydew Slush ##Extra",
+        {
+            "entities": [[0, 21, "drink name"]]
+        }
+    ],
+    [
+        "1x MCoconut Bubble Tea is tasty!",
+        {
+            "entities": [[0, 21, "drink name"]]
+        }
+    ],
+    [
+        "Random noise 2x LPassionfruit Bliss ##Extra",
+        {
+            "entities": [[14, 38, "drink name"]]
+        }
+    ],
+    [
+        "Noise ## 1x LChocolate Milkshake ##Extras",
+        {
+            "entities": [[9, 33, "drink name"]]
+        }
+    ],
+    [
+        "Extra info 1x M Vanilla Shake ##More",
+        {
+            "entities": [[11, 31, "drink name"]]
+        }
+    ],
+    [
+        "Irrelevant text 1X MPineapple Smoothie ##",
+        {
+            "entities": [[17, 40, "drink name"]]
+        }
+    ],
+
+    [
+        "#4X M Taro Slush",
+        {
+            "entities": [[1, 16, "drink name"]]
+        }
+    ],
+    [
+        "@X S Vanilla Milkshake",
+        {
+            "entities": [[1, 21, "drink name"]]
+        }
+    ],
+    [
+        "$4X M Honeydew Slush",
+        {
+            "entities": [[1, 20, "drink name"]]
+        }
+    ],
+    [
+        "%1X S Mango Smoothie",
+        {
+            "entities": [[1, 20, "drink name"]]
+        }
+    ],
+    [
+        "^3X S Peach Mango Smoothie",
+        {
+            "entities": [[1, 26, "drink name"]]
+        }
+    ],
+    [
+        "&X M Chocolate Shake",
+        {
+            "entities": [[1, 19, "drink name"]]
+        }
+    ],
+    [
+        "*3X M Matcha Latte",
+        {
+            "entities": [[1, 18, "drink name"]]
+        }
+    ],
+    [
+        "(2X S Coconut Bubble Tea",
+        {
+            "entities": [[1, 24, "drink name"]]
+        }
+    ],
+    [
+        ")6X S Lemon Green Tea",
+        {
+            "entities": [[1, 21, "drink name"]]
+        }
+    ],
+    [
+        "!2X M Pineapple Juice",
+        {
+            "entities": [[1, 21, "drink name"]]
+        }
+    ],
+    [
+        "~2X L Chocolate Milk",
+        {
+            "entities": [[1, 20, "drink name"]]
+        }
+    ],
+    [
+        "`2X L Strawberry Milkshake",
+        {
+            "entities": [[1, 26, "drink name"]]
+        }
+    ],
+    [
+        "|5x M Lychee Smoothie",
+        {
+            "entities": [[1, 21, "drink name"]]
+        }
+    ],
+    [
+        "\\1X M Coconut Bliss",
+        {
+            "entities": [[1, 19, "drink name"]]
+        }
+    ],
+    [
+        "/1X M Blueberry Slush",
+        {
+            "entities": [[1, 21, "drink name"]]
+        }
+    ],
+    [
+        "#1 X M Almond Milkshake",
+        {
+            "entities": [[1, 22, "drink name"]]
+        }
+    ],
+    [
+        "@2 X L Strawberry Milkshake",
+        {
+            "entities": [[1, 27, "drink name"]]
+        }
+    ],
+    [
+        "$5 X M Lychee Smoothie",
+        {
+            "entities": [[1, 22, "drink name"]]
+        }
+    ],
+    [
+        "%1 X M Coconut Bliss",
+        {
+            "entities": [[1, 20, "drink name"]]
+        }
+    ],
+    [
+        "^1 X M Blueberry Slush",
+        {
+            "entities": [[1, 22, "drink name"]]
+        }
+    ],
+    [
+        "&1 X M Almond Milk",
+        {
+            "entities": [[1, 17, "drink name"]]
+        }
+    ],
+    [
+        "*2 X L Chocolate Shake",
+        {
+            "entities": [[1, 22, "drink name"]]
+        }
+    ],
+    [
+        "(3 X S Vanilla Latte",
+        {
+            "entities": [[1, 20, "drink name"]]
+        }
+    ],
+    [
+        ")4 X M Mango Juice",
+        {
+            "entities": [[1, 18, "drink name"]]
+        }
+    ],
+    [
+        "!1 x M Blueberry Slush",
+        {
+            "entities": [[1, 22, "drink name"]]
+        }
+    ],
+    [
+        "~1 x M Almond Milk",
+        {
+            "entities": [[1, 17, "drink name"]]
+        }
+    ],
+    [
+        "`2 x L Chocolate Shake",
+        {
+            "entities": [[1, 22, "drink name"]]
+        }
+    ],
+    [
+        "|3 x S Vanilla Latte",
+        {
+            "entities": [[1, 20, "drink name"]]
+        }
+    ],
+    [
+        "\\4 x M Mango Juice",
+        {
+            "entities": [[1, 18, "drink name"]]
+        }
+    ],
+    [
+        "/1 x M Caramel Macchiato",
+        {
+            "entities": [[1, 23, "drink name"]]
+        }
+    ],
+    [
+        "#2 x L Hazelnut Frappe",
+        {
+            "entities": [[1, 22, "drink name"]]
+        }
+    ],
+    [
+        "@3 x S Matcha Tea",
+        {
+            "entities": [[1, 17, "drink name"]]
+        }
+    ],
+    [
+        "$4 x M Peach Smoothie",
+        {
+            "entities": [[1, 21, "drink name"]]
+        }
+    ],
+    [
+        "%1 x M Raspberry Lemonade",
+        {
+            "entities": [[1, 24, "drink name"]]
+        }
+    ],
+    [
+        "^2 x L Mocha Frappe",
+        {
+            "entities": [[1, 18, "drink name"]]
+        }
+    ],
+    [
+        "&3 x S Chai Latte",
+        {
+            "entities": [[1, 17, "drink name"]]
+        }
+    ],
+    [
+        "*4 x M Pineapple Juice",
+        {
+            "entities": [[1, 22, "drink name"]]
+        }
+    ]
+]

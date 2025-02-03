@@ -3,32 +3,45 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
+import { LogIn } from "lucide-react";
 
 function LandingNav() {
     const { userLoggedIn } = useContext(AuthContext);
     return (
         <header>
-            <div className="flex justify-center w-full px-16 bg-white/5">
-                <div className="flex justify-between text-white max-w-6xl w-full py-8 ">
+            <div className="flex justify-center w-full px-16 bg-white bg-opacity-[2%]">
+                <div className="flex justify-between text-white max-w-6xl w-full py-6">
                     <Link
-                        to="/"
-                        className="text-5xl font-regular font-wide whitespace-nowrap"
+                        to="#mysips"
+                        className="text-4xl font-regular font-wide whitespace-nowrap flex items-baseline"
                     >
-                        ./my
+                        my
                         <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             Sips
                         </span>
+                        <img
+                            src="./images/mysips-logo.png"
+                            className="h-8 w-8 ml-2"
+                            style={{ verticalAlign: "baseline" }}
+                        />
                     </Link>
-                    <div className=" gap-x-12 w-full flex-grow flex items-center w-auto text-center">
+                    <div className="gap-x-12 w-full flex-grow flex items-center w-auto text-center text-md">
                         <ul className="flex-1 justify-end items-center text-center flex">
-                            <li className="mr-12">
-                                <Link to="/app">Features</Link>
+                            <li className="hidden md:block">
+                                <a
+                                    className="px-3 mx-3 py-2 hover:bg-white/10 rounded-md duration-100 cursor-pointer"
+                                    href="#consumers"
+                                >
+                                    Consumers
+                                </a>
                             </li>
-                            <li className="mr-12">
-                                <Link to="/app">Pricing</Link>
-                            </li>
-                            <li className="mr-12">
-                                <Link to="/app">About Us</Link>
+                            <li className="hidden md:block mr-6">
+                                <a
+                                    className="px-3 mx-3 py-2 hover:bg-white/10 rounded-md duration-100"
+                                    href="#producers"
+                                >
+                                    Producers
+                                </a>
                             </li>
 
                             {userLoggedIn ? (
@@ -40,7 +53,16 @@ function LandingNav() {
                             ) : (
                                 <li>
                                     <Button className="bg-gradient-to-r from-pastel-pink to-pastel-orange text-md rounded-md px-4 text-white">
-                                        <Link to="/login">Log In</Link>
+                                        <Link
+                                            to="/login"
+                                            className="flex items-center"
+                                        >
+                                            Log In
+                                            <LogIn
+                                                className="h-6 w-6 ml-2"
+                                                strokeWidth={3}
+                                            />
+                                        </Link>
                                     </Button>
                                 </li>
                             )}

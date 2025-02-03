@@ -7,6 +7,7 @@ module.exports = {
             fontFamily: {
                 sans: ["General Sans", "sans-serif"],
                 wide: ["Moliga DEMO", "sans-serif"],
+                display: ["Aeonik Pro Regular", "sans-serif"],
             },
             colors: {
                 "background-dark": "#121312",
@@ -28,9 +29,10 @@ module.exports = {
                 "card-add": "url('/images/landing-card-1.webp')",
                 "card-stats": "url('/images/landing-card-2.webp')",
                 "card-groups": "url('/images/landing-card-3.webp')",
-                preview: "url('/images/preview.png')",
-
+                "card-share": "url('/images/landing-card-4.webp')",
+                preview: "url('/images/preview-2.png')",
                 custom: "radial-gradient(62.87% 100% at 50% 100%, rgba(255, 255, 255, 0.26) 0%, rgba(255, 255, 255, 0) 100%)",
+                "contact-bg": "url('/images/contact-bg.png')",
             },
         },
     },

@@ -3,11 +3,7 @@ import { getAuth, onAuthStateChanged, User } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import _ from "lodash";
 import { createContext, useEffect, useState } from "react";
-import {
-    DatabaseProvider,
-    FirebaseAppProvider,
-    useFirebaseApp,
-} from "reactfire";
+
 interface IAuthContext {
     currentUser: User | null;
     userLoggedIn: boolean;
@@ -26,13 +22,9 @@ function AuthProvider({ children }: { children: JSX.Element }) {
     // const [drinksState, setDrinksState] = useState({});
     const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(firebaseAuth, initializeUser);
-        return unsubscribe;
-    }, []);
-
     async function initializeUser(user: User) {
         if (user) {
+            console.log("Logged in as");
             console.log(user);
             setCurrentUser({ ...user });
             setUserLoggedIn(true);
@@ -42,6 +34,11 @@ function AuthProvider({ children }: { children: JSX.Element }) {
         }
         setLoading(false);
     }
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(firebaseAuth, initializeUser);
+        return unsubscribe;
+    }, []);
 
     // useEffect(() => {
     //     loadUserData();

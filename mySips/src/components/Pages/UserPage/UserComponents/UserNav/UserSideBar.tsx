@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
     Calendar,
     Home,
@@ -44,12 +45,6 @@ import { Link } from "react-router-dom";
 import { PageTypes } from "@/enums/PageTypes";
 import { useUser } from "reactfire";
 
-// const user = {
-//     name: "xegativ",
-//     email: "x@example.com",
-//     avatar: "/avatars/shadcn.jpg",
-// };
-// Menu items.
 const groupArr = [
     {
         title: "Home",
@@ -70,34 +65,25 @@ const groupArr = [
                 url: "/app/groups",
                 icon: PackageOpen,
             },
-            // {
-            //     title: "Inbox",
-            //     url: "/app/inbox",
-            //     icon: Inbox,
-            // },
             {
                 title: "Calendar",
                 url: "#",
                 icon: Calendar,
+                disabled: true,
             },
         ],
     },
     {
         title: "Social",
         items: [
-            // {
-            //     title: "Search",
-            //     url: "#",
-            //     icon: Search,
-            // },
             {
                 title: "Friends",
                 url: "/app/friends",
                 icon: UsersRound,
             },
             {
-                title: "Menus",
-                url: "#",
+                title: "Menu",
+                url: "/app/menu",
                 icon: ShoppingBasket,
             },
         ],
@@ -115,6 +101,7 @@ const groupArr = [
                 title: "Settings",
                 url: "#",
                 icon: Settings,
+                disabled: true,
             },
         ],
     },
@@ -132,24 +119,51 @@ const groupArr = [
 
 export function UserSideBar(props: { selectedPage: PageTypes }) {
     const { status: statusUser, data: userData } = useUser();
-    const user = {
+    const [user, setUser] = useState({
         name: userData?.displayName,
         email: userData?.email,
         avatar: "/avatars/shadcn.jpg",
-    };
+    });
+
+    useEffect(() => {
+        if (userData) {
+            setUser({
+                name: userData.displayName,
+                email: userData.email,
+                avatar: "/avatars/shadcn.jpg",
+            });
+        }
+    }, [userData]);
+
     const { selectedPage } = props;
+
+    const getInitials = (name: string) => {
+        if (!name) return;
+        const nameParts = name.split(" ");
+        const initials =
+            nameParts.length > 1
+                ? `${nameParts[0][0]}${nameParts[1][0]}`
+                : `${nameParts[0][0]}`;
+        return initials.toUpperCase();
+    };
+
     return (
         <Sidebar className="p-4">
             <SidebarHeader className="mb-8">
                 <h1 className="text-5xl font-wide">
                     <Link
                         to="/"
-                        className="text-4xl font-regular font-wide whitespace-nowrap"
+                        className="text-4xl font-regular font-wide whitespace-nowrap items-baseline flex"
                     >
-                        ./my
+                        my
                         <span className="text-pastel-orange font-regular bg-gradient-to-r from-pastel-pink to-pastel-orange  text-transparent bg-clip-text">
                             Sips
                         </span>
+                        <img
+                            src="./images/mysips-logo.png"
+                            className="h-8 w-8 ml-2"
+                            style={{ verticalAlign: "baseline" }}
+                        />
                     </Link>
                 </h1>
             </SidebarHeader>
@@ -164,8 +178,16 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                 {group.items.map((item) => (
                                     <SidebarMenuItem key={item.title}>
                                         <SidebarMenuButton asChild>
-                                            {selectedPage.toLowerCase() ===
-                                            item.title.toLowerCase() ? (
+                                            {item.disabled ? (
+                                                <Link
+                                                    to={item.url}
+                                                    className="rounded-md duration-200 text-[#cccccc]/50 cursor-default"
+                                                >
+                                                    <item.icon />
+                                                    <span>{item.title}</span>
+                                                </Link>
+                                            ) : selectedPage.toLowerCase() ===
+                                              item.title.toLowerCase() ? (
                                                 <Link
                                                     to={item.url}
                                                     className="rounded-md bg-gradient-to-r from-pastel-pink to-pastel-orange text-white font-medium"
@@ -207,7 +229,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                             alt={user.name}
                                         />
                                         <AvatarFallback className="rounded-lg">
-                                            JB
+                                            {getInitials(user.name)}
                                         </AvatarFallback>
                                     </Avatar>
                                     <div className="grid flex-1 text-left text-sm leading-tight">
@@ -235,7 +257,7 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                                 alt={user.name}
                                             />
                                             <AvatarFallback className="rounded-lg">
-                                                JB
+                                                {getInitials(user.name ?? "")}
                                             </AvatarFallback>
                                         </Avatar>
                                         <div className="grid flex-1 text-left text-sm leading-tight">
@@ -249,34 +271,13 @@ export function UserSideBar(props: { selectedPage: PageTypes }) {
                                     </div>
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator className="bg-white/50" />
-                                {/* <DropdownMenuGroup>
-                                    <DropdownMenuItem>
-                                        <Sparkles />
-                                        Upgrade to Pro
-                                    </DropdownMenuItem>
-                                </DropdownMenuGroup>
-                                <DropdownMenuSeparator /> */}
-                                {/* <DropdownMenuGroup> */}
+
                                 <DropdownMenuItem>
-                                    <BadgeCheck className="stroke-white mr-2" />
-                                    <p className="text-white">
+                                    <Settings className="stroke-white/50 mr-2" />
+                                    <p className="text-white/50">
                                         Account Settings
                                     </p>
                                 </DropdownMenuItem>
-                                {/* <DropdownMenuItem>
-                                        <CreditCard />
-                                        Billing
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                        <Bell />
-                                        Notifications
-                                    </DropdownMenuItem>
-                                </DropdownMenuGroup>
-                                <DropdownMenuSeparator /> */}
-                                {/* <DropdownMenuItem>
-                                    <LogOut />
-                                    Log out
-                                </DropdownMenuItem> */}
                             </DropdownMenuContent>
                         </DropdownMenu>
                     </SidebarMenuItem>

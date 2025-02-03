@@ -4,7 +4,6 @@ import UserApplication from "./UserComponents/UserApplication/UserApplication";
 import { PageTypes } from "@/enums/PageTypes";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import UserSideBar from "./UserComponents/UserNav/UserSideBar";
-import { Separator } from "@/components/ui/separator";
 
 function UserPageContent(props: { selectedPage: PageTypes }) {
     const { selectedPage } = props;
@@ -26,7 +25,7 @@ function UserPageContent(props: { selectedPage: PageTypes }) {
             <main>
                 <SidebarTrigger className="rounded-md fixed" />
             </main>
-            <div className="w-screen">
+            <div className="w-screen  min-w-[1600px] ">
                 <UserApplication selectedPage={selectedPage} />
             </div>
         </SidebarProvider>

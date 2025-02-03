@@ -1,16 +1,12 @@
-import { useAuth } from "@/components/contexts/authContext/loader";
 import LandingNav from "@/components/Landing/LandingNav";
-import RegisterForm from "@/components/Register/RegisterForm";
+import { Link, Navigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { doSignInWithGoogle } from "@/firebase/Auth";
-import { getAuth } from "firebase/auth";
-import { Link, Navigate } from "react-router-dom";
-import { AuthProvider, useFirebaseApp, useSigninCheck } from "reactfire";
+import { useSigninCheck } from "reactfire";
+import RegisterForm from "@/components/Register/RegisterForm";
+import { Separator } from "@/components/ui/separator";
+import LoginPageContentLeftCard from "../LoginPage/LoginPageContentLeftCard";
 
-const MarginStyles = {
-    marginRight: "15vw",
-    marginLeft: "15vw",
-} as React.CSSProperties;
 function RegisterPageContent() {
     const { status, data: signInCheckResult } = useSigninCheck();
 
@@ -25,18 +21,60 @@ function RegisterPageContent() {
     const handleSignInWithGoogle = async () => {
         await doSignInWithGoogle();
     };
+
     return (
-        <div style={MarginStyles}>
-            <LandingNav />
-            <RegisterForm />
-            <div>
-                <Button onClick={handleSignInWithGoogle}>
-                    Sign Up with Google
-                </Button>
-            </div>
-            <span>
-                <Link to="/login">Already have an account?</Link>
-            </span>
+        <div className="bg-gradient-to-r from-background-dark to-[#1c1a10] via-[#1c1015] bg-cover h-full">
+            <section className="h-full lg:h-screen lg:min-h-[900px]">
+                <div className="lg:flex h-full justify-center">
+                    <LoginPageContentLeftCard />
+                    <div className="lg:w-1/2 m-8 lg:ml-4 bg-white/5 text-white rounded-md flex flex-col justify-center p-8 py-16">
+                        <div className="max-w-sm mx-auto">
+                            <div className="text-center space-y-4 mb-8">
+                                <h2 className="text-2xl font-semibold">
+                                    Create an Account
+                                </h2>
+                                <p>
+                                    Start collecting drinks from your favourite
+                                    menus
+                                </p>
+                            </div>
+                            <RegisterForm />
+                            <div className="space-y-8 mt-8">
+                                <div className="flex justify-center">
+                                    <div className="flex flex-col justify-center">
+                                        <Separator className="bg-white/25 w-[150px]" />
+                                    </div>
+                                    <p className="opacity-25 text-xs mx-2">
+                                        OR
+                                    </p>
+                                    <div className="flex flex-col justify-center">
+                                        <Separator className="bg-white/25 w-[150px]" />
+                                    </div>
+                                </div>
+                                <div className="flex justify-center">
+                                    <Button
+                                        onClick={handleSignInWithGoogle}
+                                        className="bg-gradient-to-r from-pastel-pink to-pastel-orange"
+                                    >
+                                        Sign Up with Google
+                                    </Button>
+                                </div>
+                                <div className="flex justify-center">
+                                    <span className="block">
+                                        Already have an account?{" "}
+                                        <Link
+                                            to="/login"
+                                            className="text-pastel-orange font-medium"
+                                        >
+                                            Log In
+                                        </Link>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div>
     );
 }
