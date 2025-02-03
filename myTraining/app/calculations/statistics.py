@@ -1,4 +1,3 @@
-import logging
 from collections import defaultdict
 from datetime import datetime
 
@@ -10,7 +9,6 @@ def calculate_sugar_vs_ice(user_drink_data):
             if not drink.get("placeholder", False)
         ]
     except KeyError as e:
-        logging.error(f"Missing key in data: {e}")
         return []
 
 def calculate_rating_count(user_drink_data):
@@ -43,7 +41,6 @@ def calculate_money_spent_per_month(user_drink_data):
                 year, month = date.year, date.month
                 spending[year][month - 1] += drink_price
             except Exception as e:
-                logging.error(f"Error parsing date or calculating spending: {e}")
                 continue
 
     return dict(spending)
@@ -55,7 +52,6 @@ def calculate_total_money_spent(user_drink_data):
             for drink in user_drink_data
         )
     except Exception as e:
-        logging.error(f"Error calculating total money spent: {e}")
         return 0.0
 
 def calculate_top_three_drinks(user_drink_data):
@@ -66,7 +62,6 @@ def calculate_top_three_drinks(user_drink_data):
         ]
         return sorted(drink_counts, key=lambda x: x["count"], reverse=True)[:3]
     except Exception as e:
-        logging.error(f"Error calculating top three drinks: {e}")
         return []
 
 def calculate_drinks_per_month(user_drink_data):
@@ -79,7 +74,6 @@ def calculate_drinks_per_month(user_drink_data):
                 year, month = date.year, date.month
                 drink_counts[year][month - 1] += 1
             except Exception as e:
-                logging.error(f"Error parsing date: {e}")
                 continue
 
     return dict(drink_counts)
@@ -94,7 +88,6 @@ def calculate_total_drink_count(user_drink_data):
 
         return total_count
     except Exception as e:
-        logging.error(f"Error calculating total drink count: {e}")
         return 0
 
 def calculate_sugar_vs_ice_freq(user_drink_data):
@@ -117,7 +110,6 @@ def calculate_sugar_vs_ice_freq(user_drink_data):
             "ice_level": [ice_counts[level] for level in levels],
         }
     except Exception as e:
-        logging.error(f"Error calculating sugar vs ice frequency: {e}")
         return {
             "sugar_level": [0] * len(levels),
             "ice_level": [0] * len(levels),
@@ -154,7 +146,6 @@ def calculate_money_spent_change_previous_month(user_drink_data):
                     elif year == previous_year and month == previous_month:
                         spending["previous_month"] += drink_price
                 except Exception as e:
-                    logging.error(f"Error parsing date for spending change calculation: {e}")
                     continue
 
         current_month_total = spending["current_month"]
@@ -168,7 +159,6 @@ def calculate_money_spent_change_previous_month(user_drink_data):
         }
 
     except Exception as e:
-        logging.error(f"Error calculating money spent change for previous month: {e}")
         return {
             "current_month_total": 0.0,
             "previous_month_total": 0.0,
@@ -205,7 +195,6 @@ def calculate_drink_count_change_previous_month(user_drink_data):
                     elif year == previous_year and month == previous_month:
                         drink_counts["previous_month"] += 1
                 except Exception as e:
-                    logging.error(f"Error parsing date for drink count change calculation: {e}")
                     continue
 
         current_month_count = drink_counts["current_month"]
@@ -219,7 +208,6 @@ def calculate_drink_count_change_previous_month(user_drink_data):
         }
 
     except Exception as e:
-        logging.error(f"Error calculating drink count change for previous month: {e}")
         return {
             "current_month_count": 0,
             "previous_month_count": 0,
@@ -241,7 +229,6 @@ def calculate_average_drink_rating(user_drink_data):
         return round(average_rating, 2)
 
     except Exception as e:
-        logging.error(f"Error calculating average drink rating: {e}")
         return 0.0
 
 

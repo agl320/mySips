@@ -1,6 +1,5 @@
 from flask import jsonify
 from firebase_admin import auth
-import logging
 import numpy as np
 from PIL import Image
 import cv2
@@ -64,5 +63,4 @@ def process_receipt(request):
         return jsonify({"status": "success", "message": "Receipt processed.", "matchedDrinks": matched_drinks}), 200
 
     except Exception as e:
-        logging.error(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500

@@ -1,6 +1,5 @@
 from flask import jsonify
 from firebase_admin import auth
-import logging
 from app.services.firestore_service import get_firestore_client
 
 db = get_firestore_client()
@@ -24,15 +23,11 @@ def delete_drink(request):
         try:
             decoded_token = auth.verify_id_token(id_token)
             uid = decoded_token['uid']
-            logging.info(f"Authorized UID: {uid}")
         except Exception as e:
             return jsonify({"error": "invalid or expired token", "details": str(e)}), 401
 
         user_uid = request.args.get('userUid')
         drink_uid = request.args.get('drinkUid')
-
-        logging.info(f"User UID: {user_uid}")
-        logging.info(f"Drink UID: {drink_uid}")
 
         if not user_uid:
             return jsonify({"error": "missing userUid parameter"}), 400
@@ -50,7 +45,6 @@ def delete_drink(request):
             return jsonify({"status": "error", "message": str(e)}), 500
 
     except Exception as e:
-        logging.error(f"Error: {str(e)}")
         return jsonify({"error": str(e)}), 500
 
 def delete_document_and_subcollections(doc_path):

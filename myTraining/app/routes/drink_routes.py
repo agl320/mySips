@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request
-import logging
 from firebase_admin import auth
 from app.services.receipt_service import process_receipt
 from app.services.drink_service import delete_drink

@@ -1,6 +1,5 @@
 from flask import Blueprint, jsonify, request
 from firebase_admin import auth
-import logging
 from app.services.firestore_service import get_firestore_client
 from app.calculations import STATISTIC_FUNCTIONS
 
@@ -11,8 +10,6 @@ db = get_firestore_client()
 @user_bp.route('/user-drink-data/stats', methods=['GET'])
 def get_user_drinks():
     try:
-        logging.info("debug:")
-
         # extract auth header
         header_auth = request.headers.get('Authorization')
         if not header_auth:
@@ -23,7 +20,6 @@ def get_user_drinks():
         try:
             decoded_token = auth.verify_id_token(id_token)
             uid = decoded_token['uid']
-            logging.info(uid)
         except Exception as e:
             return jsonify({"error": "invalid or expired token", "details": str(e)}), 401
 
@@ -47,8 +43,6 @@ def get_user_drinks():
         if not user_drink_data:
             return jsonify({"message": "no drink data found for the user"}), 404
 
-        logging.info(user_drink_data)
-
         # calculate statistics
         response = {}
         for graph_type in graph_types:
@@ -60,5 +54,4 @@ def get_user_drinks():
         return jsonify(response)
 
     except Exception as e:
-        logging.error(f"error occurred: {str(e)}")
         return jsonify({"error": str(e)}), 500
