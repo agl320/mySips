@@ -56,7 +56,8 @@ class TestReceiptProcessor(unittest.TestCase):
     def test_extract_drink_name_from_text(self):
         mock_doc = MagicMock()
         mock_doc.ents = [
-            MagicMock(text="Matcha Latte", label_="drink_name"),
+            MagicMock(text="NG3@$ **\n\nMatcha Latte\nn\n$", label_="drink_name"),
+            # other represents anything but a drink
             MagicMock(text="Extra Sugar", label_="other"),
         ]
         self.processor.nlp_model.return_value = mock_doc
