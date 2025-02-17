@@ -83,7 +83,7 @@ function ConnectionCommandItem({
             <CommandItem
                 className={`mt-1 flex justify-between hover:bg-gradient-to-r hover:from-pastel-pink/50 hover:to-pastel-orange/50 rounded-md cursor-pointer ${
                     isInGroup
-                        ? "bg-gradient-to-r from-pastel-pink/50 to-pastel-orange/50"
+                        ? "bg-gradient-to-r from-pastel-pink to-pastel-orange text-white font-medium"
                         : ""
                 }`}
                 onClickCapture={handleDrinkAction}
@@ -104,8 +104,6 @@ function ConnectionCommandItem({
                     />
                 )}
             </CommandItem>
-
-            {/* Confirmation Dialog */}
         </>
     );
 }

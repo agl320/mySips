@@ -50,6 +50,8 @@ function MySipsPage(props: IUserProps) {
             "total_drink_count",
             "drinks_per_month",
             "total_money_spent",
+            "money_spent_per_month",
+            "money_spent_change_previous_month",
         ],
         userDrinkData,
     });
@@ -118,36 +120,36 @@ function MySipsPage(props: IUserProps) {
                     </div>
                 </UserBlock>
                 <UserBlock className="flex">
-                    <div>
-                        <UserStatistics
-                            userId={user?.uid ?? ""}
-                            name="Blank Widget"
-                            value="0.00"
-                        />
-                        <Separator className="bg-white/15 my-8" />
-                        <UserStatistics
-                            userId={user?.uid ?? ""}
-                            name="Blank Widget"
-                            value="0.00"
-                        />
-                    </div>
-                    <Separator
-                        orientation="vertical"
-                        className="bg-white/15 mx-8"
+                    <UserStatistics
+                        customIcon={
+                            <DollarSign className="w-3 h-3 stroke-pastel-pink" />
+                        }
+                        userId={user.uid}
+                        name="Total Spent"
+                        value={`$${
+                            cachedData?.total_money_spent.toFixed(2) ?? "0.00"
+                        }`}
+                        className="mr-6 flex flex-col justify-center"
+                        delta={cachedData?.money_spent_change_previous_month.change.toFixed(
+                            2
+                        )}
+                        deltaPrefix={"$"}
                     />
-                    <div>
-                        <UserStatistics
-                            userId={user?.uid ?? ""}
-                            name="Blank Widget"
-                            value="0.00"
+                    <UserGraphWrapper isLoading={cachedData == undefined}>
+                        <UserGraphLine
+                            height={200}
+                            width={300}
+                            fontSize={10}
+                            fontColor="white"
+                            xAxisLabel="Months"
+                            yAxisLabel="Amount ($)"
+                            labels={monthLabels}
+                            datasets={convertToDatasets(
+                                cachedData?.money_spent_per_month,
+                                colors
+                            ).reverse()}
                         />
-                        <Separator className="bg-white/15 my-8" />
-                        <UserStatistics
-                            userId={user?.uid ?? ""}
-                            name="Blank Widget"
-                            value="0.00"
-                        />
-                    </div>
+                    </UserGraphWrapper>
                 </UserBlock>
                 <UserBlock className="w-full min-w-[525px] flex justify-center">
                     <UserStatistics

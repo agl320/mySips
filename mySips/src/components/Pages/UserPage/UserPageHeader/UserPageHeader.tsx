@@ -18,8 +18,8 @@ function UserPageHeader({
 }) {
     return (
         <div className="">
-            <Breadcrumb className="inline-block bg-white/15 border border-white/5 px-4 py-2 rounded-full ">
-                <BreadcrumbList className="text-xs flex flex-nowrap items-center space-x-1 overflow-hidden">
+            <Breadcrumb className="inline-block bg-white/15 px-3 py-2 rounded-md">
+                <BreadcrumbList className="text-xs flex flex-nowrap items-center overflow-hidden">
                     {linkTrail.map((linkItem, index) => (
                         <React.Fragment key={`BC-${index}`}>
                             <BreadcrumbItem>

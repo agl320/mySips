@@ -32,7 +32,7 @@ function DrinkEdit({ drinkData, editCallback }: IDrinkEditProps) {
                 </DialogTrigger>
                 <DialogContent>
                     <DialogTitle>Edit Drink</DialogTitle>
-                    <DialogDescription>Description</DialogDescription>
+                    <DialogDescription>Add drink</DialogDescription>
                     <div>
                         <DrinkInput
                             drinkInputState={drinkInputState}

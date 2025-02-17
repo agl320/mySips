@@ -57,7 +57,7 @@ function AddDrinkDialog({
                     </DialogTitle>
                 </DialogHeader>
                 <DialogDescription className="opacity-80">
-                    Description
+                    Fill out your drink details below!
                 </DialogDescription>
                 <br />
                 <div>

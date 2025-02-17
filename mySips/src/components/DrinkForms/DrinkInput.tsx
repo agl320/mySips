@@ -177,8 +177,8 @@ function DrinkInput({
     return (
         <div>
             <div className="mt-4 flex">
-                <div className="w-2/3 mr-4">
-                    <Label>Drink name</Label>
+                <div className="w-2/3 mr-4 space-y-2">
+                    <Label>Drink name:</Label>
                     <Input
                         type="text"
                         placeholder="New drink"
@@ -192,8 +192,8 @@ function DrinkInput({
                         maxLength={32}
                     />
                 </div>
-                <div className="w-1/3">
-                    <Label>Drink price</Label>
+                <div className="w-1/3 space-y-2">
+                    <Label>Drink price:</Label>
                     <DrinkPriceInput
                         drinkInputState={drinkInputState}
                         setDrinkInputState={setDrinkInputState}
@@ -202,8 +202,8 @@ function DrinkInput({
             </div>
 
             <div className="flex mt-4">
-                <div className="w-1/2 flex flex-col">
-                    <Label>Drink description</Label>
+                <div className="w-1/2 flex flex-col space-y-2">
+                    <Label>Drink description:</Label>
                     <Textarea
                         placeholder="Drink description"
                         value={drinkInputState.description}
@@ -218,60 +218,66 @@ function DrinkInput({
                     />
                 </div>
                 <div className="w-1/2 ml-6 pr-4 pl-2">
-                    <Label>Ice level</Label>
-                    <Slider
-                        value={[drinkInputState.iceLevel]}
-                        max={100}
-                        step={25}
-                        shiftStep={25}
-                        marks={marks}
-                        onChange={(
-                            event: Event,
-                            newValue: number | number[]
-                        ) => {
-                            // Ensure `newValue` is treated as an array if necessary
-                            const value = Array.isArray(newValue)
-                                ? newValue[0]
-                                : newValue;
+                    <div className="mb-4">
+                        <Label>Ice level:</Label>
+                        <Slider
+                            className="mt-2"
+                            value={[drinkInputState.iceLevel]}
+                            max={100}
+                            step={25}
+                            shiftStep={25}
+                            marks={marks}
+                            onChange={(
+                                event: Event,
+                                newValue: number | number[]
+                            ) => {
+                                // Ensure `newValue` is treated as an array if necessary
+                                const value = Array.isArray(newValue)
+                                    ? newValue[0]
+                                    : newValue;
 
-                            if ([0, 25, 50, 75, 100].includes(value)) {
-                                console.log(value);
-                                setDrinkInputState({
-                                    ...drinkInputState,
-                                    iceLevel: value, // Assign the single value
-                                });
-                            }
-                        }}
-                    />
-                    <Label>Sugar level</Label>
-                    <Slider
-                        value={[drinkInputState.sugarLevel]}
-                        max={100}
-                        step={25}
-                        shiftStep={25}
-                        marks={marks}
-                        onChange={(
-                            event: Event,
-                            newValue: number | number[]
-                        ) => {
-                            // Ensure `newValue` is treated as an array if necessary
-                            const value = Array.isArray(newValue)
-                                ? newValue[0]
-                                : newValue;
+                                if ([0, 25, 50, 75, 100].includes(value)) {
+                                    console.log(value);
+                                    setDrinkInputState({
+                                        ...drinkInputState,
+                                        iceLevel: value, // Assign the single value
+                                    });
+                                }
+                            }}
+                        />
+                    </div>
+                    <div>
+                        <Label>Sugar level</Label>
+                        <Slider
+                            className="mt-2"
+                            value={[drinkInputState.sugarLevel]}
+                            max={100}
+                            step={25}
+                            shiftStep={25}
+                            marks={marks}
+                            onChange={(
+                                event: Event,
+                                newValue: number | number[]
+                            ) => {
+                                // Ensure `newValue` is treated as an array if necessary
+                                const value = Array.isArray(newValue)
+                                    ? newValue[0]
+                                    : newValue;
 
-                            if ([0, 25, 50, 75, 100].includes(value)) {
-                                console.log(value);
-                                setDrinkInputState({
-                                    ...drinkInputState,
-                                    sugarLevel: value, // Assign the single value
-                                });
-                            }
-                        }}
-                    />
+                                if ([0, 25, 50, 75, 100].includes(value)) {
+                                    console.log(value);
+                                    setDrinkInputState({
+                                        ...drinkInputState,
+                                        sugarLevel: value, // Assign the single value
+                                    });
+                                }
+                            }}
+                        />
+                    </div>
                 </div>
             </div>
-            <div className="mt-4">
-                <Label>Store name</Label>
+            <div className="mt-4 space-y-2">
+                <Label>Store name:</Label>
                 <Input
                     type="text"
                     placeholder="Store name"
@@ -288,8 +294,8 @@ function DrinkInput({
                     maxLength={32}
                 />
             </div>
-            <div className="mt-4">
-                <Label>Street address</Label>
+            <div className="mt-4 space-y-2">
+                <Label>Street address:</Label>
                 <Input
                     type="text"
                     placeholder="Street address"

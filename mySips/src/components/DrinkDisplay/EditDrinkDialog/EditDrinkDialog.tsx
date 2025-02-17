@@ -48,12 +48,12 @@ function EditDrinkDialog({
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
-                    <DialogTitle className="pb-2 text-2xl">
+                    <DialogTitle className="pb-4 text-2xl">
                         Edit Drink
                     </DialogTitle>
-                    <DialogDescription className="opacity-80 pb-2 text-base">
+                    {/* <DialogDescription className="opacity-80 pb-2 text-base">
                         Description
-                    </DialogDescription>
+                    </DialogDescription> */}
                     <Tabs defaultValue="activity" className="w-full h-full">
                         <TabsList className="w-full">
                             <TabsTrigger

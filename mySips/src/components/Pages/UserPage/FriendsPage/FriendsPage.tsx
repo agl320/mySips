@@ -201,7 +201,7 @@ const FriendsPage = ({ user }) => {
                                 return (
                                     <div
                                         key={`user-${index}`}
-                                        className="h-[300px] min-w-[200px] p-2 rounded-md bg-white/20 border border-white/15 space-y-4 flex flex-col justify-between"
+                                        className="h-[250px] min-w-[200px] p-2 rounded-md bg-gradient-to-tr from-white/10 to-white/5 space-y-4 flex flex-col justify-between"
                                     >
                                         <div>
                                             <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50 rounded-md"></div>
@@ -250,7 +250,7 @@ const FriendsPage = ({ user }) => {
                                 return (
                                     <div
                                         key={`user-${index}`}
-                                        className="h-[300px] min-w-[200px] p-2 rounded-md bg-white/20 border border-white/15 space-y-4 flex flex-col justify-between"
+                                        className="h-[250px] min-w-[200px] p-2 rounded-md bg-gradient-to-tr from-white/10 to-white/5 space-y-4 flex flex-col justify-between"
                                     >
                                         <div>
                                             <div className="w-full h-[80px] bg-pastel-orange bg-opacity-50 rounded-md"></div>
